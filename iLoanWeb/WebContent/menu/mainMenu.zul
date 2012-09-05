@@ -1,0 +1,19 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<tabbox id="tb"  mold="accordion"  >
+	<tabs>
+        <tab id="functionTab" label="Online Functions" />
+        <tab id="reportsTab" label="Reports" />
+        
+    </tabs>
+    
+    <tabpanels>
+		<tabpanel >
+			<include src="/menu/functionsMenu.zul"/>
+		</tabpanel>  
+		<tabpanel>
+		</tabpanel>  
+		  
+    </tabpanels>
+</tabbox>
+</zk>

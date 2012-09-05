@@ -1,0 +1,26 @@
+<zk>
+<style src="/style/style.css" />
+<window title="" border="" height="100%" width="95%" >
+	<borderlayout>
+		<north size="70px" sclass="header">
+			Header
+		</north>
+		<west  title="[Menu Title]" border="none">
+		
+			<include src="/menu/mainMenu.zul" />
+		</west>
+		<center>
+			<vlayout style="height:500px;overflow:auto">
+							<div height="100%" self="@{insert(left)}"
+								sclass="content">
+							</div>
+						</vlayout>
+		</center>
+		
+		<south border="none" class="footer" size="25px">
+			<include src="/layout/footer.zul" />
+		</south>
+		
+	</borderlayout>
+</window>
+</zk>

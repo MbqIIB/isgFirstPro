@@ -1,0 +1,25 @@
+<zk>
+<window id="funtionsMenu" apply="com.isg.iloan.controller.menu.FuntionsMenuViewCtrl">
+	<menubar id="menubar" orient="vertical" autodrop="true" >
+             <menu label="New Application" left="true" id="newApplication" style="background:#E4F1F2" >                           
+                    <menupopup>
+                    	
+                        <menuitem label="Basic" id="newAppBasic" />
+                        <menuitem label="Addon" id="newAppAddon" />
+                        <menuitem label="Supplementary" id="newAppSupp"  />
+                    </menupopup>
+             </menu> 
+             
+             <menuitem label=" Verification" id="verification" />           
+        	 <menuitem label=" Review Outright Rejection" id="rorejection" style="background:#E4F1F2;" />
+        	 <menuitem label=" Investigate Bad Match" id="invBadMatch"  />
+             <menuitem label=" Investigate Duplicate Match" id="invDupMatch"  style="background:#E4F1F2"/>
+             <menuitem label=" Card Authentication" id="cardAuth"  />
+             <menuitem label=" External Authentication" id="extAuth"  style="background:#E4F1F2"/>
+             <menuitem label=" Internal Authentication" id="intAuth"  />
+             <menuitem label=" Credit Preview" id="creditPrev" style="background:#E4F1F2" />
+             <menuitem label=" 1st Credit Review" id="firstCreditRev"  />
+             <menuitem label=" 2nd Credit Review" id="secondCreditRev"  style="background:#E4F1F2" />             
+        </menubar>
+</window>
+</zk>
