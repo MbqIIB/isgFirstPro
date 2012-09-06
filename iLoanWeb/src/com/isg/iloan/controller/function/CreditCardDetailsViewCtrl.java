@@ -61,10 +61,19 @@ public class CreditCardDetailsViewCtrl extends GenericForwardComposer {
 		// TODO Auto-generated method stub
 
 	}
-
-	public void onCheck$acceptSaveAndSwipe() throws InterruptedException{		
-		
-		System.out.println("accept, checked: " + acceptSaveAndSwipe.isChecked());
+	
+	public void onCheck$acceptClassicCard() throws InterruptedException{
+		if(acceptClassicCard.isChecked()){			
+			notAcceptClassicCard.setChecked(false);
+		}
+	}
+	public void onCheck$notAcceptClassicCard() throws InterruptedException{
+		if(notAcceptClassicCard.isChecked()){			
+			acceptClassicCard.setChecked(false);
+		}
+	}
+	
+	public void onCheck$acceptSaveAndSwipe() throws InterruptedException{
 		
 		if(acceptSaveAndSwipe.isChecked()){			
 			notAcceptSaveAndSwipe.setChecked(false);
@@ -92,14 +101,8 @@ public class CreditCardDetailsViewCtrl extends GenericForwardComposer {
 				}
 			}
 		}
-		
-		
-			
-		
-		
 	}
-	public void onCheck$notAcceptSaveAndSwipe() throws InterruptedException{
-		
+	public void onCheck$notAcceptSaveAndSwipe() throws InterruptedException{		
 		if(notAcceptSaveAndSwipe.isChecked()){			
 			acceptSaveAndSwipe.setChecked(false);
 			Collection<Component> comps = creditCardDetails.getParent().getParent().getSpaceOwner().getFellows();
@@ -109,8 +112,7 @@ public class CreditCardDetailsViewCtrl extends GenericForwardComposer {
 					|| comp.getId().equalsIgnoreCase("ssDeeds")){					
 					comp.setVisible(false);
 					ctr++;
-					if(ctr>1){break;}
-					
+					if(ctr>1){break;}					
 				}
 			}
 		}
