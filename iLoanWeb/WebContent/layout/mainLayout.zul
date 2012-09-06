@@ -1,11 +1,14 @@
 <zk>
 <style src="/style/style.css" />
 <window title="" border="" height="100%" width="95%" >
+
+
+
 	<borderlayout>
 		<north size="70px" sclass="header">
 			Header
-		</north>
-		<west  title="[Menu Title]" border="none">
+		</north> 
+		<west  title="iLOAN ONLINE PROCESS" style="padding: 5px 1px;" size="14%">
 		
 			<include src="/menu/mainMenu.zul" />
 		</west>

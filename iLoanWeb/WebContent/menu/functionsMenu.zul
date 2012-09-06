@@ -1,3 +1,4 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
 <zk>
 <style dynamic="true">
 .menubutton {
@@ -25,18 +26,18 @@ display:inline-block; /* IE is so silly */
 .menubutton:hover {
 background: #8e9af5;
 }
- 
-
 </style>
+
+
+
 <window id="funtionsMenu" apply="com.isg.iloan.controller.menu.FuntionsMenuViewCtrl">
-	
 	
 	
 	
 	<menubar id="menubar" orient="vertical" autodrop="true" style="padding: 5px 1px" >
              <menu label="New Application" left="true" id="newApplication" style="background:#E4F1F2" >                           
                     <menupopup >                    	
-                        <menuitem label=" Basic"  id="newAppBasic" style="background:#E4F1F2;"/>
+                        <menuitem label=" Basic"  id="newAppBasic" style="background:#E4F1F2;" />
                         <menuseparator />
                         <menuitem label=" Addon" id="newAppAddon" style="background:#E4F1F2"/>
                         <menuseparator/>

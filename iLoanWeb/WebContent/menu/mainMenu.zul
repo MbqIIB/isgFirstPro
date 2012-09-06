@@ -1,19 +1,20 @@
-<?page title="new page title" contentType="text/html;charset=UTF-8"?>
 <zk>
-<tabbox id="tb"  mold="accordion"  >
-	<tabs>
-        <tab id="functionTab" label="Online Functions" />
-        <tab id="reportsTab" label="Reports" />
-        
-    </tabs>
-    
-    <tabpanels>
-		<tabpanel >
-			<include src="/menu/functionsMenu.zul"/>
-		</tabpanel>  
-		<tabpanel>
-		</tabpanel>  
-		  
-    </tabpanels>
-</tabbox>
+	<window id="mainMenu" apply="com.isg.iloan.controller.menu.MainMenuViewCtrl">
+		<tabbox id="tb" mold="accordion">
+			<tabs>
+				<tab id="functionTab" label="Functions"
+					selected="false" />
+				<tab id="reportsTab" label="Reports" selected="true" />
+
+			</tabs>
+
+			<tabpanels>
+				<tabpanel>
+					<include src="/menu/functionsMenu.zul" />
+				</tabpanel>
+				<tabpanel></tabpanel>
+
+			</tabpanels>
+		</tabbox>
+	</window>
 </zk>
