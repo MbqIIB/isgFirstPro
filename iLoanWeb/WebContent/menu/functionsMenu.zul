@@ -30,25 +30,9 @@ background: #8e9af5;
 </style>
 <window id="funtionsMenu" apply="com.isg.iloan.controller.menu.FuntionsMenuViewCtrl">
 	
-	<columnlayout width="200px">
-		<columnchildren >
-			<panel width="100%">
-				<panelchildren sclass="menubutton" >
-					<hbox sclass="menubutton">New Application</hbox>
-				</panelchildren>
-			</panel>
-			
-			<panel>
-				<panelchildren sclass="menubutton">
-					<hbox sclass="menubutton" >Verification</hbox>
-				</panelchildren>
-			</panel>
-		</columnchildren>
-		
 	
-	</columnlayout>
 	
-	<!-- 
+	
 	<menubar id="menubar" orient="vertical" autodrop="true" style="padding: 5px 1px" >
              <menu label="New Application" left="true" id="newApplication" style="background:#E4F1F2" >                           
                     <menupopup >                    	
@@ -60,7 +44,7 @@ background: #8e9af5;
                     </menupopup>
              </menu> 
              <menuseparator/>
-             <menuitem label=" Verification" sclass="menubutton" id="verification" width="50px"  />
+             <menuitem label=" Verification" id="verification" width="50px"  style="background:#E4F1F2"/>
              <menuseparator/>           
         	 <menuitem label=" Review Outright Rejection" id="rorejection" style="background:#E4F1F2;" />
         	 <menuseparator/>
@@ -80,6 +64,6 @@ background: #8e9af5;
              <menuseparator/>
              <menuitem label=" 2nd Credit Review" id="secondCreditRev"  style="background:#E4F1F2" />             
         </menubar>
-         -->
+         
 </window>
 </zk>
