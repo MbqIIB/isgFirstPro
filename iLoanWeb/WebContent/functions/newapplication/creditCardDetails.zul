@@ -1,8 +1,6 @@
 <zk >
 <style src="/style/style.css"  />
 <window title="Credit Card Choice" border="normal"  >
-
-
 <groupbox>
 <hlayout>
 <hbox>
