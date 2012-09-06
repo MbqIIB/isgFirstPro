@@ -1,7 +1,13 @@
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="/layout/mainLayout.zul"?>
 <zk>
 
-	<style>.z-tabbox-ver, .z-tabpanels-ver, .z-tabpanel-ver { height:650px !important; }</style>
+	<style>.z-tabbox-ver, .z-tabpanels-ver { height:590px !important;}
+	.z-tabpanel-ver{
+		 height:550px !important;
+		 overflow: auto;
+	}
+	
+	</style>
 	<window self="@{define(left)}" style="height:600px;">
 		<borderlayout>
 			<center>
@@ -55,8 +61,6 @@
 					</tabpanels>
 				</tabbox>
 			</center>
-
 		</borderlayout>
-
 	</window>
 </zk>
