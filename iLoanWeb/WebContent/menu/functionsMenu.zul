@@ -1,25 +1,85 @@
 <zk>
+<style dynamic="true">
+.menubutton {
+font-family: Arial;
+color: white;
+font-weight:bold;
+font-size: 12px;
+padding-top: 1px;
+padding-right: 20px;
+padding-bottom: 1px;
+padding-left: 9px;
+text-decoration: none;
+-webkit-border-radius: 32px;
+-moz-border-radius: 32px;
+-webkit-box-shadow: 0px 1px 3px #666666;
+-moz-box-shadow: 0px 1px 3px #666666;
+text-shadow: 1px 1px 2px #666666;
+border: solid #003366 1px;
+background: -webkit-gradient(linear, 0 0, 0 100%, from(#1ef7e5), to(#0c0336));
+background: -moz-linear-gradient(top, #1ef7e5, #0c0336);
+-ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=#1ef7e5, endColorStr=#0c0336);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=#1ef7e5, endColorStr=#0c0336);
+display:inline-block; /* IE is so silly */
+}
+.menubutton:hover {
+background: #8e9af5;
+}
+ 
+
+</style>
 <window id="funtionsMenu" apply="com.isg.iloan.controller.menu.FuntionsMenuViewCtrl">
-	<menubar id="menubar" orient="vertical" autodrop="true" >
+	
+	<columnlayout width="200px">
+		<columnchildren >
+			<panel width="100%">
+				<panelchildren sclass="menubutton" >
+					<hbox sclass="menubutton">New Application</hbox>
+				</panelchildren>
+			</panel>
+			
+			<panel>
+				<panelchildren sclass="menubutton">
+					<hbox sclass="menubutton" >Verification</hbox>
+				</panelchildren>
+			</panel>
+		</columnchildren>
+		
+	
+	</columnlayout>
+	
+	<!-- 
+	<menubar id="menubar" orient="vertical" autodrop="true" style="padding: 5px 1px" >
              <menu label="New Application" left="true" id="newApplication" style="background:#E4F1F2" >                           
-                    <menupopup>
-                    	
-                        <menuitem label="Basic" id="newAppBasic" />
-                        <menuitem label="Addon" id="newAppAddon" />
-                        <menuitem label="Supplementary" id="newAppSupp"  />
+                    <menupopup >                    	
+                        <menuitem label=" Basic"  id="newAppBasic" style="background:#E4F1F2;"/>
+                        <menuseparator />
+                        <menuitem label=" Addon" id="newAppAddon" style="background:#E4F1F2"/>
+                        <menuseparator/>
+                        <menuitem label=" Supplementary" id="newAppSupp" style="background:#E4F1F2;" />
                     </menupopup>
              </menu> 
-             
-             <menuitem label=" Verification" id="verification" />           
+             <menuseparator/>
+             <menuitem label=" Verification" sclass="menubutton" id="verification" width="50px"  />
+             <menuseparator/>           
         	 <menuitem label=" Review Outright Rejection" id="rorejection" style="background:#E4F1F2;" />
-        	 <menuitem label=" Investigate Bad Match" id="invBadMatch"  />
+        	 <menuseparator/>
+        	 <menuitem label=" Investigate Bad Match" id="invBadMatch" style="background:#E4F1F2" />
+        	 <menuseparator/>
              <menuitem label=" Investigate Duplicate Match" id="invDupMatch"  style="background:#E4F1F2"/>
-             <menuitem label=" Card Authentication" id="cardAuth"  />
+             <menuseparator/>
+             <menuitem label=" Card Authentication" id="cardAuth" style="background:#E4F1F2" />
+             <menuseparator/>
              <menuitem label=" External Authentication" id="extAuth"  style="background:#E4F1F2"/>
-             <menuitem label=" Internal Authentication" id="intAuth"  />
+             <menuseparator/>
+             <menuitem label=" Internal Authentication" id="intAuth" style="background:#E4F1F2" />
+             <menuseparator/>
              <menuitem label=" Credit Preview" id="creditPrev" style="background:#E4F1F2" />
-             <menuitem label=" 1st Credit Review" id="firstCreditRev"  />
+             <menuseparator/>
+             <menuitem label=" 1st Credit Review" id="firstCreditRev" style="background:#E4F1F2" />
+             <menuseparator/>
              <menuitem label=" 2nd Credit Review" id="secondCreditRev"  style="background:#E4F1F2" />             
         </menubar>
+         -->
 </window>
 </zk>
