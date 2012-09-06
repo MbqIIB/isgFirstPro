@@ -1,6 +1,6 @@
 <zk >
 <style src="/style/style.css"  />
-<window title="Credit Card Choice" border="normal"  >
+<window title="Credit Card Choice" border="normal" id="creditCardDetails" apply="com.isg.iloan.controller.function.CreditCardDetailsViewCtrl" >
 
 
 <groupbox>
@@ -50,8 +50,9 @@
 
 <!-- Existing credit card -->
 <hbox height="2"/>
-<groupbox style="background:#E4F1F2; padding:4px;" >
-<caption label="Existing Credit Card(s)"  style="font-weight:bold;background-color:#E4F1F2;"/>
+<groupbox style="padding:4px;" >
+<!-- background:#E4F1F2;  -->
+<caption label="Existing Credit Card(s)"  style="font-weight:bold;"/>
 <hlayout >
 	<hbox>
 		<vlayout>
