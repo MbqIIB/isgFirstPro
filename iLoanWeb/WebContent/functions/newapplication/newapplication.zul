@@ -1,10 +1,10 @@
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="/layout/mainLayout.zul"?>
 <zk>
 <?script type="text/javascript" src="/js/jquery-1.8.1.js"?>
-<window id="newApplication" self="@{define(left)}" apply="com.isg.iloan.controller.function.NewApplicationViewCtrl" >
+<window id="newApplication" title="New Credit Card Application" self="@{define(left)}" apply="com.isg.iloan.controller.function.NewApplicationViewCtrl" >
 
 
-<borderlayout style="height:500px;overflow:auto;">
+<borderlayout style="height:550px;overflow:auto;">
 <center>
 	<tabbox id="tb" height="500px" orient="vertical" >
     <tabs id="tabs">
@@ -16,18 +16,18 @@
         <tab id="internetTransaction" label="Part F" tooltiptext="Internet Transactions"/>
         <tab id="saveAndSwipe" label="Part G" visible="false" tooltiptext="SAVE &amp; SWIPE"/>
         <tab id="ssDeeds" label="Part H" visible="false" tooltiptext="DEEDS of ASSIGNMENT" />    
-    </tabs>
+    </tabs>    
     <tabpanels >
-        <tabpanel id="ccDetailPanel">Credit Card Details
+        <tabpanel id="ccDetailPanel">
         	<include src="/functions/newapplication/creditCardDetails.zul"/>
         </tabpanel>
         <tabpanel id="personalPanel">Personal Data
         	
         </tabpanel>
-        <tabpanel>Job Details
+        <tabpanel>
         	<include src="/functions/newapplication/myJob.zul"/>
         </tabpanel>
-        <tabpanel>Supplementary Details
+        <tabpanel>
         	<include src="/functions/newapplication/mySupplementary.zul"/>
         </tabpanel>
         <tabpanel>Delivery/Payment Instructions</tabpanel>

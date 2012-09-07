@@ -1,6 +1,6 @@
 <zk >
 <style src="/style/style.css"  />
-<window title="Credit Card Choice" id="creditCardDetails" border="normal" apply="com.isg.iloan.controller.function.CreditCardDetailsViewCtrl" >
+<window title="Credit Card Details" id="creditCardDetails" border="normal" apply="com.isg.iloan.controller.function.CreditCardDetailsViewCtrl" >
 
 <grid>
 <rows>
@@ -31,7 +31,12 @@
 
 </grid>
 
-<groupbox>
+
+<grid>
+<rows>
+<row>
+
+
 
 <hlayout>
 <hbox  width="330px" style="top-padding:4px;">
@@ -43,7 +48,15 @@
 	<checkbox id="notAcceptClassicCard" label="NO"/>
 </hbox>
 </hlayout>
-<hbox height="3"/>
+
+</row>
+</rows>
+</grid>
+
+<grid>
+<rows>
+<row>
+
 <hlayout>
 <hbox  width="330px" style="top-padding:10px;">
 	Save&amp;Swipe(Secure Card) Application?
@@ -53,8 +66,12 @@
 	<checkbox id="notAcceptSaveAndSwipe" label="NO"/>
 </hbox>
 </hlayout>
+</row>
+</rows>
+</grid>
 
-</groupbox>
+
+
 
 <grid>
 <rows>
