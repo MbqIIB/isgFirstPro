@@ -3,7 +3,13 @@
  */
 package com.isg.iloan.controller.function;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.List;
 
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.util.GenericForwardComposer;
@@ -73,48 +79,71 @@ public class CreditCardDetailsViewCtrl extends GenericForwardComposer {
 		}
 	}
 	
+	public void showTab(String id, Component parent,int level){
+		int ctr=0;		
+		boolean found = false;		
+		//Collection<Component> comps = component.getPage().getDesktop().getComponents();
+		Collection<Component> comps = parent.getFellows();		
+		for(Component comp:comps){
+			if(comp.getId().equalsIgnoreCase(id)){
+				found=true;
+				comp.setVisible(true);
+				System.out.println("component id found at level: " + level + " at counter: " + ctr);
+				break;				
+			}
+			ctr++;
+		}
+		if(!found && (level<20)&& (parent.getParent()!=null)){	
+			level++;			
+			showTab(id, parent.getParent(),level);
+		}		
+	 
+	}
+	
+	public void hideTab(String id, Component parent,int level){
+		int ctr=0;		
+		boolean found = false;		
+		//Collection<Component> comps = component.getPage().getDesktop().getComponents();
+		Collection<Component> comps = parent.getFellows();		
+		for(Component comp:comps){
+			if(comp.getId().equalsIgnoreCase(id)){
+				found=true;
+				comp.setVisible(false);
+				System.out.println("component id found at level: " + level + " at counter: " + ctr);
+				break;				
+			}
+			ctr++;
+		}
+		if(!found && (level<20)&& (parent.getParent()!=null)){	
+			level++;			
+			hideTab(id, parent.getParent(),level);
+		}		
+	 
+	}
+	
+	
+	
+	
 	public void onCheck$acceptSaveAndSwipe() throws InterruptedException{
 		
 		if(acceptSaveAndSwipe.isChecked()){			
 			notAcceptSaveAndSwipe.setChecked(false);
-			Collection<Component> comps = creditCardDetails.getParent().getParent().getSpaceOwner().getFellows();
-			int ctr=0;
-			for(Component comp:comps){
-				if(comp.getId().equalsIgnoreCase("saveAndSwipe")
-					|| comp.getId().equalsIgnoreCase("ssDeeds")){
-					comp.setVisible(true);
-					ctr++;
-					if(ctr>1){break;}
-				}
-			}
+			//Collection<Component> comps = creditCardDetails.getParent().getParent().getSpaceOwner().getFellows();
+						
+			showTab("saveAndSwipe", creditCardDetails.getParent(),0);
+			showTab("ssDeeds", creditCardDetails.getParent(),0);
+			
 		}
 		if(!acceptSaveAndSwipe.isChecked()){
-			Collection<Component> comps = creditCardDetails.getParent().getParent().getSpaceOwner().getFellows();
-			int ctr=0;
-			for(Component comp:comps){
-				if(comp.getId().equalsIgnoreCase("saveAndSwipe")
-					|| comp.getId().equalsIgnoreCase("ssDeeds")){					
-					comp.setVisible(false);
-					ctr++;
-					if(ctr>1){break;}
-					
-				}
-			}
+			hideTab("saveAndSwipe", creditCardDetails.getParent(),0);
+			hideTab("ssDeeds", creditCardDetails.getParent(),0);
 		}
 	}
 	public void onCheck$notAcceptSaveAndSwipe() throws InterruptedException{		
 		if(notAcceptSaveAndSwipe.isChecked()){			
 			acceptSaveAndSwipe.setChecked(false);
-			Collection<Component> comps = creditCardDetails.getParent().getParent().getSpaceOwner().getFellows();
-			int ctr=0;
-			for(Component comp:comps){
-				if(comp.getId().equalsIgnoreCase("saveAndSwipe")
-					|| comp.getId().equalsIgnoreCase("ssDeeds")){					
-					comp.setVisible(false);
-					ctr++;
-					if(ctr>1){break;}					
-				}
-			}
+			hideTab("saveAndSwipe", creditCardDetails.getParent(),0);
+			hideTab("ssDeeds", creditCardDetails.getParent(),0);
 		}
 	}
 	

@@ -3,7 +3,7 @@
 	<window title="" border="" height="650px" style="overflow:auto;">
 		<borderlayout width="100%">
 			<north size="70px" sclass="header">Header</north>
-			<west title="[Menu Title]" border="none">
+			<west title="iLOAN ONLINE PROCESS" border="none">
 				<include src="/menu/mainMenu.zul" />
 			</west>
 			<center>

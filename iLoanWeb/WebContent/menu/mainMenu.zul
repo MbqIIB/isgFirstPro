@@ -1,8 +1,9 @@
 <?page title="new page title" contentType="text/html;charset=UTF-8"?>
 <zk>
+<window id="mainMenu" apply="com.isg.iloan.controller.menu.MainMenuViewCtrl">
 <tabbox id="tb"  mold="accordion"  >
 	<tabs>
-        <tab id="functionTab" label="Online Functions" />
+        <tab id="functionTab" label="Functions" />
         <tab id="reportsTab" label="Reports" />
         
     </tabs>
@@ -16,4 +17,5 @@
 		  
     </tabpanels>
 </tabbox>
+</window>
 </zk>
