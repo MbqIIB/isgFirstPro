@@ -21,9 +21,15 @@
         <tabpanel id="ccDetailPanel">Credit Card Details
         	<include src="/functions/newapplication/creditCardDetails.zul"/>
         </tabpanel>
-        <tabpanel id="personalPanel">Personal Data</tabpanel>
-        <tabpanel>Job Details</tabpanel>
-        <tabpanel>Supplementary Details</tabpanel>
+        <tabpanel id="personalPanel">Personal Data
+        	
+        </tabpanel>
+        <tabpanel>Job Details
+        	<include src="/functions/newapplication/myJob.zul"/>
+        </tabpanel>
+        <tabpanel>Supplementary Details
+        	<include src="/functions/newapplication/mySupplementary.zul"/>
+        </tabpanel>
         <tabpanel>Delivery/Payment Instructions</tabpanel>
         <tabpanel>Internet Transaction</tabpanel>
         <tabpanel>
