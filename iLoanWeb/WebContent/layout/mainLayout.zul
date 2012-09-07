@@ -2,7 +2,9 @@
 	<style src="/style/style.css" />
 	<window title="" border="" height="650px" style="overflow:auto;">
 		<borderlayout width="100%">
-			<north size="70px" sclass="header">Header</north>
+			<north size="70px" sclass="header">
+				<include src="/layout/header.zul" />
+			</north>
 			<west title="iLOAN ONLINE PROCESS" border="none" size="180px">
 				<include src="/menu/mainMenu.zul" />
 			</west>
