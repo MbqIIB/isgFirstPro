@@ -48,8 +48,8 @@
 
 <!-- Existing credit card -->
 <hbox height="2"/>
-<groupbox style="background:#E4F1F2; padding:4px;" >
-<caption label="Existing Credit Card(s)"  style="font-weight:bold;background-color:#E4F1F2;"/>
+<groupbox style="padding:4px;" >
+<caption label="Existing Credit Card(s)"  style="font-weight:bold;"/>
 <hlayout >
 	<hbox>
 		<vlayout>
