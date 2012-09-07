@@ -1,29 +1,37 @@
 <zk >
 <style src="/style/style.css"  />
 <window title="Credit Card Choice" id="creditCardDetails" border="normal" apply="com.isg.iloan.controller.function.CreditCardDetailsViewCtrl" >
-<groupbox>
-<hlayout>
-<hbox>
-<vlayout>
-	<checkbox id="classicMasterCard" label="Classic Master Card"/>
-	<checkbox id="classicVisaCard" label="Classic Visa"/>
-</vlayout>
-</hbox>
 
-<hbox>
-<vlayout>
-	<checkbox id="goldMasterCard" label="Gold Master Card"/>
-	<checkbox id="goldVisaCard" label="Gold Visa"/>
-</vlayout>
-</hbox>
-<hbox >
-<vlayout>
-	<checkbox id="mLiteMasterCard" label="M Lite Master Card"/>
-	<checkbox id="femmeVisaCard" label="Femme Visa"/>
-</vlayout>
-</hbox>
-</hlayout>
-</groupbox>
+<grid>
+<rows>
+	<row>
+		<hlayout>
+		<hbox>
+		<vlayout>
+			<checkbox id="classicMasterCard" label="Classic Master Card"/>
+			<checkbox id="classicVisaCard" label="Classic Visa"/>
+		</vlayout>
+		</hbox>		
+		<hbox>
+		<vlayout>
+			<checkbox id="goldMasterCard" label="Gold Master Card"/>
+			<checkbox id="goldVisaCard" label="Gold Visa"/>
+		</vlayout>
+		</hbox>
+		<hbox >
+		<vlayout>
+			<checkbox id="mLiteMasterCard" label="M Lite Master Card"/>
+			<checkbox id="femmeVisaCard" label="Femme Visa"/>
+		</vlayout>
+		</hbox>
+		</hlayout>
+	</row>
+	
+</rows>
+
+</grid>
+
+<groupbox>
 
 <hlayout>
 <hbox  width="330px" style="top-padding:4px;">
@@ -46,8 +54,17 @@
 </hbox>
 </hlayout>
 
+</groupbox>
+
+<grid>
+<rows>
+<row>
+
+
+
+
 <!-- Existing credit card -->
-<hbox height="2"/>
+
 <groupbox style="padding:4px;" >
 <caption label="Existing Credit Card(s)"  style="font-weight:bold;"/>
 <hlayout >
@@ -83,9 +100,16 @@
 </hlayout>
 </groupbox>
 
+</row>
+</rows>
+</grid>
+
 <!-- Other credit card -->
-<hbox height="2"/>
-<groupbox style="padding:4px;">
+<grid>
+<rows>
+<row>
+
+<groupbox>
 <caption label="Other Credit Card(s)" style="font-weight:bold;"/>
 <hlayout>	
 	<hbox height="5" style="font-size:5px">	
@@ -128,9 +152,10 @@
 		</vlayout>		
 	</hbox>	
 </hlayout>
-
 </groupbox>
-
+</row>
+</rows>
+</grid>
 
 </window>
 </zk>
