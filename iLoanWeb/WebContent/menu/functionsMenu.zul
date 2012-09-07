@@ -1,5 +1,5 @@
 <zk>
-<window id="funtionsMenu" apply="com.isg.iloan.controller.menu.FuntionsMenuViewCtrl">
+<window id="funtionsMenu" apply="com.isg.iloan.controller.menu.FunctionsMenuViewCtrl">
 	<menubar id="menubar" orient="vertical" autodrop="true" >
              <menu label="New Application" left="true" id="newApplication" style="background:#E4F1F2" >                           
                     <menupopup>
