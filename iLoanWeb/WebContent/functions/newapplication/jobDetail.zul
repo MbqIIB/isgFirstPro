@@ -1,0 +1,117 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window border="normal" title="My Job" id="myJobWindow"
+		apply="com.isg.iloan.controller.menu.MyJobWindowViewCtrl">
+		
+		<grid>
+		<rows>
+		<row>
+		
+		
+		<groupbox>
+			<caption label="Source of Funds" />
+			<hlayout>
+			<hbox>
+			<vlayout>
+				<checkbox id="classicMasterCard" label="Employment"/>
+				<checkbox id="classicVisaCard" label="Investments(Property, Deposits, ect.)"/>
+			</vlayout>
+			</hbox>		
+			<hbox>
+			<vlayout>
+				<checkbox id="goldMasterCard" label="Self-employment/Business"/>
+				<checkbox id="goldVisaCard" label="Unemployed"/>
+			</vlayout>
+			</hbox>
+			<hbox >
+			<vlayout>
+				<checkbox id="mLiteMasterCard" label="Retired(Pensions, etc.)"/>
+				<hlayout>					
+					<checkbox id="others_chkbox" label="Others, please specify"/>
+					<textbox id="others_txtbox" height="12px" width="150px" maxlength="150" />
+				</hlayout>								
+			</vlayout>			
+			</hbox>
+			</hlayout>		
+		</groupbox>
+		</row>
+		
+		</rows>
+		</grid>
+		
+		<grid>
+			<columns>
+				<column width="15%" />
+				<column width="20%" />
+				<column width="10%" />
+				<column width="55%" />
+			</columns>
+			<rows>	
+				<row>		
+					<label value="Company Name" />
+					<cell colspan="3">
+					<textbox id="company_txtbox" width="200px" mold="rounded" />
+					</cell>
+				</row>
+				<row>		
+					<label value="Occupation/Position" />
+					<cell colspan="3">
+					<textbox id="occupation_txtbox" width="200px" mold="rounded" />
+					</cell>
+				</row>
+				<row>
+					<label value="Nature of Work/Business" />
+					<cell colspan="3">
+						<textbox id="work_nature_txtbox" width="300px"
+							mold="rounded" />
+					</cell>
+				</row>
+				<row>
+					<label value="Office Telephone No." />
+
+					<textbox id="telephone_txtbox" width="150px"
+						mold="rounded" />
+
+					<label value="Zip Code" style="text-align:right;" />
+					<textbox id="zip_txtbox" width="150px"
+						mold="rounded" />
+				</row>
+				<row>
+					<label value="Business Address" />
+					<cell colspan="3">
+						<textbox id="business_add_txtbox" width="460px"
+							rows="3" mold="rounded" />
+					</cell>
+				</row>
+				<row>
+					<label value="Years with Present Employer" />
+
+					<textbox id="yrs_with_pemp_txtbox" width="150px"
+						mold="rounded" />
+
+					<label value="Total No. of Years Working"
+						style="text-align:right;" />
+					<textbox id="working_years_txtbox" width="150px"
+						mold="rounded" />
+
+				</row>
+				
+			</rows>
+		</grid>
+		
+			
+			<grid>				
+				<rows>
+					<row>
+						<groupbox>
+						<caption>My Financial Standing</caption>
+						<label value="Gross Monthly Income"></label>
+						<space /><space/><space width="7"/>
+						<doublebox mold="rounded" />
+						</groupbox>
+					</row>
+				</rows>				
+			</grid>
+		
+	</window>
+</zk>
