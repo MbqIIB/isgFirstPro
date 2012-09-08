@@ -13,19 +13,19 @@
 			<hlayout>
 			<hbox>
 			<vlayout>
-				<checkbox id="classicMasterCard" label="Employment"/>
-				<checkbox id="classicVisaCard" label="Investments(Property, Deposits, ect.)"/>
+				<checkbox id="employment_chkbox" label="Employment"/>
+				<checkbox id="investment_chkbox" label="Investments(Property, Deposits, ect.)"/>
 			</vlayout>
 			</hbox>		
 			<hbox>
 			<vlayout>
-				<checkbox id="goldMasterCard" label="Self-employment/Business"/>
-				<checkbox id="goldVisaCard" label="Unemployed"/>
+				<checkbox id="selfemployed_chkbox" label="Self-employment/Business"/>
+				<checkbox id="unemployed_chkbox" label="Unemployed"/>
 			</vlayout>
 			</hbox>
 			<hbox >
 			<vlayout>
-				<checkbox id="mLiteMasterCard" label="Retired(Pensions, etc.)"/>
+				<checkbox id="retired_chkbox" label="Retired(Pensions, etc.)"/>
 				<hlayout>					
 					<checkbox id="others_chkbox" label="Others, please specify"/>
 					<textbox id="others_txtbox" height="12px" width="150px" maxlength="150" />
@@ -106,7 +106,7 @@
 						<groupbox>
 						<caption>My Financial Standing</caption>
 						<label value="Gross Monthly Income"></label>
-						<space /><space/><space width="7"/>
+						<space /><space/><space width="8"/>
 						<doublebox mold="rounded" />
 						</groupbox>
 					</row>
