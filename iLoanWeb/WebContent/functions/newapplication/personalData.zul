@@ -1,0 +1,221 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="PESONAL DATA" id="personalData" border="normal" width="850px"
+	    style="height:950px; overflow:auto;"
+xmlns:h="http://www.w3.org/1999/xhtml">
+
+<grid>
+<rows>
+<row>
+
+
+<groupbox width="685px">
+<caption label="Name"/>
+<hlayout >
+	
+		<vlayout>
+			Family name
+			<textbox id="familyName" width="160" maxlength="25" mold="rounded"/>			
+		</vlayout>		
+	
+	
+		<vlayout>
+			Given name
+			<textbox id="givenName" width="160" maxlength="25" mold="rounded"/>			
+		</vlayout>		
+	
+	
+		<vlayout>
+			Middle name
+			<textbox id="middleName" width="160" maxlength="25" mold="rounded"/>			
+		</vlayout>		
+	
+</hlayout>
+<hlayout>	
+		<vlayout>
+			Name to appear on card
+			<textbox id="nameOnCard" width="325" mold="rounded"/>			
+		</vlayout>
+</hlayout>
+</groupbox>
+</row>
+</rows>
+</grid>
+
+
+<grid>
+<rows>
+<row>
+<hlayout>
+	
+	
+	<groupbox height="105">
+		<caption label="Birth Date"/>
+		<hbox>
+		<vlayout>			
+			<datebox id="birthdate" lenient="true" buttonVisible="true"  mold="rounded"/>			
+			Place of birth
+			<textbox id="placeOfBirth" width="160" mold="rounded"/>															
+		</vlayout>	
+		</hbox>	
+	</groupbox>	
+	<groupbox height="105">
+		<caption label="Civil Status"/>
+		<hlayout>
+		<hbox>
+		<vlayout>
+			<space height="2"/>			
+			<checkbox id="single_chkbox" label="Single"/>
+			<checkbox id="married_chkbox" label="Married"/>												
+		</vlayout>	
+		</hbox>
+		<hbox>
+		<vlayout>
+		<space height="2"/>			
+			<checkbox id="widowed_chkbox" label="Widowed"/>
+			<checkbox id="separated_chkbox" label="Separated"/>												
+		</vlayout>	
+		</hbox>		
+		</hlayout>
+	</groupbox>
+	
+	
+	<groupbox height="105">
+		<caption label="Gender"/>				
+		<hbox>
+		<vlayout>
+			<space height="2"/>			
+			<checkbox id="male_chkbox" label="Male"/>
+			<checkbox id="female_chkbox" label="Female"/>												
+		</vlayout>	
+		</hbox>
+	</groupbox>
+	<groupbox height="105">
+		<caption label="Nationality/Citizenship"/>		
+		<hbox>
+		<vlayout>
+		<space height="2"/>			
+			<checkbox id="filipino_chkbox" label="Filipino"/>
+			<hbox>
+			<checkbox id="others_chkbox" label="Others"/>
+			<vbox>
+			<textbox id="others_txtbox" width="150"/>
+			(For foreigners, attached ACR &amp; ICR)
+			</vbox>
+			</hbox>												
+		</vlayout>	
+		</hbox>
+	</groupbox>	
+	
+	
+</hlayout>
+</row>
+<row>
+<groupbox width="450">
+	<hlayout>
+	 <vbox>
+	 	Mobile Phone No.
+	 	<textbox id="mobilePhoneNumber_txtbox" width="160" mold="rounded"/>
+	 </vbox>
+	 <vbox>
+	 	Home Phone No.
+	 	<textbox id="homePhoneNumber_txtbox" width="150" mold="rounded"/>
+	 </vbox>
+	 <vbox>
+	 	No. of Children
+	 	<textbox id="numOfChildren_txtbox" width="85" mold="rounded"/>
+	 </vbox>
+	 </hlayout>
+</groupbox>
+</row>
+
+<row>
+<groupbox width="685px">
+<caption label="Home Address"/>
+	<hbox>
+	<textbox id="homeAddress_txtbox" width="460px" rows="3" mold="rounded" />
+	<vbox>
+	<space height="2"/>
+	Zip code
+	<textbox id="zipCode_txtbox" width="50" mold="rounded"/>
+	</vbox>
+	</hbox>
+</groupbox>
+</row>
+
+<row>
+<groupbox width="685px">
+<caption label="Permanent Address(if different from Home Address)"/>
+	<hbox>
+	<textbox id="permAddress_txtbox" width="460px" rows="3" mold="rounded" />
+	<vbox>
+	<space height="2"/>
+	Zip code
+	<textbox id="permAddressZipcode_txtbox" width="50" mold="rounded"/>
+	</vbox>
+	</hbox>
+</groupbox>
+</row>
+
+<row>
+<groupbox width="685px">
+<caption label="Home Ownership"/>
+	<hbox>
+		<checkbox id="owned_chkbox" label="Owned"/>
+		<space/>
+		<checkbox id="rented_chkbox" label="Rented"/>
+		<space/>
+		<checkbox id="mortgaged_chkbox" label="Mortgaged"/>
+		<space/>
+		<checkbox id="livParRel_chkbox" label="Living with parents/relatives"/>
+		<space/>
+		<label style="padding:0px 0px 0px 0px;">Length of stays:</label>			
+		<textbox id="lengthofStays_txtbox" width="50" mold="rounded"/>		
+	</hbox>
+</groupbox>
+</row>
+
+<row>
+<groupbox width="685px">
+<caption label="Car Ownership"/>
+   <hlayout>
+	<hbox>
+		<label>Number of cars:</label>			
+		<textbox id="numOfcars_txtbox" width="50" mold="rounded"/>	
+	</hbox>
+	<space/><space/>
+	<hbox>
+		<label>Model/Year:</label>			
+		<textbox id="modelyear_txtbox" width="150" mold="rounded"/>	
+	</hbox>
+	</hlayout>
+</groupbox>
+</row>
+<row>
+<groupbox width="685px">
+<caption label="Education"/>
+   <hlayout>
+	<checkbox id="highschool_chkbox" label="High School"/>
+	<space/>
+	<checkbox id="someCollege_chkbox" label="Some College"/>
+	<space/>
+	<checkbox id="college_chkbox" label="College"/>
+	<space/>
+	<checkbox id="postGraduate_chkbox" label="Post Graduate"/>
+	<space/>
+	</hlayout>
+</groupbox>
+</row>
+
+
+</rows>
+</grid>	
+
+
+
+
+
+
+
+</window>
+</zk>
