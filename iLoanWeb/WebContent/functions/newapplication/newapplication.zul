@@ -1,12 +1,23 @@
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="/layout/mainLayout.zul"?>
 <zk>
 <?script type="text/javascript" src="/js/jquery-1.8.1.js"?>
-<window id="newApplication" title="New Credit Card Application" self="@{define(left)}" apply="com.isg.iloan.controller.function.NewApplicationViewCtrl" >
+<window id="newApplication" title="New Credit Card Application" self="@{define(left)}" 
+apply="com.isg.iloan.controller.function.NewApplicationViewCtrl" 
+style="height:850px;overflow:auto;">
 
 
-<borderlayout style="height:550px;overflow:auto;">
+<borderlayout style="height:950px;overflow:auto;">
+<north>
+
+<menubar height="20px">
+<menuitem/>
+
+<menuitem image="/images/sa.png" width="10px" height="10px"/>
+<menuitem label="edit"/>
+</menubar>
+</north>
 <center>
-	<tabbox id="tb" height="500px" orient="vertical" >
+	<tabbox id="tb" height="950px" orient="vertical" style="overflow:auto;" >
     <tabs id="tabs">
         <tab id="creditCardDetail" label="Part A" tooltiptext="Credit Card Detail" />
         <tab id="personalData" label="Part B" tooltiptext="Personal Data"/>
@@ -21,11 +32,11 @@
         <tabpanel id="ccDetailPanel">
         	<include src="/functions/newapplication/creditCardDetails.zul"/>
         </tabpanel>
-        <tabpanel id="personalPanel">Personal Data
-        	
+        <tabpanel id="personalPanel">
+        	<include src="/functions/newapplication/personalData.zul"/>        	
         </tabpanel>
         <tabpanel>
-        	<include src="/functions/newapplication/myJob.zul"/>
+        	<include src="/functions/newapplication/jobDetail.zul"/>
         </tabpanel>
         <tabpanel>
         	<include src="/functions/newapplication/mySupplementary.zul"/>

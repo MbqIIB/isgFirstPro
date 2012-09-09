@@ -1,6 +1,6 @@
 <?page title="new page title" contentType="text/html;charset=UTF-8"?>
 <zk>
-	<window border="normal" title="My Job" id="myJobWindow"
+	<window border="normal" title="My Job" id="myJobWindow" width="850px"
 		apply="com.isg.iloan.controller.menu.MyJobWindowViewCtrl">
 		
 		<grid>
@@ -41,10 +41,10 @@
 		
 		<grid>
 			<columns>
-				<column width="15%" />
-				<column width="20%" />
-				<column width="10%" />
-				<column width="55%" />
+				<column width="150" />
+				<column width="150" />
+				<column width="150" />
+				<column  />
 			</columns>
 			<rows>	
 				<row>		
@@ -69,7 +69,7 @@
 				<row>
 					<label value="Office Telephone No." />
 
-					<textbox id="telephone_txtbox" width="150px"
+					<textbox id="telephone_txtbox" width="120px"
 						mold="rounded" />
 
 					<label value="Zip Code" style="text-align:right;" />
@@ -86,7 +86,7 @@
 				<row>
 					<label value="Years with Present Employer" />
 
-					<textbox id="yrs_with_pemp_txtbox" width="150px"
+					<textbox id="yrs_with_pemp_txtbox" width="120px"
 						mold="rounded" />
 
 					<label value="Total No. of Years Working"
@@ -106,7 +106,7 @@
 						<groupbox>
 						<caption>My Financial Standing</caption>
 						<label value="Gross Monthly Income"></label>
-						<space /><space/><space width="8"/>
+						<space /><space width="7"/>
 						<doublebox mold="rounded" />
 						</groupbox>
 					</row>

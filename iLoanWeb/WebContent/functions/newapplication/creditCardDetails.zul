@@ -1,6 +1,7 @@
 <zk >
 <style src="/style/style.css"  />
-<window title="Credit Card Details" id="creditCardDetails" border="normal" apply="com.isg.iloan.controller.function.CreditCardDetailsViewCtrl" >
+<window title="CREDIT CARD DETAILS" id="creditCardDetails" width="850px" 
+border="normal" apply="com.isg.iloan.controller.function.CreditCardDetailsViewCtrl" >
 
 <grid>
 <rows>

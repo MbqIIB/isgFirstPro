@@ -1,6 +1,6 @@
 <zk>
 	<style src="/style/style.css" />
-	<window title="" border="" height="650px" style="overflow:auto;">
+	<window title="" border="" height="950px" style="overflow:auto;">
 		<borderlayout width="100%">
 			<north size="70px" sclass="header">
 				<include src="/layout/header.zul" />
@@ -11,7 +11,7 @@
 			<center>
 				<vlayout>
 					<div self="@{insert(left)}"
-						sclass="content" style="overflow:auto;">
+						sclass="content"  style="overflow:auto;">
 					</div>
 				</vlayout>
 			</center>
