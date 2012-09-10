@@ -9,8 +9,8 @@ style="height:1100px;overflow:auto;">
 <borderlayout style="height:1100px;overflow:auto;">
 <north>
 
-<menubar height="20px">
-<menuitem/>
+				<menubar height="20px">
+					<menuitem />
 
 <menuitem label="Submit"/>
 <menuitem label="Edit"/>
