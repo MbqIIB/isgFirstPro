@@ -86,12 +86,12 @@
 				<row>
 					<label value="Years with Present Employer" />
 
-					<textbox id="yrs_with_pemp_txtbox" width="120px"
+					<textbox id="yrs_with_pemp_txtbox" width="80px"
 						mold="rounded" />
 
 					<label value="Total No. of Years Working"
 						style="text-align:right;" />
-					<textbox id="working_years_txtbox" width="150px"
+					<textbox id="working_years_txtbox" width="80px"
 						mold="rounded" />
 
 				</row>
@@ -106,8 +106,8 @@
 						<groupbox>
 						<caption>My Financial Standing</caption>
 						<label value="Gross Monthly Income"></label>
-						<space /><space width="7"/>
-						<doublebox mold="rounded" />
+						<space width="72px"/>
+						<textbox id="grossMonthlyIncome" mold="rounded" width="80px"/>
 						</groupbox>
 					</row>
 				</rows>				
