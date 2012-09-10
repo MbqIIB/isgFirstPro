@@ -1,8 +1,7 @@
 <?page title="new page title" contentType="text/html;charset=UTF-8"?>
 <zk>
-<window title="PESONAL DATA" id="personalData" border="normal" width="850px"
-	    style="height:1050px; overflow:auto;"
-xmlns:h="http://www.w3.org/1999/xhtml">
+<window title="PESONAL DATA" id="personalData" border="normal" width="77%" height="114%"
+		xmlns:h="http://www.w3.org/1999/xhtml">
 
 <grid>
 <rows>
@@ -13,21 +12,21 @@ xmlns:h="http://www.w3.org/1999/xhtml">
 <caption label="Name"/>
 <hlayout >
 		<vlayout>
-			Family name
+			<label value="Family name" />
 			<textbox id="familyName" width="140px" maxlength="25" mold="rounded"/>			
 		</vlayout>
 		<vlayout>
-			Given name
+			<label value="Given name" />
 			<textbox id="givenName" width="140px" maxlength="25" mold="rounded"/>			
 		</vlayout>
 		<vlayout>
-			Middle name
+			<label value="Middle name" />
 			<textbox id="middleName" width="140px" maxlength="25" mold="rounded"/>			
 		</vlayout>	
 </hlayout>
 <hlayout>	
 		<vlayout>
-			Name to appear on card
+			<label value="Name to appear on card"/>
 			<textbox id="nameOnCard" width="284px" mold="rounded"/>			
 		</vlayout>
 </hlayout>
@@ -48,7 +47,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
 		<hbox>
 		<vlayout>			
 			<datebox id="birthdate" lenient="true" buttonVisible="true"  mold="rounded"/>			
-			Place of birth
+			<label value="Place of birth"/>
 			<textbox id="placeOfBirth" width="160" mold="rounded"/>															
 		</vlayout>	
 		</hbox>	
@@ -57,11 +56,9 @@ xmlns:h="http://www.w3.org/1999/xhtml">
 		<caption label="Civil Status"/>
 		<hlayout>
 		<hbox>
-		<vlayout>
-			
+		<vlayout>			
 			<checkbox id="single_chkbox" label="Single"/>
-			<checkbox id="married_chkbox" label="Married"/>	
-														
+			<checkbox id="married_chkbox" label="Married"/>															
 		</vlayout>	
 		</hbox>
 		<hbox>
@@ -94,7 +91,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
 			<checkbox id="others_chkbox" label="Others"/>
 			<vbox>
 			<textbox id="others_txtbox" width="150"/>
-			(For foreigners, attached ACR &amp; ICR)
+			<label value="(For foreigners, attached ACR &amp; ICR)" />
 			</vbox>
 			</hbox>												
 		</vlayout>	
@@ -108,19 +105,19 @@ xmlns:h="http://www.w3.org/1999/xhtml">
 <groupbox width="685px">
 	<hlayout>
 	 <vbox>
-	 	Mobile Phone No.
+	 	<label value="Mobile Phone No." />
 	 	<textbox id="mobilePhoneNumber_txtbox" width="140px" mold="rounded"/>
-	 	Email Address
+	 	<label value="Email Address" />
 	 	<textbox id="emailAddress_txtbox" width="140px" mold="rounded"/>
 	 </vbox>
 	 <vbox>
-	 	Home Phone No.
+	 	<label value="Home Phone No." />
 	 	<textbox id="homePhoneNumber_txtbox" width="140px" mold="rounded"/>
-	 	Mother's full name
+	 	<label value="Mother's full name" />
 	 	<textbox id="motherFullname_txtbox" width="140px" mold="rounded"/>
 	 </vbox>
 	 <vbox>
-	 	No. of Children
+	 	<label value="No. of Children" />
 	 	<textbox id="numOfChildren_txtbox" width="50px" mold="rounded"/>
 	 </vbox>
 	 </hlayout>
@@ -133,7 +130,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
 	<hbox>
 	<textbox id="homeAddress_txtbox" width="460px" rows="3" mold="rounded" />
 	<vbox>	
-	Zip code
+	<label value="Zip code" />
 	<textbox id="zipCode_txtbox" width="80px" mold="rounded"/>
 	</vbox>
 	</hbox>
@@ -146,7 +143,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
 	<hbox>
 	<textbox id="permAddress_txtbox" width="460px" rows="3" mold="rounded" />
 	<vbox>	
-	Zip code
+	<label value="Zip code" />
 	<textbox id="permAddressZipcode_txtbox" width="80px" mold="rounded"/>
 	</vbox>
 	</hbox>
@@ -165,23 +162,23 @@ xmlns:h="http://www.w3.org/1999/xhtml">
 		<space/>
 		<checkbox id="livParRel_chkbox" label="Living with parents/relatives"/>
 		<space/>
-		<label>Length of stays:</label>			
+		<label value="Length of stays:" />			
 		<textbox id="lengthofStays_txtbox" width="50px" mold="rounded"/>		
 	</hbox>
 </groupbox>
 </row>
-
+ 
 <row>
 <groupbox width="685px">
 <caption label="Car Ownership"/>
    <hlayout>
 	<hbox>
-		<label>Number of cars:</label>			
+		<label value="Number of cars:"/>		
 		<textbox id="numOfcars_txtbox" width="50" mold="rounded"/>	
 	</hbox>
 	<space/><space/>
 	<hbox>
-		<label>Model/Year:</label>			
+		<label value="Model/Year:" />		
 		<textbox id="modelyear_txtbox" width="150" mold="rounded"/>	
 	</hbox>
 	</hlayout>
@@ -207,7 +204,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
 <groupbox width="685px">
    <hlayout>
     <vbox>
-		<label>T.I.N</label>
+		<label value="T.I.N" />
 		<textbox id="tin_txtbox" width="100px" mold="rounded" />	
 		<hbox>
 			<checkbox id="sssNo_chkbox" label="SSS"/>
@@ -240,7 +237,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
 				<space width="1px"/>
 				<vbox>
 				<textbox id="otherID_txtbox" width="200px" mold="rounded" />
-				(Please specify type of ID and ID number)
+				<label value="(Please specify type of ID and ID number)"/>
 				</vbox>
 			</hbox>
 		</vbox>
@@ -256,18 +253,18 @@ xmlns:h="http://www.w3.org/1999/xhtml">
   	<hlayout>
 		<vbox>
 			<hbox>
-				Name
+				<label value="Name"/>
 				<space/>
 				<textbox id="personalRefName_txtbox" width="180px" mold="rounded" />
 				<space />
-				Relationship
+				<label value="Relationship" />
 				<textbox id="personalRefRelation_txtbox" width="100px" mold="rounded" />
 			</hbox>
 			<hbox>
-				Address
+				<label value="Address"/>
 				<textbox id="personalRefAddress_txtbox" rows="2" width="370px" mold="rounded"/>
 				<space width="1"/>
-				Tel. No.
+				<label value="Tel. No."/>
 				<textbox id="personalRefTelNum_txtbox" width="100px" mold="rounded" />
 			</hbox>
 		</vbox>

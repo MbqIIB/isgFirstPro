@@ -1,25 +1,24 @@
 <zk>
 	<style src="/style/style.css" />
-	<window title="" border="" height="950px" style="overflow:auto;">
-		<borderlayout width="100%">
-			<north size="70px" sclass="header">
+	<window title="" border="" style="height:100%;width:100%">
+		<borderlayout>
+			<north size="13%" sclass="header">
 				<include src="/layout/header.zul" />
 			</north>
-			<west title="iLOAN ONLINE PROCESS" border="none" size="180px">
+			<west title="iLOAN ONLINE PROCESS" border="none" size="13%">
 				<include src="/menu/mainMenu.zul" />
 			</west>
-			<center>
-				<vlayout>
-					<div self="@{insert(left)}"
-						sclass="content"  style="overflow:auto;">
+			<center >
+				<vlayout >
+					<div self="@{insert(left)}" style="height:100%;width:100%;" 
+					sclass="content">
 					</div>
 				</vlayout>
 			</center>
 
-			<south border="none" class="footer" size="25px">
+			<south border="none" class="footer" size="4%">
 				<include src="/layout/footer.zul" />
 			</south>
-
 		</borderlayout>
 	</window>
 </zk>

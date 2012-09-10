@@ -5,10 +5,11 @@
 		display:block; width: 200px;}
 	</style>
 	<window title="DELIVERY/PAYMENT INSTRUCTION" border="normal"
-		apply="com.isg.iloan.controller.function.MyDeliveryPaymentInstructionsViewCtrl">
+		apply="com.isg.iloan.controller.function.MyDeliveryPaymentInstructionsViewCtrl"
+		width="77%">
 		<grid>
 			<columns>
-				<column width="20%"></column>
+				<column width="23%"></column>
 				<column></column>
 			</columns>
 			<rows>
