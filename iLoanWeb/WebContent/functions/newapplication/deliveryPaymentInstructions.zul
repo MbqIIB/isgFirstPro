@@ -1,0 +1,59 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<style>
+		.ada_container{ padding-left: 20px; } .ada_lbl{ float:left;
+		display:block; width: 200px;}
+	</style>
+	<window title="My Delivery/Payment Instructions" border="normal"
+		apply="com.isg.iloan.controller.function.MyDeliveryPaymentInstructionsViewCtrl">
+		<grid>
+			<columns>
+				<column width="20%"></column>
+				<column></column>
+			</columns>
+			<rows>
+				<row>
+					<label value="Deliver Card &amp; Statement To:" />
+					<hlayout>
+						<checkbox label="Office" id="office_chkbox" />
+						<checkbox label="Home" id="home_chkbox" />
+					</hlayout>
+				</row>
+				<row>
+					<label value="Preferred Payment Mode:" />
+					<radiogroup id="paymentmode_radio_grp">
+						<vlayout>
+							<checkbox
+								label="I will pay in cash or check at Metrobank/PSBank branch"
+								id="payCash_chkbox" />
+							<checkbox
+								label="Automatic Debit Arrangement(ADA): " id="ada_chkbox" />
+							<div sclass="ada_container" id="ada_div">
+								<vlayout>
+									<hlayout>
+										<label
+											value="Current/Savings Account No.:" sclass="ada_lbl" />
+										<textbox width="150px"
+											mold="rounded" maxlength="25" />
+									</hlayout>
+									<hlayout>
+										<label value="Metrobank Branch:"
+											sclass="ada_lbl" />
+										<textbox width="300px"
+											mold="rounded" maxlength="25" />
+									</hlayout>
+									<hlayout>
+										<checkbox
+											label="Minimum amount due" id="minAmount_chkbox"/>
+										<checkbox
+											label="Total amount due" id="totalAmount_chkbox"/>
+									</hlayout>
+								</vlayout>
+							</div>
+						</vlayout>
+					</radiogroup>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>
