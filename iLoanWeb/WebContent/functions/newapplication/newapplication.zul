@@ -3,21 +3,13 @@
 <?script type="text/javascript" src="/js/jquery-1.8.1.js"?>
 <window id="newApplication" title="New Credit Card Application" self="@{define(left)}" 
 apply="com.isg.iloan.controller.function.NewApplicationViewCtrl" 
-style="height:1100px;overflow:auto;">
+
+>
 
 
-<borderlayout style="height:1100px;overflow:auto;">
-<north>
 
-				<menubar height="20px">
-					<menuitem />
 
-<menuitem label="Submit"/>
-<menuitem label="Edit"/>
-</menubar>
-</north>
-<center>
-	<tabbox id="tb" height="1100px" orient="vertical" style="overflow:auto;" >
+	<tabbox id="tb" orient="vertical" height="80%" >
     <tabs id="tabs">
         <tab id="creditCardDetail" label="Part A" tooltiptext="Credit Card Detail" />
         <tab id="personalData" label="Part B" tooltiptext="Personal Data"/>
@@ -28,32 +20,32 @@ style="height:1100px;overflow:auto;">
         <tab id="saveAndSwipe" label="Part G" visible="false" tooltiptext="SAVE &amp; SWIPE"/>
         <tab id="ssDeeds" label="Part H" visible="false" tooltiptext="DEEDS of ASSIGNMENT" />    
     </tabs>    
-    <tabpanels >
-        <tabpanel id="ccDetailPanel">
+    <tabpanels  >
+        <tabpanel id="ccDetailPanel" style="overflow-y:scroll;display:none;" >
         	<include src="/functions/newapplication/creditCardDetails.zul"/>
         </tabpanel>
-        <tabpanel id="personalPanel">
+        <tabpanel id="personalPanel" style="overflow-y:scroll;display:none;" >
         	<include src="/functions/newapplication/personalData.zul"/>        	
         </tabpanel>
-        <tabpanel>
+        <tabpanel >
         	<include src="/functions/newapplication/jobDetail.zul"/>
         </tabpanel>
-        <tabpanel>
+        <tabpanel >
         	<include src="/functions/newapplication/mySupplementary.zul"/>
         </tabpanel>
-        <tabpanel>Delivery/Payment Instructions</tabpanel>
-        <tabpanel>Internet Transaction</tabpanel>
         <tabpanel>
+        	<include src="deliveryPaymentInstructions.zul"/>
+        </tabpanel>
+        <tabpanel>Internet Transaction</tabpanel>
+        <tabpanel >
         	SAVE&amp;SWIPE (Secure Credit Card Program)
         </tabpanel>
-        <tabpanel>
+        <tabpanel >
         	DEEDS of ASSIGNMENT FOR SAVE&amp;SWIPE (Secure Card)
         </tabpanel>
     </tabpanels>
 </tabbox>
-</center>
-	
-</borderlayout>
+
 	
 </window>
 </zk>
