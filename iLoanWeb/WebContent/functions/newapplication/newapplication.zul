@@ -1,59 +1,78 @@
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="/layout/mainLayout.zul"?>
 <zk>
-<?script type="text/javascript" src="/js/jquery-1.8.1.js"?>
-<window id="newApplication" title="New Credit Card Application" self="@{define(left)}" 
-apply="com.isg.iloan.controller.function.NewApplicationViewCtrl" 
-style="height:850px;overflow:auto;">
+	<?script type="text/javascript" src="/js/jquery-1.8.1.js"?>
+	<window id="newApplication" title="New Credit Card Application"
+		self="@{define(left)}"
+		apply="com.isg.iloan.controller.function.NewApplicationViewCtrl"
+		style="height:850px;overflow:auto;">
 
 
-<borderlayout style="height:950px;overflow:auto;">
-<north>
+		<borderlayout style="height:950px;overflow:auto;">
+			<north>
 
-<menubar height="20px">
-<menuitem/>
+				<menubar height="20px">
+					<menuitem />
 
-<menuitem image="/images/sa.png" width="10px" height="10px"/>
-<menuitem label="edit"/>
-</menubar>
-</north>
-<center>
-	<tabbox id="tb" height="950px" orient="vertical" style="overflow:auto;" >
-    <tabs id="tabs">
-        <tab id="creditCardDetail" label="Part A" tooltiptext="Credit Card Detail" />
-        <tab id="personalData" label="Part B" tooltiptext="Personal Data"/>
-        <tab id="jobDetail" label="Part C" tooltiptext="Job Detail" />
-        <tab id="supplementaryDetail" label="Part D" tooltiptext="Supplementary Detail" />
-        <tab id="deliveryInstruction" label="Part E" tooltiptext="Delivery/Payment Instructions" />
-        <tab id="internetTransaction" label="Part F" tooltiptext="Internet Transactions"/>
-        <tab id="saveAndSwipe" label="Part G" visible="false" tooltiptext="SAVE &amp; SWIPE"/>
-        <tab id="ssDeeds" label="Part H" visible="false" tooltiptext="DEEDS of ASSIGNMENT" />    
-    </tabs>    
-    <tabpanels >
-        <tabpanel id="ccDetailPanel">
-        	<include src="/functions/newapplication/creditCardDetails.zul"/>
-        </tabpanel>
-        <tabpanel id="personalPanel">
-        	<include src="/functions/newapplication/personalData.zul"/>        	
-        </tabpanel>
-        <tabpanel>
-        	<include src="/functions/newapplication/jobDetail.zul"/>
-        </tabpanel>
-        <tabpanel>
-        	<include src="/functions/newapplication/mySupplementary.zul"/>
-        </tabpanel>
-        <tabpanel>Delivery/Payment Instructions</tabpanel>
-        <tabpanel>Internet Transaction</tabpanel>
-        <tabpanel>
-        	SAVE&amp;SWIPE (Secure Credit Card Program)
-        </tabpanel>
-        <tabpanel>
-        	DEEDS of ASSIGNMENT FOR SAVE&amp;SWIPE (Secure Card)
-        </tabpanel>
-    </tabpanels>
-</tabbox>
-</center>
-	
-</borderlayout>
-	
-</window>
+					<menuitem image="/images/sa.png" width="10px"
+						height="10px" />
+					<menuitem label="edit" />
+				</menubar>
+			</north>
+			<center>
+				<tabbox id="tb" height="950px" orient="vertical"
+					style="overflow:auto;">
+					<tabs id="tabs">
+						<tab id="creditCardDetail" label="Part A"
+							tooltiptext="Credit Card Detail" />
+						<tab id="personalData" label="Part B"
+							tooltiptext="Personal Data" />
+						<tab id="jobDetail" label="Part C"
+							tooltiptext="Job Detail" />
+						<tab id="supplementaryDetail" label="Part D"
+							tooltiptext="Supplementary Detail" />
+						<tab id="deliveryInstruction" label="Part E"
+							tooltiptext="Delivery/Payment Instructions" />
+						<tab id="internetTransaction" label="Part F"
+							tooltiptext="Internet Transactions" />
+						<tab id="saveAndSwipe" label="Part G"
+							visible="false" tooltiptext="SAVE &amp; SWIPE" />
+						<tab id="ssDeeds" label="Part H" visible="false"
+							tooltiptext="DEEDS of ASSIGNMENT" />
+					</tabs>
+					<tabpanels>
+						<tabpanel id="ccDetailPanel">
+							<include
+								src="/functions/newapplication/creditCardDetails.zul" />
+						</tabpanel>
+						<tabpanel id="personalPanel">
+							<include
+								src="/functions/newapplication/personalData.zul" />
+						</tabpanel>
+						<tabpanel>
+							<include
+								src="/functions/newapplication/jobDetail.zul" />
+						</tabpanel>
+						<tabpanel>
+							<include
+								src="/functions/newapplication/mySupplementary.zul" />
+						</tabpanel>
+						<tabpanel>
+							<include
+								src="/functions/newapplication/deliveryPaymentInstructions.zul" />
+						</tabpanel>
+						<tabpanel>Internet Transaction</tabpanel>
+						<tabpanel>
+							SAVE&amp;SWIPE (Secure Credit Card Program)
+						</tabpanel>
+						<tabpanel>
+							DEEDS of ASSIGNMENT FOR SAVE&amp;SWIPE
+							(Secure Card)
+						</tabpanel>
+					</tabpanels>
+				</tabbox>
+			</center>
+
+		</borderlayout>
+
+	</window>
 </zk>

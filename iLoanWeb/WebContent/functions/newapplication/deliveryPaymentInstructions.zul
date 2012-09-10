@@ -4,7 +4,7 @@
 		.ada_container{ padding-left: 20px; } .ada_lbl{ float:left;
 		display:block; width: 200px;}
 	</style>
-	<window title="My Delivery/Payment Instructions" border="normal"
+	<window title="DELIVERY/PAYMENT INSTRUCTION" border="normal"
 		apply="com.isg.iloan.controller.function.MyDeliveryPaymentInstructionsViewCtrl">
 		<grid>
 			<columns>
