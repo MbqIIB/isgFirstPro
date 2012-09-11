@@ -31,23 +31,19 @@ public class SaveAndSwipeViewCtrl extends GenericForwardComposer {
 	public void doAfterCompose(Component comp) throws Exception {
 		super.doAfterCompose(comp);
 		// TODO Auto-generated method stub
-
+		metrobankDepositorNo_chkbox.setChecked(true);
 	}
 	
 	public void onCheck$metrobankDepositorYes_chkbox(){
-		if(metrobankDepositorYes_chkbox.isChecked()){
-			depositor_grpbox.setVisible(true);
-			metrobankDepositorNo_chkbox.setChecked(false);
-		}else{
-			depositor_grpbox.setVisible(false);
-		}
+		
+		depositor_grpbox.setVisible(metrobankDepositorYes_chkbox.isChecked());
+		metrobankDepositorNo_chkbox.setChecked(!metrobankDepositorYes_chkbox.isChecked());
 		
 	}
 	public void onCheck$metrobankDepositorNo_chkbox(){
-		if(metrobankDepositorNo_chkbox.isChecked()){
-			depositor_grpbox.setVisible(false);
-			metrobankDepositorYes_chkbox.setChecked(false);
-		}
+
+		depositor_grpbox.setVisible(!metrobankDepositorNo_chkbox.isChecked());
+		metrobankDepositorYes_chkbox.setChecked(!metrobankDepositorNo_chkbox.isChecked());
 		
 	}
 	

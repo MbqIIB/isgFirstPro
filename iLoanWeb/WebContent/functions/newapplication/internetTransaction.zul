@@ -1,6 +1,6 @@
 <?page title="new page title" contentType="text/html;charset=UTF-8"?>
 <zk>
-<window title="MY INTERNET TRANSACTION SECURITY" border="normal" width="77%"
+<window title="MY INTERNET TRANSACTION SECURITY" border="normal" width="77%" 
 	apply="com.isg.iloan.controller.function.InternetTransactionViewCtrl" >
 
 <vlayout>
@@ -10,7 +10,7 @@
 your internet transactions with participating merchants." style="font-weight:bold;"
 />
 </hbox>
-<space />
+
 <groupbox width="75%">
 <hbox>
 <checkbox id="internetTransaction_chkbox" />

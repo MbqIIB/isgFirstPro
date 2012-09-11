@@ -2,12 +2,12 @@
 <zk>
 <?script type="text/javascript" src="/js/jquery-1.8.1.js"?>
 <window id="newApplication" title="New Credit Card Application" self="@{define(left)}" 
-apply="com.isg.iloan.controller.function.NewApplicationViewCtrl" >
+apply="com.isg.iloan.controller.function.NewApplicationViewCtrl"  >
 
 
 
 
-	<tabbox id="tb" orient="vertical" height="80%" >
+	<tabbox id="tb" orient="vertical" height="90%" >
     <tabs id="tabs">
         <tab id="creditCardDetail" label="Part A" tooltiptext="Credit Card Detail" />
         <tab id="personalData" label="Part B" tooltiptext="Personal Data"/>

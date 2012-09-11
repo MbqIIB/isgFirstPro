@@ -1,7 +1,7 @@
 <?page title="new page title" contentType="text/html;charset=UTF-8"?>
 <zk>
 	<window title="My Supplementary" border="normal"
-		apply="com.isg.iloan.controller.menu.MySupplementaryViewCtrl" width="77%">
+		apply="com.isg.iloan.controller.function.MySupplementaryViewCtrl" width="77%">
 		<div>
 			Supplementary card applicants are required to submit a
 			photocopy of a valid government-issued ID and complete the
