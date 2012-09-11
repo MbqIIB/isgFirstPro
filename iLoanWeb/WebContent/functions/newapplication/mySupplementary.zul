@@ -22,8 +22,8 @@
 				<column width="16%" />
 				<column width="14%" />
 				<column width="20%" />
-				<column width="5%" />
-				<column width="30%" />
+				<column width="8%" />
+				<column width="27%" />
 			</columns>
 			<rows>
 				<row>
@@ -64,7 +64,7 @@
 				<row>
 					<label value="Zip Code" />
 					
-						<textbox id="zip_txtbox" width="150px"
+						<textbox id="zip_txtbox" width="50px"
 							mold="rounded" />
 
 					<label value="Relation To Principal Applicant" />

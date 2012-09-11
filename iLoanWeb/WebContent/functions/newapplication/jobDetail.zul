@@ -62,7 +62,7 @@
 				<row>
 					<label value="Nature of Work/Business" />
 					<cell colspan="3">
-						<textbox id="work_nature_txtbox" width="300px"
+						<textbox id="work_nature_txtbox" width="315px"
 							mold="rounded" />
 					</cell>
 				</row>
@@ -71,15 +71,17 @@
 
 					<textbox id="telephone_txtbox" width="120px"
 						mold="rounded" />
-
-					<label value="Zip Code" style="text-align:right;" />
-					<textbox id="zip_txtbox" width="150px"
-						mold="rounded" />
+					<cell colspan="2">
+						<label value="Zip Code" style="text-align:right;" />
+						<space/>
+						<textbox id="zip_txtbox" width="50px" mold="rounded" />
+					</cell>
+					
 				</row>
 				<row>
 					<label value="Business Address" />
 					<cell colspan="3">
-						<textbox id="business_add_txtbox" width="460px"
+						<textbox id="business_add_txtbox" width="450px"
 							rows="3" mold="rounded" />
 					</cell>
 				</row>
@@ -88,11 +90,12 @@
 
 					<textbox id="yrs_with_pemp_txtbox" width="80px"
 						mold="rounded" />
-
-					<label value="Total No. of Years Working"
-						style="text-align:right;" />
-					<textbox id="working_years_txtbox" width="80px"
-						mold="rounded" />
+					<cell colspan="2">
+						<label value="Total No. of Years Working" style="text-align:right;" />
+						<space />
+						<textbox id="working_years_txtbox" width="80px" mold="rounded" />
+					</cell>
+					
 
 				</row>
 				
