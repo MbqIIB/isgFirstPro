@@ -2,9 +2,7 @@
 <zk>
 <?script type="text/javascript" src="/js/jquery-1.8.1.js"?>
 <window id="newApplication" title="New Credit Card Application" self="@{define(left)}" 
-apply="com.isg.iloan.controller.function.NewApplicationViewCtrl" 
-
->
+apply="com.isg.iloan.controller.function.NewApplicationViewCtrl" >
 
 
 
@@ -37,11 +35,11 @@ apply="com.isg.iloan.controller.function.NewApplicationViewCtrl"
         	<include src="deliveryPaymentInstructions.zul"/>
         </tabpanel>
         <tabpanel>Internet Transaction</tabpanel>
-        <tabpanel >
-        	SAVE&amp;SWIPE (Secure Credit Card Program)
+        <tabpanel>
+        	<include src="saveAndSwipe.zul"/>
         </tabpanel>
-        <tabpanel >
-        	DEEDS of ASSIGNMENT FOR SAVE&amp;SWIPE (Secure Card)
+        <tabpanel style="overflow-y:scroll;display:none;">
+        	<include src="doaSaveAndSwipe.zul"/>
         </tabpanel>
     </tabpanels>
 </tabbox>

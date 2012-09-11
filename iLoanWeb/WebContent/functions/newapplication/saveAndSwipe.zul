@@ -1,0 +1,100 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="SAVE&amp;SWIPE (Secured Credit Card Program) " border="normal"
+		width="77%" 
+		apply="com.isg.iloan.controller.function.SaveAndSwipeViewCtrl" >
+
+
+<grid>
+
+<columns>
+<column width="15%"/>
+<column width="25%"/>
+<column width="30%"/>
+<column />
+</columns>
+
+
+<rows>
+	<row>
+		<cell colspan="4">
+			
+			<hlayout>
+			<hbox>
+			<label value="Use your Metrobank Deposit to enjoy the perks of a Metrobank Credit Cards" 
+				   style="font-weight:bold;"/>
+			</hbox>
+			</hlayout>
+			
+		</cell>
+	</row>
+
+	<row>
+	<cell colspan="2">		
+		 <label value="ARE YOU A METROBANK DEPOSITOR?"/>		
+	</cell>
+	<cell colspan="2">
+		<hbox>
+			<checkbox id="metrobankDepositorYes_chkbox" label="YES"/>
+		 	<checkbox id="metrobankDepositorNo_chkbox" label="NO"/>
+		</hbox>		
+	</cell>	
+	</row>
+	<row>
+		<cell colspan="4">
+			<groupbox id="depositor_grpbox" width="50%" visible="false">
+			<vlayout>
+			<hbox>
+				<label value="If yes, please provide your Account Number"/>
+				<space />
+				<textbox id="deposiorAccntNum_txtbox" mold="rounded" width="140px"/>
+			</hbox>
+			<hbox>
+				<label value="Branch Opened"/>
+				<space/>
+				<textbox id="deposiorBranchOpened_txtbox" mold="rounded" width="288px"/>
+			</hbox>
+			</vlayout>
+			</groupbox>	
+		</cell>
+			
+	</row>
+	<row>
+	 
+		<cell colspan="3">
+			<label value="IF YOU ARE UNABLE TO PROVIDE THE REQUIRED PROOF OF INCOME/DOCUMENTATION, 
+				WILL YOU BE WILLING TO PLEDGE AN AMOUNT FOR A SECURED METROBANK CREDIT 
+				CARD?"				
+				/>
+		</cell>
+		<cell colspan="1">
+			<checkbox id="pledgeYes_chkbox" label="YES"/>
+			<space />
+	 		<checkbox id="pledgeNo_chkbox" label="NO"/>
+		</cell>	
+	</row>
+</rows>
+</grid> 
+<space/>
+<hlayout>
+<hbox>
+<label value="Applicants availing of Save&amp;Swipe Program are required to accomplished the Deeds of 
+Assignment for Secured Cards portion and mandatory fields in the application form, and 
+to inquire with their maintaining branch for other requirement to effect the pledge/hold-out 
+on your deposit."  style="font-weight:bold;" />
+</hbox>
+</hlayout>
+<space/>
+<vlayout>
+<label value="Note:"/>
+<label value="* The card type is dependent on the pledge amount." style="font-size:8;"/>
+<label value="* The minimum pledge amount is Php12,000." style="font-size:8;"/>
+<label value="* Your credit limit can be as much as 90% of your pledge Peso Deposit account 
+		or 80% of your Foreign Currency Deposit account." style="font-size:8;"/>		
+
+
+</vlayout>
+
+
+</window>
+</zk>

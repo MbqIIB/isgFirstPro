@@ -1,0 +1,140 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="DEEDS OF ASSIGNMENT FOR SAVE&amp;SWIPE (Secured Card)" 
+		border="normal" width="77%" height="104%" xmlns:html="http://www.w3.org/1999/xhtml" 
+		>
+
+<vlayout>
+<label value="Secured Credit Card(and Supplementary Card were applicable):"/>
+<vbox>
+<checkbox id="issuance_chkbox" label="Issuance"/>
+<checkbox id="changeDepInst_chkbox" label="Change in Deposit Instrument of credit card account"/>
+<hbox>
+<checkbox id="incDecCreditLimit_chkbox" label="Increase/Decrease in credit limit of card number"/>
+<space />
+<textbox id="incDecCreditLimit_txtbox" mold="rounded" />
+</hbox>
+</vbox>
+
+<space />
+<label value="PLEDGED Amount/Account information:" style="font-weight:bold;font-size:14;"/>
+<grid>
+<columns>
+<column width="12%"/>
+<column width="18%"/>
+<column width="30%"/>
+<column />
+</columns>
+
+<rows>
+<row>
+<cell colspan="4">
+	<hbox>
+	<label value="My/Our Peso/Dollar"/>
+	<checkbox id="savigs_chkbox" label="Savings"/>
+	<checkbox id="time_chkbox" label="Time"/>
+	<checkbox id="specialAccount_chkbox" label="Special Account No.(&quot;the Account&quot;)"/>
+	<textbox id="pledgedAccountNo_txtbox" mold="rounded" />
+	</hbox>
+</cell>
+</row>
+
+<row>
+<cell colspan="2">
+	
+	<label value="Metrobank Depository Branch(&quot;the Bank&quot;)" />
+	
+	
+</cell>
+<cell colspan="2">
+	<textbox id="branch_txtbox" mold="rounded" />
+</cell>
+</row>
+
+<row>
+<cell colspan="2">
+	
+	<label value="Pledged Amount (in words)" />
+	
+	
+</cell>
+<cell colspan="2">
+	
+	<textbox id="pledgedAmountWord_txtbox" mold="rounded" />
+	
+</cell>
+</row>
+
+<row>
+<cell colspan="1">	
+	<label value="Php (in figure)" />	
+</cell>
+<cell colspan="3">
+	<textbox id="pledgedAmountFigure_txtbox" mold="rounded" width="100px" />
+</cell>
+</row>
+
+<row>
+<cell colspan="4">
+<box align="start">
+ <html>
+ 	<html:p>
+ 		I/We hereby authorize the Bank to hold out the Account and agree not to close it or 
+withdraw the pledged amount from nominated Account within thirty-five (35) days after cancellation 
+of the Credit Card. In case of default in the payment of my/our obligation/s to MCC and in accordance 
+with the terms of the Agreement granting the use of the Credit Card, I/we hereby irrevocably authorize 
+and empower the Bank to debit my/our pledged amount in my nominated Account and remit the amount debited 
+to MCC for the full/partial settlement of my/our aforesaid obligations. I/We hereby waive any and all 
+of my/our rights under Section 2 of the Rep. Act 1405, which prohibits disclosure or inquiry of 
+deposits, in order to give effect to this Assignment.
+
+ 	</html:p>
+ </html>
+ 
+</box>
+
+</cell>
+</row>
+
+<row>
+<cell colspan="1">	
+	<label value="Date Applied" />	
+</cell>
+<cell colspan="3">
+	<datebox id="dateApplied_datebox" lenient="true" buttonVisible="true"  mold="rounded" />
+</cell>
+</row>
+<row>
+	<cell colspan="2">	
+		<label value="Metrobank Branch Name and Code" />
+	</cell>
+	<cell colspan="2">
+		<textbox id="branchNameAndCode" mold="rounded" />
+	</cell>
+</row>
+<row>
+	<cell colspan="4" align="right" >
+		
+		<space/>
+		<checkbox id="acceptDOA_chkbox" label="Accept DEEDS of ASSIGNMENT"/>
+		
+	</cell>
+</row>
+
+
+</rows>
+</grid>
+
+
+
+	
+	
+
+
+
+</vlayout>
+
+
+
+</window>
+</zk>
