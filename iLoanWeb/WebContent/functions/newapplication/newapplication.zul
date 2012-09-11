@@ -34,7 +34,9 @@ apply="com.isg.iloan.controller.function.NewApplicationViewCtrl" >
         <tabpanel>
         	<include src="deliveryPaymentInstructions.zul"/>
         </tabpanel>
-        <tabpanel>Internet Transaction</tabpanel>
+        <tabpanel>
+			<include src="internetTransaction.zul"/>
+		</tabpanel>
         <tabpanel>
         	<include src="saveAndSwipe.zul"/>
         </tabpanel>

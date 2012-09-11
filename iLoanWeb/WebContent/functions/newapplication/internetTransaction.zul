@@ -1,0 +1,28 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="MY INTERNET TRANSACTION SECURITY" border="normal" width="77%">
+
+<vlayout>
+
+<hbox>
+<label value="Secure Online Shopping (SOS) is a FREE Metrobank Card features that authenticates 
+your internet transactions with participating merchants." style="font-weight:bold;"
+/>
+</hbox>
+<space />
+<groupbox width="75%">
+<hbox>
+<checkbox id="internetTransaction_chkbox" />
+<label value="I want to enroll my Metrobank Card in SOS to ensure the security and protection of my 
+		  internet transactions. This signifies that my supplementary (if any) will also be enrolled. 
+		  Please send the SOS PIN to the declared mobile number/s."/>
+
+</hbox>
+</groupbox>
+
+
+</vlayout>
+
+
+</window>
+</zk>

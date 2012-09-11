@@ -2,7 +2,7 @@
 <zk>
 <window title="DEEDS OF ASSIGNMENT FOR SAVE&amp;SWIPE (Secured Card)" 
 		border="normal" width="77%" height="104%" xmlns:html="http://www.w3.org/1999/xhtml" 
-		>
+		 apply="com.isg.iloan.controller.function.DoaSaveAndSwipeViewCtrl" >
 
 <vlayout>
 <label value="Secured Credit Card(and Supplementary Card were applicable):"/>
