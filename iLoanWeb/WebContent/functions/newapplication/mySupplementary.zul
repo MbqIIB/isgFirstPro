@@ -1,6 +1,6 @@
 <?page title="new page title" contentType="text/html;charset=UTF-8"?>
 <zk>
-	<window title="My Supplementary" border="normal"
+	<window title="MY SUPPLEMENTARY" border="normal"
 		apply="com.isg.iloan.controller.function.MySupplementaryViewCtrl" width="77%">
 		<div>
 			Supplementary card applicants are required to submit a

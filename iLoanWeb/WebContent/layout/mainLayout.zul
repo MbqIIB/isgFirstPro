@@ -2,10 +2,10 @@
 	<style src="/style/style.css" />
 	<window title="" border="" style="height:100%;width:100%">
 		<borderlayout>
-			<north size="13%" sclass="header">
+			<north size="13%" sclass="header" splittable="true" collapsible="true">
 				<include src="/layout/header.zul" />
 			</north>
-			<west title="iLOAN ONLINE PROCESS" border="none" size="13%">
+			<west title="iLOAN ONLINE PROCESS" border="none" size="13%" splittable="true" collapsible="true">
 				<include src="/menu/mainMenu.zul" />
 			</west>
 			<center >
@@ -16,7 +16,7 @@
 				</vlayout>
 			</center>
 
-			<south border="none" class="footer" size="4%">
+			<south border="none" class="footer" size="4%" splittable="true" collapsible="true">
 				<include src="/layout/footer.zul" />
 			</south>
 		</borderlayout>
