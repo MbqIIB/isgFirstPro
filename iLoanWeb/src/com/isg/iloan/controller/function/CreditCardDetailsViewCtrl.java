@@ -3,14 +3,9 @@
  */
 package com.isg.iloan.controller.function;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.util.GenericForwardComposer;
 import org.zkoss.zul.Checkbox;
@@ -23,6 +18,9 @@ import org.zkoss.zul.Window;
  *
  */
 public class CreditCardDetailsViewCtrl extends GenericForwardComposer {
+	
+	private static Logger logger = Logger.getLogger(CreditCardDetailsViewCtrl.class);
+	
 
 	private Window creditCardDetails;
 	private Datebox occ3DOM;
@@ -88,7 +86,7 @@ public class CreditCardDetailsViewCtrl extends GenericForwardComposer {
 			if(comp.getId().equalsIgnoreCase(id)){
 				found=true;
 				comp.setVisible(true);
-				System.out.println("component id found at level: " + level + " at counter: " + ctr);
+				logger.debug("component id found at level: " + level + " at counter: " + ctr);
 				break;				
 			}
 			ctr++;
@@ -109,7 +107,7 @@ public class CreditCardDetailsViewCtrl extends GenericForwardComposer {
 			if(comp.getId().equalsIgnoreCase(id)){
 				found=true;
 				comp.setVisible(false);
-				System.out.println("component id found at level: " + level + " at counter: " + ctr);
+				logger.debug("component id found at level: " + level + " at counter: " + ctr);
 				break;				
 			}
 			ctr++;
@@ -125,6 +123,9 @@ public class CreditCardDetailsViewCtrl extends GenericForwardComposer {
 	
 	
 	public void onCheck$acceptSaveAndSwipe() throws InterruptedException{
+		
+		
+		logger.debug("Testing logger of Log4j");
 		
 		if(acceptSaveAndSwipe.isChecked()){			
 			notAcceptSaveAndSwipe.setChecked(false);

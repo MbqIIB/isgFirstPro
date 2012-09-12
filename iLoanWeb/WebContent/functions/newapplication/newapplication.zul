@@ -22,25 +22,25 @@ apply="com.isg.iloan.controller.function.NewApplicationViewCtrl"  >
         <tabpanel id="ccDetailPanel" style="overflow-y:scroll;display:none;" >
         	<include src="/functions/newapplication/creditCardDetails.zul"/>
         </tabpanel>
-        <tabpanel id="personalPanel" style="overflow-y:scroll;display:none;" >
+        <tabpanel id="personalPanel" fulfill="personalData.onSelect" style="overflow-y:scroll;display:none;" >
         	<include src="/functions/newapplication/personalData.zul"/>        	
         </tabpanel>
-        <tabpanel >
+        <tabpanel fulfill="jobDetail.onSelect">
         	<include src="/functions/newapplication/jobDetail.zul"/>
         </tabpanel>
-        <tabpanel >
+        <tabpanel fulfill="supplementaryDetail.onSelect">
         	<include src="/functions/newapplication/mySupplementary.zul"/>
         </tabpanel>
-        <tabpanel>
+        <tabpanel fulfill="deliveryInstruction.onSelect">
         	<include src="deliveryPaymentInstructions.zul"/>
         </tabpanel>
-        <tabpanel>
+        <tabpanel fulfill="internetTransaction.onSelect">
 			<include src="internetTransaction.zul"/>
 		</tabpanel>
-        <tabpanel>
+        <tabpanel fulfill="saveAndSwipe.onSelect">
         	<include src="saveAndSwipe.zul"/>
-        </tabpanel>
-        <tabpanel style="overflow-y:scroll;display:none;">
+        </tabpanel >
+        <tabpanel fulfill="ssDeeds.onSelect" style="overflow-y:scroll;display:none;">
         	<include src="doaSaveAndSwipe.zul"/>
         </tabpanel>
     </tabpanels>
