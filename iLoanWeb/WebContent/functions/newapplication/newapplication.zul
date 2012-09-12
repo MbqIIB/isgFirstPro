@@ -1,51 +1,133 @@
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="/layout/mainLayout.zul"?>
 <zk>
-<?script type="text/javascript" src="/js/jquery-1.8.1.js"?>
-<window id="newApplication" title="New Credit Card Application" self="@{define(left)}" 
-apply="com.isg.iloan.controller.function.NewApplicationViewCtrl"  >
-
-
-
-
-	<tabbox id="tb" orient="vertical" height="90%" >
-    <tabs id="tabs">
-        <tab id="creditCardDetail" label="Part A" tooltiptext="Credit Card Detail" />
-        <tab id="personalData" label="Part B" tooltiptext="Personal Data"/>
-        <tab id="jobDetail" label="Part C" tooltiptext="Job Detail" />
-        <tab id="supplementaryDetail" label="Part D" tooltiptext="Supplementary Detail" />
-        <tab id="deliveryInstruction" label="Part E" tooltiptext="Delivery/Payment Instructions" />
-        <tab id="internetTransaction" label="Part F" tooltiptext="Internet Transactions"/>
-        <tab id="saveAndSwipe" label="Part G" visible="false" tooltiptext="SAVE &amp; SWIPE"/>
-        <tab id="ssDeeds" label="Part H" visible="false" tooltiptext="DEEDS of ASSIGNMENT" />    
-    </tabs>    
-    <tabpanels  >
-        <tabpanel id="ccDetailPanel" style="overflow-y:scroll;display:none;" >
-        	<include src="/functions/newapplication/creditCardDetails.zul"/>
-        </tabpanel>
-        <tabpanel id="personalPanel" fulfill="personalData.onSelect" style="overflow-y:scroll;display:none;" >
-        	<include src="/functions/newapplication/personalData.zul"/>        	
-        </tabpanel>
-        <tabpanel fulfill="jobDetail.onSelect">
-        	<include src="/functions/newapplication/jobDetail.zul"/>
-        </tabpanel>
-        <tabpanel fulfill="supplementaryDetail.onSelect">
-        	<include src="/functions/newapplication/mySupplementary.zul"/>
-        </tabpanel>
-        <tabpanel fulfill="deliveryInstruction.onSelect">
-        	<include src="deliveryPaymentInstructions.zul"/>
-        </tabpanel>
-        <tabpanel fulfill="internetTransaction.onSelect">
-			<include src="internetTransaction.zul"/>
-		</tabpanel>
-        <tabpanel fulfill="saveAndSwipe.onSelect">
-        	<include src="saveAndSwipe.zul"/>
-        </tabpanel >
-        <tabpanel fulfill="ssDeeds.onSelect" style="overflow-y:scroll;display:none;">
-        	<include src="doaSaveAndSwipe.zul"/>
-        </tabpanel>
-    </tabpanels>
-</tabbox>
-
-	
-</window>
+	<?script type="text/javascript" src="/js/jquery-1.8.1.js"?><?script type="text/javascript" src="/js/breadcrumbs.js"?>
+	<style src="/style/breadcrumbs.css"></style>
+	<window id="newApplication" title="New Credit Card Application"
+		self="@{define(left)}"
+		apply="com.isg.iloan.controller.function.NewApplicationViewCtrl">
+		<div>
+			<div id="breadcrumb" sclass="breadcrumb">
+				<html>
+					<ul id="breadcrumbs_list">
+						<li id="ccd">
+							<span class="breadcrumb_item done">
+								Credit Card Detail
+							</span>
+							<div class="arrow-right-done"></div>
+							<div class="arrow-down-done"></div>
+						</li>
+						<li id="pd">
+							<div class="arrow-left-undone"></div>
+							<span href="javascript:void(0)"
+								class="breadcrumb_item undone">
+								Personal Data
+							</span>
+							<div class="arrow-right-undone"></div>
+						</li>
+						<li id="jd">
+							<div class="arrow-left-undone"></div>
+							<span href="javascript:void(0)"
+								class="breadcrumb_item undone">
+								Job Detail
+							</span>
+							<div class="arrow-right-undone"></div>
+						</li>
+						<li id="sd">
+							<div class="arrow-left-undone"></div>
+							<span href="javascript:void(0)"
+								class="breadcrumb_item undone">
+								Supplementary Detail
+							</span>
+							<div class="arrow-right-undone"></div>
+						</li>
+						<li id="dpi">
+							<div class="arrow-left-undone"></div>
+							<span href="javascript:void(0)"
+								class="breadcrumb_item undone" onclick="changeState(this)">
+								Delivery/Payment Instructions
+							</span>
+							<div class="arrow-right-undone"></div>
+						</li>
+						<li id="it">
+							<div class="arrow-left-undone"></div>
+							<span href="javascript:void(0)"
+								class="breadcrumb_item undone" onclick="changeState(this)">
+								Internet Transaction
+							</span>
+							<div class="arrow-right-undone"></div>
+						</li>
+						<li id="ss">
+							<div class="arrow-left-undone"></div>
+							<span href="javascript:void(0)"
+								class="breadcrumb_item undone" onclick="changeState(this)">
+								Save and Swipe
+							</span>
+							<div class="arrow-right-undone"></div>
+						</li>
+						<li id="ss">
+							<div class="arrow-left-undone"></div>
+							<span href="javascript:void(0)"
+								class="breadcrumb_item undone" onclick="changeState(this)">
+								Deeds of Assignment for Save and Swipe
+							</span>
+						</li>
+					</ul>
+				</html>
+			</div>
+		</div>
+		<tabbox id="tb" orient="vertical" height="90%">
+			<tabs id="tabs">
+				<tab id="creditCardDetail" label="Part A"
+					tooltiptext="Credit Card Detail" />
+				<tab id="personalData" label="Part B"
+					tooltiptext="Personal Data" />
+				<tab id="jobDetail" label="Part C"
+					tooltiptext="Job Detail" />
+				<tab id="supplementaryDetail" label="Part D"
+					tooltiptext="Supplementary Detail" />
+				<tab id="deliveryInstruction" label="Part E"
+					tooltiptext="Delivery/Payment Instructions" />
+				<tab id="internetTransaction" label="Part F"
+					tooltiptext="Internet Transactions" />
+				<tab id="saveAndSwipe" label="Part G" visible="false"
+					tooltiptext="SAVE &amp; SWIPE" />
+				<tab id="ssDeeds" label="Part H" visible="false"
+					tooltiptext="DEEDS of ASSIGNMENT" />
+			</tabs>
+			<tabpanels>
+				<tabpanel id="ccDetailPanel"
+					style="overflow-y:scroll;display:none;">
+					<include
+						src="/functions/newapplication/creditCardDetails.zul" />
+				</tabpanel>
+				<tabpanel id="personalPanel"
+					fulfill="personalData.onSelect"
+					style="overflow-y:scroll;display:none;">
+					<include
+						src="/functions/newapplication/personalData.zul" />
+				</tabpanel>
+				<tabpanel fulfill="jobDetail.onSelect">
+					<include
+						src="/functions/newapplication/jobDetail.zul" />
+				</tabpanel>
+				<tabpanel fulfill="supplementaryDetail.onSelect">
+					<include
+						src="/functions/newapplication/mySupplementary.zul" />
+				</tabpanel>
+				<tabpanel fulfill="deliveryInstruction.onSelect">
+					<include src="deliveryPaymentInstructions.zul" />
+				</tabpanel>
+				<tabpanel fulfill="internetTransaction.onSelect">
+					<include src="internetTransaction.zul" />
+				</tabpanel>
+				<tabpanel fulfill="saveAndSwipe.onSelect">
+					<include src="saveAndSwipe.zul" />
+				</tabpanel>
+				<tabpanel fulfill="ssDeeds.onSelect"
+					style="overflow-y:scroll;display:none;">
+					<include src="doaSaveAndSwipe.zul" />
+				</tabpanel>
+			</tabpanels>
+		</tabbox>
+	</window>
 </zk>

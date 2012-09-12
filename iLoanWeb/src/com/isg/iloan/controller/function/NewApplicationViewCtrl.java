@@ -4,6 +4,7 @@
 package com.isg.iloan.controller.function;
 
 import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zk.ui.util.GenericForwardComposer;
 import org.zkoss.zul.Tab;
 import org.zkoss.zul.Tabbox;
@@ -41,11 +42,26 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 		// TODO Auto-generated method stub
 		
 	}
-
-	public void onClick$creditCardDetail()throws InterruptedException{
-		
-		
+	
+	public void onClick$creditCardDetail(){
+		Clients.evalJavaScript("changeState('#ccd')");
 	}
+	public void onClick$personalData(){
+		Clients.evalJavaScript("changeState('#pd')");
+	}
+	public void onClick$jobDetail(){
+		Clients.evalJavaScript("changeState('#jd')");
+	}
+	public void onClick$supplementaryDetail(){
+		Clients.evalJavaScript("changeState('#sd')");
+	}
+	public void onClick$deliveryInstruction(){
+		Clients.evalJavaScript("changeState('#dpi')");
+	}
+	public void onClick$internetTransaction(){
+		Clients.evalJavaScript("changeState('#it')");
+	}
+
 	
 	
 }
