@@ -61,6 +61,12 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 	public void onClick$internetTransaction(){
 		Clients.evalJavaScript("changeState('#it')");
 	}
+	public void onClick$saveAndSwipe(){
+		Clients.evalJavaScript("changeState('#ss')");
+	}
+	public void onClick$ssDeeds(){
+		Clients.evalJavaScript("changeState('#dass')");
+	}
 
 	
 	
