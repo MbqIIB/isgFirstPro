@@ -72,7 +72,7 @@
 					<textbox id="telephone_txtbox" width="120px"
 						mold="rounded" />
 					<cell colspan="2">
-						<label value="Zip Code" style="text-align:right;" />
+						<label value="Zip Code" />
 						<space/>
 						<textbox id="zip_txtbox" width="50px" mold="rounded" />
 					</cell>
@@ -91,7 +91,7 @@
 					<textbox id="yrs_with_pemp_txtbox" width="80px"
 						mold="rounded" />
 					<cell colspan="2">
-						<label value="Total No. of Years Working" style="text-align:right;" />
+						<label value="Total No. of Years Working"  />
 						<space />
 						<textbox id="working_years_txtbox" width="80px" mold="rounded" />
 					</cell>
@@ -107,7 +107,7 @@
 				<rows>
 					<row>
 						<groupbox>
-						<caption>My Financial Standing</caption>
+						<caption label="My Financial Standing"/>
 						<label value="Gross Monthly Income"></label>
 						<space width="72px"/>
 						<textbox id="grossMonthlyIncome" mold="rounded" width="80px"/>

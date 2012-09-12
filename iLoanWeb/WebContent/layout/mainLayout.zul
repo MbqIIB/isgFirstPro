@@ -2,7 +2,7 @@
 	<style src="/style/style.css" />
 	<window title="" border="" style="height:100%;width:100%">
 		<borderlayout>
-			<north size="13%" sclass="header" splittable="true" collapsible="true">
+			<north size="12%" sclass="header" splittable="true" collapsible="true">
 				<include src="/layout/header.zul" />
 			</north>
 			<west title="iLOAN ONLINE PROCESS" border="none" size="13%" splittable="true" collapsible="true">

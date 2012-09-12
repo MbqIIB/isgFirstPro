@@ -1,14 +1,15 @@
 <?page title="new page title" contentType="text/html;charset=UTF-8"?>
 <zk>
 <style src="/style/style.css" />
-<window title="" border="" style="height:100%;width:100%" >
-		<borderlayout>
+<window title="" border="" style="height:100%;width:80%;margin:0px auto;"  >
+		
+		<borderlayout >
 					<north>						
 					</north>
-					<west size="13%">						
+					<west>						
 					</west>
 					<center >
-					   <vlayout>
+					   <vlayout >
 					   		<include src="/functions/newapplication/userApplication.zul"/>
 					   </vlayout>
 						

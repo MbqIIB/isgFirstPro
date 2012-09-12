@@ -1,5 +1,13 @@
 <?page title="new page title" contentType="text/html;charset=UTF-8"?>
 <zk>
+<style dynamic="true">
+	.noteField{
+		font-size:10px;
+		
+	}
+
+</style>
+
 <window title="SAVE&amp;SWIPE (Secured Credit Card Program) " border="normal"
 		width="77%" 
 		apply="com.isg.iloan.controller.function.SaveAndSwipeViewCtrl" >
@@ -87,10 +95,10 @@ on your deposit."  style="font-weight:bold;" />
 <space/>
 <vlayout>
 <label value="Note:"/>
-<label value="* The card type is dependent on the pledge amount." style="font-size:8;"/>
-<label value="* The minimum pledge amount is Php12,000." style="font-size:8;"/>
+<label value="* The card type is dependent on the pledge amount." sclass="noteField"/>
+<label value="* The minimum pledge amount is Php12,000." sclass="noteField"/>
 <label value="* Your credit limit can be as much as 90% of your pledge Peso Deposit account 
-		or 80% of your Foreign Currency Deposit account." style="font-size:8;"/>		
+		or 80% of your Foreign Currency Deposit account." sclass="noteField"/>		
 
 
 </vlayout>

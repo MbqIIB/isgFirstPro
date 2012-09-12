@@ -1,11 +1,24 @@
 
 <zk>
-
-<window id="newApplication" title="NEW CREDIT CARD APPLICATION"
+<style dynamic="true">
+	.noteField{
+		font-size:10px;		
+	}
+	.z-window-embedded-header, .z-window-modal-header, .z-window-popup-header, .z-window-highlighted-header, .z-window-overlapped-header {
+    color: rgb(54, 54, 54);
+    padding-top: 0px;
+    padding-bottom: 0px;
+    font-weight:bold;
+}
+</style>
+<window id="newApplication" 
 apply="com.isg.iloan.controller.function.NewApplicationViewCtrl" >
 
 
-
+	<caption label="NEW CREDIT CARD APPLICATION" >
+		<button tooltiptext="SUBMIT" left="true" image="/images/submit.png" mold="trendy"/>
+		<button tooltiptext="CANCEL" left="false" image="/images/cancel.png" mold="trendy" />
+	</caption>
 
 	<tabbox id="tb" orient="vertical" height="90%" >
     <tabs id="tabs">
