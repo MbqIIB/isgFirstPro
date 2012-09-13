@@ -10,7 +10,7 @@
 			</west>
 			<center >
 				<vlayout >
-					<div self="@{insert(left)}" style="height:100%;width:100%;" 
+					<div self="@{insert(left)}"  
 					sclass="content">
 					</div>
 				</vlayout>

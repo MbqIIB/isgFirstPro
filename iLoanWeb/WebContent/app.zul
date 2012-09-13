@@ -1,4 +1,3 @@
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="/layout/userLayout.zul"?>
 <zk>
-
 </zk>

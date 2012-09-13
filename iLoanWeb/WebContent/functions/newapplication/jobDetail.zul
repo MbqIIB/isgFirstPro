@@ -1,6 +1,6 @@
 <?page title="new page title" contentType="text/html;charset=UTF-8"?>
 <zk>
-	<window border="normal" title="JOB" id="myJobWindow" width="77%"
+	<window border="normal" title="JOB DETAILS" id="myJobWindow" width="77%" 
 		apply="com.isg.iloan.controller.function.MyJobWindowViewCtrl">
 		
 		<grid>
@@ -111,6 +111,32 @@
 						<label value="Gross Monthly Income"></label>
 						<space width="72px"/>
 						<textbox id="grossMonthlyIncome" mold="rounded" width="80px"/>
+						</groupbox>						
+					</row>
+					<row>
+						<groupbox>
+						<caption>My Spouse</caption>
+						<hlayout>
+						<vbox>
+							<label value="Name:" />							
+						</vbox>
+						<vbox>
+							<label value="Family" />
+							<textbox id="spouseFamilyName" mold="rounded" width="120px"/>
+						</vbox>
+						<vbox>
+							<label value="Given" />
+							<textbox id="spouseGivenName" mold="rounded" width="120px"/>
+						</vbox>
+						<vbox>
+							<label value="Middle" />
+							<textbox id="spouseMiddleName" mold="rounded" width="120px"/>
+						</vbox>
+						<vbox>
+							<label value="Date of Birth" />
+							<datebox id="spouseDOM"  lenient="true" buttonVisible="true"  mold="rounded"/>
+						</vbox>
+						</hlayout>
 						</groupbox>
 					</row>
 				</rows>				

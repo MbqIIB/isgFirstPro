@@ -1,6 +1,6 @@
 
 $(document).ready(function() { 
-	console.log("document ready");
+	
 });
 
 function changeState(element){
