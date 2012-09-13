@@ -1,5 +1,8 @@
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="/layout/mainLayout.zul"?>
 <zk>
+	<?script type="text/javascript" src="/js/jquery-1.8.1.js"?>
+	<?script type="text/javascript" src="/js/breadcrumbs.js"?>
+	<style src="/style/breadcrumbs.css"></style>
 <style dynamic="true">
 	.noteField{
 		font-size:10px;		
@@ -10,8 +13,6 @@
     padding-bottom: 0px;
     font-weight:bold;
 }
-	
-
 </style>
 <window id="newApplication"  self="@{define(left)}" 
 apply="com.isg.iloan.controller.function.NewApplicationViewCtrl"  >
@@ -34,56 +35,49 @@ apply="com.isg.iloan.controller.function.NewApplicationViewCtrl"  >
 						</li>
 						<li id="pd">
 							<div class="arrow-left-undone"></div>
-							<span href="javascript:void(0)"
-								class="breadcrumb_item undone">
+							<span class="breadcrumb_item undone">
 								Personal Data
 							</span>
 							<div class="arrow-right-undone"></div>
 						</li>
 						<li id="jd">
 							<div class="arrow-left-undone"></div>
-							<span href="javascript:void(0)"
-								class="breadcrumb_item undone">
+							<span class="breadcrumb_item undone">
 								Job Detail
 							</span>
 							<div class="arrow-right-undone"></div>
 						</li>
 						<li id="sd">
 							<div class="arrow-left-undone"></div>
-							<span href="javascript:void(0)"
-								class="breadcrumb_item undone">
+							<span class="breadcrumb_item undone">
 								Supplementary Detail
 							</span>
 							<div class="arrow-right-undone"></div>
 						</li>
 						<li id="dpi">
 							<div class="arrow-left-undone"></div>
-							<span href="javascript:void(0)"
-								class="breadcrumb_item undone" onclick="changeState(this)">
+							<span class="breadcrumb_item undone">
 								Delivery/Payment Instructions
 							</span>
 							<div class="arrow-right-undone"></div>
 						</li>
 						<li id="it">
 							<div class="arrow-left-undone"></div>
-							<span href="javascript:void(0)"
-								class="breadcrumb_item undone" onclick="changeState(this)">
+							<span class="breadcrumb_item undone">
 								Internet Transaction
 							</span>
-							<div class="arrow-right-undone"></div>
+							
 						</li>
-						<li id="ss">
+						<li id="ss" class="initialHide">
 							<div class="arrow-left-undone"></div>
-							<span href="javascript:void(0)"
-								class="breadcrumb_item undone" onclick="changeState(this)">
+							<span class="breadcrumb_item undone">
 								Save and Swipe
 							</span>
 							<div class="arrow-right-undone"></div>
 						</li>
-						<li id="dass">
+						<li id="dass" class="initialHide" >
 							<div class="arrow-left-undone"></div>
-							<span href="javascript:void(0)"
-								class="breadcrumb_item undone" onclick="changeState(this)">
+							<span class="breadcrumb_item undone">
 								Deeds of Assignment for Save and Swipe
 							</span>
 						</li>

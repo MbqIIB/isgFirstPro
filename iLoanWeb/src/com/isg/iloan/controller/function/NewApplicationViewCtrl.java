@@ -44,6 +44,7 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 	}
 	
 	public void onClick$creditCardDetail(){
+	//
 		Clients.evalJavaScript("changeState('#ccd')");
 	}
 	public void onClick$personalData(){
