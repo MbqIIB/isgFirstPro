@@ -1,5 +1,8 @@
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="/layout/mainLayout.zul"?>
 <zk>
+	<?script type="text/javascript" src="/js/jquery-1.8.1.js"?>
+	<?script type="text/javascript" src="/js/breadcrumbs.js"?>
+	<style src="/style/breadcrumbs.css"></style>
 <style dynamic="true">
 	.noteField{
 		font-size:10px;		
@@ -10,8 +13,6 @@
     padding-bottom: 0px;
     font-weight:bold;
 }
-	
-
 </style>
 <window id="newApplication"  self="@{define(left)}" 
 apply="com.isg.iloan.controller.function.NewApplicationViewCtrl"  >
