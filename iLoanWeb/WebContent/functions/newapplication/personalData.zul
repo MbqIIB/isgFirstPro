@@ -10,7 +10,7 @@
 </style>
 
 
-<window title="PESONAL DATA" id="personalData" border="normal" width="77%" height="114%"
+<window title="PESONAL DATA" id="personalData" border="normal" width="77%" 
 		xmlns:h="http://www.w3.org/1999/xhtml">
 
 <grid>

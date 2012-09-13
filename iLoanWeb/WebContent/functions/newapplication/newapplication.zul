@@ -7,12 +7,24 @@
 	.noteField{
 		font-size:10px;		
 	}
-	.z-window-embedded-header, .z-window-modal-header, .z-window-popup-header, .z-window-highlighted-header, .z-window-overlapped-header {
+	.z-window-embedded-header, 
+	.z-window-modal-header, 
+	.z-window-popup-header, 
+	.z-window-highlighted-header, .z-window-overlapped-header {
     color: rgb(54, 54, 54);
     padding-top: 0px;
     padding-bottom: 0px;
     font-weight:bold;
-}
+    }
+    .z-tabpanel-ver{
+    	height:383px !important;    		 
+    }
+    .z-tabpanels-ver{
+    	height:393px !important;    	
+    }
+    
+   
+    
 </style>
 <window id="newApplication"  self="@{define(left)}" 
 apply="com.isg.iloan.controller.function.NewApplicationViewCtrl"  >
@@ -85,7 +97,7 @@ apply="com.isg.iloan.controller.function.NewApplicationViewCtrl"  >
 				</html>
 			</div>
 		</div>
-	<tabbox id="tb" orient="vertical" height="90%" >
+	<tabbox id="tb" orient="vertical" >
     <tabs id="tabs">
         <tab id="creditCardDetail" label="Part A" tooltiptext="Credit Card Detail" />
         <tab id="personalData" label="Part B" tooltiptext="Personal Data"/>
@@ -97,28 +109,28 @@ apply="com.isg.iloan.controller.function.NewApplicationViewCtrl"  >
         <tab id="ssDeeds" label="Part H" visible="false" tooltiptext="DEEDS of ASSIGNMENT" />    
     </tabs>    
     <tabpanels  >
-        <tabpanel id="ccDetailPanel" style="overflow-y:scroll;display:none;" >
+        <tabpanel id="ccDetailPanel" style="overflow-y:scroll;" >
         	<include src="/functions/newapplication/creditCardDetails.zul"/>
         </tabpanel>
-        <tabpanel id="personalPanel" fulfill="personalData.onSelect" style="overflow-y:scroll;display:none;" >
+        <tabpanel id="personalPanel" fulfill="personalData.onSelect" style="overflow-y:scroll;" >
         	<include src="/functions/newapplication/personalData.zul"/>        	
         </tabpanel>
-        <tabpanel fulfill="jobDetail.onSelect">
+        <tabpanel fulfill="jobDetail.onSelect" style="overflow-y:scroll;">
         	<include src="/functions/newapplication/jobDetail.zul"/>
         </tabpanel>
-        <tabpanel fulfill="supplementaryDetail.onSelect">
+        <tabpanel fulfill="supplementaryDetail.onSelect" style="overflow-y:scroll;">
         	<include src="/functions/newapplication/mySupplementary.zul"/>
         </tabpanel>
-        <tabpanel fulfill="deliveryInstruction.onSelect">
+        <tabpanel fulfill="deliveryInstruction.onSelect" style="overflow-y:scroll;">
         	<include src="/functions/newapplication/deliveryPaymentInstructions.zul"/>
         </tabpanel>
-        <tabpanel fulfill="internetTransaction.onSelect">
+        <tabpanel fulfill="internetTransaction.onSelect" style="overflow-y:scroll;">
 			<include src="/functions/newapplication/internetTransaction.zul"/>
 		</tabpanel>
-        <tabpanel fulfill="saveAndSwipe.onSelect">
+        <tabpanel fulfill="saveAndSwipe.onSelect" style="overflow-y:scroll;">
         	<include src="/functions/newapplication/saveAndSwipe.zul"/>
         </tabpanel >
-        <tabpanel fulfill="ssDeeds.onSelect" style="overflow-y:scroll;display:none;">
+        <tabpanel fulfill="ssDeeds.onSelect" style="overflow-y:scroll;">
         	<include src="/functions/newapplication/doaSaveAndSwipe.zul"/>
         </tabpanel>
     </tabpanels>
