@@ -5,8 +5,9 @@ $(document).ready(function() {
 
 function changeState(element){
 	$($(".arrow-down-done")[0]).remove(); 
+	$($(".arrow-down-incomplete")[0]).remove(); 
+	$($(".arrow-down-undone")[0]).remove(); 
 	$($(element +" .arrow-left-undone")[0]).remove(); 
-	$($(element +" .arrow-right-undone")[0]).remove(); 
 	$($(element +" .arrow-right-undone")[0]).remove(); 
 	$($(element +" .arrow-left-done")[0]).remove();
 	$($(element +" .arrow-right-done")[0]).remove(); 
@@ -26,15 +27,19 @@ function changeState(element){
 
 function unfinishedState(element){	
 	$($(".arrow-down-done")[0]).remove(); 
+	$($(".arrow-down-incomplete")[0]).remove(); 
+	$($(".arrow-down-undone")[0]).remove(); 
 	$($(element +" .arrow-left-undone")[0]).remove(); 
 	$($(element +" .arrow-right-undone")[0]).remove(); 
 	$($(element +" .arrow-left-done")[0]).remove();
 	$($(element +" .arrow-right-done")[0]).remove(); 
+	$($(element +" .arrow-left-incomplete")[0]).remove();
+	$($(element +" .arrow-right-incomplete")[0]).remove();
 	$(element).append('<div class="arrow-right-incomplete"></div>'); 
 	$(element +" span").removeClass("undone"); 
 	$(element +" span").removeClass("done"); 
 	$(element +" span").addClass("incomplete"); 
-	$(element).append('<div class="arrow-down-done"></div>');
+	$(element).append('<div class="arrow-down-incomplete"></div>');
 }
 
 function tester(){

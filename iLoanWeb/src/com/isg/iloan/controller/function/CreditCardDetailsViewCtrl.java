@@ -8,6 +8,9 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zk.ui.event.EventListener;
+import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zk.ui.util.GenericForwardComposer;
 import org.zkoss.zul.Checkbox;
@@ -15,6 +18,7 @@ import org.zkoss.zul.Datebox;
 import org.zkoss.zul.Hlayout;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Window;
+import org.zkoss.zul.event.*;
 
 /**
  * @author augusto.marte
@@ -66,27 +70,56 @@ public class CreditCardDetailsViewCtrl extends GenericForwardComposer {
 	@Override
 	public void doAfterCompose(Component comp) throws Exception {
 		super.doAfterCompose(comp);
-		System.out.println(validateCheckboxes(cb_layout));
-		if (!validateCheckboxes(cb_layout)) {
-			Clients.evalJavaScript("unfinishedState('#ccd')");
-		}
+		//System.out.println(validateCheckboxes(cb_layout));
+		
+		validateCheckboxes(cb_layout);
+//		if (!validateCheckboxes(cb_layout)) {
+//			Clients.evalJavaScript("unfinishedState('#ccd')");
+//		}
+		
+//		femmeVisaCard.addEventListener(Events.ON_CLICK, new EventListener(){
+//			public void onEvent(Event event){
+//				if(femmeVisaCard.isChecked()){
+//					Clients.evalJavaScript("changeState('#ccd')");
+//				}else{
+//					Clients.evalJavaScript("unfinishedState('#ccd')");
+//				}
+//				
+//			}
+//		});
+//		
+		
+		
 		// TODO Auto-generated method stub
 
 	}
 
-	private boolean validateCheckboxes(Component comp) {
+	private boolean validateCheckboxes(final Component comp) {
 	
 		if (comp instanceof Checkbox) {
-			if (((Checkbox) comp).isChecked()) {
-				return true;
-			}
+			comp.addEventListener(Events.ON_CLICK, new EventListener(){
+				public void onEvent(Event event){
+					if(((Checkbox)comp).isChecked()){
+						Clients.evalJavaScript("changeState('#ccd')");
+					}else{
+						Clients.evalJavaScript("unfinishedState('#ccd')");
+					}
+					
+				}
+			});
+			
+//			if (((Checkbox) comp).isChecked()) {
+//				return true;
+//			}
 		}
 
 			List<Component> list = comp.getChildren();
 			for (Component child : list) {
-				if(validateCheckboxes(child)){
-					return true;
-				}
+				validateCheckboxes(child);
+				
+//				if(validateCheckboxes(child)){
+//					return true;
+//				}
 			}
 		
 

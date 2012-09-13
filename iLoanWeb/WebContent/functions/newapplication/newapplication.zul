@@ -27,11 +27,11 @@ apply="com.isg.iloan.controller.function.NewApplicationViewCtrl"  >
 				<html>
 					<ul id="breadcrumbs_list">
 						<li id="ccd">
-							<span class="breadcrumb_item done">
+							<span class="breadcrumb_item undone">
 								Credit Card Detail
 							</span>
-							<div class="arrow-right-done"></div>
-							<div class="arrow-down-done"></div>
+							<div class="arrow-right-undone"></div>
+							<div class="arrow-down-undone"></div>
 						</li>
 						<li id="pd">
 							<div class="arrow-left-undone"></div>
