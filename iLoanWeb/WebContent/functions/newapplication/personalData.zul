@@ -1,5 +1,15 @@
 <?page title="new page title" contentType="text/html;charset=UTF-8"?>
 <zk>
+<style dynamic="true">
+	.noteField{
+		font-size:10px;
+		
+	}
+
+
+</style>
+
+
 <window title="PESONAL DATA" id="personalData" border="normal" width="77%" height="114%"
 		xmlns:h="http://www.w3.org/1999/xhtml">
 
@@ -91,7 +101,7 @@
 			<checkbox id="others_chkbox" label="Others"/>
 			<vbox>
 			<textbox id="others_txtbox" width="150"/>
-			<label value="(For foreigners, attached ACR &amp; ICR)" />
+			<label value="(For foreigners, attached ACR &amp; ICR)" sclass="noteField" />
 			</vbox>
 			</hbox>												
 		</vlayout>	
@@ -237,7 +247,7 @@
 				<space width="1px"/>
 				<vbox>
 				<textbox id="otherID_txtbox" width="200px" mold="rounded" />
-				<label value="(Please specify type of ID and ID number)"/>
+				<label value="(Please specify type of ID and ID number)" sclass="noteField"/>
 				</vbox>
 			</hbox>
 		</vbox>

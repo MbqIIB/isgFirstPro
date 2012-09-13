@@ -1,5 +1,12 @@
 <zk >
+<style dynamic="true">
+	.noteField{
+		font-size:10px;
+		
+	}
 
+
+</style>
 <window title="CREDIT CARD DETAILS" id="creditCardDetails" width="77%" height="101%" 
 border="normal" apply="com.isg.iloan.controller.function.CreditCardDetailsViewCtrl" >
 
@@ -112,8 +119,9 @@ border="normal" apply="com.isg.iloan.controller.function.CreditCardDetailsViewCt
 	</hbox>	
 </hlayout>
 <hlayout sclass="noteField">	
-	<hbox>	
-	Note: Existing credit card must be over 12 months to qualify for another card.
+	<hbox>
+		<label sclass="noteField" value="Note: Existing credit card must be over 12 months to qualify for another card."/>	
+	
 	</hbox>	
 </hlayout>
 </groupbox>
