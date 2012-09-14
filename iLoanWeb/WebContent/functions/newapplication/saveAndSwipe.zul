@@ -9,7 +9,7 @@
 </style>
 
 <window title="SAVE&amp;SWIPE (Secured Credit Card Program) " border="normal"
-		width="77%" 
+		width="98%" 
 		apply="com.isg.iloan.controller.function.SaveAndSwipeViewCtrl" >
 
 

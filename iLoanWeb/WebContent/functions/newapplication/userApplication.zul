@@ -58,7 +58,7 @@ function changeState(element){
 		<button tooltiptext="CANCEL" left="false" image="/images/cancel.png" mold="trendy" />
 	</caption>
 	
-	<div>
+	<div width="100%">
 			<div id="breadcrumb" sclass="breadcrumb">
 				<html>
 					<ul id="breadcrumbs_list">

@@ -17,10 +17,10 @@
     font-weight:bold;
     }
     .z-tabpanel-ver{
-    	height:383px !important;    		 
+    	height:413px !important;    		 
     }
     .z-tabpanels-ver{
-    	height:393px !important;    	
+    	height:423px !important;    	
     }
     
    

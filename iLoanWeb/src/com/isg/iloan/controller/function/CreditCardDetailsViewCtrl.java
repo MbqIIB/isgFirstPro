@@ -143,11 +143,21 @@ public class CreditCardDetailsViewCtrl extends GenericForwardComposer {
 		}
 	}
 
+	/**
+	 * 
+	 * @param id
+	 * @param parent
+	 * @param level
+	 * this method show the component of the id provided.
+	 * note:
+	 * Collection<Component> comps =  component.getPage().getDesktop().getComponents();
+	 * 
+	 */
+	
 	public void showTab(String id, Component parent, int level) {
 		int ctr = 0;
 		boolean found = false;
-		// Collection<Component> comps =
-		// component.getPage().getDesktop().getComponents();
+		
 		Collection<Component> comps = parent.getFellows();
 		for (Component comp : comps) {
 			if (comp.getId().equalsIgnoreCase(id)) {
@@ -169,8 +179,7 @@ public class CreditCardDetailsViewCtrl extends GenericForwardComposer {
 	public void hideTab(String id, Component parent, int level) {
 		int ctr = 0;
 		boolean found = false;
-		// Collection<Component> comps =
-		// component.getPage().getDesktop().getComponents();
+		
 		Collection<Component> comps = parent.getFellows();
 		for (Component comp : comps) {
 			if (comp.getId().equalsIgnoreCase(id)) {

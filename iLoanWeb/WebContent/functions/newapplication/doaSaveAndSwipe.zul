@@ -1,7 +1,7 @@
 <?page title="new page title" contentType="text/html;charset=UTF-8"?>
 <zk>
 <window title="DEEDS OF ASSIGNMENT FOR SAVE&amp;SWIPE (Secured Card)" 
-		border="normal" width="77%"  xmlns:html="http://www.w3.org/1999/xhtml" 
+		border="normal" width="98%"  xmlns:html="http://www.w3.org/1999/xhtml" 
 		 apply="com.isg.iloan.controller.function.DoaSaveAndSwipeViewCtrl" >
 
 <vlayout>
@@ -20,8 +20,8 @@
 <label value="PLEDGED Amount/Account information:" style="font-weight:bold;font-size:14;"/>
 <grid>
 <columns>
-<column width="12%"/>
-<column width="18%"/>
+<column width="14%"/>
+<column width="20%"/>
 <column width="30%"/>
 <column />
 </columns>

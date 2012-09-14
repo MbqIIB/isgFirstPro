@@ -5,7 +5,7 @@
 			<north size="12%" sclass="header" splittable="true" collapsible="true">
 				<include src="/layout/header.zul" />
 			</north>
-			<west title="iLOAN ONLINE PROCESS" border="none" size="13%" splittable="true" collapsible="true">
+			<west title="iLOAN ONLINE PROCESS" border="none" size="15%" splittable="true" collapsible="true">
 				<include src="/menu/mainMenu.zul" />
 			</west>
 			<center >
