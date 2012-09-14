@@ -133,7 +133,7 @@ function changeState(element){
 	
 	<tabbox id="tb" orient="vertical" >
     <tabs id="tabs">
-        <tab id="creditCardDetail" label="Part A" tooltiptext="Credit Card Detail" />
+        <tab id="creditCardDetail" label="Part A" tooltiptext="Credit Card Details" />
         <tab id="personalData" label="Part B" tooltiptext="Personal Data"/>
         <tab id="jobDetail" label="Part C" tooltiptext="Job Detail" />
         <tab id="supplementaryDetail" label="Part D" tooltiptext="Supplementary Detail" />
@@ -144,7 +144,7 @@ function changeState(element){
     </tabs>    
     <tabpanels >
         <tabpanel id="ccDetailPanel" style="overflow-y:scroll;" >
-        	<include src="/functions/newapplication/creditCardDetails.zul"/>
+        	<include src="/functions/newapplication/creditCardDetailPanel.zul"/>
         </tabpanel>
         <tabpanel id="personalPanel" fulfill="personalData.onSelect" style="overflow-y:scroll;">
         	<include src="/functions/newapplication/personalData.zul"/>        	

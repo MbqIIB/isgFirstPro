@@ -1,7 +1,7 @@
 
 <zk>
 <style src="/style/style.css" />
-		<window title="" border="" style="height:100%;width:83%;margin:0px auto;"  >
+		<window title="" border="" style="height:100%;width:88%;margin:0px auto;"  >
 		
 		<borderlayout >
 					<north>						
@@ -15,8 +15,8 @@
 						
 					</center>
 		
-					<south >
-						
+					<south border="none" class="footer" size="4%" splittable="true" collapsible="true">
+						<include src="/layout/footer.zul" />
 					</south>
 				</borderlayout>
 		</window>

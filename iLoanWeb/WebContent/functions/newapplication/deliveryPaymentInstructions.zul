@@ -6,7 +6,7 @@
 	</style>
 	<window title="DELIVERY/PAYMENT INSTRUCTION" border="normal"
 		apply="com.isg.iloan.controller.function.MyDeliveryPaymentInstructionsViewCtrl"
-		width="77%">
+		width="98%">
 		<grid>
 			<columns>
 				<column width="23%"></column>

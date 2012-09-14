@@ -1,7 +1,7 @@
 <?page title="new page title" contentType="text/html;charset=UTF-8"?>
 <zk>
 	<window title="MY SUPPLEMENTARY" border="normal"
-		apply="com.isg.iloan.controller.function.MySupplementaryViewCtrl" width="77%">
+		apply="com.isg.iloan.controller.function.MySupplementaryViewCtrl" width="95%">
 		<div>
 			Supplementary card applicants are required to submit a
 			photocopy of a valid government-issued ID and complete the
@@ -19,11 +19,11 @@
 		<grid>
 			<columns>
 				<column width="15%" />
-				<column width="16%" />
-				<column width="14%" />
-				<column width="20%" />
-				<column width="8%" />
-				<column width="27%" />
+				<column width="18%" />
+				<column width="12%" />
+				<column width="23%" />
+				
+				<column width="32%" />
 			</columns>
 			<rows>
 				<row>
@@ -65,14 +65,16 @@
 					<label value="Zip Code" />
 					
 						<textbox id="zip_txtbox" width="50px"
-							mold="rounded" />
-
-					<label value="Relation To Principal Applicant" />
+							mold="rounded" />					
 					<cell colspan="3">
-						<textbox id="relation_txtbox" width="150px"
-							mold="rounded" />
+						<hbox>
+							<label value="Relation To Principal Applicant" />
+							<space />
+							<textbox id="relation_txtbox" width="108px" mold="rounded" />
+						</hbox>							
+						
 					</cell>
-
+					
 				</row>
 				<row></row>
 				<row>
@@ -89,15 +91,14 @@
 				<row>
 
 					<label value="Birth date"></label>
-
-
 					<datebox mold="rounded" />
 					<label value="Place of Birth"></label>
 					<textbox id="pBirth_txtbox" width="150px"
 						mold="rounded" />
-
-					<label value="Gender"></label>
+					
+					
 					<hlayout>
+					<label value="Gender"></label>
 						<checkbox label="Male" />
 						<checkbox label="Female" />
 					</hlayout>
