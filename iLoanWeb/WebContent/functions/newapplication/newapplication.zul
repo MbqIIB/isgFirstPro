@@ -99,18 +99,20 @@ apply="com.isg.iloan.controller.function.NewApplicationViewCtrl"  >
 		</div>
 	<tabbox id="tb" orient="vertical" >
     <tabs id="tabs">
-        <tab id="creditCardDetail" label="Part A" tooltiptext="Credit Card Detail" />
+        <tab id="creditCardDetail" label="Part A" tooltiptext="Credit Card Details" />
         <tab id="personalData" label="Part B" tooltiptext="Personal Data"/>
         <tab id="jobDetail" label="Part C" tooltiptext="Job Detail" />
         <tab id="supplementaryDetail" label="Part D" tooltiptext="Supplementary Detail" />
         <tab id="deliveryInstruction" label="Part E" tooltiptext="Delivery/Payment Instructions" />
         <tab id="internetTransaction" label="Part F" tooltiptext="Internet Transactions"/>
+        <!-- 
         <tab id="saveAndSwipe" label="Part G" visible="false" tooltiptext="SAVE &amp; SWIPE"/>
-        <tab id="ssDeeds" label="Part H" visible="false" tooltiptext="DEEDS of ASSIGNMENT" />    
+        <tab id="ssDeeds" label="Part H" visible="false" tooltiptext="DEEDS of ASSIGNMENT" /> 
+         -->   
     </tabs>    
     <tabpanels  >
         <tabpanel id="ccDetailPanel" style="overflow-y:scroll;" >
-        	<include src="/functions/newapplication/creditCardDetails.zul"/>
+        	<include src="/functions/newapplication/creditCardDetailPanel.zul"/>
         </tabpanel>
         <tabpanel id="personalPanel" fulfill="personalData.onSelect" style="overflow-y:scroll;" >
         	<include src="/functions/newapplication/personalData.zul"/>        	
@@ -127,12 +129,14 @@ apply="com.isg.iloan.controller.function.NewApplicationViewCtrl"  >
         <tabpanel fulfill="internetTransaction.onSelect" style="overflow-y:scroll;">
 			<include src="/functions/newapplication/internetTransaction.zul"/>
 		</tabpanel>
+		<!-- 
         <tabpanel fulfill="saveAndSwipe.onSelect" style="overflow-y:scroll;">
         	<include src="/functions/newapplication/saveAndSwipe.zul"/>
         </tabpanel >
         <tabpanel fulfill="ssDeeds.onSelect" style="overflow-y:scroll;">
         	<include src="/functions/newapplication/doaSaveAndSwipe.zul"/>
         </tabpanel>
+         -->
     </tabpanels>
 </tabbox>
 

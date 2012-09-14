@@ -8,7 +8,7 @@
 
 
 </style>
-<window title="CREDIT CARD DETAILS" id="creditCardDetails" width="98%" 
+<window id="creditCardDetails" width="98%" 
 border="normal" apply="com.isg.iloan.controller.function.CreditCardDetailsViewCtrl" >
 
 <grid>
@@ -68,7 +68,7 @@ border="normal" apply="com.isg.iloan.controller.function.CreditCardDetailsViewCt
 
 <hlayout>
 <hbox  width="330px" style="top-padding:10px;">
-	Save&amp;Swipe(Secure Card) Application?
+	Save&amp;Swipe(Secured Card) Application?
 </hbox>
 <hbox>
 	<checkbox id="acceptSaveAndSwipe" label="YES"/>
