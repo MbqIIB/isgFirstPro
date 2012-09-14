@@ -73,22 +73,6 @@ public class CreditCardDetailsViewCtrl extends GenericForwardComposer {
 		//System.out.println(validateCheckboxes(cb_layout));
 		
 		validateCheckboxes(cb_layout);
-//		if (!validateCheckboxes(cb_layout)) {
-//			Clients.evalJavaScript("unfinishedState('#ccd')");
-//		}
-		
-//		femmeVisaCard.addEventListener(Events.ON_CLICK, new EventListener(){
-//			public void onEvent(Event event){
-//				if(femmeVisaCard.isChecked()){
-//					Clients.evalJavaScript("changeState('#ccd')");
-//				}else{
-//					Clients.evalJavaScript("unfinishedState('#ccd')");
-//				}
-//				
-//			}
-//		});
-//		
-		
 		
 		// TODO Auto-generated method stub
 
@@ -108,9 +92,6 @@ public class CreditCardDetailsViewCtrl extends GenericForwardComposer {
 				}
 			});
 			
-//			if (((Checkbox) comp).isChecked()) {
-//				return true;
-//			}
 		}
 
 			List<Component> list = comp.getChildren();
