@@ -34,7 +34,8 @@ function changeState(element) {
 
 }
 
-function unfinishedState(element) {
+function validatedState(element, isValidated) {
+	console.log(isValidated);
 	$($(".arrow-down-done")[0]).remove();
 	$($(".arrow-down-incomplete")[0]).remove();
 	$($(".arrow-down-undone")[0]).remove();
@@ -44,11 +45,18 @@ function unfinishedState(element) {
 	$($(element + " .arrow-right-done")[0]).remove();
 	$($(element + " .arrow-left-incomplete")[0]).remove();
 	$($(element + " .arrow-right-incomplete")[0]).remove();
-	$(element).append('<div class="arrow-right-incomplete"></div>');
 	$(element + " span").removeClass("undone");
-	$(element + " span").removeClass("done");
-	$(element + " span").addClass("incomplete");
-	$(element).append('<div class="arrow-down-incomplete"></div>');
+	if(isValidated){
+		$(element).append('<div class="arrow-right-done"></div>');
+		$(element + " span").removeClass("incomplete");
+		$(element + " span").addClass("done");
+		$(element).append('<div class="arrow-down-done"></div>');
+	}else{
+		$(element).append('<div class="arrow-right-incomplete"></div>');
+		$(element + " span").removeClass("done");
+		$(element + " span").addClass("incomplete");
+		$(element).append('<div class="arrow-down-incomplete"></div>');
+	}
 }
 
 function tester() {

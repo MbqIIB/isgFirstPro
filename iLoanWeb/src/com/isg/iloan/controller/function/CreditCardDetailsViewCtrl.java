@@ -3,6 +3,7 @@
  */
 package com.isg.iloan.controller.function;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -70,23 +71,46 @@ public class CreditCardDetailsViewCtrl extends GenericForwardComposer {
 	@Override
 	public void doAfterCompose(Component comp) throws Exception {
 		super.doAfterCompose(comp);
-		//System.out.println(validateCheckboxes(cb_layout));
 		
-		validateCheckboxes(cb_layout);
+		validateCheckboxFields(cb_layout, cb_layout);
+	
+	}
+	
+	
+	private List<Checkbox> getCheckboxFields(Component comp, List<Checkbox> cbList){
+		if(comp instanceof Checkbox){
+			cbList.add((Checkbox)comp);
+		}
+		List<Component> list = comp.getChildren();
+		for (Component child : list) {
+			getCheckboxFields(child, cbList);
+		}
 		
-		// TODO Auto-generated method stub
-
+		return cbList;
+	}
+	
+	private boolean validateCheckboxes(List<Checkbox> cbList){
+		boolean hasChecked = false;
+		for(Checkbox cb: cbList){
+			if(cb.isChecked()){
+				hasChecked = true;
+				break;
+			}
+		}
+		return hasChecked;
 	}
 
-	private boolean validateCheckboxes(final Component comp) {
-	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	private void validateCheckboxFields(final Component comp, final Component parent) {
+//		boolean isValidated = false;
 		if (comp instanceof Checkbox) {
 			comp.addEventListener(Events.ON_CLICK, new EventListener(){
 				public void onEvent(Event event){
-					if(((Checkbox)comp).isChecked()){
-						Clients.evalJavaScript("changeState('#ccd')");
+					boolean isValidated = validateCheckboxes(getCheckboxFields(parent, new ArrayList<Checkbox>()));
+					if(isValidated){
+						Clients.evalJavaScript("validatedState('#ccd',true)");
 					}else{
-						Clients.evalJavaScript("unfinishedState('#ccd')");
+						Clients.evalJavaScript("validatedState('#ccd',false)");
 					}
 					
 				}
@@ -94,17 +118,11 @@ public class CreditCardDetailsViewCtrl extends GenericForwardComposer {
 			
 		}
 
-			List<Component> list = comp.getChildren();
-			for (Component child : list) {
-				validateCheckboxes(child);
-				
-//				if(validateCheckboxes(child)){
-//					return true;
-//				}
-			}
+		List<Component> list = comp.getChildren();
+		for (Component child : list) {
+			validateCheckboxFields(child, parent);
+		}
 		
-
-		return false;
 	}
 
 	private void Alert(String string) {

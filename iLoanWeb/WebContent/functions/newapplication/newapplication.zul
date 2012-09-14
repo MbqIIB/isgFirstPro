@@ -23,7 +23,6 @@
     	height:423px !important;    	
     }
     
-   
     
 </style>
 <window id="newApplication"  self="@{define(left)}" 
@@ -80,7 +79,7 @@ apply="com.isg.iloan.controller.function.NewApplicationViewCtrl"  >
 							</span>
 							
 						</li>
-						<li id="ss" class="initialHide">
+						<!-- <li id="ss" class="initialHide">
 							<div class="arrow-left-undone"></div>
 							<span class="breadcrumb_item undone">
 								Save and Swipe
@@ -92,7 +91,7 @@ apply="com.isg.iloan.controller.function.NewApplicationViewCtrl"  >
 							<span class="breadcrumb_item undone">
 								Deeds of Assignment for Save and Swipe
 							</span>
-						</li>
+						</li> -->
 					</ul>
 				</html>
 			</div>
