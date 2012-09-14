@@ -113,10 +113,17 @@ deposits, in order to give effect to this Assignment.
 	</cell>
 </row>
 <row>
-	<cell colspan="4" align="right" >
+	<cell colspan="3" align="right" >
 		
 		<space/>
+		
+		
+	</cell>
+	<cell colspan="1" align="center" >
+		
+		<groupbox >
 		<checkbox id="acceptDOA_chkbox" label="Accept DEEDS of ASSIGNMENT"/>
+		</groupbox> 
 		
 	</cell>
 </row>
