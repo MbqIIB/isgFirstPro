@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.isg.iloan.controller.function;
+package com.isg.iloan.controller.functions.dataEntry;
 
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.util.GenericForwardComposer;

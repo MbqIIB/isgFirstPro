@@ -50,7 +50,7 @@ function changeState(element){
    
 	
 </style>
-<window id="newApplication" apply="com.isg.iloan.controller.function.NewApplicationViewCtrl" >
+<window id="newApplication" apply="com.isg.iloan.controller.functions.dataEntry.NewApplicationViewCtrl" >
 
 
 	<caption label="NEW CREDIT CARD APPLICATION" >

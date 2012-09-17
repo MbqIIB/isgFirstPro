@@ -26,7 +26,7 @@
     
 </style>
 <window id="newApplication"  self="@{define(left)}" 
-apply="com.isg.iloan.controller.function.NewApplicationViewCtrl"  >
+apply="com.isg.iloan.controller.functions.dataEntry.NewApplicationViewCtrl"  >
 
 
 	<caption label="NEW CREDIT CARD APPLICATION" >

@@ -9,7 +9,7 @@
 
 </style>
 <window id="creditCardDetails" width="98%" 
-border="normal" apply="com.isg.iloan.controller.function.CreditCardDetailsViewCtrl" >
+border="normal" apply="com.isg.iloan.controller.functions.dataEntry.CreditCardDetailsViewCtrl" >
 
 <grid>
 <rows>

@@ -11,7 +11,8 @@
 
 
 <window title="PESONAL DATA" id="personalData" border="normal" width="98%" 
-		xmlns:h="http://www.w3.org/1999/xhtml">
+		xmlns:h="http://www.w3.org/1999/xhtml" 
+		apply="com.isg.iloan.controller.functions.dataEntry.PersonalDataViewCtrl">
 
 <grid>
 <rows>
@@ -23,21 +24,21 @@
 <hlayout >
 		<vlayout>
 			<label value="Family name" />
-			<textbox id="familyName" width="140px" maxlength="25" mold="rounded"/>			
+			<textbox id="familyName_txtbox" width="140px" maxlength="25" mold="rounded"/>			
 		</vlayout>
 		<vlayout>
 			<label value="Given name" />
-			<textbox id="givenName" width="140px" maxlength="25" mold="rounded"/>			
+			<textbox id="givenName_txtbox" width="140px" maxlength="25" mold="rounded"/>			
 		</vlayout>
 		<vlayout>
 			<label value="Middle name" />
-			<textbox id="middleName" width="140px" maxlength="25" mold="rounded"/>			
+			<textbox id="middleName_txtbox" width="140px" maxlength="25" mold="rounded"/>			
 		</vlayout>	
 </hlayout>
 <hlayout>	
 		<vlayout>
 			<label value="Name to appear on card"/>
-			<textbox id="nameOnCard" width="284px" mold="rounded"/>			
+			<textbox id="nameOnCard_txtbox" width="284px" mold="rounded"/>			
 		</vlayout>
 </hlayout>
 </groupbox>
@@ -56,9 +57,9 @@
 		<caption label="Birth Date"/>
 		<hbox>
 		<vlayout>			
-			<datebox id="birthdate" lenient="true" buttonVisible="true"  mold="rounded"/>			
+			<datebox id="birthdate_datebox" lenient="true" buttonVisible="true"  mold="rounded"/>			
 			<label value="Place of birth"/>
-			<textbox id="placeOfBirth" width="160" mold="rounded"/>															
+			<textbox id="placeOfBirth_txtbox" width="160" mold="rounded"/>															
 		</vlayout>	
 		</hbox>	
 	</groupbox>	

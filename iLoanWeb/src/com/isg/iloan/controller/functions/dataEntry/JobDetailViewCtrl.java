@@ -1,4 +1,4 @@
-package com.isg.iloan.controller.function;
+package com.isg.iloan.controller.functions.dataEntry;
 
 /**
  * 
@@ -15,7 +15,7 @@ import org.zkoss.zul.Window;
  * @author sheena.catacutan
  *
  */
-public class MyJobWindowViewCtrl extends GenericForwardComposer {
+public class JobDetailViewCtrl extends GenericForwardComposer {
 
 	private Window myJobWindow;
 	private Textbox working_years_txtbox;
