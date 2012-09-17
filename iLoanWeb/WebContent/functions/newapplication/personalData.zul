@@ -1,298 +1,332 @@
 <?page title="new page title" contentType="text/html;charset=UTF-8"?>
 <zk>
-<style dynamic="true">
-	.noteField{
-		font-size:10px;
-		
-	}
+	<style dynamic="true">
+		.noteField{ font-size:10px;
+
+		}
 
 
-</style>
+	</style>
 
 
-<window title="PESONAL DATA" id="personalData" border="normal" width="98%" 
-		xmlns:h="http://www.w3.org/1999/xhtml">
+	<window title="PERSONAL DATA" id="personalData" border="normal"
+		width="98%" xmlns:h="http://www.w3.org/1999/xhtml" apply="com.isg.iloan.controller.function.PersonalDataViewCtrl">
+		<grid id="personalDataForm">
+			<rows>
+				<row>
+					<groupbox width="685px">
+						<caption label="Name" />
+						<hlayout>
+							<vlayout>
+								<label value="Family name" />
+								<textbox id="familyName" width="140px"
+									maxlength="25" mold="rounded" constraint="no empty" />
+							</vlayout>
+							<vlayout>
+								<label value="Given name" />
+								<textbox id="givenName" width="140px"
+									maxlength="25" mold="rounded" constraint="no empty" />
+							</vlayout>
+							<vlayout>
+								<label value="Middle name" />
+								<textbox id="middleName" width="140px"
+									maxlength="25" mold="rounded" constraint="no empty" />
+							</vlayout>
+						</hlayout>
+						<hlayout>
+							<vlayout>
+								<label value="Name to appear on card" />
+								<textbox id="nameOnCard" width="284px"
+									mold="rounded" constraint="no empty" />
+							</vlayout>
+						</hlayout>
+					</groupbox>
+				</row>
+				<row>
+					<hlayout>
+						<groupbox height="95px">
+							<caption label="Birth Date"/>
+							<hbox>
+								<vlayout>
+									<datebox id="birthdate"
+										lenient="true" buttonVisible="true" mold="rounded" constraint="between 20071225 and 29991231, no empty"/>
+									<label value="Place of birth" />
+									<textbox id="placeOfBirth"
+										width="160" mold="rounded" constraint="no empty" />
+								</vlayout>
+							</hbox>
+						</groupbox>
+						<groupbox height="95px">
+							<caption label="Civil Status" />
+							<hlayout>
+								<hbox>
+									<vlayout>
+										<checkbox id="single_chkbox"
+											label="Single" />
+										<checkbox id="married_chkbox"
+											label="Married" />
+									</vlayout>
+								</hbox>
+								<hbox>
+									<vlayout>
 
-<grid>
-<rows>
-<row>
+										<checkbox id="widowed_chkbox"
+											label="Widowed" />
+										<checkbox id="separated_chkbox"
+											label="Separated" />
 
-
-<groupbox width="685px">
-<caption label="Name"/>
-<hlayout >
-		<vlayout>
-			<label value="Family name" />
-			<textbox id="familyName" width="140px" maxlength="25" mold="rounded"/>			
-		</vlayout>
-		<vlayout>
-			<label value="Given name" />
-			<textbox id="givenName" width="140px" maxlength="25" mold="rounded"/>			
-		</vlayout>
-		<vlayout>
-			<label value="Middle name" />
-			<textbox id="middleName" width="140px" maxlength="25" mold="rounded"/>			
-		</vlayout>	
-</hlayout>
-<hlayout>	
-		<vlayout>
-			<label value="Name to appear on card"/>
-			<textbox id="nameOnCard" width="284px" mold="rounded"/>			
-		</vlayout>
-</hlayout>
-</groupbox>
-</row>
-</rows>
-</grid>
-
-
-<grid>
-<rows>
-<row>
-<hlayout>
-	
-	
-	<groupbox height="95px">
-		<caption label="Birth Date"/>
-		<hbox>
-		<vlayout>			
-			<datebox id="birthdate" lenient="true" buttonVisible="true"  mold="rounded"/>			
-			<label value="Place of birth"/>
-			<textbox id="placeOfBirth" width="160" mold="rounded"/>															
-		</vlayout>	
-		</hbox>	
-	</groupbox>	
-	<groupbox height="95px">
-		<caption label="Civil Status"/>
-		<hlayout>
-		<hbox>
-		<vlayout>			
-			<checkbox id="single_chkbox" label="Single"/>
-			<checkbox id="married_chkbox" label="Married"/>															
-		</vlayout>	
-		</hbox>
-		<hbox>
-		<vlayout>
-			
-			<checkbox id="widowed_chkbox" label="Widowed"/>
-			<checkbox id="separated_chkbox" label="Separated"/>	
-														
-		</vlayout>	
-		</hbox>		
-		</hlayout>
-	</groupbox>
-	
-	
-	<groupbox height="95px">
-		<caption label="Gender"/>				
-		<hbox>
-		<vlayout>					
-			<checkbox id="male_chkbox" label="Male"/>
-			<checkbox id="female_chkbox" label="Female"/>												
-		</vlayout>	
-		</hbox>
-	</groupbox>
-	<groupbox height="95px" width="298px">
-		<caption label="Nationality/Citizenship"/>		
-		<hbox>
-		<vlayout>			
-			<checkbox id="filipino_chkbox" label="Filipino"/>
-			<hbox>
-			<checkbox id="others_chkbox" label="Others"/>
-			<vbox>
-			<textbox id="others_txtbox" width="150"/>
-			<label value="(For foreigners, attached ACR &amp; ICR)" sclass="noteField" />
-			</vbox>
-			</hbox>												
-		</vlayout>	
-		</hbox>
-	</groupbox>	
-	
-	
-</hlayout>
-</row>
-<row>
-<groupbox width="685px">
-	<hlayout>
-	 <vbox>
-	 	<label value="Mobile Phone No." />
-	 	<textbox id="mobilePhoneNumber_txtbox" width="140px" mold="rounded"/>
-	 	<label value="Email Address" />
-	 	<textbox id="emailAddress_txtbox" width="140px" mold="rounded"/>
-	 </vbox>
-	 <vbox>
-	 	<label value="Home Phone No." />
-	 	<textbox id="homePhoneNumber_txtbox" width="140px" mold="rounded"/>
-	 	<label value="Mother's full name" />
-	 	<textbox id="motherFullname_txtbox" width="140px" mold="rounded"/>
-	 </vbox>
-	 <vbox>
-	 	<label value="No. of Children" />
-	 	<textbox id="numOfChildren_txtbox" width="50px" mold="rounded"/>
-	 </vbox>
-	 </hlayout>
-</groupbox>
-</row>
-
-<row>
-<groupbox width="685px">
-<caption label="Home Address"/>
-	<hbox>
-	<textbox id="homeAddress_txtbox" width="460px" rows="3" mold="rounded" />
-	<vbox>	
-	<label value="Zip code" />
-	<textbox id="zipCode_txtbox" width="80px" mold="rounded"/>
-	</vbox>
-	</hbox>
-</groupbox>
-</row>
-
-<row>
-<groupbox width="685px">
-<caption label="Permanent Address(if different from Home Address)"/>
-	<hbox>
-	<textbox id="permAddress_txtbox" width="460px" rows="3" mold="rounded" />
-	<vbox>	
-	<label value="Zip code" />
-	<textbox id="permAddressZipcode_txtbox" width="80px" mold="rounded"/>
-	</vbox>
-	</hbox>
-</groupbox>
-</row>
-
-<row>
-<groupbox width="685px">
-<caption label="Home Ownership"/>
-	<hbox>
-		<checkbox id="owned_chkbox" label="Owned"/>
-		<space/>
-		<checkbox id="rented_chkbox" label="Rented"/>
-		<space/>
-		<checkbox id="mortgaged_chkbox" label="Mortgaged"/>
-		<space/>
-		<checkbox id="livParRel_chkbox" label="Living with parents/relatives"/>
-		<space/>
-		<label value="Length of stays:" />			
-		<textbox id="lengthofStays_txtbox" width="50px" mold="rounded"/>		
-	</hbox>
-</groupbox>
-</row>
- 
-<row>
-<groupbox width="685px">
-<caption label="Car Ownership"/>
-   <hlayout>
-	<hbox>
-		<label value="Number of cars:"/>		
-		<textbox id="numOfcars_txtbox" width="50" mold="rounded"/>	
-	</hbox>
-	<space/><space/>
-	<hbox>
-		<label value="Model/Year:" />		
-		<textbox id="modelyear_txtbox" width="150" mold="rounded"/>	
-	</hbox>
-	</hlayout>
-</groupbox>
-</row>
-<row>
-<groupbox width="685px">
-<caption label="Education"/>
-   <hlayout>
-	<checkbox id="highschool_chkbox" label="High School"/>
-	<space/>
-	<checkbox id="someCollege_chkbox" label="Some College"/>
-	<space/>
-	<checkbox id="college_chkbox" label="College"/>
-	<space/>
-	<checkbox id="postGraduate_chkbox" label="Post Graduate"/>
-	<space/>
-	</hlayout>
-</groupbox>
-</row>
-
-<row>
-<groupbox width="685px">
-   <hlayout>
-    <vbox>
-		<label value="T.I.N" />
-		<textbox id="tin_txtbox" width="100px" mold="rounded" />	
-		<hbox>
-			<checkbox id="sssNo_chkbox" label="SSS"/>
-			<checkbox id="gsisNo_chkbox" label="GSIS"/>
-		</hbox>
-		<textbox id="sss_txtbox" width="100px" mold="rounded" />	
-	</vbox>
-	<groupbox>
-		<caption label="Other Identification Cards"/>
-		<hlayout>
-		<vbox>
-			<hbox>
-				<checkbox id="driverLicenseNum_chkbox" label="Driver License No."/>
-				<textbox id="driverLicenseNum_txtbox" width="100px" mold="rounded" />
-			</hbox>
-			<hbox>
-				<checkbox id="passportNum_chkbox" label="Passport No."/>
-				<space width="25px"/>
-				<textbox id="passportNum_txtbox" width="100px" mold="rounded" />
-			</hbox>
-		</vbox>
-		<space width="4"/>
-		<vbox>
-			<hbox>
-				<checkbox id="prcID_chkbox" label="PRC ID"/>
-				<textbox id="prcID_txtbox" width="100px" mold="rounded" />
-			</hbox>
-			<hbox>
-				<checkbox id="otherID_chkbox" label="Others"/>
-				<space width="1px"/>
-				<vbox>
-				<textbox id="otherID_txtbox" width="200px" mold="rounded" />
-				<label value="(Please specify type of ID and ID number)" sclass="noteField"/>
-				</vbox>
-			</hbox>
-		</vbox>
-		</hlayout>
-	</groupbox>
-	</hlayout>
-</groupbox>
-</row>
-
-<row>
-<groupbox width="685px">
-<caption label="Personal References"/>
-  	<hlayout>
-		<vbox>
-			<hbox>
-				<label value="Name"/>
-				<space/>
-				<textbox id="personalRefName_txtbox" width="180px" mold="rounded" />
-				<space />
-				<label value="Relationship" />
-				<textbox id="personalRefRelation_txtbox" width="100px" mold="rounded" />
-			</hbox>
-			<hbox>
-				<label value="Address"/>
-				<textbox id="personalRefAddress_txtbox" rows="2" width="370px" mold="rounded"/>
-				<space width="1"/>
-				<label value="Tel. No."/>
-				<textbox id="personalRefTelNum_txtbox" width="100px" mold="rounded" />
-			</hbox>
-		</vbox>
-	</hlayout>
-</groupbox>
-</row>
+									</vlayout>
+								</hbox>
+							</hlayout>
+						</groupbox>
 
 
+						<groupbox height="95px">
+							<caption label="Gender" />
+							<hbox>
+								<vlayout>
+									<checkbox id="male_chkbox"
+										label="Male" />
+									<checkbox id="female_chkbox"
+										label="Female" />
+								</vlayout>
+							</hbox>
+						</groupbox>
+						<groupbox height="95px" width="298px">
+							<caption label="Nationality/Citizenship" />
+							<hbox>
+								<vlayout>
+									<checkbox id="filipino_chkbox"
+										label="Filipino" />
+									<hbox>
+										<checkbox id="others_chkbox"
+											label="Others" />
+										<vbox>
+											<textbox id="others_txtbox"
+												width="150" />
+											<label
+												value="(For foreigners, attached ACR &amp; ICR)"
+												sclass="noteField" />
+										</vbox>
+									</hbox>
+								</vlayout>
+							</hbox>
+						</groupbox>
 
 
-</rows>
-</grid>	
+					</hlayout>
+				</row>
+				<row>
+					<groupbox width="685px">
+						<hlayout>
+							<vbox>
+								<label value="Mobile Phone No." />
+								<intbox id="mobilePhoneNumber_txtbox"
+									width="140px" mold="rounded" constraint="no negative,no zero,no empty"/>
+								<label value="Email Address" />
+								<textbox id="emailAddress_txtbox"
+									width="140px" mold="rounded"  constraint="/.+@.+\.[a-z]+/: Please enter an e-mail address"/>
+							</vbox>
+							<vbox>
+								<label value="Home Phone No." />
+								<intbox id="homePhoneNumber_txtbox"
+									width="140px" mold="rounded" constraint="no negative,no zero,no empty"/>
+								<label value="Mother's full name" />
+								<textbox id="motherFullname_txtbox"
+									width="140px" mold="rounded"  constraint="no empty"/>
+							</vbox>
+							<vbox>
+								<label value="No. of Children" />
+								<textbox id="numOfChildren_txtbox"
+									width="50px" mold="rounded" />
+							</vbox>
+						</hlayout>
+					</groupbox>
+				</row>
 
+				<row>
+					<groupbox width="685px">
+						<caption label="Home Address" />
+						<hbox>
+							<textbox id="homeAddress_txtbox"
+								width="460px" rows="3" mold="rounded" />
+							<vbox>
+								<label value="Zip code" />
+								<textbox id="zipCode_txtbox"
+									width="80px" mold="rounded" />
+							</vbox>
+						</hbox>
+					</groupbox>
+				</row>
 
+				<row>
+					<groupbox width="685px">
+						<caption
+							label="Permanent Address(if different from Home Address)" />
+						<hbox>
+							<textbox id="permAddress_txtbox"
+								width="460px" rows="3" mold="rounded" />
+							<vbox>
+								<label value="Zip code" />
+								<textbox id="permAddressZipcode_txtbox"
+									width="80px" mold="rounded" />
+							</vbox>
+						</hbox>
+					</groupbox>
+				</row>
 
+				<row>
+					<groupbox width="685px">
+						<caption label="Home Ownership" />
+						<hbox>
+							<checkbox id="owned_chkbox" label="Owned" />
+							<space />
+							<checkbox id="rented_chkbox" label="Rented" />
+							<space />
+							<checkbox id="mortgaged_chkbox"
+								label="Mortgaged" />
+							<space />
+							<checkbox id="livParRel_chkbox"
+								label="Living with parents/relatives" />
+							<space />
+							<label value="Length of stays:" />
+							<textbox id="lengthofStays_txtbox"
+								width="50px" mold="rounded" />
+						</hbox>
+					</groupbox>
+				</row>
 
+				<row>
+					<groupbox width="685px">
+						<caption label="Car Ownership" />
+						<hlayout>
+							<hbox>
+								<label value="Number of cars:" />
+								<textbox id="numOfcars_txtbox"
+									width="50" mold="rounded" />
+							</hbox>
+							<space />
+							<space />
+							<hbox>
+								<label value="Model/Year:" />
+								<textbox id="modelyear_txtbox"
+									width="150" mold="rounded" />
+							</hbox>
+						</hlayout>
+					</groupbox>
+				</row>
+				<row>
+					<groupbox width="685px">
+						<caption label="Education" />
+						<hlayout>
+							<checkbox id="highschool_chkbox"
+								label="High School" />
+							<space />
+							<checkbox id="someCollege_chkbox"
+								label="Some College" />
+							<space />
+							<checkbox id="college_chkbox"
+								label="College" />
+							<space />
+							<checkbox id="postGraduate_chkbox"
+								label="Post Graduate" />
+							<space />
+						</hlayout>
+					</groupbox>
+				</row>
 
+				<row>
+					<groupbox width="685px">
+						<hlayout>
+							<vbox>
+								<label value="T.I.N" />
+								<textbox id="tin_txtbox" width="100px"
+									mold="rounded" />
+								<hbox>
+									<checkbox id="sssNo_chkbox"
+										label="SSS" />
+									<checkbox id="gsisNo_chkbox"
+										label="GSIS" />
+								</hbox>
+								<textbox id="sss_txtbox" width="100px"
+									mold="rounded" />
+							</vbox>
+							<groupbox>
+								<caption
+									label="Other Identification Cards" />
+								<hlayout>
+									<vbox>
+										<hbox>
+											<checkbox
+												id="driverLicenseNum_chkbox" label="Driver License No." />
+											<textbox
+												id="driverLicenseNum_txtbox" width="100px" mold="rounded" />
+										</hbox>
+										<hbox>
+											<checkbox
+												id="passportNum_chkbox" label="Passport No." />
+											<space width="25px" />
+											<textbox
+												id="passportNum_txtbox" width="100px" mold="rounded" />
+										</hbox>
+									</vbox>
+									<space width="4" />
+									<vbox>
+										<hbox>
+											<checkbox id="prcID_chkbox"
+												label="PRC ID" />
+											<textbox id="prcID_txtbox"
+												width="100px" mold="rounded" />
+										</hbox>
+										<hbox>
+											<checkbox
+												id="otherID_chkbox" label="Others" />
+											<space width="1px" />
+											<vbox>
+												<textbox
+													id="otherID_txtbox" width="200px" mold="rounded" />
+												<label
+													value="(Please specify type of ID and ID number)"
+													sclass="noteField" />
+											</vbox>
+										</hbox>
+									</vbox>
+								</hlayout>
+							</groupbox>
+						</hlayout>
+					</groupbox>
+				</row>
 
-
-</window>
+				<row>
+					<groupbox width="685px">
+						<caption label="Personal References" />
+						<hlayout>
+							<vbox>
+								<hbox>
+									<label value="Name" />
+									<space />
+									<textbox id="personalRefName_txtbox"
+										width="180px" mold="rounded" />
+									<space />
+									<label value="Relationship" />
+									<textbox
+										id="personalRefRelation_txtbox" width="100px" mold="rounded" />
+								</hbox>
+								<hbox>
+									<label value="Address" />
+									<textbox
+										id="personalRefAddress_txtbox" rows="2" width="370px"
+										mold="rounded" />
+									<space width="1" />
+									<label value="Tel. No." />
+									<textbox
+										id="personalRefTelNum_txtbox" width="100px" mold="rounded" />
+								</hbox>
+							</vbox>
+						</hlayout>	 
+					</groupbox>
+				</row>
+			</rows>
+		</grid>
+	</window>
 </zk>

@@ -7,8 +7,7 @@
 		<rows>
 		<row>
 		
-		
-		<groupbox>
+		<groupbox id="sourceOfFundsGroupBox">
 			<caption label="Source of Funds" />
 			<hlayout>
 			<hbox>
@@ -95,8 +94,6 @@
 						<space />
 						<textbox id="working_years_txtbox" width="80px" mold="rounded" />
 					</cell>
-					
-
 				</row>
 				
 			</rows>

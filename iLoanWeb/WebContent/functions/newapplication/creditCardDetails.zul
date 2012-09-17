@@ -14,7 +14,7 @@ border="normal" apply="com.isg.iloan.controller.function.CreditCardDetailsViewCt
 <grid>
 <rows>
 	<row>
-		<hlayout id="cb_layout">
+		<hlayout id="cbLayout">
 		<hbox>
 		<vlayout>
 			<checkbox id="classicMasterCard" label="Classic Master Card"/>
@@ -52,7 +52,7 @@ border="normal" apply="com.isg.iloan.controller.function.CreditCardDetailsViewCt
 	If  cannot process your application for a Gold card,
 	would you accept Metrobank Classic Card?
 </hbox>
-<hbox>
+<hbox id="acceptClassicCardHbox">
 	<checkbox id="acceptClassicCard" label="YES" />
 	<checkbox id="notAcceptClassicCard" label="NO"/>
 </hbox>
@@ -67,7 +67,7 @@ border="normal" apply="com.isg.iloan.controller.function.CreditCardDetailsViewCt
 <row>
 
 <hlayout>
-<hbox  width="330px" style="top-padding:10px;">
+<hbox  width="330px" style="top-padding:10px;" id="saveSwipeHbox">
 	Save&amp;Swipe(Secured Card) Application?
 </hbox>
 <hbox>

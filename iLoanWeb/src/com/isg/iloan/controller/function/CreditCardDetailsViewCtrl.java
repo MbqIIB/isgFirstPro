@@ -15,121 +15,102 @@ import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zk.ui.util.GenericForwardComposer;
 import org.zkoss.zul.Checkbox;
-import org.zkoss.zul.Datebox;
+import org.zkoss.zul.Hbox;
 import org.zkoss.zul.Hlayout;
-import org.zkoss.zul.Textbox;
+import org.zkoss.zul.Tabbox;
+import org.zkoss.zul.Tabs;
 import org.zkoss.zul.Window;
-import org.zkoss.zul.event.*;
+
+import com.isg.iloan.controller.util.CheckboxValidator;
 
 /**
  * @author augusto.marte
  * 
  */
+@SuppressWarnings("rawtypes")
 public class CreditCardDetailsViewCtrl extends GenericForwardComposer {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 501211151135191928L;
 
 	private static Logger logger = Logger
 			.getLogger(CreditCardDetailsViewCtrl.class);
 
 	private Window creditCardDetails;
-	private Datebox occ3DOM;
-	private Datebox occ2DOM;
-	private Datebox occ1DOM;
-	private Textbox occ3Limit;
-	private Textbox occ2Limit;
-	private Textbox occ1Limit;
-	private Textbox occ3Num;
-	private Textbox occ2Num;
-	private Textbox occ1Num;
-	private Textbox occ3;
-	private Textbox occ2;
-	private Textbox occ1;
-	private Datebox ecc3DOM;
-	private Datebox ecc2DOM;
-	private Datebox ecc1DOM;
-	private Textbox ecc3Limit;
-	private Textbox ecc2Limit;
-	private Textbox ecc1Limit;
-	private Textbox existingCC3;
-	private Textbox existingCC2;
-	private Textbox existingCC1;
 	private Checkbox notAcceptSaveAndSwipe;
 	private Checkbox acceptSaveAndSwipe;
 	private Checkbox notAcceptClassicCard;
 	private Checkbox acceptClassicCard;
-	private Checkbox femmeVisaCard;
-	private Checkbox mLiteMasterCard;
-	private Checkbox goldVisaCard;
-	private Checkbox goldMasterCard;
-	private Checkbox classicVisaCard;
-	private Checkbox classicMasterCard;
-	private Hlayout cb_layout;
+	private Hlayout cbLayout;
+	private Hbox acceptClassicCardHbox;
+
 
 	/**
 	 *
 	 *
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void doAfterCompose(Component comp) throws Exception {
 		super.doAfterCompose(comp);
+		addCheckboxEvent(comp, comp);
+		List<Component>comps = new ArrayList<Component>();
+		comps.add(cbLayout);
+		comps.add(acceptClassicCardHbox);
+		CheckboxValidator.validateCheckboxFields(comps);
+		bindValidationOnClick(cbLayout);
 		
-		validateCheckboxFields(cb_layout, cb_layout);
-	
 	}
-	
-	
-	private List<Checkbox> getCheckboxFields(Component comp, List<Checkbox> cbList){
-		if(comp instanceof Checkbox){
-			cbList.add((Checkbox)comp);
-		}
-		List<Component> list = comp.getChildren();
-		for (Component child : list) {
-			getCheckboxFields(child, cbList);
-		}
 		
-		return cbList;
-	}
-	
-	private boolean validateCheckboxes(List<Checkbox> cbList){
-		boolean hasChecked = false;
-		for(Checkbox cb: cbList){
-			if(cb.isChecked()){
-				hasChecked = true;
-				break;
+	@SuppressWarnings({ "unchecked"})
+	private void bindValidationOnClick(Component comp){
+		Component parent = comp.getParent();
+		if(parent instanceof Tabbox){
+			for(Component c: parent.getChildren()){
+				if(c instanceof Tabs){		
+					for(Component t :c.getChildren()){
+						if("creditCardDetail".equals(t.getId())){
+							t.addEventListener(Events.ON_CLICK, new EventListener(){
+								public void onEvent(Event event){
+									List<Component>comps = new ArrayList<Component>();
+									comps.add(cbLayout);
+									comps.add(acceptClassicCardHbox);
+									CheckboxValidator.validateCheckboxFields(comps);
+								}
+							});
+							break;
+						}
+					}
+				}
 			}
+			return;
 		}
-		return hasChecked;
+		bindValidationOnClick(parent.getParent());
+		
 	}
-
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private void validateCheckboxFields(final Component comp, final Component parent) {
-//		boolean isValidated = false;
+	
+	@SuppressWarnings({ "unchecked" })
+	public void addCheckboxEvent(final Component comp, final Component parent) {
 		if (comp instanceof Checkbox) {
 			comp.addEventListener(Events.ON_CLICK, new EventListener(){
 				public void onEvent(Event event){
-					boolean isValidated = validateCheckboxes(getCheckboxFields(parent, new ArrayList<Checkbox>()));
-					if(isValidated){
-						Clients.evalJavaScript("validatedState('#ccd',true)");
-					}else{
-						Clients.evalJavaScript("validatedState('#ccd',false)");
-					}
-					
+					List<Component>comps = new ArrayList<Component>();
+					comps.add(cbLayout);
+					comps.add(acceptClassicCardHbox);
+					CheckboxValidator.validateCheckboxFields(comps);
 				}
 			});
-			
 		}
-
 		List<Component> list = comp.getChildren();
 		for (Component child : list) {
-			validateCheckboxFields(child, parent);
+			addCheckboxEvent(child, parent);
 		}
 		
 	}
-
-	private void Alert(String string) {
-		// TODO Auto-generated method stub
-
-	}
-
+	
+	
 	public void onCheck$acceptClassicCard() throws InterruptedException {
 		if (acceptClassicCard.isChecked()) {
 			notAcceptClassicCard.setChecked(false);
@@ -201,9 +182,6 @@ public class CreditCardDetailsViewCtrl extends GenericForwardComposer {
 		logger.debug("Testing logger of Log4j");
 		if (acceptSaveAndSwipe.isChecked()) {
 			notAcceptSaveAndSwipe.setChecked(false);
-			// Collection<Component> comps =
-			// creditCardDetails.getParent().getParent().getSpaceOwner().getFellows();
-
 			showTab("saveAndSwipe", creditCardDetails.getParent(), 0);
 			showTab("ssDeeds", creditCardDetails.getParent(), 0);
 			Clients.evalJavaScript("showOtherBlocks()");
@@ -224,5 +202,4 @@ public class CreditCardDetailsViewCtrl extends GenericForwardComposer {
 			Clients.evalJavaScript("hideOtherBlocks()");
 		}
 	}
-
 }

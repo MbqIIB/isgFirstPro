@@ -3,14 +3,21 @@
  */
 package com.isg.iloan.controller.function;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zk.ui.util.GenericForwardComposer;
+import org.zkoss.zul.Hbox;
+import org.zkoss.zul.Hlayout;
 import org.zkoss.zul.Tab;
 import org.zkoss.zul.Tabbox;
 import org.zkoss.zul.Tabpanel;
 import org.zkoss.zul.Tabs;
 import org.zkoss.zul.Window;
+
+import com.isg.iloan.controller.util.CheckboxValidator;
 
 /**
  * @author augusto.marte
@@ -31,6 +38,8 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 	private Tab creditCardDetail;
 	private Tabs tabs;
 	private Tabbox tb;
+	private Hlayout cbLayout;
+	private Hbox acceptClassicCardHbox;
 
 	/**
 	 *
@@ -39,14 +48,8 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 	@Override
 	public void doAfterCompose(Component comp) throws Exception {
 		super.doAfterCompose(comp);
-		// TODO Auto-generated method stub
-		
 	}
 	
-	public void onClick$creditCardDetail(){
-	//
-		Clients.evalJavaScript("changeState('#ccd')");
-	}
 	public void onClick$personalData(){
 		Clients.evalJavaScript("changeState('#pd')");
 	}
