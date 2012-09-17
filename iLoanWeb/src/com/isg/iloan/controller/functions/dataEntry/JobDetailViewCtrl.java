@@ -1,4 +1,4 @@
-package com.isg.iloan.controller.function;
+package com.isg.iloan.controller.functions.dataEntry;
 
 /**
  * 
@@ -26,7 +26,7 @@ import com.isg.iloan.controller.util.CheckboxValidator;
  * @author sheena.catacutan
  *
  */
-public class MyJobWindowViewCtrl extends GenericForwardComposer {
+public class JobDetailViewCtrl extends GenericForwardComposer {
 
 	private Window myJobWindow;
 	private Textbox working_years_txtbox;

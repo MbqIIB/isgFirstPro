@@ -1,7 +1,7 @@
 <?page title="new page title" contentType="text/html;charset=UTF-8"?>
 <zk>
 	<window title="MY SUPPLEMENTARY" border="normal"
-		apply="com.isg.iloan.controller.function.MySupplementaryViewCtrl" width="95%">
+		apply="com.isg.iloan.controller.functions.dataEntry.MySupplementaryViewCtrl" width="95%">
 		<div>
 			Supplementary card applicants are required to submit a
 			photocopy of a valid government-issued ID and complete the
@@ -91,11 +91,10 @@
 				<row>
 
 					<label value="Birth date"></label>
-					<datebox mold="rounded" />
+					<datebox id="birthDate" mold="rounded" />
 					<label value="Place of Birth"></label>
 					<textbox id="pBirth_txtbox" width="150px"
 						mold="rounded" />
-					
 					
 					<hlayout>
 					<label value="Gender"></label>

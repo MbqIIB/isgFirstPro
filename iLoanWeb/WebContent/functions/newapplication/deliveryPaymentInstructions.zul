@@ -5,7 +5,7 @@
 		display:block; width: 200px;}
 	</style>
 	<window title="DELIVERY/PAYMENT INSTRUCTION" border="normal"
-		apply="com.isg.iloan.controller.function.MyDeliveryPaymentInstructionsViewCtrl"
+		apply="com.isg.iloan.controller.functions.dataEntry.MyDeliveryPaymentInstructionsViewCtrl"
 		width="98%">
 		<grid>
 			<columns>
@@ -34,13 +34,13 @@
 									<hlayout>
 										<label
 											value="Current/Savings Account No.:" sclass="ada_lbl" />
-										<textbox width="150px"
+										<textbox width="150px" id="adaAccountNum"
 											mold="rounded" maxlength="25" />
 									</hlayout>
 									<hlayout>
 										<label value="Metrobank Branch:"
 											sclass="ada_lbl" />
-										<textbox width="300px"
+										<textbox width="300px" id="adaBankBranch"
 											mold="rounded" maxlength="25" />
 									</hlayout>
 									<hlayout>

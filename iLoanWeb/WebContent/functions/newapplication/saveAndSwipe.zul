@@ -10,7 +10,7 @@
 
 <window  border="normal"
 		width="98%" 
-		apply="com.isg.iloan.controller.function.SaveAndSwipeViewCtrl" >
+		apply="com.isg.iloan.controller.functions.dataEntry.SaveAndSwipeViewCtrl" >
 
 
 <grid>

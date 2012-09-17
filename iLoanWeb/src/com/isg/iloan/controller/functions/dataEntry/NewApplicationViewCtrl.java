@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.isg.iloan.controller.function;
+package com.isg.iloan.controller.functions.dataEntry;
 
 import java.util.ArrayList;
 import java.util.List;
