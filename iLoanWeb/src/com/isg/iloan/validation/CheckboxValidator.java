@@ -1,4 +1,4 @@
-package com.isg.iloan.controller.util;
+package com.isg.iloan.validation;
 
 import java.util.ArrayList;
 import java.util.List;
