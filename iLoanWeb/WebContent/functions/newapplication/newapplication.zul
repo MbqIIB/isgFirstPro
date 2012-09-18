@@ -120,7 +120,7 @@ apply="com.isg.iloan.controller.functions.dataEntry.NewApplicationViewCtrl"  >
         	<include src="/functions/newapplication/jobDetail.zul"/>
         </tabpanel>
         <tabpanel fulfill="supplementaryDetail.onSelect" style="overflow-y:scroll;">
-        	<include src="/functions/newapplication/mySupplementary.zul"/>
+        	<include src="/functions/newapplication/supplementary.zul"/>
         </tabpanel>
         <tabpanel fulfill="deliveryInstruction.onSelect" style="overflow-y:scroll;">
         	<include src="/functions/newapplication/deliveryPaymentInstructions.zul"/>
