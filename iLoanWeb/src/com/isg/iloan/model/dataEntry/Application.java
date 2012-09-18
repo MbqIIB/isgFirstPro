@@ -1,11 +1,12 @@
 package com.isg.iloan.model.dataEntry;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  ** Class Application
  **/
-public class Application { 
+public class Application implements Serializable{ 
   //Fields
   private int id;
   private int applicationId;
