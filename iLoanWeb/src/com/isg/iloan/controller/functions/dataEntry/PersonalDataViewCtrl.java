@@ -40,8 +40,6 @@ public class PersonalDataViewCtrl extends GenericForwardComposer {
 		bindValidationOnClick(personalDataForm);
 	}
 	
-
-	
 	private List getInputElements(Component comp, ArrayList<InputElement> arrayList) {
 		if (comp instanceof InputElement) {
 			arrayList.add((InputElement) comp);

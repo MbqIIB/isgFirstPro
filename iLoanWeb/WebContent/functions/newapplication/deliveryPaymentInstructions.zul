@@ -13,14 +13,14 @@
 				<column></column>
 			</columns>
 			<rows>
-				<row>
+				<row id="deliveryLocRow">
 					<label value="Deliver Card &amp; Statement To:" />
 					<hlayout>
 						<checkbox label="Office" id="office_chkbox" />
 						<checkbox label="Home" id="home_chkbox" />
 					</hlayout>
 				</row>
-				<row>
+				<row id="preferredPaymentRow">
 					<label value="Preferred Payment Mode:" />
 					<radiogroup id="paymentmode_radio_grp">
 						<vlayout>

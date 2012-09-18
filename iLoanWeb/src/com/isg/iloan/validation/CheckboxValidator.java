@@ -25,14 +25,11 @@ public class CheckboxValidator {
 	}
 	
 	public static void validateCheckboxFields(List<Component> comps, String id){
-		System.out.println("validateCheckboxFields :"+id);
-		System.out.println("comps size :"+comps.size());
 		boolean isValidated = true;
 
 		for (Component comp : comps) {
 			isValidated = validateCheckboxes(getCheckboxFields(comp,
 					new ArrayList<Checkbox>()));
-			System.out.println(isValidated);
 			if (!isValidated)break;
 			
 		}
@@ -56,14 +53,13 @@ public class CheckboxValidator {
 			}
 		}
 		
-		System.out.println("checkbox num: "+cbList.size());
+
 		return cbList;
 	}
 
 	public static boolean validateCheckboxes(List<Checkbox> cbList) {
 		boolean hasChecked = false;
 		for (Checkbox cb : cbList) {
-			System.out.println(cb.isChecked());
 			if (cb.isChecked()) {
 				hasChecked = true;
 				break;

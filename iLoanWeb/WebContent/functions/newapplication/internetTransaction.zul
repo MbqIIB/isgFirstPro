@@ -11,7 +11,7 @@ your internet transactions with participating merchants." style="font-weight:bol
 />
 </hbox>
 
-<groupbox width="75%">
+<groupbox width="75%" id="internetTransactionGrpbox">
 <hbox>
 <checkbox id="internetTransaction_chkbox" />
 <label value="I want to enroll my Metrobank Card in SOS to ensure the security and protection of my 
