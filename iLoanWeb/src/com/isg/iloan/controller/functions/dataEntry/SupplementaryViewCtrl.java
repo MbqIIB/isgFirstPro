@@ -13,7 +13,7 @@ import org.zkoss.zul.Grid;
 import org.zkoss.zul.Textbox;
 
 import com.isg.iloan.controller.util.CommonValidator;
-import com.isg.iloan.validator.InputElementValidator;
+import com.isg.iloan.validation.InputElementValidator;
 
 /**
  * @author sheena.catacutan
