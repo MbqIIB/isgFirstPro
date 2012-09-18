@@ -49,13 +49,23 @@ function validatedState(element, isValidated) {
 		if(element!="#ccd"){
 			$(element).prepend('<div class="arrow-left-done"></div>');
 		}
-		$(element).append('<div class="arrow-right-done"></div>');
+		
+		if(element!="#it"){
+			$(element).append('<div class="arrow-right-done"></div>');
+		}
 		$(element + " span").removeClass("incomplete");
 		$(element + " span").addClass("done");
 		$(element).append('<div class="arrow-down-done"></div>');
 		
 	}else{
-		$(element).append('<div class="arrow-right-incomplete"></div>');
+		if(element!="#ccd"){
+			$(element).prepend('<div class="arrow-left-incomplete"></div>');
+		}
+		
+		if(element!="#it"){
+			$(element).append('<div class="arrow-right-incomplete"></div>');
+		}
+		
 		$(element + " span").removeClass("done");
 		$(element + " span").addClass("incomplete");
 		$(element).append('<div class="arrow-down-incomplete"></div>');
