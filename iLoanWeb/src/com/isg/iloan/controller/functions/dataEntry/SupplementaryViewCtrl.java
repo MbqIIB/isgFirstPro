@@ -6,34 +6,42 @@ package com.isg.iloan.controller.functions.dataEntry;
 
 
 import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zk.ui.util.GenericForwardComposer;
 import org.zkoss.zul.Checkbox;
+import org.zkoss.zul.Grid;
 import org.zkoss.zul.Textbox;
+
+import com.isg.iloan.controller.util.CommonValidator;
+import com.isg.iloan.controller.util.InputTextValidator;
 
 /**
  * @author sheena.catacutan
  *
  */
-public class MySupplementaryViewCtrl extends GenericForwardComposer {
+@SuppressWarnings("rawtypes")
+public class SupplementaryViewCtrl extends GenericForwardComposer {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7923899381024830008L;
 	private Textbox others_txtbox;
-	private Textbox relation_txtbox;
-	private Textbox zip_txtbox;
-	private Textbox home_add_txtbox;
-	private Textbox cardName_txtbox;
-	private Textbox mName_txtbox;
-	private Textbox gName_txtbox;
-	private Textbox fName_txtbox;
 	private Checkbox othrs_chkbox;
+	private Grid supplementaryGrid;
 
 	/**
 	 *
 	 *
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void doAfterCompose(Component comp) throws Exception {
 		super.doAfterCompose(comp);
 		others_txtbox.setDisabled(true);
+		InputTextValidator.addOnBlurEventToInput(comp, comp, "#sd");
+		CommonValidator.bindValidationOnEvent(supplementaryGrid,
+				"supplementaryDetail", "#sd", "txtbx");
 	}
 	
 	public void onClick$othrs_chkbox(){
