@@ -17,7 +17,7 @@ import org.zkoss.zul.Tabpanel;
 import org.zkoss.zul.Tabs;
 import org.zkoss.zul.Window;
 
-import com.isg.iloan.validator.CheckboxValidator;
+import com.isg.iloan.validation.CheckboxValidator;
 
 /**
  * @author augusto.marte

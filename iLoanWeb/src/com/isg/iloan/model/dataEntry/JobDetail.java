@@ -21,7 +21,7 @@ public class JobDetail {
   private long grossMonthlyIncome;
   private String spouseFamilyName;
   private String spouseMiddleName;
-  private Date spouseDOM;
+  private Date spouseDOB;
 
   //Constructors
   JobDetail(){}

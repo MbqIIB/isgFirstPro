@@ -21,7 +21,7 @@ import org.zkoss.zul.Tabbox;
 import org.zkoss.zul.Tabs;
 import org.zkoss.zul.Window;
 
-import com.isg.iloan.validator.CheckboxValidator;
+import com.isg.iloan.validation.CheckboxValidator;
 
 /**
  * @author augusto.marte
@@ -132,8 +132,7 @@ public class CreditCardDetailsViewCtrl extends GenericForwardComposer {
 	
 	public void showTab(String id, Component parent, int level) {
 		int ctr = 0;
-		boolean found = false;
-		
+		boolean found = false;		
 		Collection<Component> comps = parent.getFellows();
 		for (Component comp : comps) {
 			if (comp.getId().equalsIgnoreCase(id)) {

@@ -1,4 +1,4 @@
-package com.isg.iloan.validator;
+package com.isg.iloan.validation;
 
 import java.util.ArrayList;
 import java.util.List;
