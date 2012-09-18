@@ -20,14 +20,19 @@ import org.zkoss.zul.Tabs;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Window;
 
-import com.isg.iloan.controller.util.CheckboxValidator;
+import com.isg.iloan.validator.CheckboxValidator;
 
 /**
  * @author sheena.catacutan
  *
  */
+@SuppressWarnings({ "unchecked", "rawtypes" })
 public class JobDetailViewCtrl extends GenericForwardComposer {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8172306753806136887L;
 	private Window myJobWindow;
 	private Textbox working_years_txtbox;
 	private Textbox yrs_with_pemp_txtbox;
@@ -44,17 +49,35 @@ public class JobDetailViewCtrl extends GenericForwardComposer {
 	 *
 	 *
 	 */
+
 	@Override
 	public void doAfterCompose(Component comp) throws Exception {
 		super.doAfterCompose(comp);
-		others_txtbox.setDisabled(true);
-		List<Component> toValidate = new ArrayList<Component>();
-		toValidate.add(sourceOfFundsGroupBox);
-		CheckboxValidator.validateCheckboxFields(toValidate, "#jd");
-	//	bindValidationOnClick(sourceOfFundsGroupBox);
+		others_txtbox.setDisabled(true);		
+		
+		List<Component>fieldsToValidate = new ArrayList<Component>();
+		fieldsToValidate.add(sourceOfFundsGroupBox);
+		addCheckboxEvent(comp, comp,fieldsToValidate);
+//		CheckboxValidator.addCheckboxEvent(comp, comp, fieldsToValidate, "#jd");
+		CheckboxValidator.validateCheckboxFields(fieldsToValidate, "#jd");
+		bindValidationOnClick(sourceOfFundsGroupBox);
 	}
 	
-	@SuppressWarnings({ "unchecked", "rawtypes"})
+	public static void addCheckboxEvent(final Component comp,
+			final Component parent, final List<Component> comps) {
+		if (comp instanceof Checkbox) {
+			comp.addEventListener(Events.ON_CLICK, new EventListener(){
+				public void onEvent(Event event){
+					CheckboxValidator.validateCheckboxFields(comps, "#jd");
+				}
+			});
+		}
+		List<Component> list = comp.getChildren();
+		for (Component child : list) {
+			addCheckboxEvent(child, parent, comps);
+		}
+		
+	}
 	private void bindValidationOnClick(Component comp){
 		Component parent = comp.getParent();
 		if(parent instanceof Tabbox){

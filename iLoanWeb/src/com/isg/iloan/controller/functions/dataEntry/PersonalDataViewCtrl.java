@@ -17,6 +17,8 @@ import org.zkoss.zul.Tabbox;
 import org.zkoss.zul.Tabs;
 import org.zkoss.zul.impl.InputElement;
 
+import com.isg.iloan.validator.InputElementValidator;
+
 /**
  * @author augusto.marte
  *
@@ -34,27 +36,11 @@ public class PersonalDataViewCtrl extends GenericForwardComposer {
 	@Override
 	public void doAfterCompose(Component comp) throws Exception {
 		super.doAfterCompose(comp);
-		addOnBlurEventToInput(comp, comp);
+		InputElementValidator.addOnBlurEventToInput(comp, comp, "#pd");
 		bindValidationOnClick(personalDataForm);
 	}
 	
 
-	private void addOnBlurEventToInput(final Component comp, final Component parent){
-		if(comp instanceof InputElement){
-			comp.addEventListener(Events.ON_BLUR, new EventListener() {
-				@Override
-				public void onEvent(Event arg0) throws Exception {
-					validateForm(getInputElements(parent, new ArrayList<InputElement>()));
-				}
-
-				
-			});
-		}
-		List<Component> components = comp.getChildren();
-		for(Component each: components){
-			addOnBlurEventToInput(each, parent);
-		}
-	}	
 	
 	private List getInputElements(Component comp, ArrayList<InputElement> arrayList) {
 		if (comp instanceof InputElement) {
@@ -101,7 +87,6 @@ public class PersonalDataViewCtrl extends GenericForwardComposer {
 			return;
 		}
 		bindValidationOnClick(parent.getParent());
-		
 	}
 
 }

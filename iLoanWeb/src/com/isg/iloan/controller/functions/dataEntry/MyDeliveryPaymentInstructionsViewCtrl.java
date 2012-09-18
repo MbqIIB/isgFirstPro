@@ -33,7 +33,6 @@ public class MyDeliveryPaymentInstructionsViewCtrl extends
 	public void doAfterCompose(Component comp) throws Exception {
 		super.doAfterCompose(comp);
 		ada_div.setVisible(false);
-
 	}
 
 	

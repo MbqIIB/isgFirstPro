@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.isg.iloan.controller.function;
+package com.isg.iloan.controller.functions.dataEntry;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -21,13 +21,13 @@ import org.zkoss.zul.Tabbox;
 import org.zkoss.zul.Tabs;
 import org.zkoss.zul.Window;
 
-import com.isg.iloan.controller.util.CheckboxValidator;
+import com.isg.iloan.validator.CheckboxValidator;
 
 /**
  * @author augusto.marte
  * 
  */
-@SuppressWarnings("rawtypes")
+@SuppressWarnings({ "unchecked", "rawtypes" })
 public class CreditCardDetailsViewCtrl extends GenericForwardComposer {
 
 	/**
@@ -51,20 +51,19 @@ public class CreditCardDetailsViewCtrl extends GenericForwardComposer {
 	 *
 	 *
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void doAfterCompose(Component comp) throws Exception {
 		super.doAfterCompose(comp);
-		addCheckboxEvent(comp, comp);
+		
 		List<Component>comps = new ArrayList<Component>();
 		comps.add(cbLayout);
 		comps.add(acceptClassicCardHbox);
+		addCheckboxEvent(comp, comp,comps);
 		CheckboxValidator.validateCheckboxFields(comps);
 		bindValidationOnClick(cbLayout);
 		
 	}
 		
-	@SuppressWarnings({ "unchecked"})
 	private void bindValidationOnClick(Component comp){
 		Component parent = comp.getParent();
 		if(parent instanceof Tabbox){
@@ -91,25 +90,22 @@ public class CreditCardDetailsViewCtrl extends GenericForwardComposer {
 		
 	}
 	
-	@SuppressWarnings({ "unchecked" })
-	public void addCheckboxEvent(final Component comp, final Component parent) {
+
+	public static void addCheckboxEvent(final Component comp,
+			final Component parent, final List<Component> comps) {
 		if (comp instanceof Checkbox) {
 			comp.addEventListener(Events.ON_CLICK, new EventListener(){
 				public void onEvent(Event event){
-					List<Component>comps = new ArrayList<Component>();
-					comps.add(cbLayout);
-					comps.add(acceptClassicCardHbox);
 					CheckboxValidator.validateCheckboxFields(comps);
 				}
 			});
 		}
 		List<Component> list = comp.getChildren();
 		for (Component child : list) {
-			addCheckboxEvent(child, parent);
+			addCheckboxEvent(child, parent, comps);
 		}
 		
 	}
-	
 	
 	public void onCheck$acceptClassicCard() throws InterruptedException {
 		if (acceptClassicCard.isChecked()) {

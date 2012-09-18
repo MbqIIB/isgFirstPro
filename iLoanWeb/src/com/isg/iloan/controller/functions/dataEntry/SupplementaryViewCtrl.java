@@ -13,7 +13,7 @@ import org.zkoss.zul.Grid;
 import org.zkoss.zul.Textbox;
 
 import com.isg.iloan.controller.util.CommonValidator;
-import com.isg.iloan.controller.util.InputTextValidator;
+import com.isg.iloan.validator.InputElementValidator;
 
 /**
  * @author sheena.catacutan
@@ -39,7 +39,7 @@ public class SupplementaryViewCtrl extends GenericForwardComposer {
 	public void doAfterCompose(Component comp) throws Exception {
 		super.doAfterCompose(comp);
 		others_txtbox.setDisabled(true);
-		InputTextValidator.addOnBlurEventToInput(comp, comp, "#sd");
+		InputElementValidator.addOnBlurEventToInput(comp, comp, "#sd");
 		CommonValidator.bindValidationOnEvent(supplementaryGrid,
 				"supplementaryDetail", "#sd", "txtbx");
 	}

@@ -55,6 +55,9 @@ function validatedState(element, isValidated) {
 		$(element).append('<div class="arrow-down-done"></div>');
 		
 	}else{
+		if(element!="#ccd"){
+			$(element).prepend('<div class="arrow-left-incomplete"></div>');
+		}
 		$(element).append('<div class="arrow-right-incomplete"></div>');
 		$(element + " span").removeClass("done");
 		$(element + " span").addClass("incomplete");
