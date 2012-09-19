@@ -66,6 +66,8 @@ public class CreditCardDetailsViewCtrl extends GenericForwardComposer {
 		
 	private void bindValidationOnClick(Component comp){
 		Component parent = comp.getParent();
+		System.out.println(parent);
+		
 		if(parent instanceof Tabbox){
 			for(Component c: parent.getChildren()){
 				if(c instanceof Tabs){		
@@ -86,8 +88,9 @@ public class CreditCardDetailsViewCtrl extends GenericForwardComposer {
 			}
 			return;
 		}
-		bindValidationOnClick(parent.getParent());
-		
+		if(null !=parent){
+			bindValidationOnClick(parent);
+		}
 	}
 	
 
@@ -179,13 +182,11 @@ public class CreditCardDetailsViewCtrl extends GenericForwardComposer {
 			notAcceptSaveAndSwipe.setChecked(false);
 			showTab("saveAndSwipe", creditCardDetails.getParent(), 0);
 			showTab("ssDeeds", creditCardDetails.getParent(), 0);
-			Clients.evalJavaScript("showOtherBlocks()");
 
 		}
 		if (!acceptSaveAndSwipe.isChecked()) {
 			hideTab("saveAndSwipe", creditCardDetails.getParent(), 0);
 			hideTab("ssDeeds", creditCardDetails.getParent(), 0);
-			Clients.evalJavaScript("hideOtherBlocks()");
 		}
 	}
 
