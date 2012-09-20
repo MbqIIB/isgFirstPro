@@ -30,16 +30,16 @@ public class DummySearchViewModel {
 		creditCardType.add("Gold Visa");
 		
 		PersonalData pd1 = new PersonalData("Geronimo", "Zara", "Reyes");
-		Application app1 = new Application(Calendar.getInstance().getTime(), "Femme Visa", "Approved");
+		ApplicationBean app1 = new ApplicationBean(Calendar.getInstance().getTime(), "Femme Visa", "Approved");
 		applicationDetails.add(new SearchBean(app1, pd1));
 		PersonalData pd2 = new PersonalData("Ferragamo", "Sylverter", "Santos");
-		Application app2 = new Application(Calendar.getInstance().getTime(), "M Lite Mastercard", "Rejected");
+		ApplicationBean app2 = new ApplicationBean(Calendar.getInstance().getTime(), "M Lite Mastercard", "Rejected");
 		applicationDetails.add(new SearchBean(app2, pd2));
 		PersonalData pd3 = new PersonalData("Khors", "Michael", "Tan");
-		Application app3 = new Application(Calendar.getInstance().getTime(), "Gold Visa", "New");
+		ApplicationBean app3 = new ApplicationBean(Calendar.getInstance().getTime(), "Gold Visa", "New");
 		applicationDetails.add(new SearchBean(app3, pd3));
 		PersonalData pd4 = new PersonalData("York", "Donna Karan", "New");
-		Application app4 = new Application(Calendar.getInstance().getTime(), "Classic Mastercard", "Pending");
+		ApplicationBean app4 = new ApplicationBean(Calendar.getInstance().getTime(), "Classic Mastercard", "Pending");
 		applicationDetails.add(new SearchBean(app4, pd4));
 		
 	}
