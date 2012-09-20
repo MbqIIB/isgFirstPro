@@ -28,13 +28,13 @@ import org.zkoss.zul.Window;
 
 
 import com.isg.iloan.model.dataEntry.Application;
+import com.isg.iloan.model.dataEntry.JobDetail;
 import com.isg.iloan.service.ApplicationService;
 import com.isg.iloan.service.ApplicationServiceImpl;
 import com.isg.iloan.validation.CheckboxValidator;
 
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
-
 public class CreditCardDetailsViewCtrl extends GenericForwardComposer {
 
 	
@@ -52,9 +52,9 @@ public class CreditCardDetailsViewCtrl extends GenericForwardComposer {
 	private Hbox acceptClassicCardHbox;
 
 
-	@Autowired
-	@Qualifier("applicationService")
-	private ApplicationService applicationService;
+//	@Autowired
+//	@Qualifier("applicationService")
+//	private ApplicationService applicationService;
 	
 	public ApplicationService getService(){
 	   return  (ApplicationService)SpringUtil.getBean("applicationService", ApplicationServiceImpl.class);
@@ -129,20 +129,36 @@ public class CreditCardDetailsViewCtrl extends GenericForwardComposer {
 		
 		//this line is for testing only--
 		
-		Application test = new Application();
+		Application app = new Application();
 		//test.setApplicationId(20121003);
-		test.setAcceptClassicCard(true);
-		test.setAcceptSaveAndSwipe(true);
-		test.setAppStatusCode(0);
-		test.setAppStatusDesc("NEW");
-		test.setCardTypeCode("VCC");
-		test.setCardTypeDesc("Visa Classic Card");
-		test.setDateOfApplication(new Date());
-		test.setEnrollSOS(false);
+		app.setAcceptClassicCard(true);
+		app.setAcceptSaveAndSwipe(true);
+		app.setAppStatusCode(0);
+		app.setAppStatusDesc("NEW");
+		app.setCardTypeCode("VCC");
+		app.setCardTypeDesc("Visa Classic Card");
+		app.setDateOfApplication(new Date());
+		app.setEnrollSOS(false);
+		
+		
+		JobDetail jd = new JobDetail();
+		jd.setCompanyName("iSphereGlobal");
+		jd.setOccupation("Bank Teller");
+		jd.setNatureOfWork("Banker");
+		jd.setYearsWithCurrentEmployer(10);
+		jd.setTotalWorkingYears(20);
+		jd.setGrossMonthlyIncome(40000);
+		jd.setSpouseFamilyName("Goslings");
+		jd.setSpouseMiddleName("Berti");
+		jd.setSpouseDOB(new Date());
+		
+		
+		app.setJobDetail(jd);
 		
 		logger.debug("calling applicationService createApplication... ");
 		
-		getService().createApplication(test);
+		getService().createApplication(app);
+		
 		
 		//---
 		
@@ -169,6 +185,7 @@ public class CreditCardDetailsViewCtrl extends GenericForwardComposer {
 	 */
 	
 	public void showTab(String id, Component parent, int level) {
+		Collection<Component> com =  parent.getPage().getDesktop().getComponents();
 		int ctr = 0;
 		boolean found = false;		
 		Collection<Component> comps = parent.getFellows();
@@ -236,5 +253,6 @@ public class CreditCardDetailsViewCtrl extends GenericForwardComposer {
 		}
 	}
 
+	
 	
 }
