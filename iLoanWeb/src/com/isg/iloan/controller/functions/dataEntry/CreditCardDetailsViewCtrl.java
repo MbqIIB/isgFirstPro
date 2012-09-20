@@ -8,14 +8,19 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Date;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zk.ui.util.GenericForwardComposer;
+import org.zkoss.zkplus.spring.SpringUtil;
 import org.zkoss.zul.Checkbox;
 import org.zkoss.zul.Hbox;
 import org.zkoss.zul.Hlayout;
@@ -23,19 +28,22 @@ import org.zkoss.zul.Tabbox;
 import org.zkoss.zul.Tabs;
 import org.zkoss.zul.Window;
 
+
+import com.isg.iloan.model.dataEntry.Application;
+import com.isg.iloan.service.ApplicationService;
+import com.isg.iloan.service.ApplicationServiceImpl;
 import com.isg.iloan.validation.CheckboxValidator;
-import com.isg.iloan.validation.CreditCardDetailPanelValidator;
+
 
 /**
  * @author augusto.marte
  * 
  */
 @SuppressWarnings({ "unchecked", "rawtypes" })
+
 public class CreditCardDetailsViewCtrl extends GenericForwardComposer {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 501211151135191928L;
 
 	private static Logger logger = Logger
@@ -50,11 +58,22 @@ public class CreditCardDetailsViewCtrl extends GenericForwardComposer {
 	private Hbox acceptClassicCardHbox;
 	private Window ccDetailPanelWindow;
 
-	LinkedHashMap<String, Component> componentList;
+
+	@Autowired
+	@Qualifier("applicationService")
+	private ApplicationService applicationService;
+	
+	public ApplicationService getService(){
+	   return  (ApplicationService)SpringUtil.getBean("applicationService", ApplicationServiceImpl.class);
+	}
+	
+	//SpringUtil.getBean("applicationService", ApplicationServiceImpl.class);
+	
 	/**
 	 *
 	 *
 	 */
+	@Override
 	public void doAfterCompose(Component comp) throws Exception {
 		super.doAfterCompose(comp);
 		
@@ -121,6 +140,29 @@ public class CreditCardDetailsViewCtrl extends GenericForwardComposer {
 		if (acceptClassicCard.isChecked()) {
 			notAcceptClassicCard.setChecked(false);
 		}
+		
+		//this line is for testing only--
+		
+		Application test = new Application();
+		//test.setApplicationId(20121003);
+		test.setAcceptClassicCard(true);
+		test.setAcceptSaveAndSwipe(true);
+		test.setAppStatusCode(0);
+		test.setAppStatusDesc("NEW");
+		test.setCardTypeCode("VCC");
+		test.setCardTypeDesc("Visa Classic Card");
+		test.setDateOfApplication(new Date());
+		test.setEnrollSOS(false);
+		
+		logger.debug("calling applicationService createApplication... ");
+		
+		getService().createApplication(test);
+		
+		//---
+		
+		
+		
+		
 	}
 
 	public void onCheck$notAcceptClassicCard() throws InterruptedException {
@@ -189,7 +231,7 @@ public class CreditCardDetailsViewCtrl extends GenericForwardComposer {
 			notAcceptSaveAndSwipe.setChecked(false);
 			showTab("saveAndSwipe", creditCardDetails.getParent(), 0);
 			showTab("ssDeeds", creditCardDetails.getParent(), 0);
-//			CreditCardDetailPanelValidator.addSaveSwipeValidation(creditCardDetails);
+//
 
 		}
 		if (!acceptSaveAndSwipe.isChecked()) {
@@ -205,4 +247,6 @@ public class CreditCardDetailsViewCtrl extends GenericForwardComposer {
 			hideTab("ssDeeds", creditCardDetails.getParent(), 0);
 		}
 	}
+
+	
 }
