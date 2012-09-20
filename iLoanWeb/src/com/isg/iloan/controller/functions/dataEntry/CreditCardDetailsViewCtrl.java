@@ -5,6 +5,8 @@ package com.isg.iloan.controller.functions.dataEntry;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -22,6 +24,7 @@ import org.zkoss.zul.Tabs;
 import org.zkoss.zul.Window;
 
 import com.isg.iloan.validation.CheckboxValidator;
+import com.isg.iloan.validation.CreditCardDetailPanelValidator;
 
 /**
  * @author augusto.marte
@@ -45,13 +48,13 @@ public class CreditCardDetailsViewCtrl extends GenericForwardComposer {
 	private Checkbox acceptClassicCard;
 	private Hlayout cbLayout;
 	private Hbox acceptClassicCardHbox;
+	private Window ccDetailPanelWindow;
 
-
+	LinkedHashMap<String, Component> componentList;
 	/**
 	 *
 	 *
 	 */
-	@Override
 	public void doAfterCompose(Component comp) throws Exception {
 		super.doAfterCompose(comp);
 		
@@ -59,15 +62,19 @@ public class CreditCardDetailsViewCtrl extends GenericForwardComposer {
 		comps.add(cbLayout);
 		comps.add(acceptClassicCardHbox);
 		addCheckboxEvent(comp, comp,comps);
+		
+
 		CheckboxValidator.validateCheckboxFields(comps);
 		bindValidationOnClick(cbLayout);
+		componentList = new LinkedHashMap<String, Component>();
 		
+		for(Component component : comp.getPage().getDesktop().getComponents()){
+			componentList.put(component.getId(), component);
+		}
 	}
 		
 	private void bindValidationOnClick(Component comp){
 		Component parent = comp.getParent();
-		System.out.println(parent);
-		
 		if(parent instanceof Tabbox){
 			for(Component c: parent.getChildren()){
 				if(c instanceof Tabs){		
@@ -182,6 +189,7 @@ public class CreditCardDetailsViewCtrl extends GenericForwardComposer {
 			notAcceptSaveAndSwipe.setChecked(false);
 			showTab("saveAndSwipe", creditCardDetails.getParent(), 0);
 			showTab("ssDeeds", creditCardDetails.getParent(), 0);
+//			CreditCardDetailPanelValidator.addSaveSwipeValidation(creditCardDetails);
 
 		}
 		if (!acceptSaveAndSwipe.isChecked()) {
@@ -195,7 +203,6 @@ public class CreditCardDetailsViewCtrl extends GenericForwardComposer {
 			acceptSaveAndSwipe.setChecked(false);
 			hideTab("saveAndSwipe", creditCardDetails.getParent(), 0);
 			hideTab("ssDeeds", creditCardDetails.getParent(), 0);
-			Clients.evalJavaScript("hideOtherBlocks()");
 		}
 	}
 }
