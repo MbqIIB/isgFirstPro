@@ -9,6 +9,7 @@
   
   		<provider>org.hibernate.ejb.HibernatePersistence</provider>  		
   		<class>com.isg.iloan.model.dataEntry.Application</class>
+  		<class>com.isg.iloan.model.dataEntry.JobDetail</class>
   		<exclude-unlisted-classes>true</exclude-unlisted-classes>		 
   		
         <properties>  
