@@ -1,0 +1,102 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+
+	<style>
+		.lblStyle{ position:relative; display:block; width:100px;
+		float:left; }
+		.spacer{
+			margin: 10px 5px;
+		}
+	</style>
+	<window title="Dummy Page" border="normal" width="70%" apply="com.isg.iloan.controller.functions.DummySearchViewCtrl">
+		<div apply="org.zkoss.bind.BindComposer"
+			viewModel="@id('vm') @init('com.isg.iloan.controller.viewModel.DummySearchViewModel')">
+			<groupbox>
+				<caption>Search</caption>
+				<grid>
+					<columns>
+						<column />
+						<column />
+						<column />
+					</columns>
+					<rows>
+						<row>
+							<hlayout>
+								<label value="Application Status"
+									sclass="lblStyle" />
+								<combobox model="@load(vm.appStatus)"
+									readonly="true">
+									<template name="model">
+										<comboitem label="@load(each)" />
+									</template>
+								</combobox>
+							</hlayout>
+							<hlayout>
+								<label value="Credit Card Type"
+									sclass="lblStyle" />
+								<combobox
+									model="@load(vm.creditCardType)" readonly="true">
+									<template name="model">
+										<comboitem label="@load(each)" />
+									</template>
+								</combobox>
+							</hlayout>
+							<hlayout>
+								<label value="Application Date"
+									sclass="lblStyle" />
+								<datebox></datebox>
+							</hlayout>
+						</row>
+
+						<row>
+							<hlayout>
+								<label sclass="lblStyle"
+									value="First Name" />
+								<textbox />
+							</hlayout>
+							<hlayout>
+								<label sclass="lblStyle"
+									value="Middle Name" />
+								<textbox />
+							</hlayout>
+							<hlayout>
+								<label sclass="lblStyle"
+									value="Last Name" />
+								<textbox></textbox>
+							</hlayout>
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+			<hlayout sclass="spacer">
+				<button label="Search" mold="trendy" id="dummySearchBtn"></button>
+				<button label="Clear" mold="trendy" id="clearBtn"></button>
+			</hlayout>
+			<groupbox>
+			<caption>Results</caption>
+			<grid height="350px" model="@load(vm.applicationDetails)"
+				emptyMessage="Nothing in Inbox.">
+				<columns>
+					<column label="Status" />
+					<column label="Card Type" />
+					<column label="Name" />
+					<column label="Application Date" />
+				</columns>
+				<template name="model">
+					<row>
+						<label
+							value="@load(each.application.applicationStatus)" />
+						<label
+							value="@load(each.application.creditCardType)" />
+						<label value="@load(each.personalData.name)" />
+						<label
+							value="@load(each.application.dateOfApplication)" />
+					</row>
+				</template>
+			</grid>
+			</groupbox>
+		</div>
+
+
+	</window>
+</zk>

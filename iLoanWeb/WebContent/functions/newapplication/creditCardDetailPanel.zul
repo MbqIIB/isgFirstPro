@@ -1,6 +1,6 @@
 <?page title="new page title" contentType="text/html;charset=UTF-8"?>
 <zk>
-<window border="normal">
+<window border="normal" id="ccDetailPanelWindow">
 	<caption label="MY CHOICE OF METROBANK CREDIT CARD" />
 		
 	
@@ -12,13 +12,13 @@
 		</tabs>    
 	    <tabpanels >
 	    	<tabpanel id="ccDetailPanel"  >
-	        	<include src="/functions/newapplication/creditCardDetails.zul"/>
+	        	<include src="/functions/newapplication/creditCardDetails.zul" id="ccDetailPanelInclude" mode="instant"/>
 	        </tabpanel>
-	    	<tabpanel fulfill="saveAndSwipe.onSelect" >
-	        	<include src="/functions/newapplication/saveAndSwipe.zul"/>
+	    	<tabpanel fulfill="saveAndSwipe.onSelect" id="saveSwipePanel">
+	        	<include src="/functions/newapplication/saveAndSwipe.zul" id="saveSwipePanelInclude" mode="instant"/>
 	        </tabpanel >
-	        <tabpanel fulfill="ssDeeds.onSelect"  >
-	        	<include src="/functions/newapplication/doaSaveAndSwipe.zul"/>
+	        <tabpanel fulfill="ssDeeds.onSelect"  id="doaSaveSwipePanel">
+	        	<include src="/functions/newapplication/doaSaveAndSwipe.zul" id="doaSaveSwipePanelInclude" mode="instant"/>
 	        </tabpanel>
 	     </tabpanels>
    </tabbox>
