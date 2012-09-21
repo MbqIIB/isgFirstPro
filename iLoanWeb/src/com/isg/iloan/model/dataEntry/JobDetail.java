@@ -65,7 +65,7 @@ public class JobDetail implements Serializable {
   @OneToMany(cascade=CascadeType.ALL,mappedBy="jobDetail",fetch=FetchType.LAZY)
   private List<Fund> sourceOfFunds;
   
-  public void add(Fund source){
+  public void addFundSource(Fund source){
 	  this.sourceOfFunds.add(source);
 	  if(this!=source.getJobDetail()){
 		  source.setJobDetail(this);

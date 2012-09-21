@@ -77,15 +77,17 @@ public class PersonalData {
 	private String personalRefName;
 	@Column(name="PERSON_REF_REL")
 	private String personalRefRelation;
-	@Column(name="PERSON_REF_ADDR")
-	private Address personalRefAddress;
+	
 	
 	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
 	@JoinColumn(name="HOME_ADDR_ID")
 	private Address homeAddress;
 	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
 	@JoinColumn(name="PERM_ADDR_ID")
-	private Address permanentAddress;
+	private Address permanentAddress;	
+	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+	@JoinColumn(name="PERSON_REF_ADDR_ID")
+	private Address personalRefAddress;
 	
 	public PersonalData(){}
 	

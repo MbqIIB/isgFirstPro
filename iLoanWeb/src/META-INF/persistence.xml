@@ -7,7 +7,8 @@
 	 
  <persistence-unit name="applicationPersistentUnit" transaction-type="RESOURCE_LOCAL"> 
   
-  		<provider>org.hibernate.ejb.HibernatePersistence</provider>  		
+  		<provider>org.hibernate.ejb.HibernatePersistence</provider> 
+  		 		
   		<class>com.isg.iloan.model.dataEntry.Application</class>
   		<class>com.isg.iloan.model.dataEntry.JobDetail</class>
   		<class>com.isg.iloan.model.dataEntry.Address</class>
@@ -17,6 +18,8 @@
   		<class>com.isg.iloan.model.dataEntry.Instruction</class>
   		<class>com.isg.iloan.model.dataEntry.SaveAndSwipe</class>
   		<class>com.isg.iloan.model.dataEntry.DeedsOfAssignment</class>
+  		<class>com.isg.iloan.model.dataEntry.Fund</class>
+  		
   		<exclude-unlisted-classes>true</exclude-unlisted-classes>		 
   		
         <properties>  
