@@ -6,12 +6,15 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
 
+import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
 
+import com.isg.iloan.controller.functions.dataEntry.CreditCardDetailsViewCtrl;
 import com.isg.iloan.model.dataEntry.Application;
 
 public class ApplicationDaoImpl extends IloanGenericDao<Application> implements ApplicationDao {
 
+	private static Logger logger = Logger.getLogger(CreditCardDetailsViewCtrl.class);
 	
 	// test if this will be injected by the child class
 	//private EntityManagerFactory entityManagerFactory;
@@ -29,7 +32,7 @@ public class ApplicationDaoImpl extends IloanGenericDao<Application> implements 
 	@Override
 	public Application findById(long id) throws DataAccessException {
 		// TODO Auto-generated method stub
-		return null;
+		return super.findById(id);
 	}
 
 	@Override
@@ -46,14 +49,16 @@ public class ApplicationDaoImpl extends IloanGenericDao<Application> implements 
 
 	@Override
 	public void update(Application appBean) throws DataAccessException {
-		// TODO Auto-generated method stub
-		
+		logger.debug("*** started updating application with id: " + appBean.getApplicationId());
+		super.update(appBean);
+		logger.debug("*** updating application with id: " + appBean.getApplicationId() + "..updated!");
 	}
 
 	@Override
 	public void deleteById(Long id) throws DataAccessException {
-		// TODO Auto-generated method stub
-		
+		logger.debug("*** started deleting application with id: " + id);
+		super.deleteById(id);
+		logger.debug("*** deleting application with id: " + id + "....deleted!"); 
 	}
 
 	

@@ -12,13 +12,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.MapsId;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.GenericGenerator;
 
 /**
  ** Class JobDetail
@@ -31,6 +28,9 @@ public class JobDetail implements Serializable {
 //	  @GenericGenerator(name="generator", strategy="increment")
 //	  @GeneratedValue(generator="generator")
   
+  
+ private static final long serialVersionUID = -2787475231432844790L;
+
   @Id
   @SequenceGenerator(name="JOB_DETAIL_SEQ",sequenceName="JOB_DETAIL_SEQ",allocationSize=1)
   @GeneratedValue(generator="JOB_DETAIL_SEQ", strategy = GenerationType.SEQUENCE)
@@ -61,8 +61,16 @@ public class JobDetail implements Serializable {
   @JoinColumn(name="ADDRESS_ID")
   private Address businessAddress;
   
-  //private List<Fund> sourceOfFunds;
+   
+  @OneToMany(cascade=CascadeType.ALL,mappedBy="jobDetail",fetch=FetchType.LAZY)
+  private List<Fund> sourceOfFunds;
   
+  public void add(Fund source){
+	  this.sourceOfFunds.add(source);
+	  if(this!=source.getJobDetail()){
+		  source.setJobDetail(this);
+	  }
+  }
   
   
   //Constructors
@@ -71,122 +79,128 @@ public class JobDetail implements Serializable {
 
 
 
-public long getJobDetailId() {
-	return jobDetailId;
-}
+	public long getJobDetailId() {
+		return jobDetailId;
+	}
+	
+	
+	public void setJobDetailId(long jobDetailId) {
+		this.jobDetailId = jobDetailId;
+	}
+	
+	
+	public String getCompanyName() {
+		return companyName;
+	}
+	
+	
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+	
+	
+	public String getOccupation() {
+		return occupation;
+	}
+	
+	
+	public void setOccupation(String occupation) {
+		this.occupation = occupation;
+	}
+	
+	
+	public String getNatureOfWork() {
+		return natureOfWork;
+	}
+	
+	
+	public void setNatureOfWork(String natureOfWork) {
+		this.natureOfWork = natureOfWork;
+	}
+	
+	
+	public int getYearsWithCurrentEmployer() {
+		return yearsWithCurrentEmployer;
+	}
+	
+	
+	public void setYearsWithCurrentEmployer(int yearsWithCurrentEmployer) {
+		this.yearsWithCurrentEmployer = yearsWithCurrentEmployer;
+	}
+	
+	
+	public int getTotalWorkingYears() {
+		return totalWorkingYears;
+	}
+	
+	
+	public void setTotalWorkingYears(int totalWorkingYears) {
+		this.totalWorkingYears = totalWorkingYears;
+	}
+	
+	
+	public long getGrossMonthlyIncome() {
+		return grossMonthlyIncome;
+	}
+	
+	
+	public void setGrossMonthlyIncome(long grossMonthlyIncome) {
+		this.grossMonthlyIncome = grossMonthlyIncome;
+	}
+	
+	
+	public String getSpouseFamilyName() {
+		return spouseFamilyName;
+	}
+	
+	
+	public void setSpouseFamilyName(String spouseFamilyName) {
+		this.spouseFamilyName = spouseFamilyName;
+	}
+	
+	
+	public String getSpouseMiddleName() {
+		return spouseMiddleName;
+	}
+	
+	
+	public void setSpouseMiddleName(String spouseMiddleName) {
+		this.spouseMiddleName = spouseMiddleName;
+	}
+	
+	
+	public Date getSpouseDOB() {
+		return spouseDOB;
+	}
+	
+	
+	public void setSpouseDOB(Date spouseDOB) {
+		this.spouseDOB = spouseDOB;
+	}
+	
+	
+	public Address getBusinessAddress() {
+		return businessAddress;
+	}
+	public void setBusinessAddress(Address businessAddress) {
+		this.businessAddress = businessAddress;
+	}
+	
+	
+	
+	
+	public List<Fund> getSourceOfFunds() {
+		return sourceOfFunds;
+	}
+	
+	
+	
+	
+	public void setSourceOfFunds(List<Fund> sourceOfFunds) {
+		this.sourceOfFunds = sourceOfFunds;
+	}
 
 
-public void setJobDetailId(int jobDetailId) {
-	this.jobDetailId = jobDetailId;
-}
-
-
-public String getCompanyName() {
-	return companyName;
-}
-
-
-public void setCompanyName(String companyName) {
-	this.companyName = companyName;
-}
-
-
-public String getOccupation() {
-	return occupation;
-}
-
-
-public void setOccupation(String occupation) {
-	this.occupation = occupation;
-}
-
-
-public String getNatureOfWork() {
-	return natureOfWork;
-}
-
-
-public void setNatureOfWork(String natureOfWork) {
-	this.natureOfWork = natureOfWork;
-}
-
-
-public int getYearsWithCurrentEmployer() {
-	return yearsWithCurrentEmployer;
-}
-
-
-public void setYearsWithCurrentEmployer(int yearsWithCurrentEmployer) {
-	this.yearsWithCurrentEmployer = yearsWithCurrentEmployer;
-}
-
-
-public int getTotalWorkingYears() {
-	return totalWorkingYears;
-}
-
-
-public void setTotalWorkingYears(int totalWorkingYears) {
-	this.totalWorkingYears = totalWorkingYears;
-}
-
-
-public long getGrossMonthlyIncome() {
-	return grossMonthlyIncome;
-}
-
-
-public void setGrossMonthlyIncome(long grossMonthlyIncome) {
-	this.grossMonthlyIncome = grossMonthlyIncome;
-}
-
-
-public String getSpouseFamilyName() {
-	return spouseFamilyName;
-}
-
-
-public void setSpouseFamilyName(String spouseFamilyName) {
-	this.spouseFamilyName = spouseFamilyName;
-}
-
-
-public String getSpouseMiddleName() {
-	return spouseMiddleName;
-}
-
-
-public void setSpouseMiddleName(String spouseMiddleName) {
-	this.spouseMiddleName = spouseMiddleName;
-}
-
-
-public Date getSpouseDOB() {
-	return spouseDOB;
-}
-
-
-public void setSpouseDOB(Date spouseDOB) {
-	this.spouseDOB = spouseDOB;
-}
-
-
-public Address getBusinessAddress() {
-	return businessAddress;
-}
-public void setBusinessAddress(Address businessAddress) {
-	this.businessAddress = businessAddress;
-}
-
-//
-//public List<Fund> getSourceOfFunds() {
-//	return sourceOfFunds;
-//}
-//public void setSourceOfFunds(List<Fund> sourceOfFunds) {
-//	this.sourceOfFunds = sourceOfFunds;
-//}
-
-  
   
   
   

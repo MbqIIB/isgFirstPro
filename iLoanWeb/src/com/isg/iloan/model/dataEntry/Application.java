@@ -12,23 +12,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.persistence.UniqueConstraint;
 
 import org.apache.log4j.Logger;
-import org.hibernate.annotations.ForeignKey;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.engine.CascadeStyle;
-
-import com.isg.iloan.controller.functions.dataEntry.CreditCardDetailsViewCtrl;
 
 /**
  ** Class Application
@@ -83,6 +72,22 @@ public class Application implements Serializable{
   @OneToMany(cascade=CascadeType.ALL,mappedBy="application",fetch=FetchType.LAZY)
   private List<CreditCard> creditCards;
   
+  @OneToOne(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+  @JoinColumn(name="PERSONALDATA_ID") 
+  private PersonalData personalData;
+  
+  @OneToOne(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+  @JoinColumn(name="SUPP_ID") 
+  private Supplementary supplementary;
+  
+  @OneToOne(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+  @JoinColumn(name="INSTRUCTION_ID") 
+  private Instruction instruction;
+  
+  @OneToOne(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+  @JoinColumn(name="SS_ID") 
+  private SaveAndSwipe saveAndSwipe;
+  
   
   
   public Application() {
@@ -112,7 +117,7 @@ public class Application implements Serializable{
 		return applicationId;
 	}
 
-	public void setApplicationId(int applicationId) {
+	public void setApplicationId(long applicationId) {
 		this.applicationId = applicationId;
 	}
 
@@ -196,6 +201,56 @@ public class Application implements Serializable{
 
 	public void setCreditCards(List<CreditCard> creditCards) {
 		this.creditCards = creditCards;
+	}
+
+
+	public static Logger getLogger() {
+		return logger;
+	}
+
+
+	public static void setLogger(Logger logger) {
+		Application.logger = logger;
+	}
+
+
+	public PersonalData getPersonalData() {
+		return personalData;
+	}
+
+
+	public void setPersonalData(PersonalData personalData) {
+		this.personalData = personalData;
+	}
+
+
+	public Supplementary getSupplementary() {
+		return supplementary;
+	}
+
+
+	public void setSupplementary(Supplementary supplementary) {
+		this.supplementary = supplementary;
+	}
+
+
+	public Instruction getInstruction() {
+		return instruction;
+	}
+
+
+	public void setInstruction(Instruction instruction) {
+		this.instruction = instruction;
+	}
+
+
+	public SaveAndSwipe getSaveAndSwipe() {
+		return saveAndSwipe;
+	}
+
+
+	public void setSaveAndSwipe(SaveAndSwipe saveAndSwipe) {
+		this.saveAndSwipe = saveAndSwipe;
 	}
 
 

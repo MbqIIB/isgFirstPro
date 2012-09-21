@@ -2,20 +2,92 @@ package com.isg.iloan.model.dataEntry;
 
 import java.util.Date;
 
-/**
- ** Class PersonalData
- **/
-public class PersonalData {
-	// Fields
-	private int id;
-	private int personalDataId;
-	private int applicationId;
-	private String familyName;
-	private String givenName;
-	private String middleName;
-	private String nameOnCard;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="PERSONALDATA")
+public class PersonalData {
 	
+	@Id
+	@SequenceGenerator(name="PERSONALDATA_SEQ",sequenceName="PERSONALDATA_SEQ",allocationSize=1)
+	@GeneratedValue(generator="PERSONALDATA_SEQ", strategy = GenerationType.SEQUENCE)
+	@Column(name="PERSONALDATA_ID")
+	private long personalDataId;
+	@Column(name="FAMILYNAME")
+	private String familyName;
+	@Column(name="GIVENNAME")
+	private String givenName;
+	@Column(name="MIDDLENAME")
+	private String middleName;
+	@Column(name="CARDNAME")
+	private String nameOnCard;
+	@Column(name="BIRTHDATE")
+	private Date birthDate;
+	@Column(name="BIRTHPLACE")
+	private String placeOfBirth;
+	@Column(name="CIVILSTATUS")
+	private String civilStatus;
+	@Column(name="GENDER")
+	private char gender;
+	@Column(name="NATIONALITY")
+	private String nationality;
+	@Column(name="OTHERNATIONAL")
+	private boolean otherNational;
+	@Column(name="MOBILENUM")
+	private String mobilePhoneNum;
+	@Column(name="EMAIL")
+	private String emailAddress;
+	@Column(name="MOTHERNAME")
+	private String motherFullName;
+	@Column(name="CHILDREN")
+	private int numOfChildren;
+	@Column(name="HOME_OWNERSHIP")
+	private String homeOwnership;
+	@Column(name="LEN_STAY")
+	private int lengthOfStays;
+	@Column(name="CARS")
+	private int numOfCars;
+	@Column(name="CARMODEL")
+	private String carModelYear;
+	@Column(name="EDUCATION")
+	private String education;
+	@Column(name="TIN")
+	private String tinNum;
+	@Column(name="SSSNUM")
+	private String sss_gsis_Num;
+	@Column(name="SSSMEMBER")
+	private boolean sssMember;
+	@Column(name="GSISMEMBER")
+	private boolean gsisMember;
+	@Column(name="OTHER_ID_CODE")
+	private String otherIdCode;
+	@Column(name="OTHER_ID_VALUE")
+	private String otherIdValue;
+	@Column(name="PERSON_REF_NAME")
+	private String personalRefName;
+	@Column(name="PERSON_REF_REL")
+	private String personalRefRelation;
+	@Column(name="PERSON_REF_ADDR")
+	private Address personalRefAddress;
+	
+	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+	@JoinColumn(name="HOME_ADDR_ID")
+	private Address homeAddress;
+	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+	@JoinColumn(name="PERM_ADDR_ID")
+	private Address permanentAddress;
+	
+	public PersonalData(){}
 	
 	public PersonalData(String familyName, String givenName, String middleName) {
 		super();
@@ -23,38 +95,23 @@ public class PersonalData {
 		this.givenName = givenName;
 		this.middleName = middleName;
 	}
-
-	
 	public String getName() {
 		return familyName +", "+givenName+" "+middleName;
 	}
 
 
 
-	public int getId() {
-		return id;
-	}
+	
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public int getPersonalDataId() {
+	public long getPersonalDataId() {
 		return personalDataId;
 	}
 
-	public void setPersonalDataId(int personalDataId) {
+	public void setPersonalDataId(long personalDataId) {
 		this.personalDataId = personalDataId;
 	}
 
-	public int getApplicationId() {
-		return applicationId;
-	}
-
-	public void setApplicationId(int applicationId) {
-		this.applicationId = applicationId;
-	}
-
+	
 	public String getFamilyName() {
 		return familyName;
 	}
@@ -111,11 +168,11 @@ public class PersonalData {
 		this.civilStatus = civilStatus;
 	}
 
-	public String getGender() {
+	public char getGender() {
 		return gender;
 	}
 
-	public void setGender(String gender) {
+	public void setGender(char gender) {
 		this.gender = gender;
 	}
 
@@ -295,32 +352,7 @@ public class PersonalData {
 		this.personalRefAddress = personalRefAddress;
 	}
 
-	private Date birthDate;
-	private String placeOfBirth;
-	private String civilStatus;
-	private String gender;
-	private String nationality;
-	private boolean otherNational;
-	private String mobilePhoneNum;
-	private String emailAddress;
-	private String motherFullName;
-	private int numOfChildren;
-	private Address homeAddress;
-	private Address permanentAddress;
-	private String homeOwnership;
-	private int lengthOfStays;
-	private int numOfCars;
-	private String carModelYear;
-	private String education;
-	private String tinNum;
-	private String sss_gsis_Num;
-	private boolean sssMember;
-	private boolean gsisMember;
-	private String otherIdCode;
-	private String otherIdValue;
-	private String personalRefName;
-	private String personalRefRelation;
-	private Address personalRefAddress;
+	
 
 	// Constructors
 

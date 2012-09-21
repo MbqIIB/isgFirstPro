@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import com.isg.iloan.controller.functions.dataEntry.CreditCardDetailsViewCtrl;
 import com.isg.iloan.dao.ApplicationDao;
 import com.isg.iloan.model.dataEntry.Application;
 
@@ -42,8 +41,8 @@ public class ApplicationServiceImpl implements ApplicationService {
 
 	@Override
 	public void updateApplication(Application app) {
-		// TODO Auto-generated method stub
 
+		applicationDao.update(app);
 	}
 	
 	@Override

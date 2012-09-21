@@ -32,6 +32,7 @@ public class FunctionsMenuViewCtrl extends GenericForwardComposer {
 	private Menuitem newAppSupp;
 	private Menuitem newAppAddon;
 	private Menuitem newAppBasic;
+	private Menuitem searchApplication;
 	private Menu newApplication;
 	private Menubar menubar;
 
@@ -54,6 +55,11 @@ public class FunctionsMenuViewCtrl extends GenericForwardComposer {
 		Executions.getCurrent().getSession().setAttribute("menuselected", "functionTab");
 		
 		Executions.sendRedirect("/functions/newapplication/newapplication.zul");
+		
+	}
+	public void onClick$searchApplication(){	
+		Executions.getCurrent().getSession().setAttribute("menuselected", "functionTab");
+		Executions.sendRedirect("/functions/search/searchApplication.zul");
 		
 	}
 	

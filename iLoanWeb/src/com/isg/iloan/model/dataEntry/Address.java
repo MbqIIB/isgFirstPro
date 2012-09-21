@@ -53,7 +53,7 @@ public long getAddressId() {
 
 
 
-public void setAddressId(int addressId) {
+public void setAddressId(long addressId) {
 	this.addressId = addressId;
 }
 public String getAddressLine1() {

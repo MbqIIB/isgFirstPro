@@ -1,10 +1,10 @@
 package com.isg.iloan.model.dataEntry;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,9 +15,11 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="CREDITCARD")
-public class CreditCard { 
+public class CreditCard implements Serializable{ 
   
 	
+  private static final long serialVersionUID = -8445637465475836819L;
+  
   @Id
   @SequenceGenerator(name="ADDRESS_SEQ",sequenceName="ADDRESS_SEQ",allocationSize=1)
   @GeneratedValue(generator="ADDRESS_SEQ", strategy = GenerationType.SEQUENCE)
@@ -102,10 +104,5 @@ public class CreditCard {
 		}
 	}
 
-  //Constructors
-
-  //Methods
-
-  //Inner classes
-
+  
 } //end class CreditCard 
