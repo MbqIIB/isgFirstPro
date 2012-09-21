@@ -7,11 +7,12 @@ import com.isg.iloan.model.dataEntry.Application;
 public interface ApplicationService {
 	
 	List<Application> retrieveByCriteria(SearchCriteria criteria);
-	Application retrieveById(int applicationId);
+	Application retrieveById(long applicationId);
 	
 	void createApplication(Application app);
 	void updateApplication(Application app);
 	
+	void deleteApplication(long id);
 	
 	
 

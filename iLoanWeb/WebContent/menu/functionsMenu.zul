@@ -1,12 +1,16 @@
 <zk>
 <window id="funtionsMenu" apply="com.isg.iloan.controller.menu.FunctionsMenuViewCtrl">
 	<menubar id="menubar" orient="vertical" autodrop="true" >
-             <menu label="New Application" left="true" id="newApplication" style="background:#E4F1F2" >                           
+             <menu label="Application" left="true" id="Application" style="background:#E4F1F2" >                           
                     <menupopup>
-                    	
-                        <menuitem label="Basic" id="newAppBasic" />
-                        <menuitem label="Addon" id="newAppAddon" />
-                        <menuitem label="Supplementary" id="newAppSupp"  />
+                    	<menu label="New" image="/images/add.png" left="true" id="newApplication" style="background:#E4F1F2" >
+                    		<menupopup>
+                    			<menuitem label="Basic" id="newAppBasic"  />
+                        		<menuitem label="Addon" id="newAppAddon" />
+                        		<menuitem label="Supplementary" id="newAppSupp" />
+                    		</menupopup>                    		
+                    	</menu>                    	
+                        <menuitem label="Search" id="searchApplication" image="/images/view.png"/>
                     </menupopup>
              </menu> 
              

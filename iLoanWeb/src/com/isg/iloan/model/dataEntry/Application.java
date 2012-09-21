@@ -2,6 +2,7 @@ package com.isg.iloan.model.dataEntry;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -52,10 +53,10 @@ public class Application implements Serializable{
   
   
   @Id
-  @SequenceGenerator(name="APPLICATION_SEQUENCE",sequenceName="APPLICATION_SEQUENCE",allocationSize=1)
-  @GeneratedValue(generator="APPLICATION_SEQUENCE", strategy = GenerationType.SEQUENCE)  
-  @Column(name="APPID")
-  private int applicationId;
+  @SequenceGenerator(name="APPLICATION_SEQ",sequenceName="APPLICATION_SEQ",allocationSize=1)
+  @GeneratedValue(generator="APPLICATION_SEQ", strategy = GenerationType.SEQUENCE)  
+  @Column(name="APP_ID")
+  private long applicationId;
     
   @Column(name="ACCEPTCLASSICCARD")
   private boolean acceptClassicCard;  
@@ -75,15 +76,12 @@ public class Application implements Serializable{
   @Column(name="ENROLLSOS")
   private boolean enrollSOS;
   
-  
-
-  @Column(name="JOB_DETAIL_ID")
-  private int jobDetailId;
-  
-  
-  @OneToOne(cascade=CascadeType.ALL)
-  @PrimaryKeyJoinColumn(name="APPID", referencedColumnName="JOB_DETAIL_ID")
+  @OneToOne(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+  @JoinColumn(name="JOB_DETAIL_ID") //note: source column to be filled by child primary key column..
   private JobDetail jobDetail;
+  
+  @OneToMany(cascade=CascadeType.ALL,mappedBy="application",fetch=FetchType.LAZY)
+  private List<CreditCard> creditCards;
   
   
   
@@ -92,6 +90,17 @@ public class Application implements Serializable{
 		
 	}
 
+ 
+  public void addCreditCard(CreditCard card){
+	  this.creditCards.add(card);
+	  if(this!=card.getApplication()){
+		  card.setApplication(this);
+	  }
+  }
+  
+  
+  
+  
 	/**
 	 * Use this method for update.
 	 * @param appBean
@@ -99,7 +108,7 @@ public class Application implements Serializable{
 	public void copyProperties(Application appBean){}
 
 	
-	public int getApplicationId() {
+	public long getApplicationId() {
 		return applicationId;
 	}
 
@@ -181,14 +190,14 @@ public class Application implements Serializable{
 		this.jobDetail = jobDetail;
 	}
 
-	
-	public int getJobDetailId() {		
-		return jobDetailId;
+	public List<CreditCard> getCreditCards() {
+		return creditCards;
 	}
 
-	public void setJobDetailId(int jobDetailId) {
-		this.jobDetailId = jobDetailId;
+	public void setCreditCards(List<CreditCard> creditCards) {
+		this.creditCards = creditCards;
 	}
+
 
   
   

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -26,19 +27,16 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name="JOB_DETAIL")
 public class JobDetail implements Serializable { 
 
- 
+//	  @Id
+//	  @GenericGenerator(name="generator", strategy="increment")
+//	  @GeneratedValue(generator="generator")
   
   @Id
-  @SequenceGenerator(name="APPLICATION_SEQUENCE",sequenceName="APPLICATION_SEQUENCE",allocationSize=1)
-  @GeneratedValue(generator="APPLICATION_SEQUENCE", strategy = GenerationType.SEQUENCE)  
+  @SequenceGenerator(name="JOB_DETAIL_SEQ",sequenceName="JOB_DETAIL_SEQ",allocationSize=1)
+  @GeneratedValue(generator="JOB_DETAIL_SEQ", strategy = GenerationType.SEQUENCE)
   @Column(name="JOB_DETAIL_ID")
-  private int jobDetailId;
-  
-  
-  @Column(name="APPID")
-  private int applicationId; 
-  
-  
+  private long jobDetailId;
+    
   @Column(name="COMPANY")
   private String companyName;
   @Column(name="OCCUPATION")
@@ -59,9 +57,9 @@ public class JobDetail implements Serializable {
   private Date spouseDOB;
 
   
-//  @OneToOne(fetch=FetchType.LAZY)
-//  @JoinColumn(name="ADDRESS_ID")
-//  private Address businessAddress;
+  @OneToOne(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+  @JoinColumn(name="ADDRESS_ID")
+  private Address businessAddress;
   
   //private List<Fund> sourceOfFunds;
   
@@ -73,7 +71,7 @@ public class JobDetail implements Serializable {
 
 
 
-public int getJobDetailId() {
+public long getJobDetailId() {
 	return jobDetailId;
 }
 
@@ -81,14 +79,6 @@ public int getJobDetailId() {
 public void setJobDetailId(int jobDetailId) {
 	this.jobDetailId = jobDetailId;
 }
-
-
-//public int getApplicationId() {
-//	return applicationId;
-//}
-//public void setApplicationId(int applicationId) {
-//	this.applicationId = applicationId;
-//}
 
 
 public String getCompanyName() {
@@ -181,36 +171,12 @@ public void setSpouseDOB(Date spouseDOB) {
 }
 
 
-
-
-public int getApplicationId() {
-	return applicationId;
+public Address getBusinessAddress() {
+	return businessAddress;
 }
-
-
-
-
-public void setApplicationId(int applicationId) {
-	this.applicationId = applicationId;
+public void setBusinessAddress(Address businessAddress) {
+	this.businessAddress = businessAddress;
 }
-
-
-
-
-
-
-
-
-
-
-//public Address getBusinessAddress() {
-//	return businessAddress;
-//}
-//
-//
-//public void setBusinessAddress(Address businessAddress) {
-//	this.businessAddress = businessAddress;
-//}
 
 //
 //public List<Fund> getSourceOfFunds() {

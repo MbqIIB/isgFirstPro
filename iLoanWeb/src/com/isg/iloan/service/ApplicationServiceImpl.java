@@ -27,9 +27,9 @@ public class ApplicationServiceImpl implements ApplicationService {
 	}
 
 	@Override
-	public Application retrieveById(int applicationId) {
+	public Application retrieveById(long applicationId) {
 		// TODO Auto-generated method stub
-		return null;
+		return applicationDao.findById(applicationId);
 	}
 
 	@Override
@@ -44,6 +44,11 @@ public class ApplicationServiceImpl implements ApplicationService {
 	public void updateApplication(Application app) {
 		// TODO Auto-generated method stub
 
+	}
+	
+	@Override
+	public void deleteApplication(long id) {
+		applicationDao.deleteById(id);
 	}
 
 }

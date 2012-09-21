@@ -1,4 +1,4 @@
-<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/layout/mainLayout.zul"?>
 <zk>
 
 	<style>
@@ -8,11 +8,12 @@
 			margin: 10px 5px;
 		}
 	</style>
-	<window title="Dummy Page" border="normal" width="70%" apply="com.isg.iloan.controller.functions.DummySearchViewCtrl">
+	<window title="Application Search" border="normal" width="70%" 
+	           apply="com.isg.iloan.controller.functions.DummySearchViewCtrl" self="@{define(left)}">
 		<div apply="org.zkoss.bind.BindComposer"
 			viewModel="@id('vm') @init('com.isg.iloan.controller.viewModel.DummySearchViewModel')">
 			<groupbox>
-				<caption>Search</caption>
+				<caption>Criteria</caption>
 				<grid>
 					<columns>
 						<column />
