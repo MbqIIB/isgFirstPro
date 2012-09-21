@@ -10,6 +10,13 @@
   		<provider>org.hibernate.ejb.HibernatePersistence</provider>  		
   		<class>com.isg.iloan.model.dataEntry.Application</class>
   		<class>com.isg.iloan.model.dataEntry.JobDetail</class>
+  		<class>com.isg.iloan.model.dataEntry.Address</class>
+  		<class>com.isg.iloan.model.dataEntry.CreditCard</class>
+  		<class>com.isg.iloan.model.dataEntry.PersonalData</class>
+  		<class>com.isg.iloan.model.dataEntry.Supplementary</class>
+  		<class>com.isg.iloan.model.dataEntry.Instruction</class>
+  		<class>com.isg.iloan.model.dataEntry.SaveAndSwipe</class>
+  		<class>com.isg.iloan.model.dataEntry.DeedsOfAssignment</class>
   		<exclude-unlisted-classes>true</exclude-unlisted-classes>		 
   		
         <properties>  
