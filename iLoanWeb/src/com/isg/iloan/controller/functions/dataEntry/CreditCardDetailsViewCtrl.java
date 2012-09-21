@@ -85,11 +85,11 @@ public class CreditCardDetailsViewCtrl extends GenericForwardComposer {
 
 		CheckboxValidator.validateCheckboxFields(comps);
 		bindValidationOnClick(cbLayout);
-		componentList = new LinkedHashMap<String, Component>();
-		
-		for(Component component : comp.getPage().getDesktop().getComponents()){
-			componentList.put(component.getId(), component);
-		}
+//		componentList = new LinkedHashMap<String, Component>();
+//		
+//		for(Component component : comp.getPage().getDesktop().getComponents()){
+//			componentList.put(component.getId(), component);
+//		}
 	}
 		
 	private void bindValidationOnClick(Component comp){

@@ -25,12 +25,12 @@
     
     
 </style>
-<window id="newApplication"  self="@{define(left)}" 
+<window id="newApplicationWindow"  self="@{define(left)}" 
 apply="com.isg.iloan.controller.functions.dataEntry.NewApplicationViewCtrl"  >
 
 
 	<caption label="NEW CREDIT CARD APPLICATION" >
-		<button tooltiptext="SUBMIT" left="true" image="/images/submit.png" mold="trendy"/>
+		<button tooltiptext="SUBMIT" left="true" image="/images/submit.png" mold="trendy" id="ccApplicationSubmitBtn"/>
 		<button tooltiptext="CANCEL" left="false" image="/images/cancel.png" mold="trendy" />
 	</caption>
 		<div>
@@ -109,24 +109,24 @@ apply="com.isg.iloan.controller.functions.dataEntry.NewApplicationViewCtrl"  >
         <tab id="ssDeeds" label="Part H" visible="false" tooltiptext="DEEDS of ASSIGNMENT" /> 
          -->   
     </tabs>    
-    <tabpanels  >
+    <tabpanels id="tabPanels" >
         <tabpanel id="ccDetailPanel" style="overflow-y:scroll;" >
-        	<include src="/functions/newapplication/creditCardDetailPanel.zul"/>
+        	<include src="/functions/newapplication/creditCardDetailPanel.zul" mode="instant"/>
         </tabpanel>
-        <tabpanel id="personalPanel" fulfill="personalData.onSelect" style="overflow-y:scroll;" >
-        	<include src="/functions/newapplication/personalData.zul"/>        	
+        <tabpanel id="personalPanel" fulfill="creditCardDetail.onClick" style="overflow-y:scroll;" >
+        	<include src="/functions/newapplication/personalData.zul" mode="instant" id="personalDataInc"/>        	
         </tabpanel>
-        <tabpanel fulfill="jobDetail.onSelect" style="overflow-y:scroll;">
-        	<include src="/functions/newapplication/jobDetail.zul"/>
+        <tabpanel fulfill="jobDetail.onSelect" style="overflow-y:scroll;" >
+        	<include src="/functions/newapplication/jobDetail.zul" mode="instant"/>
         </tabpanel>
         <tabpanel fulfill="supplementaryDetail.onSelect" style="overflow-y:scroll;">
-        	<include src="/functions/newapplication/supplementary.zul"/>
+        	<include src="/functions/newapplication/supplementary.zul" mode="instant"/>
         </tabpanel>
         <tabpanel fulfill="deliveryInstruction.onSelect" style="overflow-y:scroll;">
-        	<include src="/functions/newapplication/deliveryPaymentInstructions.zul"/>
+        	<include src="/functions/newapplication/deliveryPaymentInstructions.zul" mode="instant"/>
         </tabpanel>
         <tabpanel fulfill="internetTransaction.onSelect" style="overflow-y:scroll;">
-			<include src="/functions/newapplication/internetTransaction.zul"/>
+			<include src="/functions/newapplication/internetTransaction.zul" mode="instant"/>
 		</tabpanel>
 		<!-- 
         <tabpanel fulfill="saveAndSwipe.onSelect" style="overflow-y:scroll;">
