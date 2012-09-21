@@ -4,6 +4,7 @@
 package com.isg.iloan.controller.functions.dataEntry;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.zkoss.zk.ui.Component;
@@ -17,15 +18,13 @@ import org.zkoss.zul.Tabpanel;
 import org.zkoss.zul.Tabs;
 import org.zkoss.zul.Window;
 
-import com.isg.iloan.validation.CheckboxValidator;
-
 /**
  * @author augusto.marte
  *
  */
 public class NewApplicationViewCtrl extends GenericForwardComposer {
 
-	private Window newApplication;
+	private Window newApplicationWindow;
 	private Tabpanel personalPanel;
 	private Tabpanel ccDetailPanel;
 	private Tab ssDeeds;
@@ -71,7 +70,31 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 	public void onClick$ssDeeds(){
 		Clients.evalJavaScript("changeState('#dass')");
 	}
+	
+	public void onClick$ccApplicationSubmitBtn(){
+		extractPersonalDataDetails();
+	}
 
+	private void extractPersonalDataDetails() {
+		//Component personalDataForm = getComponent("personalDataInc");
+		//System.out.println(personalDataForm);
+		Component p = newApplicationWindow.getFellow("personalPanel");
+		System.out.println(p.getChildren().size());
+		String[] personalDataFields = {"familyName","givenName","middleName","nameOnCard","birthdate","placeOfBirth"};
+		
+		
+	}
 	
-	
+	private Component getComponent(String id){
+		List<Component> components = newApplicationWindow.getChildren();
+		for(Component c: components){
+			System.out.println(c);
+			if(id.equals(c.getId())){
+				System.out.println(c);
+				return c;
+			}
+		}
+		return null;
+	}
+
 }

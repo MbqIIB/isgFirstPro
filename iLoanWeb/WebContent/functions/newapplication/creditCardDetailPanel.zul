@@ -1,16 +1,16 @@
 <?page title="new page title" contentType="text/html;charset=UTF-8"?>
 <zk>
 <window border="normal" id="ccDetailPanelWindow">
-	<caption label="MY CHOICE OF METROBANK CREDIT CARD" />
+	<caption label="MY CHOICE OF METROBANK CREDIT CARD"/>
 		
 	
    <tabbox id="tb" orient="horizontal" >
-	    <tabs id="tabs">
+	    <tabs>
 	    	<tab id="creditCardDetail" label="Credit Card Details" tooltiptext="Credit Card Detail" />
 	    	<tab id="saveAndSwipe" label="SAVE&amp;SWIPE (Secured Credit Card Program)" visible="false" tooltiptext="SAVE &amp; SWIPE"/>
         	<tab id="ssDeeds" label="DEEDS of ASSIGNMENT" visible="false" tooltiptext="DEEDS of ASSIGNMENT" />    
 		</tabs>    
-	    <tabpanels >
+	    <tabpanels>
 	    	<tabpanel id="ccDetailPanel"  >
 	        	<include src="/functions/newapplication/creditCardDetails.zul" id="ccDetailPanelInclude" mode="instant"/>
 	        </tabpanel>
