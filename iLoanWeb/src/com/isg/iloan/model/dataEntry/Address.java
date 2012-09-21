@@ -16,10 +16,10 @@ import javax.persistence.Table;
 public class Address { 
  
   @Id
-  @SequenceGenerator(name="APPLICATION_SEQ",sequenceName="APPLICATION_SEQ",allocationSize=1)
-  @GeneratedValue(generator="APPLICATION_SEQ", strategy = GenerationType.SEQUENCE)
+  @SequenceGenerator(name="ADDRESS_SEQ",sequenceName="ADDRESS_SEQ",allocationSize=1)
+  @GeneratedValue(generator="ADDRESS_SEQ", strategy = GenerationType.SEQUENCE)
   @Column(name="ADDRESS_ID")
-  private int addressId;
+  private long addressId;
   //private int personalDataId;
   //note: no need to place personalDataId here, addressId should be present in PERSONALDATA table
   @Column(name="ADDRESSLINE1")
@@ -45,7 +45,7 @@ public class Address {
 
 
 
-public int getAddressId() {
+public long getAddressId() {
 	return addressId;
 }
 
