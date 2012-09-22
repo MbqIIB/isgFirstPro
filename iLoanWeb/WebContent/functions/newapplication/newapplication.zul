@@ -113,7 +113,7 @@ apply="com.isg.iloan.controller.functions.dataEntry.NewApplicationViewCtrl"  >
         <tabpanel id="ccDetailPanel" style="overflow-y:scroll;" >
         	<include src="/functions/newapplication/creditCardDetailPanel.zul" mode="instant"/>
         </tabpanel>
-        <tabpanel id="personalPanel" fulfill="creditCardDetail.onClick" style="overflow-y:scroll;" >
+        <tabpanel id="personalPanel" fulfill="personalData.onClick" style="overflow-y:scroll;" >
         	<include src="/functions/newapplication/personalData.zul" mode="instant" id="personalDataInc"/>        	
         </tabpanel>
         <tabpanel fulfill="jobDetail.onSelect" style="overflow-y:scroll;" >
