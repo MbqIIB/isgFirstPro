@@ -128,7 +128,7 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 			fillupSaveAndSwipe(app); 
 			
 		}
-		
+		logger.debug("*** fillupCreditCardDetails...finished!");		
 	}
 	
 	public void composedCreditCard(Application app, Map<String,Component> ccDetailsMap){
@@ -211,7 +211,7 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 			doa.setMetrobankBranchNameCode(((Textbox)ssMap.get(IDs.DOA_METROBANK_BRANCH)).getValue());
 		}		
 		doa.setAcceptDOA(((Checkbox)ssMap.get(IDs.DOA_ACCEPTANCE)).isChecked());
-		
+		logger.debug("*** fillupSaveAndSwipe...finished!");		
 	}
 	
 	
