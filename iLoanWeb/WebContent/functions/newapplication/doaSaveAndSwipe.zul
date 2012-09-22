@@ -105,12 +105,12 @@ deposits, in order to give effect to this Assignment.
 </cell>
 </row>
 <row>
-	<cell colspan="2">	
+	<cell colspan="4">	
 		<label value="Metrobank Branch Name and Code" />
-	</cell>
-	<cell colspan="2">
+		<space></space>
 		<textbox id="branchNameAndCode" mold="rounded" />
 	</cell>
+	
 </row>
 <row>
 	<cell colspan="3" align="right" >
