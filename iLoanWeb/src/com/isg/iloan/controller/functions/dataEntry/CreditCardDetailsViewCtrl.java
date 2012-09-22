@@ -26,9 +26,11 @@ import org.zkoss.zul.Hbox;
 import org.zkoss.zul.Hlayout;
 import org.zkoss.zul.Tabbox;
 import org.zkoss.zul.Tabs;
+import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Window;
 
 
+import com.isg.iloan.commons.IDs;
 import com.isg.iloan.model.dataEntry.Application;
 import com.isg.iloan.model.dataEntry.JobDetail;
 import com.isg.iloan.service.ApplicationService;
@@ -46,8 +48,7 @@ public class CreditCardDetailsViewCtrl extends GenericForwardComposer {
 	
 	private static final long serialVersionUID = 501211151135191928L;
 
-	private static Logger logger = Logger
-			.getLogger(CreditCardDetailsViewCtrl.class);
+	private static Logger logger = Logger.getLogger(CreditCardDetailsViewCtrl.class);
 
 	private Window creditCardDetails;
 	private Checkbox notAcceptSaveAndSwipe;
@@ -58,7 +59,68 @@ public class CreditCardDetailsViewCtrl extends GenericForwardComposer {
 	private Hbox acceptClassicCardHbox;
 	private Window ccDetailPanelWindow;
 
+	private Checkbox classicMasterCard;
+	private Checkbox classicVisaCard;
+	private Checkbox goldMasterCard;
+	private Checkbox goldVisaCard;
+	private Checkbox mLiteMasterCard;
+	private Checkbox femmeVisaCard;
+	
+	private Textbox creditCardType;
+	private Textbox creditCardDesc;
+	
+	
+	public void setCreditCard(String code,String desc){
+		creditCardType.setValue(code);
+		creditCardDesc.setValue(desc);
+	}
+	
+	public void uncheckOtherCardType(Checkbox checkbox){		
+		for(Checkbox cb:getCardTypes()){
+			if(!cb.getId().equals(checkbox.getId())){
+				cb.setChecked(false);
+			}
+		}
+	}
+	
+	public void onCheck$classicMasterCard(){
+		uncheckOtherCardType(this.classicMasterCard);
+		setCreditCard(IDs.CLASSIC_MASTERCARD,this.classicMasterCard.getLabel());
+	}
+	public void onCheck$classicVisaCard(){
+		uncheckOtherCardType(this.classicVisaCard);
+		setCreditCard(IDs.CLASSIC_VISACARD,this.classicVisaCard.getLabel());
+	}
+	public void onCheck$goldMasterCard(){
+		uncheckOtherCardType(this.goldMasterCard);
+		setCreditCard(IDs.GOLD_MASTERCARD,this.goldMasterCard.getLabel());
+	}
+	public void onCheck$goldVisaCard(){
+		uncheckOtherCardType(this.goldVisaCard);
+		setCreditCard(IDs.GOLD_VISACARD,this.goldVisaCard.getLabel());
+	}
+	public void onCheck$mLiteMasterCard(){
+		uncheckOtherCardType(this.mLiteMasterCard);
+		setCreditCard(IDs.MLITE_MASTERCARD,this.mLiteMasterCard.getLabel());
+	}
+	public void onCheck$femmeVisaCard(){
+		uncheckOtherCardType(this.femmeVisaCard);
+		setCreditCard(IDs.FEMME_VISACARD,this.femmeVisaCard.getLabel());
+	}
 
+	public List<Checkbox> getCardTypes(){
+		List<Checkbox> cardTypes = new ArrayList<Checkbox>();
+		cardTypes.add(classicMasterCard);
+		cardTypes.add(classicVisaCard);
+		cardTypes.add(goldMasterCard);
+		cardTypes.add(goldVisaCard);
+		cardTypes.add(mLiteMasterCard);
+		cardTypes.add(femmeVisaCard);		
+		return cardTypes;
+	}
+	
+	
+	
 //	@Autowired
 //	@Qualifier("applicationService")
 //	private ApplicationService applicationService;
