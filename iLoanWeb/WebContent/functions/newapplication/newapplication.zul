@@ -30,7 +30,7 @@ apply="com.isg.iloan.controller.functions.dataEntry.NewApplicationViewCtrl"  >
 
 
 	<caption label="NEW CREDIT CARD APPLICATION" >
-		<button tooltiptext="SUBMIT" left="true" image="/images/submit.png" mold="trendy" id="ccApplicationSubmitBtn"/>
+		<button tooltiptext="SUBMIT" left="true" image="/images/submit.png" mold="trendy" id="newappSubmitButton"/>
 		<button tooltiptext="CANCEL" left="false" image="/images/cancel.png" mold="trendy" />
 	</caption>
 		<div>

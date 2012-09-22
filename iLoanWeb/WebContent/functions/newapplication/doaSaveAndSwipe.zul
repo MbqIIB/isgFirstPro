@@ -2,6 +2,7 @@
 <zk>
 <window title="DEEDS OF ASSIGNMENT FOR SAVE&amp;SWIPE (Secured Card)" 
 		border="normal" width="98%"  xmlns:html="http://www.w3.org/1999/xhtml" 
+		id="doaPage" 
 		 apply="com.isg.iloan.controller.functions.dataEntry.DoaSaveAndSwipeViewCtrl" >
 
 <vlayout>
@@ -30,8 +31,10 @@
 <row>
 <cell colspan="4">
 	<hbox>
+	<textbox id="pledgedAccountTypeCode" visible="false" value="1"/>
+	<textbox id="pledgedAccountTypeDesc" visible="false" value="Savings"/>
 	<label value="My/Our Peso/Dollar"/>
-	<checkbox id="savigs_chkbox" label="Savings"/>
+	<checkbox id="savings_chkbox" label="Savings"/>
 	<checkbox id="time_chkbox" label="Time"/>
 	<checkbox id="specialAccount_chkbox" label="Special Account No.(&quot;the Account&quot;)"/>
 	<textbox id="pledgedAccountNo_txtbox" mold="rounded" />

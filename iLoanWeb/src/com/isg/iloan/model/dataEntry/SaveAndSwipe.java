@@ -40,7 +40,7 @@ public class SaveAndSwipe implements Serializable{
   private DeedsOfAssignment doa;
 
   //Constructors
-  SaveAndSwipe(){}
+  public SaveAndSwipe(){}
 
 	public long getSaveAndSwipeId() {
 		return saveAndSwipeId;

@@ -34,7 +34,7 @@ public class CreditCard implements Serializable{
   @Column(name="MEMBERDATE")
   private Date dateOfMembership;
   @Column(name="EXISTINGCARD")
-  private boolean exitingCreditCard;
+  private boolean existingCreditCard;
   @Column(name="OTHERCARD")
   private boolean otherCreditCard;
   
@@ -79,11 +79,11 @@ public class CreditCard implements Serializable{
 	public void setDateOfMembership(Date dateOfMembership) {
 		this.dateOfMembership = dateOfMembership;
 	}
-	public boolean isExitingCreditCard() {
-		return exitingCreditCard;
+	public boolean isExistingCreditCard() {
+		return existingCreditCard;
 	}
-	public void setExitingCreditCard(boolean exitingCreditCard) {
-		this.exitingCreditCard = exitingCreditCard;
+	public void setExistingCreditCard(boolean existingCreditCard) {
+		this.existingCreditCard = existingCreditCard;
 	}
 	public boolean isOtherCreditCard() {
 		return otherCreditCard;

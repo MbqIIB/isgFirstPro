@@ -85,13 +85,10 @@
 				</columns>
 				<template name="model">
 					<row>
-						<label
-							value="@load(each.application.applicationStatus)" />
-						<label
-							value="@load(each.application.creditCardType)" />
+						<label value="@load(each.application.applicationStatus)" />
+						<label value="@load(each.application.creditCardType)" />
 						<label value="@load(each.personalData.name)" />
-						<label
-							value="@load(each.application.dateOfApplication)" />
+						<label value="@load(each.application.dateOfApplication)" />
 					</row>
 				</template>
 			</grid>

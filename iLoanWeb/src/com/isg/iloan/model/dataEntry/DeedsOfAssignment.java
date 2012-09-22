@@ -1,5 +1,7 @@
 package com.isg.iloan.model.dataEntry;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,17 +31,25 @@ public class DeedsOfAssignment {
   private String pledgedAccountTypeCode;
   @Column(name="PLEDGE_ACCNT_DESC")
   private String pledgedAccountTypeDesc;
+  @Column(name="PLEDGE_ACCNT_SPECIAL")
+  private boolean pledgedAccntSpecial;
   @Column(name="PLEDGE_ACCNT_NUM")
   private String pledgedAccountNum;
   @Column(name="PLEDGE_ACCNT_BRANCH")
-  private String pledgedBankBranch;
+  private String pledgedAccntDepoBranch;
   @Column(name="PLEDGE_AMT_WORDS")
   private String pledgedAmountWords;
   @Column(name="PLEDGE_AMT")
   private long pledgedAmount;
-
+  @Column(name="DATE_APPLIED")
+  private Date dateApplied;
+  @Column(name="METROBANK_BRANCH")
+  private String metrobankBranchNameCode;
+  @Column(name="ACCPET_DOA")
+  private boolean acceptDOA;
+  
   //Constructors
-  DeedsOfAssignment(){}
+  public DeedsOfAssignment(){}
 
 public int getDoaId() {
 	return doaId;
@@ -105,13 +115,6 @@ public void setPledgedAccountNum(String pledgedAccountNum) {
 	this.pledgedAccountNum = pledgedAccountNum;
 }
 
-public String getPledgedBankBranch() {
-	return pledgedBankBranch;
-}
-
-public void setPledgedBankBranch(String pledgedBankBranch) {
-	this.pledgedBankBranch = pledgedBankBranch;
-}
 
 public String getPledgedAmountWords() {
 	return pledgedAmountWords;
@@ -127,6 +130,46 @@ public long getPledgedAmount() {
 
 public void setPledgedAmount(long pledgedAmount) {
 	this.pledgedAmount = pledgedAmount;
+}
+
+public boolean getPledgedAccntSpecial() {
+	return pledgedAccntSpecial;
+}
+
+public void setPledgedAccntSpecial(boolean pledgedAccntSpecial) {
+	this.pledgedAccntSpecial = pledgedAccntSpecial;
+}
+
+public Date getDateApplied() {
+	return dateApplied;
+}
+
+public void setDateApplied(Date dateApplied) {
+	this.dateApplied = dateApplied;
+}
+
+public boolean isAcceptDOA() {
+	return acceptDOA;
+}
+
+public void setAcceptDOA(boolean acceptDOA) {
+	this.acceptDOA = acceptDOA;
+}
+
+public String getMetrobankBranchNameCode() {
+	return metrobankBranchNameCode;
+}
+
+public void setMetrobankBranchNameCode(String metrobankBranchNameCode) {
+	this.metrobankBranchNameCode = metrobankBranchNameCode;
+}
+
+public String getPledgedAccntDepoBranch() {
+	return pledgedAccntDepoBranch;
+}
+
+public void setPledgedAccntDepoBranch(String pledgedAccntDepoBranch) {
+	this.pledgedAccntDepoBranch = pledgedAccntDepoBranch;
 }
 
   //Methods

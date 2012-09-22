@@ -32,6 +32,7 @@ public class SaveAndSwipeViewCtrl extends GenericForwardComposer {
 		super.doAfterCompose(comp);
 		// TODO Auto-generated method stub
 		metrobankDepositorNo_chkbox.setChecked(true);
+		pledgeNo_chkbox.setChecked(true);
 	}
 	
 	public void onCheck$metrobankDepositorYes_chkbox(){
@@ -47,5 +48,11 @@ public class SaveAndSwipeViewCtrl extends GenericForwardComposer {
 		
 	}
 	
+	public void onCheck$pledgeYes_chkbox(){
+		pledgeNo_chkbox.setChecked(!pledgeYes_chkbox.isChecked());
+	}
+	public void onCheck$pledgeNo_chkbox(){
+		pledgeYes_chkbox.setChecked(!pledgeNo_chkbox.isChecked());
+	}
 
 }

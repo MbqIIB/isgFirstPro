@@ -10,6 +10,7 @@
 
 <window  border="normal"
 		width="98%" 
+		id="saveAndSwipePage"
 		apply="com.isg.iloan.controller.functions.dataEntry.SaveAndSwipeViewCtrl" >
 
 
