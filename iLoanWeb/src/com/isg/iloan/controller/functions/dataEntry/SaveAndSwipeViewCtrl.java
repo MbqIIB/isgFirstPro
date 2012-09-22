@@ -61,8 +61,10 @@ public class SaveAndSwipeViewCtrl extends GenericForwardComposer {
 				for(Component fellow:fellows){
 					if(IDs.DOA_PLEDGE_DIV.equals(fellow.getId())){
 						fellow.setVisible(pledgeYes_chkbox.isChecked());
+						break;
 					}
 				}
+				break;
 			}
 		}
 	}
@@ -75,8 +77,10 @@ public class SaveAndSwipeViewCtrl extends GenericForwardComposer {
 				for(Component fellow:fellows){
 					if(IDs.DOA_PLEDGE_DIV.equals(fellow.getId())){
 						fellow.setVisible(!pledgeNo_chkbox.isChecked());
+						break;
 					}
 				}
+				break;
 			}
 		}
 	}
