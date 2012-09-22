@@ -199,15 +199,17 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 		if(doa.isIncDecCreditLimit()){
 			doa.setIncDecCreditLimitValue(((Textbox)ssMap.get(IDs.DOA_INCDEC_LIMIT)).getValue());
 		}
-		doa.setPledgedAccountTypeCode(((Textbox)ssMap.get(IDs.DOA_PLEDGE_ACCNT_CODE)).getValue());
-		doa.setPledgedAccountTypeDesc(((Textbox)ssMap.get(IDs.DOA_PLEDGE_ACCNT_DESC)).getValue());
-		doa.setPledgedAccntSpecial(((Checkbox)ssMap.get(IDs.DOA_SPECIAL_ACCNT)).isChecked());
-		doa.setPledgedAccountNum(((Textbox)ssMap.get(IDs.DOA_PLEDGE_ACCNT_NUM)).getValue());
-		doa.setPledgedAccntDepoBranch(((Textbox)ssMap.get(IDs.DOA_PLEDGE_DEPO_BRANCH)).getValue());
-		doa.setPledgedAmountWords(((Textbox)ssMap.get(IDs.DOA_PLEDGE_AMT_WORDS)).getValue());
-		doa.setPledgedAmount(Long.parseLong(((Textbox)ssMap.get(IDs.DOA_PLEDGE_AMT)).getValue()));
-		doa.setDateApplied(((Datebox)ssMap.get(IDs.DOA_DATE_APPLIED)).getValue());
-		doa.setMetrobankBranchNameCode(((Textbox)ssMap.get(IDs.DOA_METROBANK_BRANCH)).getValue());
+		if(ss.isAcceptPledge()){
+			doa.setPledgedAccountTypeCode(((Textbox)ssMap.get(IDs.DOA_PLEDGE_ACCNT_CODE)).getValue());
+			doa.setPledgedAccountTypeDesc(((Textbox)ssMap.get(IDs.DOA_PLEDGE_ACCNT_DESC)).getValue());
+			doa.setPledgedAccntSpecial(((Checkbox)ssMap.get(IDs.DOA_SPECIAL_ACCNT)).isChecked());
+			doa.setPledgedAccountNum(((Textbox)ssMap.get(IDs.DOA_PLEDGE_ACCNT_NUM)).getValue());
+			doa.setPledgedAccntDepoBranch(((Textbox)ssMap.get(IDs.DOA_PLEDGE_DEPO_BRANCH)).getValue());
+			doa.setPledgedAmountWords(((Textbox)ssMap.get(IDs.DOA_PLEDGE_AMT_WORDS)).getValue());
+			doa.setPledgedAmount(Long.parseLong(((Textbox)ssMap.get(IDs.DOA_PLEDGE_AMT)).getValue()));
+			doa.setDateApplied(((Datebox)ssMap.get(IDs.DOA_DATE_APPLIED)).getValue());
+			doa.setMetrobankBranchNameCode(((Textbox)ssMap.get(IDs.DOA_METROBANK_BRANCH)).getValue());
+		}		
 		doa.setAcceptDOA(((Checkbox)ssMap.get(IDs.DOA_ACCEPTANCE)).isChecked());
 		
 	}

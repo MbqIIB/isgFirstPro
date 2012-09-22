@@ -3,11 +3,15 @@
  */
 package com.isg.iloan.controller.functions.dataEntry;
 
+import java.util.Collection;
+
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.util.GenericForwardComposer;
 import org.zkoss.zul.Checkbox;
 import org.zkoss.zul.Groupbox;
 import org.zkoss.zul.Textbox;
+
+import com.isg.iloan.commons.IDs;
 
 /**
  * @author augusto.marte
@@ -50,9 +54,31 @@ public class SaveAndSwipeViewCtrl extends GenericForwardComposer {
 	
 	public void onCheck$pledgeYes_chkbox(){
 		pledgeNo_chkbox.setChecked(!pledgeYes_chkbox.isChecked());
+		Collection<Component> comps =  this.getPage().getDesktop().getComponents();
+		for(Component comp:comps){			
+			if(IDs.DOA_PAGE.equals(comp.getId())){
+				Collection<Component> fellows = comp.getFellows();
+				for(Component fellow:fellows){
+					if(IDs.DOA_PLEDGE_DIV.equals(fellow.getId())){
+						fellow.setVisible(pledgeYes_chkbox.isChecked());
+					}
+				}
+			}
+		}
 	}
 	public void onCheck$pledgeNo_chkbox(){
 		pledgeYes_chkbox.setChecked(!pledgeNo_chkbox.isChecked());
+		Collection<Component> comps =  this.getPage().getDesktop().getComponents();
+		for(Component comp:comps){			
+			if(IDs.DOA_PAGE.equals(comp.getId())){
+				Collection<Component> fellows = comp.getFellows();
+				for(Component fellow:fellows){
+					if(IDs.DOA_PLEDGE_DIV.equals(fellow.getId())){
+						fellow.setVisible(!pledgeNo_chkbox.isChecked());
+					}
+				}
+			}
+		}
 	}
 
 }

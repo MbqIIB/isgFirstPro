@@ -45,10 +45,12 @@ public class IDs {
 	public static final String SS_PLEDGE_CHKBOX= "pledgeYes_chkbox";
 	
 	/*** ============== DOA for SAVE AND SWIPE ======================***/	
+	public static final String DOA_PAGE= "doaPage";
 	public static final String DOA_ISSUANCE_CHKBOX= "issuance_chkbox";
 	public static final String DOA_CHANGE_DEP_CHKBOX= "changeDepInst_chkbox";
 	public static final String DOA_INCDEC_LIMIT_CHKBOX= "incDecCreditLimit_chkbox";
 	public static final String DOA_INCDEC_LIMIT= "incDecCreditLimit_txtbox";
+	public static final String DOA_PLEDGE_DIV= "pledgeDiv";	
 	public static final String DOA_SAVINGS_CHKBOX= "savings_chkbox";
 	public static final String DOA_TIME_CHKBOX= "time_chkbox";
 	public static final String DOA_SPECIAL_ACCNT= "specialAccount_chkbox";
