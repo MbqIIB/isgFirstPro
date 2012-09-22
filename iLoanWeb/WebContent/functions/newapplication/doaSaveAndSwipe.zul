@@ -16,7 +16,7 @@
 <textbox id="incDecCreditLimit_txtbox" mold="rounded" />
 </hbox>
 </vbox>
-
+<div id="pledgeDiv" visible="false">
 <space />
 <label value="PLEDGED Amount/Account information:" style="font-weight:bold;font-size:14;"/>
 <grid>
@@ -115,26 +115,31 @@ deposits, in order to give effect to this Assignment.
 	</cell>
 	
 </row>
-<row>
-	<cell colspan="3" align="right" >
-		
-		<space/>
-		
-		
-	</cell>
-	<cell colspan="1" align="center" >
-		
-		<groupbox >
-		<checkbox id="acceptDOA_chkbox" label="Accept DEEDS of ASSIGNMENT"/>
-		</groupbox> 
-		
-	</cell>
-</row>
-
-
 </rows>
 </grid>
 
+</div>
+
+<grid>
+<columns>
+<column width="14%"/>
+<column width="20%"/>
+<column width="30%"/>
+<column />
+</columns>
+<rows>
+<row>
+	<cell colspan="3" align="right" >		
+	<space/>
+	</cell>
+	<cell colspan="1" align="center" >		
+		<groupbox >
+		<checkbox id="acceptDOA_chkbox" label="Accept DEEDS of ASSIGNMENT"/>
+		</groupbox>		
+	</cell>
+</row>
+</rows>
+</grid>
 
 
 	

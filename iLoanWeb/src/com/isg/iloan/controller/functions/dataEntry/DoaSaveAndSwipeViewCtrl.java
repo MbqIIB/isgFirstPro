@@ -49,17 +49,17 @@ public class DoaSaveAndSwipeViewCtrl extends GenericForwardComposer {
 		pledgedAccountTypeCode.setValue("1");
 		pledgedAccountTypeDesc.setValue(savings_chkbox.getLabel());
 		time_chkbox.setChecked(!savings_chkbox.isChecked());
-		pledgedAccountNo_txtbox.setDisabled(true);
+		//pledgedAccountNo_txtbox.setDisabled(true);
 	}
 	public void onCheck$time_chkbox(){
 		pledgedAccountTypeCode.setValue("2");
 		pledgedAccountTypeDesc.setValue(time_chkbox.getLabel());
 		savings_chkbox.setChecked(!time_chkbox.isChecked());		
-		pledgedAccountNo_txtbox.setDisabled(true);
+		//pledgedAccountNo_txtbox.setDisabled(true);
 	}
-	public void onCheck$specialAccount_chkbox(){		
-		pledgedAccountNo_txtbox.setDisabled(false);
-	}
+//	public void onCheck$specialAccount_chkbox(){		
+//		pledgedAccountNo_txtbox.setDisabled(!specialAccount_chkbox.isChecked());
+//	}
 	
 	
 	
