@@ -28,8 +28,8 @@ public class Instruction {
   private String adaBankBranch;
   @Column(name="MIN_AMOUNT")
   private boolean minAmountDue;
-  @Column(name="MAX_AMOUNT")
-  private boolean maxAmountDue;
+  @Column(name="TOTAL_AMOUNT")
+  private boolean totalAmountDue;
 
   
   
@@ -110,15 +110,18 @@ public void setMinAmountDue(boolean minAmountDue) {
 
 
 
-public boolean isMaxAmountDue() {
-	return maxAmountDue;
+public boolean isTotalAmountDue() {
+	return totalAmountDue;
 }
 
 
 
-public void setMaxAmountDue(boolean maxAmountDue) {
-	this.maxAmountDue = maxAmountDue;
+public void setTotalAmountDue(boolean totalAmountDue) {
+	this.totalAmountDue = totalAmountDue;
 }
+
+
+
 
   //Methods
 

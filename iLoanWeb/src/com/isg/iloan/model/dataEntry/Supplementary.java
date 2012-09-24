@@ -39,6 +39,8 @@ public class Supplementary {
   private boolean otherNational;
   @Column(name="BIRTHDATE")
   private Date birthDate;
+  @Column(name="BIRTHPLACE")
+  private Date birthPlace;
   @Column(name="GENDER")
   private char gender;
 
@@ -134,6 +136,14 @@ public char getGender() {
 }
 public void setGender(char gender){
 	this.gender = gender;
+}
+
+public Date getBirthPlace() {
+	return birthPlace;
+}
+
+public void setBirthPlace(Date birthPlace) {
+	this.birthPlace = birthPlace;
 }
 
   //Methods

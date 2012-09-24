@@ -78,7 +78,7 @@ public class IDs {
 	public static final String JD_CMPY_NAME = "companyName";
 	public static final String JD_OCCUPATION = "occupation";
 	public static final String JD_WORK_NATURE = "natureOfWork";
-	public static final String JD_OFFICE_TEL = "office_telephone";
+	public static final String JD_TEL = "office_telephone";
 	public static final String JD_ZIPCODE = "zipCode"; 
 	public static final String JD_BUSS_ADDR = "businessAaddress"; 
 	public static final String JD_YRS_PRES_EMP = "yearsWithCurrentEmployer"; 
@@ -88,6 +88,33 @@ public class IDs {
 	public static final String JD_SPOUSE_GN = "spouseGivenName"; 
 	public static final String JD_SPOUSE_MN = "spouseMiddleName"; 
 	public static final String JD_SPOUSE_DOB = "spouseDOB"; 
+	
+	/*** ==================== SUPPLEMENTARY ========================== ***/
+	public static final String SUPP_WINDOW = "supplementaryWindow"; 
+	public static final String SUPP_LNAME = "familyName"; 
+	public static final String SUPP_GNAME = "givenName"; 
+	public static final String SUPP_MNAME = "middleName"; 
+	public static final String SUPP_CNAME = "nameOnCard"; 
+	public static final String SUPP_ADDR = "homeAddress"; 
+	public static final String SUPP_ZIPCODE = "zipCode"; 
+	public static final String SUPP_REL = "relationToPrincipal";
+	public static final String SUPP_NAT = "nationality"; 
+	public static final String SUPP_OTHER_NAT = "othrs_chkbox"; 
+	public static final String SUPP_BIRTHDATE = "birthDate"; 
+	public static final String SUPP_BIRTHPLACE = "birthPlace"; 
+	public static final String SUPP_GENDER = "gender"; 
+
+
+	/*** ==================== INSTRUCTION ========================= ***/
+	public static final String INS_WINDOW = "instructionWindow"; 
+	public static final String INS_DELI_PLACE = "deliveryPlace"; 
+	public static final String INS_PAYMENT_MODE = "paymentMode";	
+	public static final String INS_ADA_ACCNT_NUM = "adaAccountNum"; 
+	public static final String INS_ADA_BANK_BRANCH = "adaBankBranch"; 
+	public static final String INS_MIN_AMOUNT = "minAmount"; 
+	public static final String INS_TOTAL_AMOUNT = "totalAmount"; 
+	
+	public static final String ETRANS_WINDOW = "internetTransactionWindow"; 
 	
 	
 	

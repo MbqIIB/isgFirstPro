@@ -18,7 +18,9 @@ import org.zkoss.zul.Radiogroup;
 import org.zkoss.zul.Row;
 import org.zkoss.zul.Tabbox;
 import org.zkoss.zul.Tabs;
+import org.zkoss.zul.Textbox;
 
+import com.isg.iloan.commons.Labels;
 import com.isg.iloan.validation.CheckboxValidator;
 
 /**
@@ -32,6 +34,8 @@ public class MyDeliveryPaymentInstructionsViewCtrl extends
 	private Checkbox ada_chkbox;
 	private Checkbox office_chkbox;
 	private Checkbox home_chkbox;
+	private Textbox deliveryPlace;
+	private Textbox paymentMode;
 	private Checkbox payCash_chkbox;
 	private Checkbox minAmount_chkbox;
 	private Checkbox totalAmount_chkbox;
@@ -113,20 +117,24 @@ public class MyDeliveryPaymentInstructionsViewCtrl extends
 	
 
 	public void onClick$office_chkbox(){
-		home_chkbox.setChecked(false);
+		home_chkbox.setChecked(!office_chkbox.isChecked());		
+		deliveryPlace.setValue(office_chkbox.isChecked()?"Office":"Home");
 	}
 	
 	public void onClick$home_chkbox(){
-		office_chkbox.setChecked(false);
+		office_chkbox.setChecked(!home_chkbox.isChecked());
+		deliveryPlace.setValue(home_chkbox.isChecked()?"Home":"Office");
 	}
 	
 	public void onClick$ada_chkbox(){
-		payCash_chkbox.setChecked(false);
+		payCash_chkbox.setChecked(!ada_chkbox.isChecked());
+		paymentMode.setValue(ada_chkbox.isChecked()?Labels.INS_ADA:Labels.INS_CASH_CHECK);
 		ada_div.setVisible(true);
 	}
 	
 	public void onClick$payCash_chkbox(){
-		ada_chkbox.setChecked(false);
+		ada_chkbox.setChecked(!payCash_chkbox.isChecked());
+		paymentMode.setValue(payCash_chkbox.isChecked()?Labels.INS_CASH_CHECK:Labels.INS_ADA);
 		ada_div.setVisible(false);
 	}
 	

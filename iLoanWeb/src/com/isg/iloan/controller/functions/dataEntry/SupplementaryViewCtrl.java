@@ -34,8 +34,12 @@ public class SupplementaryViewCtrl extends GenericForwardComposer {
 	 * 
 	 */
 	private static final long serialVersionUID = -7923899381024830008L;
-	private Textbox others_txtbox;
+	private Textbox nationality;
+	private Textbox gender; 
 	private Checkbox othrs_chkbox;
+	private Checkbox filipino;
+	private Checkbox male;
+	private Checkbox female;
 	private Grid supplementaryGrid;
 
 	/**
@@ -46,7 +50,7 @@ public class SupplementaryViewCtrl extends GenericForwardComposer {
 	@Override
 	public void doAfterCompose(Component comp) throws Exception {
 		super.doAfterCompose(comp);
-		others_txtbox.setDisabled(true);
+		
 		
 		InputElementValidator.addOnBlurEventToInput(comp, comp, "#sd");
 		bindValidationOnClick(supplementaryGrid);
@@ -100,11 +104,20 @@ public class SupplementaryViewCtrl extends GenericForwardComposer {
 		bindValidationOnClick(parent.getParent());
 	}
 	public void onClick$othrs_chkbox(){
-		if(othrs_chkbox.isChecked()){
-			others_txtbox.setDisabled(false);
-		}else{
-			others_txtbox.setDisabled(true);
-		}
+		filipino.setChecked(!othrs_chkbox.isChecked());
+		nationality.setValue(othrs_chkbox.isChecked()?"":"Filipino");
+	}
+	public void onClick$filipino(){
+		othrs_chkbox.setChecked(!filipino.isChecked());
+		nationality.setValue(filipino.isChecked()?"Filipino":"");
+	}
+	public void onClick$male(){
+		female.setChecked(!male.isChecked());
+		gender.setValue(male.isChecked()?"Male":"Female");
+	}
+	public void onClick$female(){
+		male.setChecked(!female.isChecked());
+		gender.setValue(female.isChecked()?"Female":"Male");
 	}
 
 }

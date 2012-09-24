@@ -8,6 +8,7 @@ public class Labels {
 	
 	public static final String MCC = "Metrobank Card Corporation";
   
-	
+	public static final String INS_CASH_CHECK = "CashCheck";
+	public static final String INS_ADA = "ADA";
 	
 }
