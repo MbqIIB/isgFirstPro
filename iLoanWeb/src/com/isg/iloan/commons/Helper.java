@@ -19,6 +19,16 @@ public class Helper {
 
 	private static Logger logger = Logger.getLogger(NewApplicationViewCtrl.class);
 	
+	/**
+	 *  ==== This method uses reflection to set properties of Model bean from zul component. ====
+	 * @param obj -  the model object
+	 * @param fields - the persistence field names
+	 * @param window -  the enclosing window component of the page e.g - personalDataWindow, jobDetailWindow
+	 * @throws SecurityException
+	 * @throws WrongValueException
+	 * @throws IllegalAccessException
+	 * @throws InvocationTargetException
+	 */
 	public static void setProperties(Object obj, String[] fields, Component window) throws 
 	              SecurityException,WrongValueException,IllegalAccessException,InvocationTargetException
 	              
@@ -37,7 +47,7 @@ public class Helper {
 						methodMap.put(methods[k].getName(), methods[k]);
 					}
 					Method method = methodMap.get(methodName);
-					logger.debug("*** invoking methodName: " + method.getName() + "..");
+					logger.debug("*** invoking " + method.getName() + "..");
 					if(comp instanceof Textbox){
 						Class<?>[] paramClass = method.getParameterTypes();
 						if(paramClass.length>0 && paramClass[0].getName().equals("long")){								
@@ -52,7 +62,7 @@ public class Helper {
 					}else if(comp instanceof Checkbox){
 						method.invoke(obj, ((Checkbox)comp).isChecked());
 					}
-					logger.debug("*** invoking methodName: " + method.getName() + "..finished!..");
+					logger.debug("*** invoking " + method.getName() + "..finished!..");
 				}finally{
 					
 				}				
