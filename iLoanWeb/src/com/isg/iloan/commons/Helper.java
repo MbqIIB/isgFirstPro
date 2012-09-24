@@ -19,13 +19,14 @@ public class Helper {
 
 	private static Logger logger = Logger.getLogger(NewApplicationViewCtrl.class);
 	
-	public static void setProperties(Object obj, String[] fields, Map<String,Component> map) throws 
+	public static void setProperties(Object obj, String[] fields, Component window) throws 
 	              SecurityException,WrongValueException,IllegalAccessException,InvocationTargetException
 	              
 	{
 		
 		for(int i=0;i<fields.length;i++){
-			Component comp = map.get(fields[i]);
+			//Component comp = map.get(fields[i]);
+			Component comp = window.getFellow(fields[i]);
 			
 				try {
 					String methodName = String.format("set%C%s",fields[i].charAt(0), fields[i].substring(1));

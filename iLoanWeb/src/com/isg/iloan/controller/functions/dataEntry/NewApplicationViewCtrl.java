@@ -108,8 +108,8 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 	}
 	
 	public void onClick$newappSubmitButton(){
-		boolean pdChecker = allPersonalDataDetailsValid();
-		logger.debug(pdChecker);
+		//boolean pdChecker = allPersonalDataDetailsValid();
+		//logger.debug(pdChecker);
 		
 		
 		Application app = new Application();
@@ -140,41 +140,42 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 	public void composeJobDetail(Application app) throws WrongValueException, SecurityException, IllegalAccessException, InvocationTargetException{
 			
 			Collection<Component> comps =  jobDetailTabPanel.getPage().getDesktop().getComponents();
-			Map<String,Component> jdMap = new LinkedHashMap<String, Component>();		
-			for(Component comp:comps){			
-				if(IDs.JD_WINDOW.equals(comp.getId())){							
-					Collection<Component> fellows = comp.getFellows();
-					for(Component fellow:fellows){
-						jdMap.put(fellow.getId(), fellow);					
+			String[] fields = {IDs.JD_CMPY_NAME,IDs.JD_OCCUPATION,IDs.JD_WORK_NATURE,IDs.JD_YRS_PRES_EMP,
+					   IDs.JD_TWY,IDs.JD_GMI,IDs.JD_SPOUSE_LN, IDs.JD_SPOUSE_GN,IDs.JD_SPOUSE_MN,
+					   IDs.JD_SPOUSE_DOB};
+			for(Component window:comps){			
+				if(IDs.JD_WINDOW.equals(window.getId())){	
+
+					JobDetail jd = new JobDetail();					
+					Helper.setProperties(jd,fields,window);
+					
+					Address addr = new Address();			
+					addr.setAddressLine1(((Textbox)window.getFellow(IDs.JD_BUSS_ADDR)).getValue());
+					addr.setTelNum(((Textbox)window.getFellow(IDs.JD_TEL)).getValue());
+					addr.setZipCode(((Textbox)window.getFellow(IDs.JD_ZIPCODE)).getValue());
+					addr.setHomeAddress(false);
+					addr.setPermanentAddress(false);
+					jd.setBusinessAddress(addr);
+					
+					
+					List<Fund> funds = new ArrayList<Fund>();
+					jd.setSourceOfFunds(funds);
+					if(((Checkbox)window.getFellow(IDs.JD_EMPLOYMENT)).isChecked())jd.getSourceOfFunds().add(new Fund("EMP","Employment"));
+					if(((Checkbox)window.getFellow(IDs.JD_INVESTMENT)).isChecked())jd.getSourceOfFunds().add(new Fund("INV","Investment"));
+					if(((Checkbox)window.getFellow(IDs.JD_SELF_EMP)).isChecked())jd.getSourceOfFunds().add(new Fund("SEM","Self-Employment"));
+					if(((Checkbox)window.getFellow(IDs.JD_UNEMP)).isChecked())jd.getSourceOfFunds().add(new Fund("UEM","Un-Employed"));
+					if(((Checkbox)window.getFellow(IDs.JD_RETIRED)).isChecked())jd.getSourceOfFunds().add(new Fund("RET","Retired"));
+					if(((Checkbox)window.getFellow(IDs.JD_OTHERS_CHKBOX)).isChecked()){
+						jd.getSourceOfFunds().add(new Fund("OTH",((Textbox)window.getFellow(IDs.JD_OTHERS_TXTBOX)).getValue()));
 					}
+					
+					app.setJobDetail(jd);
+					
 					break;
 				}			
 			}
-			JobDetail jd = new JobDetail();
-			String[] fields = {IDs.JD_CMPY_NAME,IDs.JD_OCCUPATION,IDs.JD_WORK_NATURE,IDs.JD_YRS_PRES_EMP,
-					   IDs.JD_TWY,IDs.JD_GMI,IDs.JD_SPOUSE_LN, IDs.JD_SPOUSE_GN,IDs.JD_SPOUSE_MN,
-					   IDs.JD_SPOUSE_DOB};			
-			Helper.setProperties(jd,fields,jdMap);
-			
-			Address addr = new Address();			
-			addr.setAddressLine1(((Textbox)jdMap.get(IDs.JD_BUSS_ADDR)).getValue());
-			addr.setTelNum(((Textbox)jdMap.get(IDs.JD_TEL)).getValue());
-			addr.setZipCode(((Textbox)jdMap.get(IDs.JD_ZIPCODE)).getValue());
-			addr.setHomeAddress(false);
-			addr.setPermanentAddress(false);
-			jd.setBusinessAddress(addr);
 			
 			
-			List<Fund> funds = new ArrayList<Fund>();
-			jd.setSourceOfFunds(funds);
-			if(((Checkbox)jdMap.get(IDs.JD_EMPLOYMENT)).isChecked())jd.getSourceOfFunds().add(new Fund("EMP","Employment"));
-			if(((Checkbox)jdMap.get(IDs.JD_INVESTMENT)).isChecked())jd.getSourceOfFunds().add(new Fund("INV","Investment"));
-			if(((Checkbox)jdMap.get(IDs.JD_SELF_EMP)).isChecked())jd.getSourceOfFunds().add(new Fund("SEM","Self-Employment"));
-			if(((Checkbox)jdMap.get(IDs.JD_UNEMP)).isChecked())jd.getSourceOfFunds().add(new Fund("UEM","Un-Employed"));
-			if(((Checkbox)jdMap.get(IDs.JD_RETIRED)).isChecked())jd.getSourceOfFunds().add(new Fund("RET","Retired"));
-			if(((Checkbox)jdMap.get(IDs.JD_OTHERS_CHKBOX)).isChecked()){
-				jd.getSourceOfFunds().add(new Fund("OTH",((Textbox)jdMap.get(IDs.JD_OTHERS_TXTBOX)).getValue()));
-			}
 		}
 	
 	
@@ -182,29 +183,25 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 	public void composeSupplementary(Application app) throws WrongValueException, 
 				SecurityException, IllegalAccessException, InvocationTargetException{
 		logger.debug("*** composing Supplementary...");		
-		Collection<Component> comps =  supplementaryTabPanel.getPage().getDesktop().getComponents();		
-		Map<String,Component> suppMap = new LinkedHashMap<String, Component>();		
-		for(Component comp:comps){			
-			if(IDs.SUPP_WINDOW.equals(comp.getId())){							
-				Collection<Component> fellows = comp.getFellows();
-				for(Component fellow:fellows){
-					suppMap.put(fellow.getId(), fellow);					
-				}
+		Collection<Component> comps =  supplementaryTabPanel.getPage().getDesktop().getComponents();			
+		for(Component window:comps){			
+			if(IDs.SUPP_WINDOW.equals(window.getId())){							
+				Supplementary supp = new Supplementary();
+				String[] fields = {IDs.SUPP_LNAME,IDs.SUPP_GNAME,IDs.SUPP_MNAME,IDs.SUPP_CNAME,IDs.SUPP_REL,
+								   IDs.SUPP_NAT, IDs.SUPP_OTHER_NAT, IDs.SUPP_BIRTHDATE, IDs.SUPP_BIRTHPLACE,
+								   IDs.SUPP_GENDER};		
+				Helper.setProperties(supp,fields,window);
+				Address addr = new Address();
+				addr.setHomeAddress(true);
+				addr.setAddressLine1(((Textbox)window.getFellow(IDs.SUPP_ADDR)).getValue());
+				addr.setZipCode(((Textbox)window.getFellow(IDs.SUPP_ZIPCODE)).getValue());
+				supp.setHomeAddress(addr);
+				app.setSupplementary(supp);
 				break;
 			}			
 		}
 		
-		Supplementary supp = new Supplementary();
-		String[] fields = {IDs.SUPP_LNAME,IDs.SUPP_GNAME,IDs.SUPP_MNAME,IDs.SUPP_CNAME,IDs.SUPP_REL,
-						   IDs.SUPP_NAT, IDs.SUPP_OTHER_NAT, IDs.SUPP_BIRTHDATE, IDs.SUPP_BIRTHPLACE,
-						   IDs.SUPP_GENDER};		
-		Helper.setProperties(supp,fields,suppMap);
-		Address addr = new Address();
-		addr.setHomeAddress(true);
-		addr.setAddressLine1(((Textbox)suppMap.get(IDs.SUPP_ADDR)).getValue());
-		addr.setZipCode(((Textbox)suppMap.get(IDs.SUPP_ZIPCODE)).getValue());
-		supp.setHomeAddress(addr);
-		app.setSupplementary(supp);
+		
 		
 	}
 	
@@ -212,22 +209,18 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 				SecurityException, IllegalAccessException, InvocationTargetException{
 		
 		logger.debug("*** composing Supplementary...");		
-		Collection<Component> comps =  instructionTabPanel.getPage().getDesktop().getComponents();		
-		Map<String,Component> insMap = new LinkedHashMap<String, Component>();		
-		for(Component comp:comps){			
-			if(IDs.INS_WINDOW.equals(comp.getId())){							
-				Collection<Component> fellows = comp.getFellows();
-				for(Component fellow:fellows){
-					insMap.put(fellow.getId(), fellow);					
-				}
+		Collection<Component> comps =  instructionTabPanel.getPage().getDesktop().getComponents();
+		for(Component window:comps){			
+			if(IDs.INS_WINDOW.equals(window.getId())){							
+				Instruction ins = new Instruction();
+				String[] fields = {IDs.INS_DELI_PLACE, IDs.INS_PAYMENT_MODE, IDs.INS_ADA_ACCNT_NUM,
+								   IDs.INS_ADA_BANK_BRANCH, IDs.INS_MIN_AMOUNT, IDs.INS_TOTAL_AMOUNT};
+				Helper.setProperties(ins,fields,window);
+				app.setInstruction(ins);
 				break;
 			}			
 		}
-		Instruction ins = new Instruction();
-		String[] fields = {IDs.INS_DELI_PLACE, IDs.INS_PAYMENT_MODE, IDs.INS_ADA_ACCNT_NUM,
-						   IDs.INS_ADA_BANK_BRANCH, IDs.INS_MIN_AMOUNT, IDs.INS_TOTAL_AMOUNT};
-		Helper.setProperties(ins,fields,insMap);
-		app.setInstruction(ins);
+		
 		
 	}
 	
