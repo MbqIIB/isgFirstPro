@@ -39,14 +39,14 @@ public class IDs {
 	public static final String OCC3_DOM = "occ3DOM";
 	
 	/*** ============== SAVE AND SWIPE ======================***/
-	public static final String SS_PAGE= "saveAndSwipePage";
+	public static final String SS_WINDOW= "saveAndSwipeWindow";
 	public static final String SS_METROBANK_DEPOSITOR_CHKBOX = "metrobankDepositorYes_chkbox";
 	public static final String SS_DEPOSITOR_ACCT_NUM = "deposiorAccntNum_txtbox";
 	public static final String SS_DEPOSITOR_ACCT_BRANCH = "deposiorBranchOpened_txtbox";
 	public static final String SS_PLEDGE_CHKBOX= "pledgeYes_chkbox";
 	
 	/*** ============== DOA for SAVE AND SWIPE ======================***/	
-	public static final String DOA_PAGE= "doaPage";
+	public static final String DOA_WINDOW= "doaWindow";
 	public static final String DOA_ISSUANCE_CHKBOX= "issuance_chkbox";
 	public static final String DOA_CHANGE_DEP_CHKBOX= "changeDepInst_chkbox";
 	public static final String DOA_INCDEC_LIMIT_CHKBOX= "incDecCreditLimit_chkbox";
@@ -66,8 +66,28 @@ public class IDs {
 	public static final String DOA_ACCEPTANCE= "acceptDOA_chkbox";
 	
 	
-	
-	
+	/*** ===================== Job Details ================================ ****/
+	public static final String JD_WINDOW = "jobDetailWindow";
+	public static final String JD_EMPLOYMENT = "employment_chkbox";
+	public static final String JD_INVESTMENT = "investment_chkbox";
+	public static final String JD_SELF_EMP = "selfemployed_chkbox";
+	public static final String JD_UNEMP = "unemployed_chkbox";
+	public static final String JD_RETIRED = "retired_chkbox";
+	public static final String JD_OTHERS_CHKBOX = "others_chkbox";
+	public static final String JD_OTHERS_TXTBOX = "others_txtbox";	
+	public static final String JD_CMPY_NAME = "companyName";
+	public static final String JD_OCCUPATION = "occupation";
+	public static final String JD_WORK_NATURE = "natureOfWork";
+	public static final String JD_OFFICE_TEL = "office_telephone";
+	public static final String JD_ZIPCODE = "zipCode"; 
+	public static final String JD_BUSS_ADDR = "businessAaddress"; 
+	public static final String JD_YRS_PRES_EMP = "yearsWithCurrentEmployer"; 
+	public static final String JD_TWY = "totalWorkingYears"; 
+	public static final String JD_GMI = "grossMonthlyIncome"; 
+	public static final String JD_SPOUSE_LN = "spouseFamilyName"; 
+	public static final String JD_SPOUSE_GN = "spouseGivenName"; 
+	public static final String JD_SPOUSE_MN = "spouseMiddleName"; 
+	public static final String JD_SPOUSE_DOB = "spouseDOB"; 
 	
 	
 	

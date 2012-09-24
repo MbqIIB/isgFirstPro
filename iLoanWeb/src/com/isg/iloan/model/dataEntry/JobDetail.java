@@ -51,6 +51,8 @@ public class JobDetail implements Serializable {
   private long grossMonthlyIncome;
   @Column(name="SPOUSE_FAM_NAME")
   private String spouseFamilyName;
+  @Column(name="SPOUSE_GIV_NAME")
+  private String spouseGivenName;
   @Column(name="SPOUSE_MIDD_NAME")
   private String spouseMiddleName;
   @Column(name="SPOUSE_DOB")
@@ -198,6 +200,16 @@ public class JobDetail implements Serializable {
 	
 	public void setSourceOfFunds(List<Fund> sourceOfFunds) {
 		this.sourceOfFunds = sourceOfFunds;
+	}
+
+
+	public String getSpouseGivenName() {
+		return spouseGivenName;
+	}
+
+
+	public void setSpouseGivenName(String spouseGivenName) {
+		this.spouseGivenName = spouseGivenName;
 	}
 
 

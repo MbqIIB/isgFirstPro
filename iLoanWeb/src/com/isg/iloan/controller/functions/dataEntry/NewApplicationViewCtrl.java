@@ -8,11 +8,11 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.beanutils.BeanUtils;
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.WrongValueException;
@@ -23,6 +23,7 @@ import org.zkoss.zul.Checkbox;
 import org.zkoss.zul.Datebox;
 import org.zkoss.zul.Hbox;
 import org.zkoss.zul.Hlayout;
+import org.zkoss.zul.Intbox;
 import org.zkoss.zul.Tab;
 import org.zkoss.zul.Tabbox;
 import org.zkoss.zul.Tabpanel;
@@ -30,11 +31,14 @@ import org.zkoss.zul.Tabs;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Window;
 
+import com.isg.iloan.commons.Helper;
 import com.isg.iloan.commons.IDs;
 import com.isg.iloan.commons.Labels;
 import com.isg.iloan.model.dataEntry.Application;
 import com.isg.iloan.model.dataEntry.CreditCard;
 import com.isg.iloan.model.dataEntry.DeedsOfAssignment;
+import com.isg.iloan.model.dataEntry.Fund;
+import com.isg.iloan.model.dataEntry.JobDetail;
 import com.isg.iloan.model.dataEntry.SaveAndSwipe;
 
 /**
@@ -49,6 +53,7 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 	private Window newApplicationWindow;
 	private Tabpanel personalPanel;
 	private Tabpanel ccDetailPanel;
+	private Tabpanel jobDetailTabPanel;
 	//private Tab ssDeeds;
 	//private Tab saveAndSwipe;
 	private Tab internetTransaction;
@@ -97,85 +102,73 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 	public void onClick$newappSubmitButton(){
 		//extractPersonalDataDetails();
 		
-		Application app = new Application();
 		
-		//composeCreditCardDetails(app);
-		//composeSaveAndSwipe(app);
 		
-
-		Collection<Component> comps =  ccDetailPanel.getPage().getDesktop().getComponents();
-		Map<String,Component> ssMap = new LinkedHashMap<String, Component>();		
-		for(Component comp:comps){			
-			if(IDs.SS_PAGE.equals(comp.getId())
-					|| IDs.DOA_PAGE.equals(comp.getId())
-					){							
-				Collection<Component> fellows = comp.getFellows();
-				for(Component fellow:fellows){
-					ssMap.put(fellow.getId(), fellow);					
-				}
-				break;
-			}			
+		
+		try {
+			Application app = new Application();			
+			//composeCreditCardDetails(app);
+			//composeSaveAndSwipe(app);
+			
+			SaveAndSwipe ss = new SaveAndSwipe();
+			//setProperties(ss,ssMap);
+			composeJobDetail(app);
+			
+			
+			
+			
+			
+			
+		} catch (WrongValueException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
-		SaveAndSwipe ss = new SaveAndSwipe();
-		//setProperties(ss,ssMap);
 		
-		logger.debug("Depositor Account # : " + ss.getAccountNum());
 		
 	}
 	
-	public void setProperties(Object obj, Map<String,Component> map){
+	
+	public void composeJobDetail(Application app) throws WrongValueException, SecurityException, IllegalAccessException, InvocationTargetException{
 			
-			String[] fields = {"deposiorAccntNum_txtbox"};
-			String rightMethodName = "AccountNum";
-			
-			
-		    
-			
-			//logger.debug("Obj field size: " + objFields.length);
-			
-			for(int i=0;i<fields.length;i++){
-				Component comp = map.get(fields[i]);
-				if(comp instanceof Textbox){
-					try {
-						Method[] methods = obj.getClass().getMethods();
-						for(int k=0;k<methods.length;k++){
-							Method method = methods[k];
-							String methodName = method.getName();
-							logger.debug("methodName: " + methodName);														
-							if(methodName.startsWith("set") && methodName.indexOf(rightMethodName)>0){
-								logger.debug("component value: " + ((Textbox)comp).getValue());
-								method.invoke(obj, ((Textbox)comp).getValue());
-								break;
-							}
-							
-						}
-						
-						//BeanUtils.setProperty("", "", "");
-						
-						
-					} catch (SecurityException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (WrongValueException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (IllegalArgumentException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (IllegalAccessException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (InvocationTargetException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+			Collection<Component> comps =  jobDetailTabPanel.getPage().getDesktop().getComponents();
+			Map<String,Component> jdMap = new LinkedHashMap<String, Component>();		
+			for(Component comp:comps){			
+				if(IDs.JD_WINDOW.equals(comp.getId())){							
+					Collection<Component> fellows = comp.getFellows();
+					for(Component fellow:fellows){
+						jdMap.put(fellow.getId(), fellow);					
 					}
-				}
+					break;
+				}			
 			}
+			JobDetail jd = new JobDetail();
+			String[] fields = {IDs.JD_CMPY_NAME,IDs.JD_OCCUPATION,IDs.JD_WORK_NATURE,IDs.JD_YRS_PRES_EMP,
+					   IDs.JD_TWY,IDs.JD_GMI,IDs.JD_SPOUSE_LN, IDs.JD_SPOUSE_GN,IDs.JD_SPOUSE_MN,
+					   IDs.JD_SPOUSE_DOB};
+			
+			Helper.setProperties(jd,fields,jdMap);
+			
+			List<Fund> funds = new ArrayList<Fund>();
+			jd.setSourceOfFunds(funds);
+			if(((Checkbox)jdMap.get(IDs.JD_EMPLOYMENT)).isChecked())jd.getSourceOfFunds().add(new Fund("EMP","Employment"));
+			if(((Checkbox)jdMap.get(IDs.JD_INVESTMENT)).isChecked())jd.getSourceOfFunds().add(new Fund("INV","Investment"));
+			if(((Checkbox)jdMap.get(IDs.JD_SELF_EMP)).isChecked())jd.getSourceOfFunds().add(new Fund("SEM","Self-Employment"));
+			if(((Checkbox)jdMap.get(IDs.JD_UNEMP)).isChecked())jd.getSourceOfFunds().add(new Fund("UEM","Un-Employed"));
+			if(((Checkbox)jdMap.get(IDs.JD_RETIRED)).isChecked())jd.getSourceOfFunds().add(new Fund("RET","Retired"));
+			if(((Checkbox)jdMap.get(IDs.JD_OTHERS_CHKBOX)).isChecked())jd.getSourceOfFunds().add(new Fund("OTH",((Textbox)jdMap.get(IDs.JD_OTHERS_TXTBOX)).getValue()));
+			
+			
 		}
-	
-	
-	
 	
 	
 
@@ -257,8 +250,8 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 		Collection<Component> comps =  ccDetailPanel.getPage().getDesktop().getComponents();
 		Map<String,Component> ssMap = new LinkedHashMap<String, Component>();		
 		for(Component comp:comps){			
-			if(IDs.SS_PAGE.equals(comp.getId())
-					|| IDs.DOA_PAGE.equals(comp.getId())
+			if(IDs.SS_WINDOW.equals(comp.getId())
+					|| IDs.DOA_WINDOW.equals(comp.getId())
 					){							
 				Collection<Component> fellows = comp.getFellows();
 				for(Component fellow:fellows){
