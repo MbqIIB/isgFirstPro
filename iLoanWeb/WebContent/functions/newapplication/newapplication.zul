@@ -118,7 +118,7 @@ apply="com.isg.iloan.controller.functions.dataEntry.NewApplicationViewCtrl"  >
         <tabpanel id="personalPanel" fulfill="personalData.onClick" style="overflow-y:scroll;" >
         	<include src="/functions/newapplication/personalData.zul" id="personalDataInc"/>        	
         </tabpanel>
-        <tabpanel fulfill="jobDetail.onSelect" style="overflow-y:scroll;" >
+        <tabpanel fulfill="jobDetail.onSelect" style="overflow-y:scroll;" id="jobDetailTabPanel" >
         	<include src="/functions/newapplication/jobDetail.zul"/>
         </tabpanel>
         <tabpanel fulfill="supplementaryDetail.onSelect" style="overflow-y:scroll;">

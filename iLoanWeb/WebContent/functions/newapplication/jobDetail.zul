@@ -1,6 +1,6 @@
 <?page title="new page title" contentType="text/html;charset=UTF-8"?>
 <zk>
-	<window border="normal" title="JOB DETAILS" id="myJobWindow" width="98%" 
+	<window border="normal" title="JOB DETAILS" id="jobDetailWindow" width="98%" 
 		apply="com.isg.iloan.controller.functions.dataEntry.JobDetailViewCtrl">
 		
 		<grid>
@@ -49,50 +49,50 @@
 				<row>		
 					<label value="Company Name" />
 					<cell colspan="3">
-					<textbox id="company_txtbox" width="200px" mold="rounded" />
+					<textbox id="companyName" width="200px" mold="rounded" />
 					</cell>
 				</row>
 				<row>		
 					<label value="Occupation/Position" />
 					<cell colspan="3">
-					<textbox id="occupation_txtbox" width="200px" mold="rounded" />
+					<textbox id="occupation" width="200px" mold="rounded" />
 					</cell>
 				</row>
 				<row>
 					<label value="Nature of Work/Business" />
 					<cell colspan="3">
-						<textbox id="work_nature_txtbox" width="315px"
+						<textbox id="natureOfWork" width="315px"
 							mold="rounded" />
 					</cell>
 				</row>
 				<row>
 					<label value="Office Telephone No." />
 
-					<textbox id="telephone_txtbox" width="120px"
+					<textbox id="office_telephone" width="120px"
 						mold="rounded" />
 					<cell colspan="2">
 						<label value="Zip Code" style="text-align:right;" />
 						<space/>
-						<textbox id="zip_txtbox" width="50px" mold="rounded" />
+						<textbox id="zipCode" width="50px" mold="rounded" />
 					</cell>
 					
 				</row>
 				<row>
 					<label value="Business Address" />
 					<cell colspan="3">
-						<textbox id="business_add_txtbox" width="450px"
+						<textbox id="businessAaddress" width="450px"
 							rows="3" mold="rounded" />
 					</cell>
 				</row>
 				<row>
 					<label value="Years with Present Employer" />
-
-					<textbox id="yrs_with_pemp_txtbox" width="80px"
+					
+					<intbox id="yearsWithCurrentEmployer" width="80px"
 						mold="rounded" />
 					<cell colspan="2">
 						<label value="Total No. of Years Working" style="text-align:right;" />
 						<space />
-						<textbox id="working_years_txtbox" width="80px" mold="rounded" />
+						<intbox id="totalWorkingYears" width="80px" mold="rounded" />
 					</cell>
 				</row>
 				
@@ -131,7 +131,7 @@
 						</vbox>
 						<vbox>
 							<label value="Date of Birth" />
-							<datebox id="spouseDOM"  lenient="true" buttonVisible="true"  mold="rounded"/>
+							<datebox id="spouseDOB"  lenient="true" buttonVisible="true"  mold="rounded"/>
 						</vbox>
 						</hlayout>
 						</groupbox>

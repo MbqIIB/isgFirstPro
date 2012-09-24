@@ -63,7 +63,7 @@ public class IDs {
 	public static final String DOA_DATE_APPLIED = "dateApplied_datebox";
 	public static final String DOA_METROBANK_BRANCH = "branchNameAndCode";
 	public static final String DOA_ACCEPTANCE = "acceptDOA_chkbox";
-
+	
 	/*** ==================== PERSONAL DATA ======================== ***/
 	public static final String PD_WINDOW = "personalDataWindow";
 	public static final String PD_FAMILY_NAME = "familyName";
@@ -95,4 +95,30 @@ public class IDs {
 	public static final String PD_PERMANENT_ADDRESS = "permanentAddress";
 	public static final String PD_HOME_ZIP_CODE = "homeAddZip";
 	public static final String PD_PERM_ZIP_CODE = "permanentAddZip";
+	
+	/*** ===================== Job Details ================================ ****/
+	public static final String JD_WINDOW = "jobDetailWindow";
+	public static final String JD_EMPLOYMENT = "employment_chkbox";
+	public static final String JD_INVESTMENT = "investment_chkbox";
+	public static final String JD_SELF_EMP = "selfemployed_chkbox";
+	public static final String JD_UNEMP = "unemployed_chkbox";
+	public static final String JD_RETIRED = "retired_chkbox";
+	public static final String JD_OTHERS_CHKBOX = "others_chkbox";
+	public static final String JD_OTHERS_TXTBOX = "others_txtbox";	
+	public static final String JD_CMPY_NAME = "companyName";
+	public static final String JD_OCCUPATION = "occupation";
+	public static final String JD_WORK_NATURE = "natureOfWork";
+	public static final String JD_OFFICE_TEL = "office_telephone";
+	public static final String JD_ZIPCODE = "zipCode"; 
+	public static final String JD_BUSS_ADDR = "businessAaddress"; 
+	public static final String JD_YRS_PRES_EMP = "yearsWithCurrentEmployer"; 
+	public static final String JD_TWY = "totalWorkingYears"; 
+	public static final String JD_GMI = "grossMonthlyIncome"; 
+	public static final String JD_SPOUSE_LN = "spouseFamilyName"; 
+	public static final String JD_SPOUSE_GN = "spouseGivenName"; 
+	public static final String JD_SPOUSE_MN = "spouseMiddleName"; 
+	public static final String JD_SPOUSE_DOB = "spouseDOB"; 
+	
+	
+	
 }

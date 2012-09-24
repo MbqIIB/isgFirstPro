@@ -20,12 +20,12 @@ public class IloanLoggerLoader extends HttpServlet {
 		// TODO Auto-generated method stub
 		super.init();		
 		System.out.println("*** " + "["+ IloanLoggerLoader.class.getName() +
-				"] " + "start loading the Log4j log loader...");
+				"] " + "loading the Log4j log loader...");
 		URL url = Loader.getResource("com/isg/iloan/logger/log4j.properties");
 		PropertyConfigurator.configure(url);
 		
 		System.out.println("*** " + "["+ IloanLoggerLoader.class.getName() +
-				"] " + "finished loading the Log4j log loader...");		
+				"] " + "loading the Log4j log loader...finished!");		
 		
 	}
 

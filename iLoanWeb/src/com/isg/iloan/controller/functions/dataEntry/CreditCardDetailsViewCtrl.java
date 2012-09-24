@@ -66,19 +66,19 @@ public class CreditCardDetailsViewCtrl extends GenericForwardComposer {
 	private Checkbox mLiteMasterCard;
 	private Checkbox femmeVisaCard;
 	
-	private Textbox creditCardType;
-	private Textbox creditCardDesc;
+	private Textbox creditCardTypeCode;
+	private Textbox creditCardTypeDesc;
 	
 	
 	public void setCreditCard(String code,String desc){
-		creditCardType.setValue(code);
-		creditCardDesc.setValue(desc);
+		creditCardTypeCode.setValue(code);
+		creditCardTypeDesc.setValue(desc);
 	}
 	
 	public void uncheckOtherCardType(Checkbox checkbox){		
 		for(Checkbox cb:getCardTypes()){
 			if(!cb.getId().equals(checkbox.getId())){
-				cb.setChecked(false);
+				cb.setChecked(!checkbox.isChecked());
 			}
 		}
 	}
@@ -203,33 +203,33 @@ public class CreditCardDetailsViewCtrl extends GenericForwardComposer {
 			notAcceptClassicCard.setChecked(false);
 		}
 		
-		//this line is for testing only--
-		
-		Application app = new Application();
-		//test.setApplicationId(20121003);
-		app.setAcceptClassicCard(true);
-		app.setAcceptSaveAndSwipe(true);
-		app.setAppStatusCode(0);
-		app.setAppStatusDesc("NEW");
-		app.setCardTypeCode("VCC");
-		app.setCardTypeDesc("Visa Classic Card");
-		app.setDateOfApplication(new Date());
-		app.setEnrollSOS(false);
-		
-		
-		JobDetail jd = new JobDetail();
-		jd.setCompanyName("iSphereGlobal");
-		jd.setOccupation("Bank Teller");
-		jd.setNatureOfWork("Banker");
-		jd.setYearsWithCurrentEmployer(10);
-		jd.setTotalWorkingYears(20);
-		jd.setGrossMonthlyIncome(40000);
-		jd.setSpouseFamilyName("Goslings");
-		jd.setSpouseMiddleName("Berti");
-		jd.setSpouseDOB(new Date());
-		
-		
-		app.setJobDetail(jd);
+//		//this line is for testing only--
+//		
+//		Application app = new Application();
+//		//test.setApplicationId(20121003);
+//		app.setAcceptClassicCard(true);
+//		app.setAcceptSaveAndSwipe(true);
+//		app.setAppStatusCode(0);
+//		app.setAppStatusDesc("NEW");
+//		app.setCardTypeCode("VCC");
+//		app.setCardTypeDesc("Visa Classic Card");
+//		app.setDateOfApplication(new Date());
+//		app.setEnrollSOS(false);
+//		
+//		
+//		JobDetail jd = new JobDetail();
+//		jd.setCompanyName("iSphereGlobal");
+//		jd.setOccupation("Bank Teller");
+//		jd.setNatureOfWork("Banker");
+//		jd.setYearsWithCurrentEmployer(10);
+//		jd.setTotalWorkingYears(20);
+//		jd.setGrossMonthlyIncome(40000);
+//		jd.setSpouseFamilyName("Goslings");
+//		jd.setSpouseMiddleName("Berti");
+//		jd.setSpouseDOB(new Date());
+//		
+//		
+//		app.setJobDetail(jd);
 		
 		logger.debug("calling applicationService createApplication... ");
 		

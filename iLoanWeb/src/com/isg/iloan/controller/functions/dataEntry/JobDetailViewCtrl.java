@@ -33,14 +33,14 @@ public class JobDetailViewCtrl extends GenericForwardComposer {
 	 * 
 	 */
 	private static final long serialVersionUID = -8172306753806136887L;
-	private Window myJobWindow;
-	private Textbox working_years_txtbox;
-	private Textbox yrs_with_pemp_txtbox;
-	private Textbox business_add_txtbox;
-	private Textbox zip_txtbox;
-	private Textbox telephone_txtbox;
-	private Textbox work_nature_txtbox;
-	private Textbox occupation_txtbox;
+	private Window jobDetailWindow;
+	private Textbox totalWorkingYears;
+	private Textbox yearsWithCurrentEmployer;
+	private Textbox businessAaddress;
+	private Textbox zipCode;
+	private Textbox office_telephone;
+	private Textbox natureOfWork;
+	private Textbox occupation;
 	private Textbox others_txtbox;
 	private Checkbox emp_chkbox;
 	private Checkbox others_chkbox;

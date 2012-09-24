@@ -3,15 +3,19 @@
  */
 package com.isg.iloan.controller.functions.dataEntry;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.WrongValueException;
 import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zk.ui.util.GenericForwardComposer;
 import org.zkoss.zul.Button;
@@ -19,6 +23,7 @@ import org.zkoss.zul.Checkbox;
 import org.zkoss.zul.Datebox;
 import org.zkoss.zul.Hbox;
 import org.zkoss.zul.Hlayout;
+import org.zkoss.zul.Intbox;
 import org.zkoss.zul.Tab;
 import org.zkoss.zul.Tabbox;
 import org.zkoss.zul.Tabpanel;
@@ -27,11 +32,14 @@ import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Window;
 import org.zkoss.zul.impl.InputElement;
 
+import com.isg.iloan.commons.Helper;
 import com.isg.iloan.commons.IDs;
 import com.isg.iloan.commons.Labels;
 import com.isg.iloan.model.dataEntry.Application;
 import com.isg.iloan.model.dataEntry.CreditCard;
 import com.isg.iloan.model.dataEntry.DeedsOfAssignment;
+import com.isg.iloan.model.dataEntry.Fund;
+import com.isg.iloan.model.dataEntry.JobDetail;
 import com.isg.iloan.model.dataEntry.SaveAndSwipe;
 
 /**
@@ -46,6 +54,7 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 	private Window newApplicationWindow;
 	private Tabpanel personalPanel;
 	private Tabpanel ccDetailPanel;
+	private Tabpanel jobDetailTabPanel;
 	//private Tab ssDeeds;
 	//private Tab saveAndSwipe;
 	private Tab internetTransaction;
@@ -96,8 +105,43 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 		boolean pdChecker = allPersonalDataDetailsValid();
 		logger.debug(pdChecker);
 	}
+	
+	
+	public void composeJobDetail(Application app) throws WrongValueException, SecurityException, IllegalAccessException, InvocationTargetException{
+			
+			Collection<Component> comps =  jobDetailTabPanel.getPage().getDesktop().getComponents();
+			Map<String,Component> jdMap = new LinkedHashMap<String, Component>();		
+			for(Component comp:comps){			
+				if(IDs.JD_WINDOW.equals(comp.getId())){							
+					Collection<Component> fellows = comp.getFellows();
+					for(Component fellow:fellows){
+						jdMap.put(fellow.getId(), fellow);					
+					}
+					break;
+				}			
+			}
+			JobDetail jd = new JobDetail();
+			String[] fields = {IDs.JD_CMPY_NAME,IDs.JD_OCCUPATION,IDs.JD_WORK_NATURE,IDs.JD_YRS_PRES_EMP,
+					   IDs.JD_TWY,IDs.JD_GMI,IDs.JD_SPOUSE_LN, IDs.JD_SPOUSE_GN,IDs.JD_SPOUSE_MN,
+					   IDs.JD_SPOUSE_DOB};
+			
+			Helper.setProperties(jd,fields,jdMap);
+			
+			List<Fund> funds = new ArrayList<Fund>();
+			jd.setSourceOfFunds(funds);
+			if(((Checkbox)jdMap.get(IDs.JD_EMPLOYMENT)).isChecked())jd.getSourceOfFunds().add(new Fund("EMP","Employment"));
+			if(((Checkbox)jdMap.get(IDs.JD_INVESTMENT)).isChecked())jd.getSourceOfFunds().add(new Fund("INV","Investment"));
+			if(((Checkbox)jdMap.get(IDs.JD_SELF_EMP)).isChecked())jd.getSourceOfFunds().add(new Fund("SEM","Self-Employment"));
+			if(((Checkbox)jdMap.get(IDs.JD_UNEMP)).isChecked())jd.getSourceOfFunds().add(new Fund("UEM","Un-Employed"));
+			if(((Checkbox)jdMap.get(IDs.JD_RETIRED)).isChecked())jd.getSourceOfFunds().add(new Fund("RET","Retired"));
+			if(((Checkbox)jdMap.get(IDs.JD_OTHERS_CHKBOX)).isChecked())jd.getSourceOfFunds().add(new Fund("OTH",((Textbox)jdMap.get(IDs.JD_OTHERS_TXTBOX)).getValue()));
+			
+			
+		}
+	
+	
 
-	public void fillupCreditCardDetails(Application app){		
+	public void composeCardDetails(Application app){		
 		logger.debug("*** fillupCreditCardDetails...");		
 		Collection<Component> comps =  ccDetailPanel.getPage().getDesktop().getComponents();
 		logger.debug("Desktop no. of components : " + comps.size());
@@ -122,7 +166,7 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 		//if(app.getCreditCards().size()==0){app.setCreditCards(null);}
 	
 		if(app.isAcceptSaveAndSwipe()){
-			fillupSaveAndSwipe(app); 
+			composeSaveAndSwipe(app); 
 			
 		}
 		logger.debug("*** fillupCreditCardDetails...finished!");		
@@ -166,13 +210,13 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 	}
 	
 	
-	public void fillupSaveAndSwipe(Application app){
+	public void composeSaveAndSwipe(Application app){
 		logger.debug("*** fillupSaveAndSwipe...");		
 		Collection<Component> comps =  ccDetailPanel.getPage().getDesktop().getComponents();
 		Map<String,Component> ssMap = new LinkedHashMap<String, Component>();		
 		for(Component comp:comps){			
-			if("saveAndSwipePage".equals(comp.getId())
-					|| "doaPage".equals(comp.getId())
+			if(IDs.SS_WINDOW.equals(comp.getId())
+					|| IDs.DOA_WINDOW.equals(comp.getId())
 					){							
 				Collection<Component> fellows = comp.getFellows();
 				for(Component fellow:fellows){

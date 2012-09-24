@@ -56,7 +56,7 @@ public class SaveAndSwipeViewCtrl extends GenericForwardComposer {
 		pledgeNo_chkbox.setChecked(!pledgeYes_chkbox.isChecked());
 		Collection<Component> comps =  this.getPage().getDesktop().getComponents();
 		for(Component comp:comps){			
-			if(IDs.DOA_PAGE.equals(comp.getId())){
+			if(IDs.DOA_WINDOW.equals(comp.getId())){
 				Collection<Component> fellows = comp.getFellows();
 				for(Component fellow:fellows){
 					if(IDs.DOA_PLEDGE_DIV.equals(fellow.getId())){
@@ -72,7 +72,7 @@ public class SaveAndSwipeViewCtrl extends GenericForwardComposer {
 		pledgeYes_chkbox.setChecked(!pledgeNo_chkbox.isChecked());
 		Collection<Component> comps =  this.getPage().getDesktop().getComponents();
 		for(Component comp:comps){			
-			if(IDs.DOA_PAGE.equals(comp.getId())){
+			if(IDs.DOA_WINDOW.equals(comp.getId())){
 				Collection<Component> fellows = comp.getFellows();
 				for(Component fellow:fellows){
 					if(IDs.DOA_PLEDGE_DIV.equals(fellow.getId())){

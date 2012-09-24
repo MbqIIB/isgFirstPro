@@ -34,7 +34,11 @@ public class Fund implements Serializable{
   
   
   
-  public Fund(){}
+  public Fund(String code, String desc){
+	  this.fundCode = code;
+	  this.fundDesc = desc;
+	  
+  }
   
   
   
