@@ -37,8 +37,8 @@ public class MyDeliveryPaymentInstructionsViewCtrl extends
 	private Textbox deliveryPlace;
 	private Textbox paymentMode;
 	private Checkbox payCash_chkbox;
-	private Checkbox minAmount_chkbox;
-	private Checkbox totalAmount_chkbox;
+	private Checkbox minAmount;
+	private Checkbox totalAmount;
 	private Row preferredPaymentRow;
 	private Row deliveryLocRow;
 
@@ -52,7 +52,7 @@ public class MyDeliveryPaymentInstructionsViewCtrl extends
 		home_chkbox.setChecked(true);
 		payCash_chkbox.setChecked(true);
 		ada_div.setVisible(false);
-		minAmount_chkbox.setChecked(true);
+		minAmount.setChecked(true);
 		List<Component>toValidate = new ArrayList<Component>();
 		toValidate.add(deliveryLocRow);
 		toValidate.add(preferredPaymentRow);
@@ -142,11 +142,11 @@ public class MyDeliveryPaymentInstructionsViewCtrl extends
 	}
 	
 	public void onClick$minAmount_chkbox(){
-		totalAmount_chkbox.setChecked(false);
+		totalAmount.setChecked(false);
 	}
 	
 	public void onClick$totalAmount_chkbox(){
-		minAmount_chkbox.setChecked(false);
+		minAmount.setChecked(false);
 	}
 
 }
