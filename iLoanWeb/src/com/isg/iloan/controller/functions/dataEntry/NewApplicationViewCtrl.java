@@ -25,6 +25,7 @@ import org.zkoss.zul.Tabpanel;
 import org.zkoss.zul.Tabs;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Window;
+import org.zkoss.zul.impl.InputElement;
 
 import com.isg.iloan.commons.IDs;
 import com.isg.iloan.commons.Labels;
@@ -66,6 +67,7 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 	@Override
 	public void doAfterCompose(Component comp) throws Exception {
 		super.doAfterCompose(comp);
+		
 	}
 	
 	public void onClick$personalData(){
@@ -91,13 +93,8 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 	}
 	
 	public void onClick$newappSubmitButton(){
-		//extractPersonalDataDetails();
-		
-		Application app = new Application();
-		
-		//fillupCreditCardDetails(app);
-		//fillupSaveAndSwipe(app);
-		
+		boolean pdChecker = allPersonalDataDetailsValid();
+		logger.debug(pdChecker);
 	}
 
 	public void fillupCreditCardDetails(Application app){		
@@ -215,26 +212,24 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 	}
 	
 	
-	private void extractPersonalDataDetails() {
-		//Component personalDataForm = getComponent("personalDataInc");
-		//System.out.println(personalDataForm);
-		Component p = newApplicationWindow.getFellow("personalPanel");
-		System.out.println(p.getChildren().size());
-		String[] personalDataFields = {"familyName","givenName","middleName","nameOnCard","birthdate","placeOfBirth"};
-		
-		
-	}
-	
-	private Component getComponent(String id){
-		List<Component> components = newApplicationWindow.getChildren();
-		for(Component c: components){
-			System.out.println(c);
-			if(id.equals(c.getId())){
-				System.out.println(c);
-				return c;
+	private boolean allPersonalDataDetailsValid() {
+		Collection<Component> personalPanelComponents = personalPanel.getFellows();
+		for(Component compo: personalPanelComponents){
+			if("personalDataInc".equals(compo.getId())){
+				for(Component c: compo.getFellow(IDs.PD_WINDOW).getFellows()){
+					logger.debug(c.getAttribute("constraint"));
+					if(c instanceof InputElement){
+						if(((InputElement)c).getText().equals("")){
+							return false;
+						}
+					}
+					
+				}
 			}
 		}
-		return null;
+		
+		return true;
+		
 	}
 
 }

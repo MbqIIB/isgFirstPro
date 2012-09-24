@@ -38,7 +38,7 @@ public class PersonalData {
 	@Column(name="CIVILSTATUS")
 	private String civilStatus;
 	@Column(name="GENDER")
-	private char gender;
+	private String gender;
 	@Column(name="NATIONALITY")
 	private String nationality;
 	@Column(name="OTHERNATIONAL")
@@ -82,12 +82,16 @@ public class PersonalData {
 	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
 	@JoinColumn(name="HOME_ADDR_ID")
 	private Address homeAddress;
+	private String homeAddZip;
 	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
 	@JoinColumn(name="PERM_ADDR_ID")
 	private Address permanentAddress;	
+	private String permanentAddZip;
 	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
 	@JoinColumn(name="PERSON_REF_ADDR_ID")
 	private Address personalRefAddress;
+	private String otherNationality;
+
 	
 	public PersonalData(){}
 	
@@ -170,11 +174,11 @@ public class PersonalData {
 		this.civilStatus = civilStatus;
 	}
 
-	public char getGender() {
+	public String getGender() {
 		return gender;
 	}
 
-	public void setGender(char gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 
@@ -353,6 +357,31 @@ public class PersonalData {
 	public void setPersonalRefAddress(Address personalRefAddress) {
 		this.personalRefAddress = personalRefAddress;
 	}
+
+	public String getOtherNationality() {
+		return otherNationality;
+	}
+
+	public void setOtherNationality(String otherNationality) {
+		this.otherNationality = otherNationality;
+	}
+
+	public String getHomeAddZip() {
+		return homeAddZip;
+	}
+
+	public void setHomeAddZip(String homeAddZip) {
+		this.homeAddZip = homeAddZip;
+	}
+
+	public String getPermanentAddZip() {
+		return permanentAddZip;
+	}
+
+	public void setPermanentAddZip(String permanentAddZip) {
+		this.permanentAddZip = permanentAddZip;
+	}
+
 
 	
 

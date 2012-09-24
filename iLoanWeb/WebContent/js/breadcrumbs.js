@@ -16,8 +16,8 @@ function changeState(element) {
 		$(element).prepend('<div class="arrow-left-incomplete"></div>');
 	}
 	if ("#dass" != element) {
-		if ("#it" == element) {
-			$("#it div").each(
+		if ("#dpi" == element) {
+			$("#dpi div").each(
 				function(index) {
 					if ($(this).prop("class") == "arrow-right-undone") {
 						$(this).append('<div class="arrow-right-incomplete"></div>');
@@ -50,7 +50,7 @@ function validatedState(element, isValidated) {
 			$(element).prepend('<div class="arrow-left-done"></div>');
 		}
 		
-		if(element!="#it"){
+		if(element!="#dpi"){
 			$(element).append('<div class="arrow-right-done"></div>');
 		}
 		$(element + " span").removeClass("incomplete");
@@ -62,7 +62,7 @@ function validatedState(element, isValidated) {
 			$(element).prepend('<div class="arrow-left-incomplete"></div>');
 		}
 		
-		if(element!="#it"){
+		if(element!="#dpi"){
 			$(element).append('<div class="arrow-right-incomplete"></div>');
 		}
 		

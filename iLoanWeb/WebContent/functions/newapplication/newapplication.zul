@@ -65,18 +65,20 @@ apply="com.isg.iloan.controller.functions.dataEntry.NewApplicationViewCtrl"  >
 							</span>
 							<div class="arrow-right-undone"></div>
 						</li>
+						<li id="it">
+						<div class="arrow-left-undone"></div>
+							<span class="breadcrumb_item undone">
+								Internet Transaction
+							</span>
+						
+							<div class="arrow-right-undone"></div>
+						</li>
 						<li id="dpi">
 							<div class="arrow-left-undone"></div>
 							<span class="breadcrumb_item undone">
 								Delivery/Payment Instructions
 							</span>
-							<div class="arrow-right-undone"></div>
-						</li>
-						<li id="it">
-							<div class="arrow-left-undone"></div>
-							<span class="breadcrumb_item undone">
-								Internet Transaction
-							</span>
+							
 							
 						</li>
 						<!-- <li id="ss" class="initialHide">
@@ -102,8 +104,8 @@ apply="com.isg.iloan.controller.functions.dataEntry.NewApplicationViewCtrl"  >
         <tab id="personalData" label="Part B" tooltiptext="Personal Data"/>
         <tab id="jobDetail" label="Part C" tooltiptext="Job Detail" />
         <tab id="supplementaryDetail" label="Part D" tooltiptext="Supplementary Detail" />
-        <tab id="deliveryInstruction" label="Part E" tooltiptext="Delivery/Payment Instructions" />
-        <tab id="internetTransaction" label="Part F" tooltiptext="Internet Transactions"/>
+        <tab id="internetTransaction" label="Part E" tooltiptext="Internet Transactions"/>
+        <tab id="deliveryInstruction" label="Part F" tooltiptext="Delivery/Payment Instructions" />
         <!-- 
         <tab id="saveAndSwipe" label="Part G" visible="false" tooltiptext="SAVE &amp; SWIPE"/>
         <tab id="ssDeeds" label="Part H" visible="false" tooltiptext="DEEDS of ASSIGNMENT" /> 
@@ -111,23 +113,24 @@ apply="com.isg.iloan.controller.functions.dataEntry.NewApplicationViewCtrl"  >
     </tabs>    
     <tabpanels id="tabPanels" >
         <tabpanel id="ccDetailPanel" style="overflow-y:scroll;" >
-        	<include src="/functions/newapplication/creditCardDetailPanel.zul" mode="instant"/>
+        	<include src="/functions/newapplication/creditCardDetailPanel.zul"/>
         </tabpanel>
         <tabpanel id="personalPanel" fulfill="personalData.onClick" style="overflow-y:scroll;" >
-        	<include src="/functions/newapplication/personalData.zul" mode="instant" id="personalDataInc"/>        	
+        	<include src="/functions/newapplication/personalData.zul" id="personalDataInc"/>        	
         </tabpanel>
         <tabpanel fulfill="jobDetail.onSelect" style="overflow-y:scroll;" >
-        	<include src="/functions/newapplication/jobDetail.zul" mode="instant"/>
+        	<include src="/functions/newapplication/jobDetail.zul"/>
         </tabpanel>
         <tabpanel fulfill="supplementaryDetail.onSelect" style="overflow-y:scroll;">
-        	<include src="/functions/newapplication/supplementary.zul" mode="instant"/>
-        </tabpanel>
-        <tabpanel fulfill="deliveryInstruction.onSelect" style="overflow-y:scroll;">
-        	<include src="/functions/newapplication/deliveryPaymentInstructions.zul" mode="instant"/>
+        	<include src="/functions/newapplication/supplementary.zul"/>
         </tabpanel>
         <tabpanel fulfill="internetTransaction.onSelect" style="overflow-y:scroll;">
-			<include src="/functions/newapplication/internetTransaction.zul" mode="instant"/>
+			<include src="/functions/newapplication/internetTransaction.zul"/>
 		</tabpanel>
+        <tabpanel fulfill="deliveryInstruction.onSelect" style="overflow-y:scroll;">
+        	<include src="/functions/newapplication/deliveryPaymentInstructions.zul"/>
+        </tabpanel>
+      
 		<!-- 
         <tabpanel fulfill="saveAndSwipe.onSelect" style="overflow-y:scroll;">
         	<include src="/functions/newapplication/saveAndSwipe.zul"/>
