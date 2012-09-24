@@ -39,6 +39,7 @@ public class IDs {
 	public static final String OCC3_DOM = "occ3DOM";
 	
 	/*** ============== SAVE AND SWIPE ======================***/
+	public static final String SS_PAGE= "saveAndSwipePage";
 	public static final String SS_METROBANK_DEPOSITOR_CHKBOX = "metrobankDepositorYes_chkbox";
 	public static final String SS_DEPOSITOR_ACCT_NUM = "deposiorAccntNum_txtbox";
 	public static final String SS_DEPOSITOR_ACCT_BRANCH = "deposiorBranchOpened_txtbox";

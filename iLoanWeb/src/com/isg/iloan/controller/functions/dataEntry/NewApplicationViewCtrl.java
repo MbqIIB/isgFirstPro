@@ -3,6 +3,8 @@
  */
 package com.isg.iloan.controller.functions.dataEntry;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -10,8 +12,10 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.WrongValueException;
 import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zk.ui.util.GenericForwardComposer;
 import org.zkoss.zul.Button;
@@ -95,12 +99,87 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 		
 		Application app = new Application();
 		
-		//fillupCreditCardDetails(app);
-		//fillupSaveAndSwipe(app);
+		//composeCreditCardDetails(app);
+		//composeSaveAndSwipe(app);
+		
+
+		Collection<Component> comps =  ccDetailPanel.getPage().getDesktop().getComponents();
+		Map<String,Component> ssMap = new LinkedHashMap<String, Component>();		
+		for(Component comp:comps){			
+			if(IDs.SS_PAGE.equals(comp.getId())
+					|| IDs.DOA_PAGE.equals(comp.getId())
+					){							
+				Collection<Component> fellows = comp.getFellows();
+				for(Component fellow:fellows){
+					ssMap.put(fellow.getId(), fellow);					
+				}
+				break;
+			}			
+		}
+		
+		SaveAndSwipe ss = new SaveAndSwipe();
+		//setProperties(ss,ssMap);
+		
+		logger.debug("Depositor Account # : " + ss.getAccountNum());
 		
 	}
+	
+	public void setProperties(Object obj, Map<String,Component> map){
+			
+			String[] fields = {"deposiorAccntNum_txtbox"};
+			String rightMethodName = "AccountNum";
+			
+			
+		    
+			
+			//logger.debug("Obj field size: " + objFields.length);
+			
+			for(int i=0;i<fields.length;i++){
+				Component comp = map.get(fields[i]);
+				if(comp instanceof Textbox){
+					try {
+						Method[] methods = obj.getClass().getMethods();
+						for(int k=0;k<methods.length;k++){
+							Method method = methods[k];
+							String methodName = method.getName();
+							logger.debug("methodName: " + methodName);														
+							if(methodName.startsWith("set") && methodName.indexOf(rightMethodName)>0){
+								logger.debug("component value: " + ((Textbox)comp).getValue());
+								method.invoke(obj, ((Textbox)comp).getValue());
+								break;
+							}
+							
+						}
+						
+						//BeanUtils.setProperty("", "", "");
+						
+						
+					} catch (SecurityException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (WrongValueException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IllegalArgumentException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IllegalAccessException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (InvocationTargetException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+		}
+	
+	
+	
+	
+	
 
-	public void fillupCreditCardDetails(Application app){		
+	public void composeCardDetails(Application app){		
 		logger.debug("*** fillupCreditCardDetails...");		
 		Collection<Component> comps =  ccDetailPanel.getPage().getDesktop().getComponents();
 		logger.debug("Desktop no. of components : " + comps.size());
@@ -125,11 +204,15 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 		//if(app.getCreditCards().size()==0){app.setCreditCards(null);}
 	
 		if(app.isAcceptSaveAndSwipe()){
-			fillupSaveAndSwipe(app); 
+			composeSaveAndSwipe(app); 
 			
 		}
 		logger.debug("*** fillupCreditCardDetails...finished!");		
 	}
+	
+	
+	
+	
 	
 	public void composedCreditCard(Application app, Map<String,Component> ccDetailsMap){
 		CreditCard creditcard;		
@@ -169,13 +252,13 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 	}
 	
 	
-	public void fillupSaveAndSwipe(Application app){
+	public void composeSaveAndSwipe(Application app){
 		logger.debug("*** fillupSaveAndSwipe...");		
 		Collection<Component> comps =  ccDetailPanel.getPage().getDesktop().getComponents();
 		Map<String,Component> ssMap = new LinkedHashMap<String, Component>();		
 		for(Component comp:comps){			
-			if("saveAndSwipePage".equals(comp.getId())
-					|| "doaPage".equals(comp.getId())
+			if(IDs.SS_PAGE.equals(comp.getId())
+					|| IDs.DOA_PAGE.equals(comp.getId())
 					){							
 				Collection<Component> fellows = comp.getFellows();
 				for(Component fellow:fellows){
