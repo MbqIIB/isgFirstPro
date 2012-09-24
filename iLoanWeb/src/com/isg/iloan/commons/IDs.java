@@ -39,13 +39,14 @@ public class IDs {
 	public static final String OCC3_DOM = "occ3DOM";
 
 	/*** ============== SAVE AND SWIPE ====================== ***/
+	public static final String SS_WINDOW = "saveAndSwipeWindow";
 	public static final String SS_METROBANK_DEPOSITOR_CHKBOX = "metrobankDepositorYes_chkbox";
 	public static final String SS_DEPOSITOR_ACCT_NUM = "deposiorAccntNum_txtbox";
 	public static final String SS_DEPOSITOR_ACCT_BRANCH = "deposiorBranchOpened_txtbox";
 	public static final String SS_PLEDGE_CHKBOX = "pledgeYes_chkbox";
 
 	/*** ============== DOA for SAVE AND SWIPE ====================== ***/
-	public static final String DOA_PAGE = "doaPage";
+	public static final String DOA_WINDOW = "doaWindow";
 	public static final String DOA_ISSUANCE_CHKBOX = "issuance_chkbox";
 	public static final String DOA_CHANGE_DEP_CHKBOX = "changeDepInst_chkbox";
 	public static final String DOA_INCDEC_LIMIT_CHKBOX = "incDecCreditLimit_chkbox";
