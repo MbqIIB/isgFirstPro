@@ -52,6 +52,7 @@ public class PersonalDataViewCtrl extends GenericForwardComposer {
 		}
 		return arrayList;
 	}
+	
 	private void validateForm(List<InputElement> elements){
 		boolean hasInvalid = false;
 		for(InputElement e: elements){
@@ -66,6 +67,7 @@ public class PersonalDataViewCtrl extends GenericForwardComposer {
 	}
 	
 	private void bindValidationOnClick(Component comp){
+		if(null!=comp){
 		Component parent = comp.getParent();
 		if(parent instanceof Tabbox){
 			for(Component c: parent.getChildren()){
@@ -84,7 +86,9 @@ public class PersonalDataViewCtrl extends GenericForwardComposer {
 			}
 			return;
 		}
-		bindValidationOnClick(parent.getParent());
+		
+			bindValidationOnClick(parent.getParent());
+		}
 	}
 
 }

@@ -66,7 +66,7 @@ apply="com.isg.iloan.controller.functions.dataEntry.NewApplicationViewCtrl"  >
 							<div class="arrow-right-undone"></div>
 						</li>
 						<li id="dpi">
-							<div class="arrow-left-undone"></div>
+						<div class="arrow-left-undone"></div>
 							<span class="breadcrumb_item undone">
 								Delivery/Payment Instructions
 							</span>
@@ -77,6 +77,7 @@ apply="com.isg.iloan.controller.functions.dataEntry.NewApplicationViewCtrl"  >
 							<span class="breadcrumb_item undone">
 								Internet Transaction
 							</span>
+							
 							
 						</li>
 						<!-- <li id="ss" class="initialHide">
@@ -102,8 +103,8 @@ apply="com.isg.iloan.controller.functions.dataEntry.NewApplicationViewCtrl"  >
         <tab id="personalData" label="Part B" tooltiptext="Personal Data"/>
         <tab id="jobDetail" label="Part C" tooltiptext="Job Detail" />
         <tab id="supplementaryDetail" label="Part D" tooltiptext="Supplementary Detail" />
-        <tab id="deliveryInstruction" label="Part E" tooltiptext="Delivery/Payment Instructions" />
-        <tab id="internetTransaction" label="Part F" tooltiptext="Internet Transactions"/>
+        <tab id="internetTransaction" label="Part E" tooltiptext="Internet Transactions"/>
+        <tab id="deliveryInstruction" label="Part F" tooltiptext="Delivery/Payment Instructions" />
         <!-- 
         <tab id="saveAndSwipe" label="Part G" visible="false" tooltiptext="SAVE &amp; SWIPE"/>
         <tab id="ssDeeds" label="Part H" visible="false" tooltiptext="DEEDS of ASSIGNMENT" /> 
@@ -124,10 +125,11 @@ apply="com.isg.iloan.controller.functions.dataEntry.NewApplicationViewCtrl"  >
         </tabpanel>
         <tabpanel fulfill="deliveryInstruction.onSelect" style="overflow-y:scroll;" id="instructionTabPanel">
         	<include src="/functions/newapplication/deliveryPaymentInstructions.zul" mode="instant"/>
-        </tabpanel>
+		</tabpanel>
         <tabpanel fulfill="internetTransaction.onSelect" style="overflow-y:scroll;" id="internetTabPanel" >
 			<include src="/functions/newapplication/internetTransaction.zul" mode="instant"/>
-		</tabpanel>
+        </tabpanel>
+      
 		<!-- 
         <tabpanel fulfill="saveAndSwipe.onSelect" style="overflow-y:scroll;">
         	<include src="/functions/newapplication/saveAndSwipe.zul"/>

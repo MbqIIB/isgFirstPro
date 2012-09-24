@@ -41,16 +41,16 @@ ul#breadcrumbs_list li .breadcrumb_item:hover {
 
 .arrow-right-done {
     border-bottom: 13px solid transparent;
-    border-left: 12px solid #195E19;
+    border-left: 12px solid #78D353;
     border-top: 13px solid transparent;
     float: right;
     width: 0;
 }
 
 .arrow-left-done {
-	border-bottom: 13px solid #195E19;
+	border-bottom: 13px solid #78D353;
 	border-left: 12px solid transparent;
-	border-top: 13px solid #195E19;
+	border-top: 13px solid #78D353;
 	float: left;
 	width: 0;
 }
@@ -58,7 +58,7 @@ ul#breadcrumbs_list li .breadcrumb_item:hover {
 .arrow-down-done {
 	border-left: 13px solid transparent;
 	border-right: 13px solid transparent;
-	border-top: 7px solid #195E19;
+	border-top: 7px solid #78D353;
 	height: 0;
 	width: 0;
 	clear: both;
@@ -68,7 +68,7 @@ ul#breadcrumbs_list li .breadcrumb_item:hover {
 .arrow-down-incomplete {
 	border-left: 13px solid transparent;
 	border-right: 13px solid transparent;
-	border-top: 7px solid #D9E5EF;
+	border-top: 7px solid #CADBC3;
 	height: 0;
 	width: 0;
 	clear: both;
@@ -94,33 +94,33 @@ ul#breadcrumbs_list li .breadcrumb_item:hover {
 
 .arrow-right-incomplete {
 	border-bottom: 13px solid transparent;
-	border-left: 12px solid #D9E5EF;
+	border-left: 12px solid #CADBC3;
 	border-top: 13px solid transparent;
 	float: right;
 	width: 0;
 }
 
 .arrow-left-incomplete {
-	border-bottom: 13px solid #D9E5EF;
+	border-bottom: 13px solid #CADBC3;
 	border-left: 12px solid transparent;
-	border-top: 13px solid #D9E5EF;
+	border-top: 13px solid #CADBC3;
 	float: left;
 	width: 0;
 }
 
 span.done {
-	background-color: #195E19;
+	background-color: #78D353;
 	color: #FFFFFF;
 }
 
 span.undone {
 	background-color: #F5F5F5;
-	color: #195E19;
+	color: #CADBC3;
 }
 
 span.incomplete {
-	background-color: #D9E5EF;
-	color: #195E19;
+	background-color: #CADBC3;
+	color: #0EA00E;
 }
 
 ul#breadcrumbs_list li .active {
