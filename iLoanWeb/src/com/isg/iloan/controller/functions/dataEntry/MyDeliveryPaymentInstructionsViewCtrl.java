@@ -49,7 +49,10 @@ public class MyDeliveryPaymentInstructionsViewCtrl extends
 	@Override
 	public void doAfterCompose(Component comp) throws Exception {
 		super.doAfterCompose(comp);
+		home_chkbox.setChecked(true);
+		payCash_chkbox.setChecked(true);
 		ada_div.setVisible(false);
+		minAmount_chkbox.setChecked(true);
 		List<Component>toValidate = new ArrayList<Component>();
 		toValidate.add(deliveryLocRow);
 		toValidate.add(preferredPaymentRow);
@@ -129,13 +132,13 @@ public class MyDeliveryPaymentInstructionsViewCtrl extends
 	public void onClick$ada_chkbox(){
 		payCash_chkbox.setChecked(!ada_chkbox.isChecked());
 		paymentMode.setValue(ada_chkbox.isChecked()?Labels.INS_ADA:Labels.INS_CASH_CHECK);
-		ada_div.setVisible(true);
+		ada_div.setVisible(ada_chkbox.isChecked());
 	}
 	
 	public void onClick$payCash_chkbox(){
 		ada_chkbox.setChecked(!payCash_chkbox.isChecked());
 		paymentMode.setValue(payCash_chkbox.isChecked()?Labels.INS_CASH_CHECK:Labels.INS_ADA);
-		ada_div.setVisible(false);
+		ada_div.setVisible(!payCash_chkbox.isChecked());
 	}
 	
 	public void onClick$minAmount_chkbox(){
