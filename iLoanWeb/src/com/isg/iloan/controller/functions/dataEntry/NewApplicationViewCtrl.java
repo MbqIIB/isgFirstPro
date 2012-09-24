@@ -110,6 +110,30 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 	public void onClick$newappSubmitButton(){
 		boolean pdChecker = allPersonalDataDetailsValid();
 		logger.debug(pdChecker);
+		
+		
+		Application app = new Application();
+		composeCardDetails(app);
+		try {
+			composeJobDetail(app);
+			
+			
+		} catch (WrongValueException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
 	}
 	
 	
