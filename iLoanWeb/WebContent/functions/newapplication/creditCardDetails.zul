@@ -13,8 +13,8 @@
 			<rows>
 				<row>
 					<hlayout id="cbLayout">
-						<textbox id="creditCardTypeCode" visible="false" value=""/>
-						<textbox id="creditCardTypeDesc" visible="false" value=""/>
+						<textbox id="creditCardTypeCode" visible="false" />
+						<textbox id="creditCardTypeDesc" visible="false" />
 						<hbox>
 							<vlayout>
 								<checkbox id="classicMasterCard"

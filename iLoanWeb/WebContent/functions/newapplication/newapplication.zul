@@ -119,13 +119,13 @@ apply="com.isg.iloan.controller.functions.dataEntry.NewApplicationViewCtrl"  >
         <tabpanel fulfill="jobDetail.onSelect" style="overflow-y:scroll;" id="jobDetailTabPanel" >
         	<include src="/functions/newapplication/jobDetail.zul" mode="instant"/>
         </tabpanel>
-        <tabpanel fulfill="supplementaryDetail.onSelect" style="overflow-y:scroll;">
+        <tabpanel fulfill="supplementaryDetail.onSelect" style="overflow-y:scroll;" id="supplementaryTabPanel">
         	<include src="/functions/newapplication/supplementary.zul" mode="instant"/>
         </tabpanel>
-        <tabpanel fulfill="deliveryInstruction.onSelect" style="overflow-y:scroll;">
+        <tabpanel fulfill="deliveryInstruction.onSelect" style="overflow-y:scroll;" id="instructionTabPanel">
         	<include src="/functions/newapplication/deliveryPaymentInstructions.zul" mode="instant"/>
         </tabpanel>
-        <tabpanel fulfill="internetTransaction.onSelect" style="overflow-y:scroll;">
+        <tabpanel fulfill="internetTransaction.onSelect" style="overflow-y:scroll;" id="internetTabPanel" >
 			<include src="/functions/newapplication/internetTransaction.zul" mode="instant"/>
 		</tabpanel>
 		<!-- 
