@@ -72,7 +72,7 @@ public class PersonalData {
 
 	
 	@Column(name="DRIVER_LICENSE")
-	private String driverLicenceNum;
+	private String driverLicenseNum;
 	@Column(name="PASSPORT_NUM")
 	private String passportNum;
 	@Column(name="PRC_ID")
@@ -348,13 +348,7 @@ public class PersonalData {
 		this.personalRefAddress = personalRefAddress;
 	}
 
-	public String getDriverLicenceNum() {
-		return driverLicenceNum;
-	}
-
-	public void setDriverLicenceNum(String driverLicenceNum) {
-		this.driverLicenceNum = driverLicenceNum;
-	}
+	
 
 	public String getPassportNum() {
 		return passportNum;
@@ -378,6 +372,14 @@ public class PersonalData {
 
 	public void setOtherID(String otherID) {
 		this.otherID = otherID;
+	}
+
+	public String getDriverLicenseNum() {
+		return driverLicenseNum;
+	}
+
+	public void setDriverLicenseNum(String driverLicenseNum) {
+		this.driverLicenseNum = driverLicenseNum;
 	}
 
 	

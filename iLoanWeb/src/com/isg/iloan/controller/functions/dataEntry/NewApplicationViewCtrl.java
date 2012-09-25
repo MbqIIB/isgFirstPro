@@ -48,6 +48,8 @@ import com.isg.iloan.model.dataEntry.SaveAndSwipe;
 import com.isg.iloan.model.dataEntry.Supplementary;
 import com.isg.iloan.service.ApplicationService;
 import com.isg.iloan.service.ApplicationServiceImpl;
+import com.isg.iloan.service.JobDetailService;
+import com.isg.iloan.service.JobDetailServiceImpl;
 
 /**
  * @author augusto.marte
@@ -115,20 +117,23 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 		   return  (ApplicationService)SpringUtil.getBean("applicationService", ApplicationServiceImpl.class);
 		}
 	
+	
 	public void onClick$newappSubmitButton(){
 		//boolean pdChecker = allPersonalDataDetailsValid();
 		//logger.debug(pdChecker);
 		
 		
-		Application app = new Application();
-		composeCardDetails(app);
 		try {
-			//composePersonalData(app);
-			//composeJobDetail(app);			
-			//composeSupplementary(app);
-			//composeInstruction(app);
+			Application app = new Application();
+			composeCardDetails(app);
+			composePersonalData(app);
+			composeJobDetail(app);			
+			composeSupplementary(app);
+			composeInstruction(app);
 			
-			//getService().createApplication(app);
+			getService().createApplication(app);
+			
+			
 			
 		} catch (WrongValueException e) {
 			// TODO Auto-generated catch block
@@ -138,13 +143,13 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
-//		catch (IllegalAccessException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (InvocationTargetException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 		
@@ -158,12 +163,11 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 		String[] fields = {IDs.PD_FAMILY_NAME,IDs.PD_GIVEN_NAME,IDs.PD_MIDDLE_NAME, IDs.PD_NAME_ON_CARD,
 						   IDs.PD_BIRTH_DATE, IDs.PD_PLACE_OF_BIRTH,IDs.PD_CIVIL_STATUS, IDs.PD_GENDER,
 						   IDs.PD_NATIONALITY, IDs.PD_OTHER_NATIONAL, IDs.PD_MOBILE_NUM, IDs.PD_EMAIL,
-						   IDs.PD_HOME_TEL_NUM, IDs.PD_MOTHER_FULL_NAME, IDs.PD_NUM_OF_CHILDREN, IDs.PD_HOME_OWNERSHIP,
+						   IDs.PD_MOTHER_FULL_NAME, IDs.PD_NUM_OF_CHILDREN, IDs.PD_HOME_OWNERSHIP,
 						   IDs.PD_LENGTH_OF_STAY, IDs.PD_NUM_OF_CARS, IDs.PD_CAR_MODEL_YR, IDs.PD_EDUCATION,
 						   IDs.PD_TIN_NUM, IDs.PD_SSS_MEMBER, IDs.PD_GSIS_MEMBER, IDs.PD_SSS_GSIS_NUM, IDs.PD_PRC_ID,
 						   IDs.PD_OTHER_ID, IDs.PD_DRIVER_LICENSE_NUM, IDs.PD_PASSPORT_NUM, IDs.PD_PERSON_REF_NAME,
 						   IDs.PD_PERSONAL_REF_RELATION};
-		
 		
 		
 		Collection<Component> comps =  personalPanel.getPage().getDesktop().getComponents();
@@ -179,13 +183,13 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 				Address addr;
 				addr = new Address();
 				addr.setAddressLine1(((Textbox)window.getFellow(IDs.PD_HOME_ADDRESS)).getValue());
-				addr.setZipCode(((Textbox)window.getFellow(IDs.PD_HOME_ZIP_CODE)).getValue());
+				addr.setZipCode(((Intbox)window.getFellow(IDs.PD_HOME_ZIP_CODE)).getValue());
 				addr.setHomeAddress(true);
 				addr.setPermanentAddress(false);
 				personalData.setHomeAddress(addr);
 				addr = new Address();
 				addr.setAddressLine1(((Textbox)window.getFellow(IDs.PD_PERMANENT_ADDRESS)).getValue());
-				addr.setZipCode(((Textbox)window.getFellow(IDs.PD_PERM_ZIP_CODE)).getValue());
+				addr.setZipCode(((Intbox)window.getFellow(IDs.PD_PERM_ZIP_CODE)).getValue());
 				addr.setHomeAddress(false);
 				addr.setPermanentAddress(true);
 				personalData.setPermanentAddress(addr);
@@ -218,21 +222,20 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 					Address addr = new Address();			
 					addr.setAddressLine1(((Textbox)window.getFellow(IDs.JD_BUSS_ADDR)).getValue());
 					addr.setTelNum(((Textbox)window.getFellow(IDs.JD_TEL)).getValue());
-					addr.setZipCode(((Textbox)window.getFellow(IDs.JD_ZIPCODE)).getValue());
+					addr.setZipCode(((Intbox)window.getFellow(IDs.JD_ZIPCODE)).getValue());
 					addr.setHomeAddress(false);
 					addr.setPermanentAddress(false);
 					jd.setBusinessAddress(addr);
 					
-					
 					List<Fund> funds = new ArrayList<Fund>();
 					jd.setSourceOfFunds(funds);
-					if(((Checkbox)window.getFellow(IDs.JD_EMPLOYMENT)).isChecked())jd.getSourceOfFunds().add(new Fund("EMP","Employment"));
-					if(((Checkbox)window.getFellow(IDs.JD_INVESTMENT)).isChecked())jd.getSourceOfFunds().add(new Fund("INV","Investment"));
-					if(((Checkbox)window.getFellow(IDs.JD_SELF_EMP)).isChecked())jd.getSourceOfFunds().add(new Fund("SEM","Self-Employment"));
-					if(((Checkbox)window.getFellow(IDs.JD_UNEMP)).isChecked())jd.getSourceOfFunds().add(new Fund("UEM","Un-Employed"));
-					if(((Checkbox)window.getFellow(IDs.JD_RETIRED)).isChecked())jd.getSourceOfFunds().add(new Fund("RET","Retired"));
+					if(((Checkbox)window.getFellow(IDs.JD_EMPLOYMENT)).isChecked())jd.addFundSource(new Fund("EMP","Employment"));
+					if(((Checkbox)window.getFellow(IDs.JD_INVESTMENT)).isChecked())jd.addFundSource(new Fund("INV","Investment"));
+					if(((Checkbox)window.getFellow(IDs.JD_SELF_EMP)).isChecked())jd.addFundSource(new Fund("SEM","Self-Employment"));
+					if(((Checkbox)window.getFellow(IDs.JD_UNEMP)).isChecked())jd.addFundSource(new Fund("UEM","Un-Employed"));
+					if(((Checkbox)window.getFellow(IDs.JD_RETIRED)).isChecked())jd.addFundSource(new Fund("RET","Retired"));
 					if(((Checkbox)window.getFellow(IDs.JD_OTHERS_CHKBOX)).isChecked()){
-						jd.getSourceOfFunds().add(new Fund("OTH",((Textbox)window.getFellow(IDs.JD_OTHERS_TXTBOX)).getValue()));
+						jd.addFundSource(new Fund("OTH",((Textbox)window.getFellow(IDs.JD_OTHERS_TXTBOX)).getValue()));
 					}
 					
 					app.setJobDetail(jd);
@@ -260,7 +263,7 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 				Address addr = new Address();
 				addr.setHomeAddress(true);
 				addr.setAddressLine1(((Textbox)window.getFellow(IDs.SUPP_ADDR)).getValue());
-				addr.setZipCode(((Textbox)window.getFellow(IDs.SUPP_ZIPCODE)).getValue());
+				addr.setZipCode(((Intbox)window.getFellow(IDs.SUPP_ZIPCODE)).getValue());
 				supp.setHomeAddress(addr);
 				app.setSupplementary(supp);
 				break;
@@ -351,7 +354,7 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 				creditcard.setCreditCardLimit(cardLimit==null?0:Long.parseLong(cardLimit));
 				creditcard.setDateOfMembership(membershipDate);
 				creditcard.setCardCompany(Labels.MCC);
-				app.getCreditCards().add(creditcard);
+				app.addCreditCard(creditcard);
 			}else{break;}			
 			
 		}
@@ -368,7 +371,7 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 				creditcard.setCreditCardLimit(cardLimit==null?0:Long.parseLong(cardLimit));
 				creditcard.setDateOfMembership(membershipDate);
 				creditcard.setCardCompany(cardCompany);
-				app.getCreditCards().add(creditcard);
+				app.addCreditCard(creditcard);
 			}else{break;}			
 			
 		}
@@ -378,45 +381,52 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 	public void composeSaveAndSwipe(Application app){
 		logger.debug("*** fillupSaveAndSwipe...");		
 		Collection<Component> comps =  ccDetailPanel.getPage().getDesktop().getComponents();
-		Map<String,Component> ssMap = new LinkedHashMap<String, Component>();		
-		for(Component comp:comps){			
-			if(IDs.SS_WINDOW.equals(comp.getId())
-					|| IDs.DOA_WINDOW.equals(comp.getId())
-					){							
-				Collection<Component> fellows = comp.getFellows();
-				for(Component fellow:fellows){
-					ssMap.put(fellow.getId(), fellow);					
-				}
-				break;
-			}			
-		}
+		//Map<String,Component> ssMap = new LinkedHashMap<String, Component>();	
 		SaveAndSwipe ss = new SaveAndSwipe();
-		ss.setMetrobankDepositor(((Checkbox)ssMap.get(IDs.SS_METROBANK_DEPOSITOR_CHKBOX)).isChecked());
-		if(ss.isMetrobankDepositor()){
-			ss.setAccountNum(((Textbox)ssMap.get(IDs.SS_DEPOSITOR_ACCT_NUM)).getValue());
-			ss.setAccountNum(((Textbox)ssMap.get(IDs.SS_DEPOSITOR_ACCT_BRANCH)).getValue());			
+		for(Component window:comps){			
+			if(IDs.SS_WINDOW.equals(window.getId())){
+				
+				ss.setMetrobankDepositor(((Checkbox)window.getFellow(IDs.SS_METROBANK_DEPOSITOR_CHKBOX)).isChecked());
+				if(ss.isMetrobankDepositor()){
+					ss.setAccountNum(((Textbox)window.getFellow(IDs.SS_DEPOSITOR_ACCT_NUM)).getValue());
+					ss.setAccountNum(((Textbox)window.getFellow(IDs.SS_DEPOSITOR_ACCT_BRANCH)).getValue());			
+				}
+				ss.setAcceptPledge(((Checkbox)window.getFellow(IDs.SS_PLEDGE_CHKBOX)).isChecked());				
+				break;
+			}
+					
 		}
-		ss.setAcceptPledge(((Checkbox)ssMap.get(IDs.SS_PLEDGE_CHKBOX)).isChecked());
 		
-		DeedsOfAssignment doa = new DeedsOfAssignment();
-		doa.setIssuance(((Checkbox)ssMap.get(IDs.DOA_ISSUANCE_CHKBOX)).isChecked());
-		doa.setChangeDepInst(((Checkbox)ssMap.get(IDs.DOA_CHANGE_DEP_CHKBOX)).isChecked());
-		doa.setIncDecCreditLimit(((Checkbox)ssMap.get(IDs.DOA_INCDEC_LIMIT_CHKBOX)).isChecked());
-		if(doa.isIncDecCreditLimit()){
-			doa.setIncDecCreditLimitValue(((Textbox)ssMap.get(IDs.DOA_INCDEC_LIMIT)).getValue());
-		}
+		
 		if(ss.isAcceptPledge()){
-			doa.setPledgedAccountTypeCode(((Textbox)ssMap.get(IDs.DOA_PLEDGE_ACCNT_CODE)).getValue());
-			doa.setPledgedAccountTypeDesc(((Textbox)ssMap.get(IDs.DOA_PLEDGE_ACCNT_DESC)).getValue());
-			doa.setPledgedAccntSpecial(((Checkbox)ssMap.get(IDs.DOA_SPECIAL_ACCNT)).isChecked());
-			doa.setPledgedAccountNum(((Textbox)ssMap.get(IDs.DOA_PLEDGE_ACCNT_NUM)).getValue());
-			doa.setPledgedAccntDepoBranch(((Textbox)ssMap.get(IDs.DOA_PLEDGE_DEPO_BRANCH)).getValue());
-			doa.setPledgedAmountWords(((Textbox)ssMap.get(IDs.DOA_PLEDGE_AMT_WORDS)).getValue());
-			doa.setPledgedAmount(Long.parseLong(((Textbox)ssMap.get(IDs.DOA_PLEDGE_AMT)).getValue()));
-			doa.setDateApplied(((Datebox)ssMap.get(IDs.DOA_DATE_APPLIED)).getValue());
-			doa.setMetrobankBranchNameCode(((Textbox)ssMap.get(IDs.DOA_METROBANK_BRANCH)).getValue());
+			
+			for(Component window:comps){			
+				if(IDs.DOA_WINDOW.equals(window.getId())){
+					DeedsOfAssignment doa = new DeedsOfAssignment();
+					doa.setIssuance( ((Checkbox)window.getFellow(IDs.DOA_ISSUANCE_CHKBOX)).isChecked());
+					doa.setChangeDepInst(((Checkbox)window.getFellow(IDs.DOA_CHANGE_DEP_CHKBOX)).isChecked());
+					doa.setIncDecCreditLimit(((Checkbox)window.getFellow(IDs.DOA_INCDEC_LIMIT_CHKBOX)).isChecked());
+					if(doa.isIncDecCreditLimit()){
+						doa.setIncDecCreditLimitValue(((Textbox)window.getFellow(IDs.DOA_INCDEC_LIMIT)).getValue());
+					}					
+					doa.setPledgedAccountTypeCode(((Textbox)window.getFellow(IDs.DOA_PLEDGE_ACCNT_CODE)).getValue());
+					doa.setPledgedAccountTypeDesc(((Textbox)window.getFellow(IDs.DOA_PLEDGE_ACCNT_DESC)).getValue());
+					doa.setPledgedAccntSpecial(((Checkbox)window.getFellow(IDs.DOA_SPECIAL_ACCNT)).isChecked());
+					doa.setPledgedAccountNum(((Textbox)window.getFellow(IDs.DOA_PLEDGE_ACCNT_NUM)).getValue());
+					doa.setPledgedAccntDepoBranch(((Textbox)window.getFellow(IDs.DOA_PLEDGE_DEPO_BRANCH)).getValue());
+					doa.setPledgedAmountWords(((Textbox)window.getFellow(IDs.DOA_PLEDGE_AMT_WORDS)).getValue());
+					doa.setPledgedAmount(Long.parseLong(((Textbox)window.getFellow(IDs.DOA_PLEDGE_AMT)).getValue()));
+					doa.setDateApplied(((Datebox)window.getFellow(IDs.DOA_DATE_APPLIED)).getValue());
+					doa.setMetrobankBranchNameCode(((Textbox)window.getFellow(IDs.DOA_METROBANK_BRANCH)).getValue());
+					doa.setAcceptDOA(((Checkbox)window.getFellow(IDs.DOA_ACCEPTANCE)).isChecked());
+					
+					ss.setDoa(doa);
+					break;
+				}
+			}
+			
 		}		
-		doa.setAcceptDOA(((Checkbox)ssMap.get(IDs.DOA_ACCEPTANCE)).isChecked());
+		app.setSaveAndSwipe(ss);
 		logger.debug("*** fillupSaveAndSwipe...finished!");		
 	}
 	

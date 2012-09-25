@@ -69,14 +69,16 @@ public class JobDetail implements Serializable {
   
   public void addFundSource(Fund source){
 	  this.sourceOfFunds.add(source);
-	  if(this!=source.getJobDetail()){
+	  if(source.getJobDetail()!=this){
 		  source.setJobDetail(this);
 	  }
   }
   
   
   //Constructors
-  public JobDetail(){}
+  public JobDetail(){
+	  super();
+  }
 
 
 
