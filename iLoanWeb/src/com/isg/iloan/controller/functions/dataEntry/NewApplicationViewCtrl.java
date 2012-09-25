@@ -48,8 +48,7 @@ import com.isg.iloan.model.dataEntry.SaveAndSwipe;
 import com.isg.iloan.model.dataEntry.Supplementary;
 import com.isg.iloan.service.ApplicationService;
 import com.isg.iloan.service.ApplicationServiceImpl;
-import com.isg.iloan.service.JobDetailService;
-import com.isg.iloan.service.JobDetailServiceImpl;
+
 
 /**
  * @author augusto.marte
