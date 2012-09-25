@@ -4,9 +4,12 @@
 		.noteField{ font-size:10px;
 
 		}
+
+
 	</style>
 
-<window title="PERSONAL DATA" id="personalDataWindow" border="normal" width="98%" 
+
+<window title="PESONAL DATA" id="personalData" border="normal" width="98%" 
 		xmlns:h="http://www.w3.org/1999/xhtml" 
 		apply="com.isg.iloan.controller.functions.dataEntry.PersonalDataViewCtrl">
 
@@ -47,7 +50,7 @@
 							<caption label="Birth Date"/>
 							<hbox>
 								<vlayout>
-									<datebox id="birthDate"
+									<datebox id="birthdate"
 										lenient="true" buttonVisible="true" mold="rounded" constraint="between 20071225 and 29991231, no empty"/>
 									<label value="Place of birth" />
 									<textbox id="placeOfBirth"
@@ -64,7 +67,6 @@
 											label="Single" />
 										<checkbox id="married_chkbox"
 											label="Married" />
-										
 									</vlayout>
 								</hbox>
 								<hbox>
@@ -77,7 +79,6 @@
 
 									</vlayout>
 								</hbox>
-								<textbox visible="false" id="civilStatus"></textbox>
 							</hlayout>
 						</groupbox>
 
@@ -90,7 +91,6 @@
 										label="Male" />
 									<checkbox id="female_chkbox"
 										label="Female" />
-									<textbox id="gender" visible="false"/>
 								</vlayout>
 							</hbox>
 						</groupbox>
@@ -101,17 +101,16 @@
 									<checkbox id="filipino_chkbox"
 										label="Filipino" />
 									<hbox>
-										<checkbox id="otherNational"
+										<checkbox id="others_chkbox"
 											label="Others" />
 										<vbox>
-											<textbox id="otherNationality"
+											<textbox id="others_txtbox"
 												width="150" />
 											<label
 												value="(For foreigners, attached ACR &amp; ICR)"
 												sclass="noteField" />
 										</vbox>
 									</hbox>
-									<textbox id="nationality" visible="false"/>
 								</vlayout>
 							</hbox>
 						</groupbox>
@@ -124,10 +123,10 @@
 						<hlayout>
 							<vbox>
 								<label value="Mobile Phone No." />
-								<intbox id="mobilePhoneNum"
+								<intbox id="mobilePhoneNumber_txtbox"
 									width="140px" mold="rounded" constraint="no negative,no zero,no empty"/>
 								<label value="Email Address" />
-								<textbox id="emailAddress"
+								<textbox id="emailAddress_txtbox"
 									width="140px" mold="rounded"  constraint="/.+@.+\.[a-z]+/: Please enter an e-mail address"/>
 							</vbox>
 							<vbox>
@@ -135,12 +134,12 @@
 								<intbox id="homePhoneNumber_txtbox"
 									width="140px" mold="rounded" constraint="no negative,no zero,no empty"/>
 								<label value="Mother's full name" />
-								<textbox id="motherFullName"
+								<textbox id="motherFullname_txtbox"
 									width="140px" mold="rounded"  constraint="no empty"/>
 							</vbox>
 							<vbox>
 								<label value="No. of Children" />
-								<textbox id="numOfChildren"
+								<textbox id="numOfChildren_txtbox"
 									width="50px" mold="rounded" />
 							</vbox>
 						</hlayout>
@@ -151,11 +150,11 @@
 					<groupbox width="685px">
 						<caption label="Home Address" />
 						<hbox>
-							<textbox id="homeAddress"
+							<textbox id="homeAddress_txtbox"
 								width="460px" rows="3" mold="rounded" />
 							<vbox>
 								<label value="Zip code" />
-								<textbox id="zipCode"
+								<textbox id="zipCode_txtbox"
 									width="80px" mold="rounded" />
 							</vbox>
 						</hbox>
@@ -167,11 +166,11 @@
 						<caption
 							label="Permanent Address(if different from Home Address)" />
 						<hbox>
-							<textbox id="permanentAddress"
+							<textbox id="permAddress_txtbox"
 								width="460px" rows="3" mold="rounded" />
 							<vbox>
 								<label value="Zip code" />
-								<textbox id="permanentAddZip"
+								<textbox id="permAddressZipcode_txtbox"
 									width="80px" mold="rounded" />
 							</vbox>
 						</hbox>
@@ -181,7 +180,6 @@
 				<row>
 					<groupbox width="685px">
 						<caption label="Home Ownership" />
-						<textbox id="homeOwnership" visible="false"/>
 						<hbox>
 							<checkbox id="owned_chkbox" label="Owned" />
 							<space />
@@ -194,7 +192,7 @@
 								label="Living with parents/relatives" />
 							<space />
 							<label value="Length of stays:" />
-							<textbox id="lengthOfStays"
+							<textbox id="lengthofStays_txtbox"
 								width="50px" mold="rounded" />
 						</hbox>
 					</groupbox>
@@ -206,14 +204,14 @@
 						<hlayout>
 							<hbox>
 								<label value="Number of cars:" />
-								<textbox id="numOfCars"
+								<textbox id="numOfcars_txtbox"
 									width="50" mold="rounded" />
 							</hbox>
 							<space />
 							<space />
 							<hbox>
 								<label value="Model/Year:" />
-								<textbox id="carModelYear"
+								<textbox id="modelyear_txtbox"
 									width="150" mold="rounded" />
 							</hbox>
 						</hlayout>
@@ -222,7 +220,6 @@
 				<row>
 					<groupbox width="685px">
 						<caption label="Education" />
-						<textbox id="education" visible="false"/>
 						<hlayout>
 							<checkbox id="highschool_chkbox"
 								label="High School" />
@@ -245,15 +242,15 @@
 						<hlayout>
 							<vbox>
 								<label value="T.I.N" />
-								<textbox id="tinNum" width="100px"
+								<textbox id="tin_txtbox" width="100px"
 									mold="rounded" />
 								<hbox>
 									<checkbox id="sssNo_chkbox"
 										label="SSS" />
-									<checkbox id="sssMember"
+									<checkbox id="gsisNo_chkbox"
 										label="GSIS" />
 								</hbox>
-								<textbox id="gsisMember" width="100px"
+								<textbox id="sss_txtbox" width="100px"
 									mold="rounded" />
 							</vbox>
 							<groupbox>
@@ -277,8 +274,6 @@
 									</vbox>
 									<space width="4" />
 									<vbox>
-										<textbox id="otherIdCode" visible="false"/>
-										<textbox id="otherIdValue" visible="false"/>
 										<hbox>
 											<checkbox id="prcID_chkbox"
 												label="PRC ID" />
@@ -312,12 +307,12 @@
 								<hbox>
 									<label value="Name" />
 									<space />
-									<textbox id="personalRefName"
+									<textbox id="personalRefName_txtbox"
 										width="180px" mold="rounded" />
 									<space />
 									<label value="Relationship" />
 									<textbox
-										id="personalRefRelation" width="100px" mold="rounded" />
+										id="personalRefRelation_txtbox" width="100px" mold="rounded" />
 								</hbox>
 								<hbox>
 									<label value="Address" />

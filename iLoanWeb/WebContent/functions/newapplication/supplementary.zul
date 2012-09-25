@@ -1,6 +1,6 @@
 <?page title="new page title" contentType="text/html;charset=UTF-8"?>
 <zk>
-	<window title="MY SUPPLEMENTARY" border="normal"
+	<window title="MY SUPPLEMENTARY" border="normal" id="supplementaryWindow" 
 		apply="com.isg.iloan.controller.functions.dataEntry.SupplementaryViewCtrl" width="95%">
 		<div>
 			Supplementary card applicants are required to submit a
@@ -29,48 +29,48 @@
 				<row>
 					<label value="Family Name" />
 					<cell colspan="5">
-						<textbox id="fName_txtbox" width="300px"
+						<textbox id="familyName" width="300px"
 							mold="rounded" constraint="no empty"/>
 					</cell>
 				</row>
 				<row>
 					<label value="Given Name" />
 					<cell colspan="5">
-						<textbox id="gName_txtbox" width="300px"
+						<textbox id="givenName" width="300px"
 							mold="rounded" constraint="no empty"/>
 					</cell>
 				</row>
 				<row>
 					<label value="Middle Name" />
 					<cell colspan="5">
-						<textbox id="mName_txtbox" width="300px"
+						<textbox id="middleName" width="300px"
 							mold="rounded" constraint="no empty"/>
 					</cell>
 				</row>
 				<row>
 					<label value="Name To Appear on Card" />
 					<cell colspan="5">
-						<textbox id="cardName_txtbox" width="300px"
+						<textbox id="nameOnCard" width="300px"
 							mold="rounded" maxlength="25" constraint="no empty"/>
 					</cell>
 				</row>
 				<row>
 					<label value="Home Address" />
 					<cell colspan="5">
-						<textbox id="home_add_txtbox" width="300px"
+						<textbox id="homeAddress" width="300px"
 							mold="rounded" rows="3" constraint="no empty"/>
 					</cell>
 				</row>
 				<row>
 					<label value="Zip Code" />
 					
-						<intbox id="zip_txtbox" width="50px"
+						<intbox id="zipCode" width="50px"
 							mold="rounded" />					
 					<cell colspan="3">
 						<hbox>
 							<label value="Relation To Principal Applicant" />
 							<space />
-							<textbox id="relation_txtbox" width="108px" mold="rounded" />
+							<textbox id="relationToPrincipal" width="108px" mold="rounded" />
 						</hbox>							
 						
 					</cell>
@@ -81,10 +81,11 @@
 					<label value="Nationality/Citizenship" />
 					<cell colspan="5">
 						<hlayout>
-							<checkbox label="Filipino" />
+							<!--  textbox id="nationality"/ -->
+							<checkbox id="filipino" label="Filipino" checked="true" />
 							<checkbox label="Others" id="othrs_chkbox" />
-							<textbox id="others_txtbox" width="300px"
-								mold="rounded" />
+							<textbox id="nationality" width="300px" value="Filipino"
+								mold="rounded" constraint="no empty"/>
 						</hlayout>
 					</cell>
 				</row>
@@ -93,13 +94,14 @@
 					<label value="Birth date"></label>
 					<datebox id="birthDate" mold="rounded" />
 					<label value="Place of Birth"></label>
-					<textbox id="pBirth_txtbox" width="150px"
+					<textbox id="birthPlace" width="150px"
 						mold="rounded" />
 					
 					<hlayout>
 					<label value="Gender"></label>
-						<checkbox label="Male" />
-						<checkbox label="Female" />
+						<textbox id="gender" visible="false"/>
+						<checkbox id="male" label="Male" />
+						<checkbox id="female" label="Female" />
 					</hlayout>
 				</row>
 

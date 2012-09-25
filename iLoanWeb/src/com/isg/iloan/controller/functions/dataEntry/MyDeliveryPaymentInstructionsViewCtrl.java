@@ -18,7 +18,9 @@ import org.zkoss.zul.Radiogroup;
 import org.zkoss.zul.Row;
 import org.zkoss.zul.Tabbox;
 import org.zkoss.zul.Tabs;
+import org.zkoss.zul.Textbox;
 
+import com.isg.iloan.commons.Labels;
 import com.isg.iloan.validation.CheckboxValidator;
 
 /**
@@ -32,9 +34,11 @@ public class MyDeliveryPaymentInstructionsViewCtrl extends
 	private Checkbox ada_chkbox;
 	private Checkbox office_chkbox;
 	private Checkbox home_chkbox;
+	private Textbox deliveryPlace;
+	private Textbox paymentMode;
 	private Checkbox payCash_chkbox;
-	private Checkbox minAmount_chkbox;
-	private Checkbox totalAmount_chkbox;
+	private Checkbox minAmount;
+	private Checkbox totalAmount;
 	private Row preferredPaymentRow;
 	private Row deliveryLocRow;
 
@@ -45,7 +49,10 @@ public class MyDeliveryPaymentInstructionsViewCtrl extends
 	@Override
 	public void doAfterCompose(Component comp) throws Exception {
 		super.doAfterCompose(comp);
+		home_chkbox.setChecked(true);
+		payCash_chkbox.setChecked(true);
 		ada_div.setVisible(false);
+		minAmount.setChecked(true);
 		List<Component>toValidate = new ArrayList<Component>();
 		toValidate.add(deliveryLocRow);
 		toValidate.add(preferredPaymentRow);
@@ -113,29 +120,33 @@ public class MyDeliveryPaymentInstructionsViewCtrl extends
 	
 
 	public void onClick$office_chkbox(){
-		home_chkbox.setChecked(false);
+		home_chkbox.setChecked(!office_chkbox.isChecked());		
+		deliveryPlace.setValue(office_chkbox.isChecked()?"Office":"Home");
 	}
 	
 	public void onClick$home_chkbox(){
-		office_chkbox.setChecked(false);
+		office_chkbox.setChecked(!home_chkbox.isChecked());
+		deliveryPlace.setValue(home_chkbox.isChecked()?"Home":"Office");
 	}
 	
 	public void onClick$ada_chkbox(){
-		payCash_chkbox.setChecked(false);
-		ada_div.setVisible(true);
+		payCash_chkbox.setChecked(!ada_chkbox.isChecked());
+		paymentMode.setValue(ada_chkbox.isChecked()?Labels.INS_ADA:Labels.INS_CASH_CHECK);
+		ada_div.setVisible(ada_chkbox.isChecked());
 	}
 	
 	public void onClick$payCash_chkbox(){
-		ada_chkbox.setChecked(false);
-		ada_div.setVisible(false);
+		ada_chkbox.setChecked(!payCash_chkbox.isChecked());
+		paymentMode.setValue(payCash_chkbox.isChecked()?Labels.INS_CASH_CHECK:Labels.INS_ADA);
+		ada_div.setVisible(!payCash_chkbox.isChecked());
 	}
 	
 	public void onClick$minAmount_chkbox(){
-		totalAmount_chkbox.setChecked(false);
+		totalAmount.setChecked(false);
 	}
 	
 	public void onClick$totalAmount_chkbox(){
-		minAmount_chkbox.setChecked(false);
+		minAmount.setChecked(false);
 	}
 
 }

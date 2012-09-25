@@ -4,7 +4,7 @@
 		.ada_container{ padding-left: 20px; } .ada_lbl{ float:left;
 		display:block; width: 200px;}
 	</style>
-	<window title="DELIVERY/PAYMENT INSTRUCTION" border="normal"
+	<window title="DELIVERY/PAYMENT INSTRUCTION" border="normal" id="instructionWindow" 
 		apply="com.isg.iloan.controller.functions.dataEntry.MyDeliveryPaymentInstructionsViewCtrl"
 		width="98%">
 		<grid>
@@ -16,6 +16,7 @@
 				<row id="deliveryLocRow">
 					<label value="Deliver Card &amp; Statement To:" />
 					<hlayout>
+						<textbox id="deliveryPlace" visible="false"/>
 						<checkbox label="Office" id="office_chkbox" />
 						<checkbox label="Home" id="home_chkbox" />
 					</hlayout>
@@ -24,6 +25,7 @@
 					<label value="Preferred Payment Mode:" />
 					<radiogroup id="paymentmode_radio_grp">
 						<vlayout>
+							<textbox id="paymentMode" visible="false"/>
 							<checkbox
 								label="I will pay in cash or check at Metrobank/PSBank branch"
 								id="payCash_chkbox" />
@@ -44,10 +46,11 @@
 											mold="rounded" maxlength="25" />
 									</hlayout>
 									<hlayout>
+										
 										<checkbox
-											label="Minimum amount due" id="minAmount_chkbox"/>
+											label="Minimum amount due" id="minAmount"/>
 										<checkbox
-											label="Total amount due" id="totalAmount_chkbox"/>
+											label="Total amount due" id="totalAmount"/>
 									</hlayout>
 								</vlayout>
 							</div>

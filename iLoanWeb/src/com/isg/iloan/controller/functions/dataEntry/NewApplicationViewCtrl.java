@@ -35,12 +35,15 @@ import org.zkoss.zul.impl.InputElement;
 import com.isg.iloan.commons.Helper;
 import com.isg.iloan.commons.IDs;
 import com.isg.iloan.commons.Labels;
+import com.isg.iloan.model.dataEntry.Address;
 import com.isg.iloan.model.dataEntry.Application;
 import com.isg.iloan.model.dataEntry.CreditCard;
 import com.isg.iloan.model.dataEntry.DeedsOfAssignment;
 import com.isg.iloan.model.dataEntry.Fund;
+import com.isg.iloan.model.dataEntry.Instruction;
 import com.isg.iloan.model.dataEntry.JobDetail;
 import com.isg.iloan.model.dataEntry.SaveAndSwipe;
+import com.isg.iloan.model.dataEntry.Supplementary;
 
 /**
  * @author augusto.marte
@@ -55,6 +58,9 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 	private Tabpanel personalPanel;
 	private Tabpanel ccDetailPanel;
 	private Tabpanel jobDetailTabPanel;
+	private Tabpanel supplementaryTabPanel;
+	private Tabpanel instructionTabPanel;
+	private Tabpanel internetTabPanel;
 	//private Tab ssDeeds;
 	//private Tab saveAndSwipe;
 	private Tab internetTransaction;
@@ -102,49 +108,128 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 	}
 	
 	public void onClick$newappSubmitButton(){
-		boolean pdChecker = allPersonalDataDetailsValid();
-		logger.debug(pdChecker);
+		//boolean pdChecker = allPersonalDataDetailsValid();
+		//logger.debug(pdChecker);
+		
+		
+		Application app = new Application();
+		composeCardDetails(app);
+		try {
+			composeJobDetail(app);
+			
+			
+		} catch (WrongValueException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
 	}
 	
 	
 	public void composeJobDetail(Application app) throws WrongValueException, SecurityException, IllegalAccessException, InvocationTargetException{
 			
 			Collection<Component> comps =  jobDetailTabPanel.getPage().getDesktop().getComponents();
-			Map<String,Component> jdMap = new LinkedHashMap<String, Component>();		
-			for(Component comp:comps){			
-				if(IDs.JD_WINDOW.equals(comp.getId())){							
-					Collection<Component> fellows = comp.getFellows();
-					for(Component fellow:fellows){
-						jdMap.put(fellow.getId(), fellow);					
-					}
-					break;
-				}			
-			}
-			JobDetail jd = new JobDetail();
 			String[] fields = {IDs.JD_CMPY_NAME,IDs.JD_OCCUPATION,IDs.JD_WORK_NATURE,IDs.JD_YRS_PRES_EMP,
 					   IDs.JD_TWY,IDs.JD_GMI,IDs.JD_SPOUSE_LN, IDs.JD_SPOUSE_GN,IDs.JD_SPOUSE_MN,
 					   IDs.JD_SPOUSE_DOB};
-			
-			Helper.setProperties(jd,fields,jdMap);
-			
-			List<Fund> funds = new ArrayList<Fund>();
-			jd.setSourceOfFunds(funds);
-			if(((Checkbox)jdMap.get(IDs.JD_EMPLOYMENT)).isChecked())jd.getSourceOfFunds().add(new Fund("EMP","Employment"));
-			if(((Checkbox)jdMap.get(IDs.JD_INVESTMENT)).isChecked())jd.getSourceOfFunds().add(new Fund("INV","Investment"));
-			if(((Checkbox)jdMap.get(IDs.JD_SELF_EMP)).isChecked())jd.getSourceOfFunds().add(new Fund("SEM","Self-Employment"));
-			if(((Checkbox)jdMap.get(IDs.JD_UNEMP)).isChecked())jd.getSourceOfFunds().add(new Fund("UEM","Un-Employed"));
-			if(((Checkbox)jdMap.get(IDs.JD_RETIRED)).isChecked())jd.getSourceOfFunds().add(new Fund("RET","Retired"));
-			if(((Checkbox)jdMap.get(IDs.JD_OTHERS_CHKBOX)).isChecked())jd.getSourceOfFunds().add(new Fund("OTH",((Textbox)jdMap.get(IDs.JD_OTHERS_TXTBOX)).getValue()));
+			for(Component window:comps){			
+				if(IDs.JD_WINDOW.equals(window.getId())){	
+
+					JobDetail jd = new JobDetail();					
+					Helper.setProperties(jd,fields,window);
+					
+					Address addr = new Address();			
+					addr.setAddressLine1(((Textbox)window.getFellow(IDs.JD_BUSS_ADDR)).getValue());
+					addr.setTelNum(((Textbox)window.getFellow(IDs.JD_TEL)).getValue());
+					addr.setZipCode(((Textbox)window.getFellow(IDs.JD_ZIPCODE)).getValue());
+					addr.setHomeAddress(false);
+					addr.setPermanentAddress(false);
+					jd.setBusinessAddress(addr);
+					
+					
+					List<Fund> funds = new ArrayList<Fund>();
+					jd.setSourceOfFunds(funds);
+					if(((Checkbox)window.getFellow(IDs.JD_EMPLOYMENT)).isChecked())jd.getSourceOfFunds().add(new Fund("EMP","Employment"));
+					if(((Checkbox)window.getFellow(IDs.JD_INVESTMENT)).isChecked())jd.getSourceOfFunds().add(new Fund("INV","Investment"));
+					if(((Checkbox)window.getFellow(IDs.JD_SELF_EMP)).isChecked())jd.getSourceOfFunds().add(new Fund("SEM","Self-Employment"));
+					if(((Checkbox)window.getFellow(IDs.JD_UNEMP)).isChecked())jd.getSourceOfFunds().add(new Fund("UEM","Un-Employed"));
+					if(((Checkbox)window.getFellow(IDs.JD_RETIRED)).isChecked())jd.getSourceOfFunds().add(new Fund("RET","Retired"));
+					if(((Checkbox)window.getFellow(IDs.JD_OTHERS_CHKBOX)).isChecked()){
+						jd.getSourceOfFunds().add(new Fund("OTH",((Textbox)window.getFellow(IDs.JD_OTHERS_TXTBOX)).getValue()));
+					}
+					
+					app.setJobDetail(jd);
+					
+					break;
+				}			
+			}
 			
 			
 		}
 	
 	
+	
+	public void composeSupplementary(Application app) throws WrongValueException, 
+				SecurityException, IllegalAccessException, InvocationTargetException{
+		logger.debug("*** composing Supplementary...");		
+		Collection<Component> comps =  supplementaryTabPanel.getPage().getDesktop().getComponents();			
+		for(Component window:comps){			
+			if(IDs.SUPP_WINDOW.equals(window.getId())){							
+				Supplementary supp = new Supplementary();
+				String[] fields = {IDs.SUPP_LNAME,IDs.SUPP_GNAME,IDs.SUPP_MNAME,IDs.SUPP_CNAME,IDs.SUPP_REL,
+								   IDs.SUPP_NAT, IDs.SUPP_OTHER_NAT, IDs.SUPP_BIRTHDATE, IDs.SUPP_BIRTHPLACE,
+								   IDs.SUPP_GENDER};		
+				Helper.setProperties(supp,fields,window);
+				Address addr = new Address();
+				addr.setHomeAddress(true);
+				addr.setAddressLine1(((Textbox)window.getFellow(IDs.SUPP_ADDR)).getValue());
+				addr.setZipCode(((Textbox)window.getFellow(IDs.SUPP_ZIPCODE)).getValue());
+				supp.setHomeAddress(addr);
+				app.setSupplementary(supp);
+				break;
+			}			
+		}
+		
+		
+		
+	}
+	
+	public void composeInstruction(Application app) throws WrongValueException, 
+				SecurityException, IllegalAccessException, InvocationTargetException{
+		
+		logger.debug("*** composing Supplementary...");		
+		Collection<Component> comps =  instructionTabPanel.getPage().getDesktop().getComponents();
+		for(Component window:comps){			
+			if(IDs.INS_WINDOW.equals(window.getId())){							
+				Instruction ins = new Instruction();
+				String[] fields = {IDs.INS_DELI_PLACE, IDs.INS_PAYMENT_MODE, IDs.INS_ADA_ACCNT_NUM,
+								   IDs.INS_ADA_BANK_BRANCH, IDs.INS_MIN_AMOUNT, IDs.INS_TOTAL_AMOUNT};
+				Helper.setProperties(ins,fields,window);
+				app.setInstruction(ins);
+				break;
+			}			
+		}
+		
+		
+	}
+	
+	
+	
 
 	public void composeCardDetails(Application app){		
 		logger.debug("*** fillupCreditCardDetails...");		
-		Collection<Component> comps =  ccDetailPanel.getPage().getDesktop().getComponents();
-		logger.debug("Desktop no. of components : " + comps.size());
+		Collection<Component> comps =  ccDetailPanel.getPage().getDesktop().getComponents();		
 		Map<String,Component> ccDetailsMap = new LinkedHashMap<String, Component>();		
 		for(Component comp:comps){			
 			if("creditCardDetails".equals(comp.getId())){							
@@ -153,8 +238,7 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 					ccDetailsMap.put(fellow.getId(), fellow);					
 				}
 				break;
-			}
-			
+			}			
 		}
 		app.setCardTypeCode(((Textbox)ccDetailsMap.get(IDs.CARD_TYPE_CODE)).getValue());
 		app.setCardTypeDesc(((Textbox)ccDetailsMap.get(IDs.CARD_TYPE_DESC)).getValue());
@@ -169,7 +253,22 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 			composeSaveAndSwipe(app); 
 			
 		}
-		logger.debug("*** fillupCreditCardDetails...finished!");		
+		logger.debug("*** fillupCreditCardDetails...finished!");	
+		
+		//for internet transaction---
+		Collection<Component> eComs =  internetTabPanel.getPage().getDesktop().getComponents();	
+		for(Component eCom:eComs){			
+			if(IDs.ETRANS_WINDOW.equals(eCom.getId())){							
+				Collection<Component> fellows = eCom.getFellows();
+				for(Component fellow:fellows){
+					if("internetTransaction_chkbox".equals(fellow.getId())){					
+						app.setEnrollSOS(((Checkbox)fellow).isChecked());
+					}
+				}
+				break;
+			}			
+		}
+		//end internet transaction---
 	}
 	
 	public void composedCreditCard(Application app, Map<String,Component> ccDetailsMap){
