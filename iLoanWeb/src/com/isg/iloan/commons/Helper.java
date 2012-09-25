@@ -71,5 +71,77 @@ public class Helper {
 	
 	
 	
+	/*** to be finished ****/
+	
+	public static void setProperties(Object obj, Component window) throws 
+		    SecurityException,WrongValueException,IllegalAccessException,InvocationTargetException
+		    
+		{
+		
+		Method[] methods = obj.getClass().getDeclaredMethods();		
+		for(int m=0;m<methods.length;m++){
+			Method method = methods[m];
+			if(method.getName().startsWith("set")
+					&& method.getParameterTypes().length==1){
+				
+				//logger.debug("parameter type:" + method.getParameterTypes()[0].getName());
+				
+					if((method.getParameterTypes()[0].isPrimitive() || 
+							method.getParameterTypes()[0].getName().equals("java.lang.String"))
+							&& method.getAnnotations().length==0){
+						logger.debug("reflected method: " + method.getName());
+					}
+				}
+		}
+			
+			
+			
+		
+		
+			
+		
+		
+//		for(int i=0;i<fields.length;i++){
+//		//Component comp = map.get(fields[i]);
+//		Component comp = window.getFellow(fields[i]);
+//		
+//			try {
+//				String methodName = String.format("set%C%s",fields[i].charAt(0), fields[i].substring(1));
+//				
+//				Method[] methods = obj.getClass().getDeclaredMethods();
+//				Map<String, Method> methodMap = new HashMap<String,Method>();
+//				for(int k=0;k<methods.length;k++){
+//					methodMap.put(methods[k].getName(), methods[k]);
+//				}
+//				Method method = methodMap.get(methodName);
+//				logger.debug("*** invoking " + method.getName() + "..");
+//				if(comp instanceof Textbox){
+//					Class<?>[] paramClass = method.getParameterTypes();
+//					if(paramClass.length>0 && paramClass[0].getName().equals("long")){								
+//						method.invoke(obj, Long.valueOf(((Textbox)comp).getValue()));
+//					}else{
+//						method.invoke(obj, ((Textbox)comp).getValue());
+//					}
+//				}else if(comp instanceof Datebox){
+//					method.invoke(obj, ((Datebox)comp).getValue());
+//				}else if(comp instanceof Intbox){
+//					method.invoke(obj, ((Intbox)comp).getValue());
+//				}else if(comp instanceof Checkbox){
+//					method.invoke(obj, ((Checkbox)comp).isChecked());
+//				}
+//				logger.debug("*** invoking " + method.getName() + "..finished!..");
+//			}finally{
+//				
+//			}				
+//		}
+		
+		
+		
+		
+		}
+	
+	
+	
+	
 	
 }

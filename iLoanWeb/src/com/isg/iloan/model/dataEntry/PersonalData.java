@@ -116,7 +116,7 @@ public class PersonalData {
 	public long getPersonalDataId() {
 		return personalDataId;
 	}
-
+	@Id
 	public void setPersonalDataId(long personalDataId) {
 		this.personalDataId = personalDataId;
 	}
