@@ -119,34 +119,34 @@ public class MyDeliveryPaymentInstructionsViewCtrl extends
 	}
 	
 
-	public void onClick$office_chkbox(){
+	public void onCheck$office_chkbox(){
 		home_chkbox.setChecked(!office_chkbox.isChecked());		
 		deliveryPlace.setValue(office_chkbox.isChecked()?"Office":"Home");
 	}
 	
-	public void onClick$home_chkbox(){
+	public void onCheck$home_chkbox(){
 		office_chkbox.setChecked(!home_chkbox.isChecked());
 		deliveryPlace.setValue(home_chkbox.isChecked()?"Home":"Office");
 	}
 	
-	public void onClick$ada_chkbox(){
+	public void onCheck$ada_chkbox(){
 		payCash_chkbox.setChecked(!ada_chkbox.isChecked());
 		paymentMode.setValue(ada_chkbox.isChecked()?Labels.INS_ADA:Labels.INS_CASH_CHECK);
 		ada_div.setVisible(ada_chkbox.isChecked());
 	}
 	
-	public void onClick$payCash_chkbox(){
+	public void onCheck$payCash_chkbox(){
 		ada_chkbox.setChecked(!payCash_chkbox.isChecked());
 		paymentMode.setValue(payCash_chkbox.isChecked()?Labels.INS_CASH_CHECK:Labels.INS_ADA);
 		ada_div.setVisible(!payCash_chkbox.isChecked());
 	}
 	
-	public void onClick$minAmount_chkbox(){
-		totalAmount.setChecked(false);
+	public void onCheck$minAmount(){
+		totalAmount.setChecked(!minAmount.isChecked());
 	}
 	
-	public void onClick$totalAmount_chkbox(){
-		minAmount.setChecked(false);
+	public void onCheck$totalAmount(){
+		minAmount.setChecked(!totalAmount.isChecked());
 	}
 
 }
