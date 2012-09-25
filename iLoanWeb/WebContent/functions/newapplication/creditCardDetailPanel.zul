@@ -17,7 +17,7 @@
 	    	<tabpanel fulfill="saveAndSwipe.onSelect" id="saveSwipeTabPanel">
 	        	<include src="/functions/newapplication/saveAndSwipe.zul" id="saveSwipePanelInclude" mode="instant"/>
 	        </tabpanel >
-	        <tabpanel fulfill="ssDeeds.onSelect"  id="doaSaveSwipeTabPanel">
+	        <tabpanel id="doaSaveSwipeTabPanel">
 	        	<include src="/functions/newapplication/doaSaveAndSwipe.zul" id="doaSaveSwipePanelInclude" mode="instant"/>
 	        </tabpanel>
 	     </tabpanels>
