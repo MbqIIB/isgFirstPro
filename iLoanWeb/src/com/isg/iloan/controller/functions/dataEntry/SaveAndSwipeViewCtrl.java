@@ -57,13 +57,14 @@ public class SaveAndSwipeViewCtrl extends GenericForwardComposer {
 		Collection<Component> comps =  this.getPage().getDesktop().getComponents();
 		for(Component comp:comps){			
 			if(IDs.DOA_WINDOW.equals(comp.getId())){
-				Collection<Component> fellows = comp.getFellows();
-				for(Component fellow:fellows){
-					if(IDs.DOA_PLEDGE_DIV.equals(fellow.getId())){
-						fellow.setVisible(pledgeYes_chkbox.isChecked());
-						break;
-					}
-				}
+//				Collection<Component> fellows = comp.getFellows();
+//				for(Component fellow:fellows){
+//					if(IDs.DOA_PLEDGE_DIV.equals(fellow.getId())){
+//						fellow.setVisible(pledgeYes_chkbox.isChecked());
+//						break;
+//					}
+//				}
+				comp.getFellow(IDs.DOA_PLEDGE_DIV).setVisible(pledgeYes_chkbox.isChecked());
 				break;
 			}
 		}
@@ -73,13 +74,14 @@ public class SaveAndSwipeViewCtrl extends GenericForwardComposer {
 		Collection<Component> comps =  this.getPage().getDesktop().getComponents();
 		for(Component comp:comps){			
 			if(IDs.DOA_WINDOW.equals(comp.getId())){
-				Collection<Component> fellows = comp.getFellows();
-				for(Component fellow:fellows){
-					if(IDs.DOA_PLEDGE_DIV.equals(fellow.getId())){
-						fellow.setVisible(!pledgeNo_chkbox.isChecked());
-						break;
-					}
-				}
+//				Collection<Component> fellows = comp.getFellows();
+//				for(Component fellow:fellows){
+//					if(IDs.DOA_PLEDGE_DIV.equals(fellow.getId())){
+//						fellow.setVisible(!pledgeNo_chkbox.isChecked());
+//						break;
+//					}
+//				}
+				comp.getFellow(IDs.DOA_PLEDGE_DIV).setVisible(!pledgeNo_chkbox.isChecked());
 				break;
 			}
 		}

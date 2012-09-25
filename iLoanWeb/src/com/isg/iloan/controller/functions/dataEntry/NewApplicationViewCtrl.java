@@ -18,6 +18,7 @@ import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.WrongValueException;
 import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zk.ui.util.GenericForwardComposer;
+import org.zkoss.zkplus.spring.SpringUtil;
 import org.zkoss.zul.Button;
 import org.zkoss.zul.Checkbox;
 import org.zkoss.zul.Datebox;
@@ -42,8 +43,11 @@ import com.isg.iloan.model.dataEntry.DeedsOfAssignment;
 import com.isg.iloan.model.dataEntry.Fund;
 import com.isg.iloan.model.dataEntry.Instruction;
 import com.isg.iloan.model.dataEntry.JobDetail;
+import com.isg.iloan.model.dataEntry.PersonalData;
 import com.isg.iloan.model.dataEntry.SaveAndSwipe;
 import com.isg.iloan.model.dataEntry.Supplementary;
+import com.isg.iloan.service.ApplicationService;
+import com.isg.iloan.service.ApplicationServiceImpl;
 
 /**
  * @author augusto.marte
@@ -107,6 +111,10 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 		Clients.evalJavaScript("changeState('#dass')");
 	}
 	
+	public ApplicationService getService(){
+		   return  (ApplicationService)SpringUtil.getBean("applicationService", ApplicationServiceImpl.class);
+		}
+	
 	public void onClick$newappSubmitButton(){
 		//boolean pdChecker = allPersonalDataDetailsValid();
 		//logger.debug(pdChecker);
@@ -115,26 +123,84 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 		Application app = new Application();
 		composeCardDetails(app);
 		try {
-			composeJobDetail(app);
+			//composePersonalData(app);
+			//composeJobDetail(app);			
+			//composeSupplementary(app);
+			//composeInstruction(app);
 			
+			//getService().createApplication(app);
 			
 		} catch (WrongValueException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (SecurityException e) {
+		} 
+		catch (SecurityException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		} 
+//		catch (IllegalAccessException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (InvocationTargetException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
 		
 		
 	}
+	
+	
+	
+	public void composePersonalData(Application app) throws WrongValueException,
+				SecurityException, IllegalAccessException, InvocationTargetException{
+		
+		String[] fields = {IDs.PD_FAMILY_NAME,IDs.PD_GIVEN_NAME,IDs.PD_MIDDLE_NAME, IDs.PD_NAME_ON_CARD,
+						   IDs.PD_BIRTH_DATE, IDs.PD_PLACE_OF_BIRTH,IDs.PD_CIVIL_STATUS, IDs.PD_GENDER,
+						   IDs.PD_NATIONALITY, IDs.PD_OTHER_NATIONAL, IDs.PD_MOBILE_NUM, IDs.PD_EMAIL,
+						   IDs.PD_HOME_TEL_NUM, IDs.PD_MOTHER_FULL_NAME, IDs.PD_NUM_OF_CHILDREN, IDs.PD_HOME_OWNERSHIP,
+						   IDs.PD_LENGTH_OF_STAY, IDs.PD_NUM_OF_CARS, IDs.PD_CAR_MODEL_YR, IDs.PD_EDUCATION,
+						   IDs.PD_TIN_NUM, IDs.PD_SSS_MEMBER, IDs.PD_GSIS_MEMBER, IDs.PD_SSS_GSIS_NUM, IDs.PD_PRC_ID,
+						   IDs.PD_OTHER_ID, IDs.PD_DRIVER_LICENSE_NUM, IDs.PD_PASSPORT_NUM, IDs.PD_PERSON_REF_NAME,
+						   IDs.PD_PERSONAL_REF_RELATION};
+		
+		
+		
+		Collection<Component> comps =  personalPanel.getPage().getDesktop().getComponents();
+		for(Component window:comps){			
+			if(IDs.PD_WINDOW.equals(window.getId())){
+			
+				
+				
+				PersonalData personalData = new PersonalData();
+				Helper.setProperties(personalData, fields, window);
+				
+				
+				Address addr;
+				addr = new Address();
+				addr.setAddressLine1(((Textbox)window.getFellow(IDs.PD_HOME_ADDRESS)).getValue());
+				addr.setZipCode(((Textbox)window.getFellow(IDs.PD_HOME_ZIP_CODE)).getValue());
+				addr.setHomeAddress(true);
+				addr.setPermanentAddress(false);
+				personalData.setHomeAddress(addr);
+				addr = new Address();
+				addr.setAddressLine1(((Textbox)window.getFellow(IDs.PD_PERMANENT_ADDRESS)).getValue());
+				addr.setZipCode(((Textbox)window.getFellow(IDs.PD_PERM_ZIP_CODE)).getValue());
+				addr.setHomeAddress(false);
+				addr.setPermanentAddress(true);
+				personalData.setPermanentAddress(addr);
+				addr = new Address();
+				addr.setAddressLine1(((Textbox)window.getFellow(IDs.PD_PERSONAL_REF_ADDRESS)).getValue());
+				addr.setTelNum(((Textbox)window.getFellow(IDs.PD_PERSONAL_REF_TEL_NUM)).getValue());
+				addr.setHomeAddress(false);
+				addr.setPermanentAddress(false);
+				personalData.setPersonalRefAddress(addr);
+				
+				app.setPersonalData(personalData);
+			}
+		}
+	}
+	
 	
 	
 	public void composeJobDetail(Application app) throws WrongValueException, SecurityException, IllegalAccessException, InvocationTargetException{
@@ -355,24 +421,24 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 	}
 	
 	
-	private boolean allPersonalDataDetailsValid() {
-		Collection<Component> personalPanelComponents = personalPanel.getFellows();
-		for(Component compo: personalPanelComponents){
-			if("personalDataInc".equals(compo.getId())){
-				for(Component c: compo.getFellow(IDs.PD_WINDOW).getFellows()){
-					logger.debug(c.getAttribute("constraint"));
-					if(c instanceof InputElement){
-						if(((InputElement)c).getText().equals("")){
-							return false;
-						}
-					}
-					
-				}
-			}
-		}
-		
-		return true;
-		
-	}
+//	private boolean allPersonalDataDetailsValid() {
+//		Collection<Component> personalPanelComponents = personalPanel.getFellows();
+//		for(Component compo: personalPanelComponents){
+//			if("personalDataInc".equals(compo.getId())){
+//				for(Component c: compo.getFellow(IDs.PD_WINDOW).getFellows()){
+//					logger.debug(c.getAttribute("constraint"));
+//					if(c instanceof InputElement){
+//						if(((InputElement)c).getText().equals("")){
+//							return false;
+//						}
+//					}
+//					
+//				}
+//			}
+//		}
+//		
+//		return true;
+//		
+//	}
 
 }

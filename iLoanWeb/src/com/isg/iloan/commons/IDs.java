@@ -71,13 +71,14 @@ public class IDs {
 	public static final String PD_GIVEN_NAME = "givenName";
 	public static final String PD_MIDDLE_NAME = "middleName";
 	public static final String PD_NAME_ON_CARD = "nameOnCard";
-	public static final String PD_BIRTH_DAY = "birthDate";
+	public static final String PD_BIRTH_DATE = "birthDate";
 	public static final String PD_PLACE_OF_BIRTH = "placeOfBirth";
 	public static final String PD_CIVIL_STATUS = "civilStatus";
 	public static final String PD_GENDER = "gender";
 	public static final String PD_NATIONALITY = "nationality";
 	public static final String PD_OTHER_NATIONAL = "otherNational";
 	public static final String PD_MOBILE_NUM = "mobilePhoneNum";
+	public static final String PD_HOME_TEL_NUM = "homePhoneNumber";
 	public static final String PD_EMAIL = "emailAddress";
 	public static final String PD_MOTHER_FULL_NAME = "motherFullName";
 	public static final String PD_NUM_OF_CHILDREN = "numOfChildren";
@@ -88,12 +89,20 @@ public class IDs {
 	public static final String PD_EDUCATION = "education";
 	public static final String PD_TIN_NUM = "tinNum";
 	public static final String PD_SSS_GSIS_NUM = "sss_gsis_Num";
-	public static final String PD_OTHER_ID_CODE = "otherIdCode";
-	public static final String PD_OTHER_ID_VALUE = "otherIdValue";
+	public static final String PD_SSS_MEMBER = "sssMember"; 
+	public static final String PD_GSIS_MEMBER = "gsisMember"; 
+	public static final String PD_DRIVER_LICENSE_NUM = "driverLicenseNum";
+	public static final String PD_PASSPORT_NUM = "passportNum";
+	public static final String PD_PRC_ID = "prcID";
+	public static final String PD_OTHER_ID = "otherID";
 	public static final String PD_PERSON_REF_NAME = "personalRefName";
 	public static final String PD_PERSONAL_REF_RELATION = "personalRefRelation";
+	public static final String PD_PERSONAL_REF_ADDRESS = "personalRefAddress";
+	public static final String PD_PERSONAL_REF_TEL_NUM = "personalRefTelNum";
+	
 	public static final String PD_HOME_ADDRESS = "homeAddress";
 	public static final String PD_PERMANENT_ADDRESS = "permanentAddress";
+	
 	public static final String PD_HOME_ZIP_CODE = "homeAddZip";
 	public static final String PD_PERM_ZIP_CODE = "permanentAddZip";
 	
