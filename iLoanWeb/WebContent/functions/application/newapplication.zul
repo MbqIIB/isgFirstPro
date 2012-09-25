@@ -1,0 +1,144 @@
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/layout/mainLayout.zul"?>
+<zk>
+	<?script type="text/javascript" src="/js/jquery-1.8.1.js"?>
+	<?script type="text/javascript" src="/js/breadcrumbs.js"?>
+	<style src="/style/breadcrumbs.css"></style>
+<style dynamic="true">
+	.noteField{
+		font-size:10px;		
+	}
+	.z-window-embedded-header, 
+	.z-window-modal-header, 
+	.z-window-popup-header, 
+	.z-window-highlighted-header, .z-window-overlapped-header {
+    color: rgb(54, 54, 54);
+    padding-top: 0px;
+    padding-bottom: 0px;
+    font-weight:bold;
+    }
+    .z-tabpanel-ver{
+    	height:413px !important;    		 
+    }
+    .z-tabpanels-ver{
+    	height:423px !important;    	
+    }
+    
+    
+</style>
+<window id="newApplicationWindow"  self="@{define(left)}" 
+apply="com.isg.iloan.controller.functions.dataEntry.NewApplicationViewCtrl"  >
+
+
+	<caption label="NEW CREDIT CARD APPLICATION" >
+		<button tooltiptext="SUBMIT" left="true" image="/images/submit.png" mold="trendy" id="newappSubmitButton"/>
+		<button tooltiptext="CANCEL" left="false" image="/images/cancel.png" mold="trendy" />
+	</caption>
+		<div>
+			<div id="breadcrumb" sclass="breadcrumb">
+				<html>
+					<ul id="breadcrumbs_list">
+						<li id="ccd">
+							<span class="breadcrumb_item incomplete">
+								Credit Card Detail
+							</span>
+							<div class="arrow-right-incomplete"></div>
+							<div class="arrow-down-incomplete"></div>
+						</li>
+						<li id="pd">
+							<div class="arrow-left-undone"></div>
+							<span class="breadcrumb_item undone">
+								Personal Data
+							</span>
+							<div class="arrow-right-undone"></div>
+						</li>
+						<li id="jd">
+							<div class="arrow-left-undone"></div>
+							<span class="breadcrumb_item undone">
+								Job Detail
+							</span>
+							<div class="arrow-right-undone"></div>
+						</li>
+						<li id="sd">
+							<div class="arrow-left-undone"></div>
+							<span class="breadcrumb_item undone">
+								Supplementary Detail
+							</span>
+							<div class="arrow-right-undone"></div>
+						</li>
+						<li id="it">
+							<div class="arrow-left-undone"></div>
+							<span class="breadcrumb_item undone">
+								Internet Transaction
+							</span>
+							<div class="arrow-right-undone"></div>
+						</li>
+						<li id="dpi">
+							<div class="arrow-left-undone"></div>
+							<span class="breadcrumb_item undone">
+								Delivery/Payment Instructions
+							</span>
+						</li>
+						<!-- <li id="ss" class="initialHide">
+							<div class="arrow-left-undone"></div>
+							<span class="breadcrumb_item undone">
+								Save and Swipe
+							</span>
+							<div class="arrow-right-undone"></div>
+						</li>
+						<li id="dass" class="initialHide" >
+							<div class="arrow-left-undone"></div>
+							<span class="breadcrumb_item undone">
+								Deeds of Assignment for Save and Swipe
+							</span>
+						</li> -->
+					</ul>
+				</html>
+			</div>
+		</div>
+	<tabbox id="tb" orient="vertical" >
+    <tabs id="tabs">
+        <tab id="creditCardDetail" label="Part A" tooltiptext="Credit Card Details" />
+        <tab id="personalData" label="Part B" tooltiptext="Personal Data"/>
+        <tab id="jobDetail" label="Part C" tooltiptext="Job Detail" />
+        <tab id="supplementaryDetail" label="Part D" tooltiptext="Supplementary Detail" />
+        <tab id="internetTransaction" label="Part E" tooltiptext="Internet Transactions"/>
+        <tab id="deliveryInstruction" label="Part F" tooltiptext="Delivery/Payment Instructions" />
+        <!-- 
+        <tab id="saveAndSwipe" label="Part G" visible="false" tooltiptext="SAVE &amp; SWIPE"/>
+        <tab id="ssDeeds" label="Part H" visible="false" tooltiptext="DEEDS of ASSIGNMENT" /> 
+         -->   
+    </tabs>    
+    <tabpanels id="tabPanels" >
+        <tabpanel id="ccDetailPanel" style="overflow-y:scroll;" >
+        	<include src="/functions/newapplication/creditCardDetailPanel.zul" mode="instant"/>
+        </tabpanel>
+        <tabpanel id="personalPanel" fulfill="personalData.onClick" style="overflow-y:scroll;" >
+        	<include src="/functions/newapplication/personalData.zul" mode="instant" id="personalDataInc"/>        	
+        </tabpanel>
+        <tabpanel fulfill="jobDetail.onSelect" style="overflow-y:scroll;" id="jobDetailTabPanel" >
+        	<include src="/functions/newapplication/jobDetail.zul" mode="instant"/>
+        </tabpanel>
+        <tabpanel fulfill="supplementaryDetail.onSelect" style="overflow-y:scroll;" id="supplementaryTabPanel">
+        	<include src="/functions/newapplication/supplementary.zul" mode="instant"/>
+        </tabpanel>
+        <tabpanel fulfill="internetTransaction.onSelect" style="overflow-y:scroll;" id="internetTabPanel" >
+			<include src="/functions/newapplication/internetTransaction.zul" mode="instant"/>
+        </tabpanel>
+        <tabpanel fulfill="deliveryInstruction.onSelect" style="overflow-y:scroll;" id="instructionTabPanel">
+        	<include src="/functions/newapplication/deliveryPaymentInstructions.zul" mode="instant"/>
+		</tabpanel>
+      
+		<!-- 
+        <tabpanel fulfill="saveAndSwipe.onSelect" style="overflow-y:scroll;">
+        	<include src="/functions/newapplication/saveAndSwipe.zul"/>
+        </tabpanel >
+        <tabpanel fulfill="ssDeeds.onSelect" style="overflow-y:scroll;">
+        	<include src="/functions/newapplication/doaSaveAndSwipe.zul"/>
+        </tabpanel>
+         -->
+    </tabpanels>
+</tabbox>
+
+	
+</window>
+</zk>

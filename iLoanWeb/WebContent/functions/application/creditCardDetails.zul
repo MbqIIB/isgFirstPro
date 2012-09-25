@@ -1,0 +1,217 @@
+<zk>
+	<style dynamic="true">
+		.noteField{ font-size:11px; font-weight:bold;
+
+		}
+
+
+	</style>
+	<window id="creditCardDetails" width="98%" border="normal"
+		apply="com.isg.iloan.controller.functions.dataEntry.CreditCardDetailsViewCtrl">
+
+		<grid>
+			<rows>
+				<row>
+					<hlayout id="cbLayout">
+						<textbox id="creditCardTypeCode" visible="false" />
+						<textbox id="creditCardTypeDesc" visible="false" />
+						<hbox>
+							<vlayout>
+								<checkbox id="classicMasterCard"
+									label="Classic Master Card" />
+								<checkbox id="classicVisaCard"
+									label="Classic Visa" />
+							</vlayout>
+						</hbox>
+						<hbox>
+							<vlayout>
+								<checkbox id="goldMasterCard"
+									label="Gold Master Card" />
+								<checkbox id="goldVisaCard"
+									label="Gold Visa" />
+							</vlayout>
+						</hbox>
+						<hbox>
+							<vlayout>
+								<checkbox id="mLiteMasterCard"
+									label="M Lite Master Card" />
+								<checkbox id="femmeVisaCard"
+									label="Femme Visa" />
+							</vlayout>
+						</hbox>
+					</hlayout>
+				</row>
+
+			</rows>
+
+		</grid>
+
+
+		<grid>
+			<rows>
+				<row>
+
+
+
+					<hlayout>
+						<hbox width="330px" style="top-padding:4px;">
+							If cannot process your application for a
+							Gold card, would you accept Metrobank
+							Classic Card?
+						</hbox>
+						<hbox id="acceptClassicCardHbox">
+							<checkbox id="acceptClassicCard"
+								label="YES" />
+							<checkbox id="notAcceptClassicCard"
+								label="NO" />
+						</hbox>
+					</hlayout>
+
+				</row>
+			</rows>
+		</grid>
+
+		<grid>
+			<rows>
+				<row>
+
+					<hlayout>
+						<hbox width="330px" style="top-padding:10px;"
+							id="saveSwipeHbox">
+							Save&amp;Swipe(Secured Card) Application?
+						</hbox>
+						<hbox>
+							<checkbox id="acceptSaveAndSwipe"
+								label="YES" />
+							<checkbox id="notAcceptSaveAndSwipe"
+								label="NO" />
+						</hbox>
+					</hlayout>
+				</row>
+			</rows>
+		</grid>
+
+		<grid>
+			<rows>
+				<row>
+
+					<!-- Existing credit card -->
+
+					<groupbox style="padding:4px;">
+						<caption label="Existing Credit Card(s)"
+							style="font-weight:bold;" />
+						<hlayout>
+							<hbox>
+								<vlayout>
+									Credit Cards
+									<textbox id="existingCC1"
+										width="180" maxlength="25" mold="rounded" />
+									<textbox id="existingCC2"
+										width="180" maxlength="25" mold="rounded" />
+									<textbox id="existingCC3"
+										width="180" maxlength="25" mold="rounded" />
+								</vlayout>
+							</hbox>
+							<hbox>
+								<vlayout>
+									Credit Limit
+									<textbox id="ecc1Limit" width="90"
+										mold="rounded" />
+									<textbox id="ecc2Limit" width="90"
+										mold="rounded" />
+									<textbox id="ecc3Limit" width="90"
+										mold="rounded" />
+								</vlayout>
+							</hbox>
+							<hbox>
+								<vlayout>
+									Member since
+									<datebox id="ecc1DOM" lenient="true"
+										buttonVisible="true" mold="rounded" />
+									<datebox id="ecc2DOM" lenient="tue"
+										buttonVisible="true" mold="rounded" />
+									<datebox id="ecc3DOM" lenient="true"
+										buttonVisible="true" mold="rounded" />
+								</vlayout>
+							</hbox>
+						</hlayout>
+						<hlayout sclass="noteField">
+							<hbox>
+								<label sclass="noteField"
+									value="Note: Existing credit card must be over 12 months to qualify for another card." />
+
+							</hbox>
+						</hlayout>
+					</groupbox>
+
+				</row>
+			</rows>
+		</grid>
+
+		<!-- Other credit card -->
+		<grid>
+			<rows>
+				<row>
+
+					<groupbox>
+						<caption label="Other Credit Card(s)"
+							style="font-weight:bold;" />
+						<hlayout>
+							<label sclass="noteField"
+								value="Must be a principal credit cardholder for at least one(1) year. Credit card
+	 must be issued in the Philippines with Credit Limit of at least Php 10,000." />
+							<space />
+						</hlayout>
+						<hlayout>
+							<hbox height="3" />
+							<hbox>
+								<vlayout>
+									Card Company
+									<textbox id="occ1" width="90"
+										maxlength="25" mold="rounded" />
+									<textbox id="occ2" width="90"
+										maxlength="25" mold="rounded" />
+									<textbox id="occ3" width="90"
+										maxlength="25" mold="rounded" />
+								</vlayout>
+							</hbox>
+							<hbox>
+								<vlayout>
+									Card No.
+									<textbox id="occ1Num" width="90"
+										maxlength="25" mold="rounded" />
+									<textbox id="occ2Num" width="90"
+										maxlength="25" mold="rounded" />
+									<textbox id="occ3Num" width="90"
+										maxlength="25" mold="rounded" />
+								</vlayout>
+							</hbox>
+							<hbox>
+								<vlayout>
+									Credit Limit
+									<textbox id="occ1Limit" width="90"
+										mold="rounded" />
+									<textbox id="occ2Limit" width="90"
+										mold="rounded" />
+									<textbox id="occ3Limit" width="90"
+										mold="rounded" />
+								</vlayout>
+							</hbox>
+							<hbox>
+								<vlayout>
+									Member since
+									<datebox id="occ1DOM" lenient="true"
+										buttonVisible="true" mold="rounded" />
+									<datebox id="occ2DOM" lenient="tue"
+										buttonVisible="true" mold="rounded" />
+									<datebox id="occ3DOM" lenient="true"
+										buttonVisible="true" mold="rounded" />
+								</vlayout>
+							</hbox>
+						</hlayout>
+					</groupbox>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>
