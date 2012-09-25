@@ -12,13 +12,13 @@
 		</tabs>    
 	    <tabpanels>
 	    	<tabpanel id="ccDetailTabPanel"  >
-	        	<include src="/functions/newapplication/creditCardDetails.zul" id="ccDetailPanelInclude" mode="instant"/>
+	        	<include src="/functions/application/creditCardDetails.zul" id="ccDetailPanelInclude" mode="instant"/>
 	        </tabpanel>
 	    	<tabpanel fulfill="saveAndSwipe.onSelect" id="saveSwipeTabPanel">
-	        	<include src="/functions/newapplication/saveAndSwipe.zul" id="saveSwipePanelInclude" mode="instant"/>
+	        	<include src="/functions/application/saveAndSwipe.zul" id="saveSwipePanelInclude" mode="instant"/>
 	        </tabpanel >
 	        <tabpanel id="doaSaveSwipeTabPanel">
-	        	<include src="/functions/newapplication/doaSaveAndSwipe.zul" id="doaSaveSwipePanelInclude" mode="instant"/>
+	        	<include src="/functions/application/doaSaveAndSwipe.zul" id="doaSaveSwipePanelInclude" mode="instant"/>
 	        </tabpanel>
 	     </tabpanels>
    </tabbox>

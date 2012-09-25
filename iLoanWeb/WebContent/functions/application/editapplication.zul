@@ -25,12 +25,11 @@
     
     
 </style>
-<window id="newApplicationWindow"  self="@{define(left)}" 
-apply="com.isg.iloan.controller.functions.dataEntry.NewApplicationViewCtrl"  >
+<window title="" border="normal" id="editApplicationWindow"  self="@{define(left)}" >
 
 
-	<caption label="NEW CREDIT CARD APPLICATION" >
-		<button tooltiptext="SUBMIT" left="true" image="/images/submit.png" mold="trendy" id="newappSubmitButton"/>
+<caption label="EDIT CREDIT CARD APPLICATION" >
+		<button tooltiptext="UPDATE" left="true" image="/images/submit.png" mold="trendy" id="appUpdateButton"/>
 		<button tooltiptext="CANCEL" left="false" image="/images/cancel.png" mold="trendy" />
 	</caption>
 		<div>
@@ -78,19 +77,7 @@ apply="com.isg.iloan.controller.functions.dataEntry.NewApplicationViewCtrl"  >
 								Delivery/Payment Instructions
 							</span>
 						</li>
-						<!-- <li id="ss" class="initialHide">
-							<div class="arrow-left-undone"></div>
-							<span class="breadcrumb_item undone">
-								Save and Swipe
-							</span>
-							<div class="arrow-right-undone"></div>
-						</li>
-						<li id="dass" class="initialHide" >
-							<div class="arrow-left-undone"></div>
-							<span class="breadcrumb_item undone">
-								Deeds of Assignment for Save and Swipe
-							</span>
-						</li> -->
+						
 					</ul>
 				</html>
 			</div>
@@ -103,10 +90,7 @@ apply="com.isg.iloan.controller.functions.dataEntry.NewApplicationViewCtrl"  >
         <tab id="supplementaryDetail" label="Part D" tooltiptext="Supplementary Detail" />
         <tab id="internetTransaction" label="Part E" tooltiptext="Internet Transactions"/>
         <tab id="deliveryInstruction" label="Part F" tooltiptext="Delivery/Payment Instructions" />
-        <!-- 
-        <tab id="saveAndSwipe" label="Part G" visible="false" tooltiptext="SAVE &amp; SWIPE"/>
-        <tab id="ssDeeds" label="Part H" visible="false" tooltiptext="DEEDS of ASSIGNMENT" /> 
-         -->   
+          
     </tabs>    
     <tabpanels id="tabPanels" >
         <tabpanel id="ccDetailPanel" style="overflow-y:scroll;" >
@@ -128,17 +112,14 @@ apply="com.isg.iloan.controller.functions.dataEntry.NewApplicationViewCtrl"  >
         	<include src="/functions/application/deliveryPaymentInstructions.zul" mode="instant"/>
 		</tabpanel>
       
-		<!-- 
-        <tabpanel fulfill="saveAndSwipe.onSelect" style="overflow-y:scroll;">
-        	<include src="/functions/newapplication/saveAndSwipe.zul"/>
-        </tabpanel >
-        <tabpanel fulfill="ssDeeds.onSelect" style="overflow-y:scroll;">
-        	<include src="/functions/newapplication/doaSaveAndSwipe.zul"/>
-        </tabpanel>
-         -->
+		
     </tabpanels>
 </tabbox>
 
-	
+
+
+
+
+
 </window>
 </zk>
