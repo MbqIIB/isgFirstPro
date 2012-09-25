@@ -65,20 +65,18 @@ apply="com.isg.iloan.controller.functions.dataEntry.NewApplicationViewCtrl"  >
 							</span>
 							<div class="arrow-right-undone"></div>
 						</li>
-						<li id="dpi">
-						<div class="arrow-left-undone"></div>
-							<span class="breadcrumb_item undone">
-								Delivery/Payment Instructions
-							</span>
-							<div class="arrow-right-undone"></div>
-						</li>
 						<li id="it">
 							<div class="arrow-left-undone"></div>
 							<span class="breadcrumb_item undone">
 								Internet Transaction
 							</span>
-							
-							
+							<div class="arrow-right-undone"></div>
+						</li>
+						<li id="dpi">
+							<div class="arrow-left-undone"></div>
+							<span class="breadcrumb_item undone">
+								Delivery/Payment Instructions
+							</span>
 						</li>
 						<!-- <li id="ss" class="initialHide">
 							<div class="arrow-left-undone"></div>
@@ -129,7 +127,6 @@ apply="com.isg.iloan.controller.functions.dataEntry.NewApplicationViewCtrl"  >
         <tabpanel fulfill="deliveryInstruction.onSelect" style="overflow-y:scroll;" id="instructionTabPanel">
         	<include src="/functions/newapplication/deliveryPaymentInstructions.zul" mode="instant"/>
 		</tabpanel>
-        
       
 		<!-- 
         <tabpanel fulfill="saveAndSwipe.onSelect" style="overflow-y:scroll;">

@@ -7,9 +7,13 @@
 		.spacer{
 			margin: 10px 5px;
 		}
+		
+		.z-center-body {
+		    overflow: auto !important;
+		}
 	</style>
-	<window title="Application Search" border="normal" width="70%" 
-	           apply="com.isg.iloan.controller.functions.DummySearchViewCtrl" self="@{define(left)}">
+	<window title="Application Search" border="normal" width="80%" height="100%" style="overflow:auto;"
+	           apply="com.isg.iloan.controller.functions.DummySearchViewCtrl" self="@{define(left)}" id="searchApplicationWindow">
 		<div apply="org.zkoss.bind.BindComposer"
 			viewModel="@id('vm') @init('com.isg.iloan.controller.viewModel.DummySearchViewModel')">
 			<groupbox>

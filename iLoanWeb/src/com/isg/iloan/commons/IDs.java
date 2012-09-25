@@ -127,7 +127,7 @@ public class IDs {
 	public static final String JD_SPOUSE_LN = "spouseFamilyName"; 
 	public static final String JD_SPOUSE_GN = "spouseGivenName"; 
 	public static final String JD_SPOUSE_MN = "spouseMiddleName"; 
-	public static final String JD_SPOUSE_DOB = "spouseDOB"; 
+	public static final String JD_SPOUSE_DOB = "spouseDOB";
 	
 	/*** ==================== SUPPLEMENTARY ========================== ***/
 	public static final String SUPP_WINDOW = "supplementaryWindow"; 
