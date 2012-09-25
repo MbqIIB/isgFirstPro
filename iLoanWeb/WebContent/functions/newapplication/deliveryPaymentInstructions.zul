@@ -48,9 +48,9 @@
 									<hlayout>
 										
 										<checkbox
-											label="Minimum amount due" id="minAmount"/>
+											label="Minimum amount due" id="minAmountDue"/>
 										<checkbox
-											label="Total amount due" id="totalAmount"/>
+											label="Total amount due" id="totalAmountDue"/>
 									</hlayout>
 								</vlayout>
 							</div>

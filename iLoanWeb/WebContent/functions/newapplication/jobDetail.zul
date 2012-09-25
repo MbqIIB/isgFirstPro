@@ -73,7 +73,7 @@
 					<cell colspan="2">
 						<label value="Zip Code" style="text-align:right;" />
 						<space/>
-						<textbox id="zipCode" width="50px" mold="rounded" />
+						<intbox id="zipCode" width="50px" mold="rounded" />
 					</cell>
 					
 				</row>

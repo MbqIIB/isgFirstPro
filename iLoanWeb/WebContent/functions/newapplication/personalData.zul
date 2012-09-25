@@ -122,7 +122,7 @@
 						<hlayout>
 							<vbox>
 								<label value="Mobile Phone No." />
-								<intbox id="mobilePhoneNumber"
+								<textbox id="mobilePhoneNum"
 									width="140px" mold="rounded" constraint="no negative,no zero,no empty"/>
 								<label value="Email Address" />
 								<textbox id="emailAddress"
@@ -130,15 +130,15 @@
 							</vbox>
 							<vbox>
 								<label value="Home Phone No." />
-								<intbox id="homePhoneNumber"
+								<textbox id="homePhoneNumber"
 									width="140px" mold="rounded" constraint="no negative,no zero,no empty"/>
 								<label value="Mother's full name" />
-								<textbox id="motherFullname"
+								<textbox id="motherFullName"
 									width="140px" mold="rounded"  constraint="no empty"/>
 							</vbox>
 							<vbox>
 								<label value="No. of Children" />
-								<textbox id="numOfChildren"
+								<intbox id="numOfChildren"
 									width="50px" mold="rounded" />
 							</vbox>
 						</hlayout>
@@ -153,7 +153,7 @@
 								width="460px" rows="3" mold="rounded" />
 							<vbox>
 								<label value="Zip code" />
-								<textbox id="homeAddZip"
+								<intbox id="homeAddZip"
 									width="80px" mold="rounded" />
 							</vbox>
 						</hbox>
@@ -169,7 +169,7 @@
 								width="460px" rows="3" mold="rounded" />
 							<vbox>
 								<label value="Zip code" />
-								<textbox id="permanentAddZip"
+								<intbox id="permanentAddZip"
 									width="80px" mold="rounded" />
 							</vbox>
 						</hbox>
