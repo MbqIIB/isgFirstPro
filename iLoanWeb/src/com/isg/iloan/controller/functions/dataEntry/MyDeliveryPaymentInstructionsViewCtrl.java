@@ -37,8 +37,8 @@ public class MyDeliveryPaymentInstructionsViewCtrl extends
 	private Textbox deliveryPlace;
 	private Textbox paymentMode;
 	private Checkbox payCash_chkbox;
-	private Checkbox minAmount;
-	private Checkbox totalAmount;
+	private Checkbox minAmountDue;
+	private Checkbox totalAmountDue;
 	private Row preferredPaymentRow;
 	private Row deliveryLocRow;
 
@@ -52,7 +52,7 @@ public class MyDeliveryPaymentInstructionsViewCtrl extends
 		home_chkbox.setChecked(true);
 		payCash_chkbox.setChecked(true);
 		ada_div.setVisible(false);
-		minAmount.setChecked(true);
+		minAmountDue.setChecked(true);
 		List<Component>toValidate = new ArrayList<Component>();
 		toValidate.add(deliveryLocRow);
 		toValidate.add(preferredPaymentRow);
@@ -121,12 +121,12 @@ public class MyDeliveryPaymentInstructionsViewCtrl extends
 
 	public void onCheck$office_chkbox(){
 		home_chkbox.setChecked(!office_chkbox.isChecked());		
-		deliveryPlace.setValue(office_chkbox.isChecked()?"Office":"Home");
+		deliveryPlace.setValue(office_chkbox.isChecked()?office_chkbox.getLabel():home_chkbox.getLabel());
 	}
 	
 	public void onCheck$home_chkbox(){
 		office_chkbox.setChecked(!home_chkbox.isChecked());
-		deliveryPlace.setValue(home_chkbox.isChecked()?"Home":"Office");
+		deliveryPlace.setValue(home_chkbox.isChecked()?home_chkbox.getLabel():office_chkbox.getLabel());
 	}
 	
 	public void onCheck$ada_chkbox(){
@@ -141,12 +141,12 @@ public class MyDeliveryPaymentInstructionsViewCtrl extends
 		ada_div.setVisible(!payCash_chkbox.isChecked());
 	}
 	
-	public void onCheck$minAmount(){
-		totalAmount.setChecked(!minAmount.isChecked());
+	public void onCheck$minAmountDue(){
+		totalAmountDue.setChecked(!minAmountDue.isChecked());
 	}
 	
-	public void onCheck$totalAmount(){
-		minAmount.setChecked(!totalAmount.isChecked());
+	public void onCheck$totalAmountDue(){
+		minAmountDue.setChecked(!totalAmountDue.isChecked());
 	}
 
 }

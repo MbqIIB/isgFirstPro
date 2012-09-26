@@ -45,7 +45,7 @@ public class DeedsOfAssignment {
   private Date dateApplied;
   @Column(name="METROBANK_BRANCH")
   private String metrobankBranchNameCode;
-  @Column(name="ACCPET_DOA")
+  @Column(name="ACCEPT_DOA")
   private boolean acceptDOA;
   
   //Constructors

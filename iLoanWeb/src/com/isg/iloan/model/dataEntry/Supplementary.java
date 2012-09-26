@@ -40,9 +40,9 @@ public class Supplementary {
   @Column(name="BIRTHDATE")
   private Date birthDate;
   @Column(name="BIRTHPLACE")
-  private Date birthPlace;
+  private String birthPlace;
   @Column(name="GENDER")
-  private char gender;
+  private String gender;
 
   @OneToOne(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
   @JoinColumn(name="ADDRESS_ID")
@@ -131,18 +131,18 @@ public void setBirthDate(Date birthDate) {
 	this.birthDate = birthDate;
 }
 
-public char getGender() {
+public String getGender() {
 	return gender;
 }
-public void setGender(char gender){
+public void setGender(String gender){
 	this.gender = gender;
 }
 
-public Date getBirthPlace() {
+public String getBirthPlace() {
 	return birthPlace;
 }
 
-public void setBirthPlace(Date birthPlace) {
+public void setBirthPlace(String birthPlace) {
 	this.birthPlace = birthPlace;
 }
 

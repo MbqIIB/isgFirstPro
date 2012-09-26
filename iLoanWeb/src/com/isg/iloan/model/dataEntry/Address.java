@@ -25,7 +25,7 @@ public class Address {
   @Column(name="ADDRESSLINE1")
   private String addressLine1;
   @Column(name="ZIPCODE")
-  private String zipCode;
+  private int zipCode;
   @Column(name="HOMEADDRESS")
   private boolean isHomeAddress;
   @Column(name="PERMADDRESS")
@@ -64,12 +64,12 @@ public String getAddressLine1() {
 public void setAddressLine1(String addressLine1) {
 	this.addressLine1 = addressLine1;
 }
-public String getZipCode() {
+public int getZipCode() {
 	return zipCode;
 }
 
 
-public void setZipCode(String zipCode) {
+public void setZipCode(int zipCode) {
 	this.zipCode = zipCode;
 }
 

@@ -69,10 +69,17 @@ public class PersonalData {
 	private boolean sssMember;
 	@Column(name="GSISMEMBER")
 	private boolean gsisMember;
-	@Column(name="OTHER_ID_CODE")
-	private String otherIdCode;
-	@Column(name="OTHER_ID_VALUE")
-	private String otherIdValue;
+
+	
+	@Column(name="DRIVER_LICENSE")
+	private String driverLicenseNum;
+	@Column(name="PASSPORT_NUM")
+	private String passportNum;
+	@Column(name="PRC_ID")
+	private String prcID;
+	@Column(name="OTHER_ID")
+	private String otherID;
+	
 	@Column(name="PERSON_REF_NAME")
 	private String personalRefName;
 	@Column(name="PERSON_REF_REL")
@@ -81,17 +88,14 @@ public class PersonalData {
 	
 	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
 	@JoinColumn(name="HOME_ADDR_ID")
-	private Address homeAddress;
-	private String homeAddZip;
+	private Address homeAddress;	
 	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
 	@JoinColumn(name="PERM_ADDR_ID")
 	private Address permanentAddress;	
-	private String permanentAddZip;
 	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
 	@JoinColumn(name="PERSON_REF_ADDR_ID")
 	private Address personalRefAddress;
-	private String otherNationality;
-
+	
 	
 	public PersonalData(){}
 	
@@ -112,7 +116,7 @@ public class PersonalData {
 	public long getPersonalDataId() {
 		return personalDataId;
 	}
-
+	@Id
 	public void setPersonalDataId(long personalDataId) {
 		this.personalDataId = personalDataId;
 	}
@@ -318,21 +322,7 @@ public class PersonalData {
 		this.gsisMember = gsisMember;
 	}
 
-	public String getOtherIdCode() {
-		return otherIdCode;
-	}
-
-	public void setOtherIdCode(String otherIdCode) {
-		this.otherIdCode = otherIdCode;
-	}
-
-	public String getOtherIdValue() {
-		return otherIdValue;
-	}
-
-	public void setOtherIdValue(String otherIdValue) {
-		this.otherIdValue = otherIdValue;
-	}
+	
 
 	public String getPersonalRefName() {
 		return personalRefName;
@@ -358,29 +348,41 @@ public class PersonalData {
 		this.personalRefAddress = personalRefAddress;
 	}
 
-	public String getOtherNationality() {
-		return otherNationality;
+	
+
+	public String getPassportNum() {
+		return passportNum;
 	}
 
-	public void setOtherNationality(String otherNationality) {
-		this.otherNationality = otherNationality;
+	public void setPassportNum(String passportNum) {
+		this.passportNum = passportNum;
 	}
 
-	public String getHomeAddZip() {
-		return homeAddZip;
+	public String getPrcID() {
+		return prcID;
 	}
 
-	public void setHomeAddZip(String homeAddZip) {
-		this.homeAddZip = homeAddZip;
+	public void setPrcID(String prcID) {
+		this.prcID = prcID;
 	}
 
-	public String getPermanentAddZip() {
-		return permanentAddZip;
+	public String getOtherID() {
+		return otherID;
 	}
 
-	public void setPermanentAddZip(String permanentAddZip) {
-		this.permanentAddZip = permanentAddZip;
+	public void setOtherID(String otherID) {
+		this.otherID = otherID;
 	}
+
+	public String getDriverLicenseNum() {
+		return driverLicenseNum;
+	}
+
+	public void setDriverLicenseNum(String driverLicenseNum) {
+		this.driverLicenseNum = driverLicenseNum;
+	}
+
+	
 
 
 	

@@ -14,7 +14,7 @@ import com.isg.iloan.model.dataEntry.Application;
 
 public class ApplicationDaoImpl extends IloanGenericDao<Application> implements ApplicationDao {
 
-	private static Logger logger = Logger.getLogger(CreditCardDetailsViewCtrl.class);
+	private static Logger logger = Logger.getLogger(ApplicationDaoImpl.class);
 	
 	// test if this will be injected by the child class
 	//private EntityManagerFactory entityManagerFactory;

@@ -83,8 +83,8 @@
 						<hlayout>
 							<!--  textbox id="nationality"/ -->
 							<checkbox id="filipino" label="Filipino" checked="true" />
-							<checkbox label="Others" id="othrs_chkbox" />
-							<textbox id="nationality" width="300px" value="Filipino"
+							<checkbox label="Others" id="otherNational" />
+							<textbox id="nationality" width="300px" 
 								mold="rounded" constraint="no empty"/>
 						</hlayout>
 					</cell>

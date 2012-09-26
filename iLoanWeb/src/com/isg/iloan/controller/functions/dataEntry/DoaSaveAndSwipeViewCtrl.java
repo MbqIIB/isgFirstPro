@@ -41,9 +41,17 @@ public class DoaSaveAndSwipeViewCtrl extends GenericForwardComposer {
 	@Override
 	public void doAfterCompose(Component comp) throws Exception {
 		super.doAfterCompose(comp);
-		pledgedAccountNo_txtbox.setDisabled(true);
-
+		
+		issuance_chkbox.setChecked(false);
+		changeDepInst_chkbox.setChecked(false);
+		incDecCreditLimit_chkbox.setChecked(false);
+		savings_chkbox.setChecked(false);
+		time_chkbox.setChecked(false);
+		specialAccount_chkbox.setChecked(false);
+		acceptDOA_chkbox.setChecked(false);
+		
 	}
+	
 
 	public void onCheck$savings_chkbox(){
 		pledgedAccountTypeCode.setValue("1");
