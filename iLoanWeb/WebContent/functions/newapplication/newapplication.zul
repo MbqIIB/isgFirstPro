@@ -1,7 +1,9 @@
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="/layout/mainLayout.zul"?>
+
 <zk>
 	<?script type="text/javascript" src="/js/jquery-1.8.1.js"?>
 	<?script type="text/javascript" src="/js/breadcrumbs.js"?>
+	<?script type="text/javascript" src="/js/iloan-common.js"?>
 	<style src="/style/breadcrumbs.css"></style>
 <style dynamic="true">
 	.noteField{
@@ -26,9 +28,7 @@
     
 </style>
 <window id="newApplicationWindow"  self="@{define(left)}" 
-apply="com.isg.iloan.controller.functions.dataEntry.NewApplicationViewCtrl"  >
-
-
+apply="com.isg.iloan.controller.functions.dataEntry.NewApplicationViewCtrl"  >  
 	<caption label="NEW CREDIT CARD APPLICATION" >
 		<button tooltiptext="SUBMIT" left="true" image="/images/submit.png" mold="trendy" id="newappSubmitButton"/>
 		<button tooltiptext="CANCEL" left="false" image="/images/cancel.png" mold="trendy" />
@@ -139,7 +139,6 @@ apply="com.isg.iloan.controller.functions.dataEntry.NewApplicationViewCtrl"  >
          -->
     </tabpanels>
 </tabbox>
-
 	
 </window>
 </zk>

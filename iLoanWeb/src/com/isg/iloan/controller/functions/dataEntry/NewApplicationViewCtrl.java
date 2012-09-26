@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.zkoss.zhtml.Messagebox;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.WrongValueException;
 import org.zkoss.zk.ui.util.Clients;
@@ -21,6 +22,7 @@ import org.zkoss.zk.ui.util.GenericForwardComposer;
 import org.zkoss.zul.Button;
 import org.zkoss.zul.Checkbox;
 import org.zkoss.zul.Datebox;
+import org.zkoss.zul.Div;
 import org.zkoss.zul.Hbox;
 import org.zkoss.zul.Hlayout;
 import org.zkoss.zul.Intbox;
@@ -74,7 +76,6 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 	private Hlayout cbLayout;
 	private Hbox acceptClassicCardHbox;
 	private Button newappSubmitButton;
-
 	/**
 	 *
 	 *
@@ -107,6 +108,7 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 		Clients.evalJavaScript("changeState('#dass')");
 	}
 	
+	
 	public void onClick$newappSubmitButton(){
 		//boolean pdChecker = allPersonalDataDetailsValid();
 		//logger.debug(pdChecker);
@@ -131,9 +133,15 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	
+		for(Component c: newApplicationWindow.getPage().getDesktop().getComponents()){
 		
-		
-		
+			if("errorDiv".equals(c.getId())){
+				logger.debug(c);
+				c.setVisible(true);
+			}
+		}
+		Clients.evalJavaScript("showErrorPage()");
 	}
 	
 	
@@ -370,9 +378,6 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 				}
 			}
 		}
-		
 		return true;
-		
 	}
-
 }

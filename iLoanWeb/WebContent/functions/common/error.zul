@@ -1,0 +1,44 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<style>
+	.err-div{
+		border: solid 2px #990000;
+		background-color: #FFEEEE;
+	    position: absolute;
+	    top: 0;
+	    left: 35%;
+	    z-index: 9999998;
+	    width: 400px;
+	    padding: 8px;
+	}
+
+	.err-groupbox{
+		background-color: #FFFFFF;
+		clear:both;
+	}
+	
+	.err-caption{
+		color: #990000;
+		font-weight: bold;
+	}
+	
+	.err-close{
+		background: url("/iLoanWeb/zkau/web/e2d6bfe3/zk/img/error.png") no-repeat scroll -17px 0 transparent;
+		height: 15px;
+		width: 15px;
+		float: right;
+		margin-top: 5px;
+		cursor: pointer;
+		border-style: none;
+	}
+</style>
+<div sclass="err-div" apply="com.isg.iloan.controller.util.ErrorViewCtrl" id="errorDiv" >
+<groupbox sclass="err-groupbox">
+<caption sclass="err-caption">Errors</caption>
+	<hlayout>
+	<div sclass="err-content-div">${arg.message}</div>
+	</hlayout>
+</groupbox>
+<button sclass="err-close" id="errCloseBtn"></button>
+</div>
+</zk>

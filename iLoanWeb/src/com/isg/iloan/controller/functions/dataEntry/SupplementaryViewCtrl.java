@@ -51,7 +51,6 @@ public class SupplementaryViewCtrl extends GenericForwardComposer {
 	public void doAfterCompose(Component comp) throws Exception {
 		super.doAfterCompose(comp);
 		
-		
 		InputElementValidator.addOnBlurEventToInput(comp, comp, "#sd");
 		bindValidationOnClick(supplementaryGrid);
 	}
