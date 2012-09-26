@@ -102,10 +102,12 @@
 							style="font-weight:bold;" />
 						<hlayout>
 							<hbox>
+							    <longbox id="eccId1" value="0" visible="false"/>
+							    <longbox id="eccId2" value="0" visible="false"/>
+							    <longbox id="eccId3" value="0" visible="false"/>
 								<vlayout>
 									Credit Cards
-									<textbox id="existingCC1"
-										width="180" maxlength="25" mold="rounded" />
+									<textbox id="existingCC1" width="180" maxlength="25" mold="rounded" />
 									<textbox id="existingCC2"
 										width="180" maxlength="25" mold="rounded" />
 									<textbox id="existingCC3"
@@ -165,6 +167,9 @@
 						<hlayout>
 							<hbox height="3" />
 							<hbox>
+								<longbox id="occId1" value="0" visible="false"/>
+							    <longbox id="occId2" value="0" visible="false"/>
+							    <longbox id="occId3" value="0" visible="false"/>
 								<vlayout>
 									Card Company
 									<textbox id="occ1" width="90"

@@ -13,7 +13,7 @@
 		id="saveAndSwipeWindow" 
 		apply="com.isg.iloan.controller.functions.dataEntry.SaveAndSwipeViewCtrl" >
 
-
+<longbox id="saveAndSwipeId" value="0" visible="false"/>
 <grid>
 
 <columns>

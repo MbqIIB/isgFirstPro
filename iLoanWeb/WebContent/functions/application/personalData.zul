@@ -12,7 +12,7 @@
 <window title="PESONAL DATA" id="personalDataWindow" border="normal" width="98%" 
 		xmlns:h="http://www.w3.org/1999/xhtml" 
 		apply="com.isg.iloan.controller.functions.dataEntry.PersonalDataViewCtrl">
-
+		<longbox id="personalDataId" value="0" visible="false"/>
 		<grid id="personalDataForm">
 			<rows>
 				<row>
@@ -147,6 +147,7 @@
 
 				<row>
 					<groupbox width="685px">
+						<longbox id="homeAddressId" value="0" visible="false"/>
 						<caption label="Home Address" />
 						<hbox>
 							<textbox id="homeAddress"
@@ -162,6 +163,7 @@
 
 				<row>
 					<groupbox width="685px">
+					    <longbox id="permAddressId" value="0" visible="false"/>
 						<caption
 							label="Permanent Address(if different from Home Address)" />
 						<hbox>
@@ -318,6 +320,7 @@
 								</hbox>
 								<hbox>
 									<label value="Address" />
+									<longbox id="refAddressId" value="0" visible="false"/>
 									<textbox
 										id="personalRefAddress" rows="2" width="370px"
 										mold="rounded" />

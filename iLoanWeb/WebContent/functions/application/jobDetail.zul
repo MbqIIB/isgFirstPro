@@ -3,6 +3,7 @@
 	<window border="normal" title="JOB DETAILS" id="jobDetailWindow" width="98%" 
 		apply="com.isg.iloan.controller.functions.dataEntry.JobDetailViewCtrl">
 		
+		<longbox id="jobDetailId" value="0" visible="false"/>
 		<grid>
 		<rows>
 		<row>
@@ -107,7 +108,7 @@
 						<caption>My Financial Standing</caption>
 						<label value="Gross Monthly Income"></label>
 						<space width="72px"/>
-						<textbox id="grossMonthlyIncome" mold="rounded" width="80px"/>
+						<longbox id="grossMonthlyIncome" mold="rounded" width="80px"/>
 						</groupbox>						
 					</row>
 					<row>
