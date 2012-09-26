@@ -78,7 +78,7 @@ public class CreditCardDetailsViewCtrl extends GenericForwardComposer {
 	public void uncheckOtherCardType(Checkbox checkbox){		
 		for(Checkbox cb:getCardTypes()){
 			if(!cb.getId().equals(checkbox.getId())){
-				cb.setChecked(!checkbox.isChecked());
+				cb.setChecked(false);
 			}
 		}
 	}
