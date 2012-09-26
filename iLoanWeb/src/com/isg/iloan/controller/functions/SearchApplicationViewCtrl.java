@@ -11,14 +11,14 @@ import org.zkoss.zul.Button;
  * @author sheena.catacutan
  *
  */
-public class DummySearchViewCtrl extends GenericForwardComposer {
+public class SearchApplicationViewCtrl extends GenericForwardComposer {
 
 	/**
 	 *
 	 *
 	 */
 	
-	private Button dummySearchBtn;
+	private Button searchAppButton;
 	@Override
 	public void doAfterCompose(Component comp) throws Exception {
 		super.doAfterCompose(comp);
@@ -26,7 +26,7 @@ public class DummySearchViewCtrl extends GenericForwardComposer {
 
 	}
 	//onCheck$acceptSaveAndSwipe()
-	public void onClick$dummySearchBtn(){
+	public void onClick$searchAppButton(){
 		alert("button is clicked.");
 	}
 	
