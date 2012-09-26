@@ -34,7 +34,15 @@ public class Fund implements Serializable{
   
   
   
-  public Fund(String code, String desc){
+  public Fund() {
+	super();
+	// TODO Auto-generated constructor stub
+}
+
+
+
+
+public Fund(String code, String desc){
 	  this.fundCode = code;
 	  this.fundDesc = desc;
 	  

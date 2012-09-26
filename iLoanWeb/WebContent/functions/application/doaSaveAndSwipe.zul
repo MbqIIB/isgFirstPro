@@ -5,6 +5,7 @@
 		id="doaWindow" 
 		 apply="com.isg.iloan.controller.functions.dataEntry.DoaSaveAndSwipeViewCtrl" >
 
+<longbox id="doaId" value="0" visible="false"/>
 <vlayout>
 <label value="Secured Credit Card(and Supplementary Card were applicable):"/>
 <vbox>

@@ -31,8 +31,9 @@ public class ApplicationDaoImpl extends IloanGenericDao<Application> implements 
 
 	@Override
 	public Application findById(long id) throws DataAccessException {
-		// TODO Auto-generated method stub
+		logger.debug("*** retrieving id: " + id );
 		return super.findById(id);
+		
 	}
 
 	@Override

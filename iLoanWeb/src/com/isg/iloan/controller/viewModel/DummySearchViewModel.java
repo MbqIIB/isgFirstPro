@@ -28,18 +28,18 @@ public class DummySearchViewModel {
 		creditCardType.add("Gold Mastercard");
 		creditCardType.add("Gold Visa");
 		
-		PersonalData pd1 = new PersonalData("Geronimo", "Zara", "Reyes");
-		ApplicationBean app1 = new ApplicationBean(Calendar.getInstance().getTime(), "Femme Visa", "Approved");
-		applicationDetails.add(new SearchCriteria(app1, pd1));
-		PersonalData pd2 = new PersonalData("Ferragamo", "Sylverter", "Santos");
-		ApplicationBean app2 = new ApplicationBean(Calendar.getInstance().getTime(), "M Lite Mastercard", "Rejected");
-		applicationDetails.add(new SearchCriteria(app2, pd2));
-		PersonalData pd3 = new PersonalData("Khors", "Michael", "Tan");
-		ApplicationBean app3 = new ApplicationBean(Calendar.getInstance().getTime(), "Gold Visa", "New");
-		applicationDetails.add(new SearchCriteria(app3, pd3));
-		PersonalData pd4 = new PersonalData("York", "Donna Karan", "New");
-		ApplicationBean app4 = new ApplicationBean(Calendar.getInstance().getTime(), "Classic Mastercard", "Pending");
-		applicationDetails.add(new SearchCriteria(app4, pd4));
+//		PersonalData pd1 = new PersonalData("Geronimo", "Zara", "Reyes");
+//		ApplicationBean app1 = new ApplicationBean(Calendar.getInstance().getTime(), "Femme Visa", "Approved");
+//		applicationDetails.add(new SearchCriteria(app1, pd1));
+//		PersonalData pd2 = new PersonalData("Ferragamo", "Sylverter", "Santos");
+//		ApplicationBean app2 = new ApplicationBean(Calendar.getInstance().getTime(), "M Lite Mastercard", "Rejected");
+//		applicationDetails.add(new SearchCriteria(app2, pd2));
+//		PersonalData pd3 = new PersonalData("Khors", "Michael", "Tan");
+//		ApplicationBean app3 = new ApplicationBean(Calendar.getInstance().getTime(), "Gold Visa", "New");
+//		applicationDetails.add(new SearchCriteria(app3, pd3));
+//		PersonalData pd4 = new PersonalData("York", "Donna Karan", "New");
+//		ApplicationBean app4 = new ApplicationBean(Calendar.getInstance().getTime(), "Classic Mastercard", "Pending");
+//		applicationDetails.add(new SearchCriteria(app4, pd4));
 		
 	}
 	
