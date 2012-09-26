@@ -3,35 +3,46 @@ $(document).ready(function() {
 });
 
 function changeState(element) {
-	$($(".arrow-down-done")[0]).remove();
-	$($(".arrow-down-incomplete")[0]).remove();
-	$($(".arrow-down-undone")[0]).remove();
-	$($(element + " .arrow-left-undone")[0]).remove();
-	$($(element + " .arrow-right-undone")[0]).remove();
-	$($(element + " .arrow-left-done")[0]).remove();
-	$($(element + " .arrow-right-done")[0]).remove();
-	$($(element + " .arrow-left-incomplete")[0]).remove();
-	$($(element + " .arrow-right-incomplete")[0]).remove();
-	if ("#ccd" != element) {
-		$(element).prepend('<div class="arrow-left-incomplete"></div>');
-	}
-	if ("#dass" != element) {
-		if ("#dpi" == element) {
-			$("#dpi div").each(
-				function(index) {
-					if ($(this).prop("class") == "arrow-right-undone") {
-						$(this).append('<div class="arrow-right-incomplete"></div>');
-					}
-				});
-		} else {
-			$(element).append('<div class="arrow-right-incomplete"></div>');
+	if(element!="#ccd"){
+		$($(".arrow-down-done")[0]).remove();
+		$($(".arrow-down-incomplete")[0]).remove();
+		$($(".arrow-down-undone")[0]).remove();
+		$($(element + " .arrow-left-undone")[0]).remove();
+		$($(element + " .arrow-right-undone")[0]).remove();
+		$($(element + " .arrow-left-done")[0]).remove();
+		$($(element + " .arrow-right-done")[0]).remove();
+		$($(element + " .arrow-left-incomplete")[0]).remove();
+		$($(element + " .arrow-right-incomplete")[0]).remove();
+		if ("#ccd" != element) {
+			$(element).prepend('<div class="arrow-left-incomplete"></div>');
 		}
+		if ("#dass" != element) {
+			if ("#dpi" == element) {
+				$("#dpi div").each(
+					function(index) {
+						if ($(this).prop("class") == "arrow-right-undone") {
+							$(this).append('<div class="arrow-right-incomplete"></div>');
+						}
+					});
+			} else {
+				$(element).append('<div class="arrow-right-incomplete"></div>');
+			}
+		}
+	
+		$(element).append('<div class="arrow-down-incomplete"></div>');
+		$(element + " span").removeClass("done");
+		$(element + " span").removeClass("undone");
+		$(element + " span").addClass("incomplete");
+	}else{
+		$.each($("#ccd span")[0].getAttribute("class").split(" "),function(index, item){
+			if(item=="done"){
+				$($(".arrow-down-done")[0]).remove();
+				$($(".arrow-down-incomplete")[0]).remove();
+				$(element).append('<div class="arrow-down-done"></div>');
+				return;
+			}
+		});
 	}
-
-	$(element).append('<div class="arrow-down-incomplete"></div>');
-	$(element + " span").removeClass("undone");
-	$(element + " span").addClass("incomplete");
-
 }
 
 function validatedState(element, isValidated) {

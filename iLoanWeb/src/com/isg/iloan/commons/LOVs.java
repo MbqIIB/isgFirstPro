@@ -5,8 +5,11 @@ import java.util.Map;
 
 public class LOVs {
 
+	private int key;
+	private int code;
+	private String desc;
 	
-	
+
 	public LOVs() {	}
 
 
@@ -15,6 +18,35 @@ public class LOVs {
 		
 		return funds;
 	}
-	
+
+
+	public int getKey() {
+		return key;
+	}
+
+
+	public void setKey(int key) {
+		this.key = key;
+	}
+
+	public String getDesc() {
+		return desc;
+	}
+
+
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
+
+
+	public int getCode() {
+		return code;
+	}
+
+
+	public void setCode(int code) {
+		this.code = code;
+	}
+
 	
 }

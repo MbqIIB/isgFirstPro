@@ -19,7 +19,7 @@
 							<vlayout>
 								<checkbox id="classicMasterCard"
 									label="Classic Master Card" />
-								<checkbox id="classicVisaCard"
+								<checkbox id="classicVisaCard" 
 									label="Classic Visa" />
 							</vlayout>
 						</hbox>

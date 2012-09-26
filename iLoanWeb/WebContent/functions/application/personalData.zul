@@ -51,7 +51,7 @@
 							<hbox>
 								<vlayout>
 									<datebox id="birthDate"
-										lenient="true" buttonVisible="true" mold="rounded" constraint="between 20071225 and 29991231, no empty"/>
+										lenient="true" buttonVisible="true" mold="rounded" constraint="between 19501225 and 19941203, no empty"/>
 									<label value="Place of birth" />
 									<textbox id="placeOfBirth"
 										width="160" mold="rounded" constraint="no empty" />

@@ -133,12 +133,22 @@ public class MyDeliveryPaymentInstructionsViewCtrl extends
 		payCash_chkbox.setChecked(!ada_chkbox.isChecked());
 		paymentMode.setValue(ada_chkbox.isChecked()?Labels.INS_ADA:Labels.INS_CASH_CHECK);
 		ada_div.setVisible(ada_chkbox.isChecked());
+		if(ada_chkbox.isChecked()){
+			Clients.evalJavaScript("smoothSlideDown('.ada_container')");
+		}else{
+			Clients.evalJavaScript("smoothSlideUp('.ada_container')");
+		}
 	}
 	
 	public void onCheck$payCash_chkbox(){
 		ada_chkbox.setChecked(!payCash_chkbox.isChecked());
 		paymentMode.setValue(payCash_chkbox.isChecked()?Labels.INS_CASH_CHECK:Labels.INS_ADA);
 		ada_div.setVisible(!payCash_chkbox.isChecked());
+		if(!payCash_chkbox.isChecked()){
+			Clients.evalJavaScript("smoothSlideDown('.ada_container')");
+		}else{
+			Clients.evalJavaScript("smoothSlideUp('.ada_container')");
+		}
 	}
 	
 	public void onCheck$minAmountDue(){

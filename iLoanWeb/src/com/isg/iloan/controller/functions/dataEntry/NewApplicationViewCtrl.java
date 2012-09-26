@@ -4,17 +4,14 @@
 package com.isg.iloan.controller.functions.dataEntry;
 
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
-import org.zkoss.zhtml.Messagebox;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.WrongValueException;
 import org.zkoss.zk.ui.util.Clients;
@@ -23,7 +20,6 @@ import org.zkoss.zkplus.spring.SpringUtil;
 import org.zkoss.zul.Button;
 import org.zkoss.zul.Checkbox;
 import org.zkoss.zul.Datebox;
-import org.zkoss.zul.Div;
 import org.zkoss.zul.Hbox;
 import org.zkoss.zul.Hlayout;
 import org.zkoss.zul.Intbox;
@@ -33,7 +29,6 @@ import org.zkoss.zul.Tabpanel;
 import org.zkoss.zul.Tabs;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Window;
-import org.zkoss.zul.impl.InputElement;
 
 import com.isg.iloan.commons.Helper;
 import com.isg.iloan.commons.IDs;
@@ -90,6 +85,9 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 	public void doAfterCompose(Component comp) throws Exception {
 		super.doAfterCompose(comp);
 		
+	}
+	public void onClick$creditCardDetail(){
+		Clients.evalJavaScript("changeState('#ccd')");
 	}
 	
 	public void onClick$personalData(){
