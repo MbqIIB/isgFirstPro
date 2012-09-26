@@ -18,7 +18,7 @@ public class DeedsOfAssignment {
   @SequenceGenerator(name="DOA_SEQ",sequenceName="DOA_SEQ",allocationSize=1)
   @GeneratedValue(generator="DOA_SEQ", strategy = GenerationType.SEQUENCE)
   @Column(name="DOA_ID")	
-  private int doaId;
+  private long doaId;
   @Column(name="ISSUANCE")
   private boolean issuance;
   @Column(name="INCDEC_LIMIT")
@@ -51,11 +51,11 @@ public class DeedsOfAssignment {
   //Constructors
   public DeedsOfAssignment(){}
 
-public int getDoaId() {
+public long getDoaId() {
 	return doaId;
 }
 
-public void setDoaId(int doaId) {
+public void setDoaId(long doaId) {
 	this.doaId = doaId;
 }
 

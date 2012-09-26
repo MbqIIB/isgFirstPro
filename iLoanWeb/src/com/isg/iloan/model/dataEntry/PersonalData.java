@@ -99,24 +99,11 @@ public class PersonalData {
 	
 	public PersonalData(){}
 	
-	public PersonalData(String familyName, String givenName, String middleName) {
-		super();
-		this.familyName = familyName;
-		this.givenName = givenName;
-		this.middleName = middleName;
-	}
-	public String getName() {
-		return familyName +", "+givenName+" "+middleName;
-	}
-
-
-
 	
-
 	public long getPersonalDataId() {
 		return personalDataId;
 	}
-	@Id
+	
 	public void setPersonalDataId(long personalDataId) {
 		this.personalDataId = personalDataId;
 	}

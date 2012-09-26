@@ -116,7 +116,7 @@ public class Application implements Serializable{
 	public long getApplicationId() {
 		return applicationId;
 	}
-
+	
 	public void setApplicationId(long applicationId) {
 		this.applicationId = applicationId;
 	}
