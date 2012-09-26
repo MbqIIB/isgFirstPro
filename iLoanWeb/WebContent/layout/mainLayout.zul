@@ -1,6 +1,11 @@
+<?component name="error" macroURI="/functions/common/error.zul"?>
+
 <zk>
+
+	<?script type="text/javascript" src="/js/iloan-common.js"?>
 	<style src="/style/style.css" />
 	<window title="" border="" style="height:100%;width:100%">
+ 	 <error message="Sample Error"/>  
 		<borderlayout>
 			<north size="12%" sclass="header" splittable="true" collapsible="true">
 				<include src="/layout/header.zul" />

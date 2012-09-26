@@ -1,6 +1,5 @@
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="/layout/mainLayout.zul"?>
 <zk>
-
 	<style>
 		.lblStyle{ position:relative; display:block; width:100px;
 		float:left; }
@@ -12,6 +11,7 @@
 		    overflow: auto !important;
 		}
 	</style>
+	 
 	<window title="Application Search" border="normal" width="80%" height="100%" style="overflow:auto;"
 	           apply="com.isg.iloan.controller.functions.DummySearchViewCtrl" self="@{define(left)}" id="searchApplicationWindow">
 		<div apply="org.zkoss.bind.BindComposer"

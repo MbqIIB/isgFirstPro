@@ -1,7 +1,9 @@
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="/layout/mainLayout.zul"?>
+
 <zk>
 	<?script type="text/javascript" src="/js/jquery-1.8.1.js"?>
 	<?script type="text/javascript" src="/js/breadcrumbs.js"?>
+	<?script type="text/javascript" src="/js/iloan-common.js"?>
 	<style src="/style/breadcrumbs.css"></style>
 <style dynamic="true">
 	.noteField{
@@ -26,9 +28,7 @@
     
 </style>
 <window id="newApplicationWindow"  self="@{define(left)}" 
-apply="com.isg.iloan.controller.functions.dataEntry.NewApplicationViewCtrl"  >
-
-
+apply="com.isg.iloan.controller.functions.dataEntry.NewApplicationViewCtrl"  >  
 	<caption label="NEW CREDIT CARD APPLICATION" >
 		<button tooltiptext="SUBMIT" left="true" image="/images/submit.png" mold="trendy" id="newappSubmitButton"/>
 		<button tooltiptext="CANCEL" left="false" image="/images/cancel.png" mold="trendy" />
@@ -65,6 +65,7 @@ apply="com.isg.iloan.controller.functions.dataEntry.NewApplicationViewCtrl"  >
 							</span>
 							<div class="arrow-right-undone"></div>
 						</li>
+					
 						<li id="it">
 							<div class="arrow-left-undone"></div>
 							<span class="breadcrumb_item undone">
@@ -110,22 +111,22 @@ apply="com.isg.iloan.controller.functions.dataEntry.NewApplicationViewCtrl"  >
     </tabs>    
     <tabpanels id="tabPanels" >
         <tabpanel id="ccDetailPanel" style="overflow-y:scroll;" >
-        	<include src="/functions/application/creditCardDetailPanel.zul" mode="instant"/>
+        	<include src="/functions/newapplication/creditCardDetailPanel.zul" mode="instant"/>
         </tabpanel>
         <tabpanel id="personalPanel" fulfill="personalData.onClick" style="overflow-y:scroll;" >
-        	<include src="/functions/application/personalData.zul" mode="instant" id="personalDataInc"/>        	
+        	<include src="/functions/newapplication/personalData.zul" mode="instant" id="personalDataInc"/>        	
         </tabpanel>
         <tabpanel fulfill="jobDetail.onSelect" style="overflow-y:scroll;" id="jobDetailTabPanel" >
-        	<include src="/functions/application/jobDetail.zul" mode="instant"/>
+        	<include src="/functions/newapplication/jobDetail.zul" mode="instant"/>
         </tabpanel>
         <tabpanel fulfill="supplementaryDetail.onSelect" style="overflow-y:scroll;" id="supplementaryTabPanel">
-        	<include src="/functions/application/supplementary.zul" mode="instant"/>
+        	<include src="/functions/newapplication/supplementary.zul" mode="instant"/>
         </tabpanel>
         <tabpanel fulfill="internetTransaction.onSelect" style="overflow-y:scroll;" id="internetTabPanel" >
-			<include src="/functions/application/internetTransaction.zul" mode="instant"/>
+			<include src="/functions/newapplication/internetTransaction.zul" mode="instant"/>
         </tabpanel>
         <tabpanel fulfill="deliveryInstruction.onSelect" style="overflow-y:scroll;" id="instructionTabPanel">
-        	<include src="/functions/application/deliveryPaymentInstructions.zul" mode="instant"/>
+        	<include src="/functions/newapplication/deliveryPaymentInstructions.zul" mode="instant"/>
 		</tabpanel>
       
 		<!-- 
@@ -138,7 +139,6 @@ apply="com.isg.iloan.controller.functions.dataEntry.NewApplicationViewCtrl"  >
          -->
     </tabpanels>
 </tabbox>
-
 	
 </window>
 </zk>
