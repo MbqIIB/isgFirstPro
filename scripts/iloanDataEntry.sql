@@ -3,7 +3,6 @@
 Drop table iloan.APPLICATION cascade constraints;
 Drop table iloan.CREDITCARD cascade constraints;
 Drop table iloan.ADDRESS cascade constraints;
-Drop table iloan.APPLICATION cascade constraints;
 Drop table iloan.DOA cascade constraints;
 Drop table iloan.FUND cascade constraints;
 Drop table iloan.INSTRUCTION cascade constraints;
