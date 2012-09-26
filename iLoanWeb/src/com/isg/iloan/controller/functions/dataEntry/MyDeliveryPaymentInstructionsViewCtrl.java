@@ -121,12 +121,12 @@ public class MyDeliveryPaymentInstructionsViewCtrl extends
 
 	public void onCheck$office_chkbox(){
 		home_chkbox.setChecked(!office_chkbox.isChecked());		
-		deliveryPlace.setValue(office_chkbox.isChecked()?"Office":"Home");
+		deliveryPlace.setValue(office_chkbox.isChecked()?office_chkbox.getLabel():home_chkbox.getLabel());
 	}
 	
 	public void onCheck$home_chkbox(){
 		office_chkbox.setChecked(!home_chkbox.isChecked());
-		deliveryPlace.setValue(home_chkbox.isChecked()?"Home":"Office");
+		deliveryPlace.setValue(home_chkbox.isChecked()?home_chkbox.getLabel():office_chkbox.getLabel());
 	}
 	
 	public void onCheck$ada_chkbox(){
