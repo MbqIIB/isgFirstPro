@@ -7,7 +7,7 @@ import java.util.List;
 import com.isg.iloan.model.dataEntry.PersonalData;
 import com.isg.iloan.service.SearchCriteria;
 
-public class DummySearchViewModel {
+public class SearchApplicationViewModel {
 
 	private static List<String> appStatus = new ArrayList<String>();
 	private static List<String> creditCardType = new ArrayList<String>();
