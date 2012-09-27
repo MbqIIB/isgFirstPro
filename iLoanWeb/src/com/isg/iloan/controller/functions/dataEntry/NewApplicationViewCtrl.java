@@ -330,6 +330,7 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 				break;
 			}			
 		}
+		app.setDateOfApplication(new Date());
 		app.setAppStatusCode(1);
 		app.setAppStatusDesc("New");
 		app.setCardTypeCode(((Textbox)ccDetailsMap.get(IDs.CARD_TYPE_CODE)).getValue());

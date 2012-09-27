@@ -90,7 +90,7 @@ public class EditApplicationWindowViewCtrl extends GenericForwardComposer {
 		
 		
 		
-		Application app = getService().retrieveById(23);
+		Application app = getService().retrieveById(4);
 		this.app = app;
 		
 		Collection<Component> comps =  ccDetailPanel.getPage().getDesktop().getComponents();		
