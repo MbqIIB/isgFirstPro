@@ -31,10 +31,10 @@ public class PersonalDataViewCtrl extends GenericForwardComposer {
 	private static final long serialVersionUID = 8903716989014780575L;
 	private Grid personalDataForm;
 	
-	private Checkbox single_chkbox;
-	private Checkbox married_chkbox;
-	private Checkbox widowed_chkbox;
-	private Checkbox separated_chkbox;
+	private Checkbox single;
+	private Checkbox married;
+	private Checkbox widowed;
+	private Checkbox separated;
 	private Textbox civilStatus;
 	private Checkbox male;
 	private Checkbox female;
@@ -46,13 +46,13 @@ public class PersonalDataViewCtrl extends GenericForwardComposer {
 	private Checkbox owned;
 	private Checkbox rented;
 	private Checkbox mortgaged;
-	private Checkbox livParRel;
+	private Checkbox lwpr;
 	private Textbox homeOwnership;
 	
 	private Checkbox highschool;
-	private Checkbox someCollege;
+	private Checkbox somecollege;
 	private Checkbox college;
-	private Checkbox postGraduate;
+	private Checkbox postgraduate;
 	private Textbox education;
 	
 
@@ -120,28 +120,28 @@ public class PersonalDataViewCtrl extends GenericForwardComposer {
 	}
 
 	
-	public void onCheck$single_chkbox(){
-		civilStatus.setValue(single_chkbox.getLabel());
-		uncheckOthers(single_chkbox);
+	public void onCheck$single(){
+		civilStatus.setValue(single.getLabel());
+		uncheckOthers(single);
 	}
-	public void onCheck$married_chkbox(){
-		civilStatus.setValue(married_chkbox.getLabel());
-		uncheckOthers(married_chkbox);
+	public void onCheck$married(){
+		civilStatus.setValue(married.getLabel());
+		uncheckOthers(married);
 	}
-	public void onCheck$widowed_chkbox(){
-		civilStatus.setValue(widowed_chkbox.getLabel());
-		uncheckOthers(widowed_chkbox);
+	public void onCheck$widowed(){
+		civilStatus.setValue(widowed.getLabel());
+		uncheckOthers(widowed);
 	}
-	public void onCheck$separated_chkbox(){
-		civilStatus.setValue(separated_chkbox.getLabel());
-		uncheckOthers(separated_chkbox);
+	public void onCheck$separated(){
+		civilStatus.setValue(separated.getLabel());
+		uncheckOthers(separated);
 	}
 	
 	public void uncheckOthers(Checkbox cb){		
-		single_chkbox.setChecked(single_chkbox.getId().equals(cb.getId())?single_chkbox.isChecked():false);
-		married_chkbox.setChecked(married_chkbox.getId().equals(cb.getId())?married_chkbox.isChecked():false);
-		widowed_chkbox.setChecked(widowed_chkbox.getId().equals(cb.getId())?widowed_chkbox.isChecked():false);
-		separated_chkbox.setChecked(separated_chkbox.getId().equals(cb.getId())?separated_chkbox.isChecked():false);
+		single.setChecked(single.getId().equals(cb.getId())?single.isChecked():false);
+		married.setChecked(married.getId().equals(cb.getId())?married.isChecked():false);
+		widowed.setChecked(widowed.getId().equals(cb.getId())?widowed.isChecked():false);
+		separated.setChecked(separated.getId().equals(cb.getId())?separated.isChecked():false);
 		
 	}
 	
@@ -175,42 +175,42 @@ public class PersonalDataViewCtrl extends GenericForwardComposer {
 		homeOwnership.setValue(mortgaged.getLabel());
 		uncheckOtherHO(mortgaged);
 	}
-	public void onCheck$livParRel(){
-		homeOwnership.setValue(livParRel.getLabel());
-		uncheckOtherHO(livParRel);
+	public void onCheck$lwpr(){
+		homeOwnership.setValue(lwpr.getLabel());
+		uncheckOtherHO(lwpr);
 	}
 	
 	public void uncheckOtherHO(Checkbox cb){		
 		owned.setChecked(owned.getId().equals(cb.getId())?owned.isChecked():false);
 		rented.setChecked(rented.getId().equals(cb.getId())?rented.isChecked():false);
 		mortgaged.setChecked(mortgaged.getId().equals(cb.getId())?mortgaged.isChecked():false);
-		livParRel.setChecked(livParRel.getId().equals(cb.getId())?livParRel.isChecked():false);
+		lwpr.setChecked(lwpr.getId().equals(cb.getId())?lwpr.isChecked():false);
 		
 	}
 	
 		
 	public void onCheck$highschool(){
-		education.setValue(highschool.getLabel());
+		education.setValue(highschool.getName());
 		uncheckEducation(highschool);
 	}
-	public void onCheck$someCollege(){
-		education.setValue(someCollege.getLabel());
-		uncheckEducation(someCollege);
+	public void onCheck$somecollege(){
+		education.setValue(somecollege.getName());
+		uncheckEducation(somecollege);
 	}
 	public void onCheck$college(){
-		education.setValue(college.getLabel());
+		education.setValue(college.getName());
 		uncheckEducation(college);
 	}
-	public void onCheck$postGraduate(){
-		education.setValue(postGraduate.getLabel());
-		uncheckEducation(postGraduate);
+	public void onCheck$postgraduate(){
+		education.setValue(postgraduate.getName());
+		uncheckEducation(postgraduate);
 	}
 	
 	public void uncheckEducation(Checkbox cb){		
 		highschool.setChecked(highschool.getId().equals(cb.getId())?highschool.isChecked():false);
-		someCollege.setChecked(someCollege.getId().equals(cb.getId())?someCollege.isChecked():false);
+		somecollege.setChecked(somecollege.getId().equals(cb.getId())?somecollege.isChecked():false);
 		college.setChecked(college.getId().equals(cb.getId())?college.isChecked():false);
-		postGraduate.setChecked(postGraduate.getId().equals(cb.getId())?postGraduate.isChecked():false);
+		postgraduate.setChecked(postgraduate.getId().equals(cb.getId())?postgraduate.isChecked():false);
 		
 	}
 	

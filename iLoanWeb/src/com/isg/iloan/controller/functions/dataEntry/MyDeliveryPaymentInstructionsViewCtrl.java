@@ -31,12 +31,12 @@ public class MyDeliveryPaymentInstructionsViewCtrl extends
 		GenericForwardComposer {
 
 	private Div ada_div;
-	private Checkbox ada_chkbox;
-	private Checkbox office_chkbox;
-	private Checkbox home_chkbox;
+	private Checkbox ada;
+	private Checkbox office;
+	private Checkbox home;
 	private Textbox deliveryPlace;
 	private Textbox paymentMode;
-	private Checkbox payCash_chkbox;
+	private Checkbox cashcheck;
 	private Checkbox minAmountDue;
 	private Checkbox totalAmountDue;
 	private Row preferredPaymentRow;
@@ -49,8 +49,8 @@ public class MyDeliveryPaymentInstructionsViewCtrl extends
 	@Override
 	public void doAfterCompose(Component comp) throws Exception {
 		super.doAfterCompose(comp);
-		home_chkbox.setChecked(true);
-		payCash_chkbox.setChecked(true);
+		home.setChecked(true);
+		cashcheck.setChecked(true);
 		ada_div.setVisible(false);
 		minAmountDue.setChecked(true);
 		List<Component>toValidate = new ArrayList<Component>();
@@ -119,36 +119,36 @@ public class MyDeliveryPaymentInstructionsViewCtrl extends
 	}
 	
 
-	public void onCheck$office_chkbox(){
-		home_chkbox.setChecked(!office_chkbox.isChecked());		
-		deliveryPlace.setValue(office_chkbox.isChecked()?office_chkbox.getLabel():home_chkbox.getLabel());
+	public void onCheck$office(){
+		home.setChecked(!office.isChecked());		
+		deliveryPlace.setValue(office.isChecked()?office.getLabel():home.getLabel());
 	}
 	
-	public void onCheck$home_chkbox(){
-		office_chkbox.setChecked(!home_chkbox.isChecked());
-		deliveryPlace.setValue(home_chkbox.isChecked()?home_chkbox.getLabel():office_chkbox.getLabel());
+	public void onCheck$home(){
+		office.setChecked(!home.isChecked());
+		deliveryPlace.setValue(home.isChecked()?home.getLabel():office.getLabel());
 	}
 	
-	public void onCheck$ada_chkbox(){
-		payCash_chkbox.setChecked(!ada_chkbox.isChecked());
-		paymentMode.setValue(ada_chkbox.isChecked()?Labels.INS_ADA:Labels.INS_CASH_CHECK);
-		ada_div.setVisible(ada_chkbox.isChecked());
-		if(ada_chkbox.isChecked()){
-			Clients.evalJavaScript("smoothSlideDown('.ada_container')");
-		}else{
-			Clients.evalJavaScript("smoothSlideUp('.ada_container')");
-		}
+	public void onCheck$ada(){
+		cashcheck.setChecked(!ada.isChecked());
+		paymentMode.setValue(ada.isChecked()?Labels.INS_ADA:Labels.INS_CASH_CHECK);
+		ada_div.setVisible(ada.isChecked());
+//		if(ada.isChecked()){
+//			Clients.evalJavaScript("smoothSlideDown('.ada_container')");
+//		}else{
+//			Clients.evalJavaScript("smoothSlideUp('.ada_container')");
+//		}
 	}
 	
-	public void onCheck$payCash_chkbox(){
-		ada_chkbox.setChecked(!payCash_chkbox.isChecked());
-		paymentMode.setValue(payCash_chkbox.isChecked()?Labels.INS_CASH_CHECK:Labels.INS_ADA);
-		ada_div.setVisible(!payCash_chkbox.isChecked());
-		if(!payCash_chkbox.isChecked()){
-			Clients.evalJavaScript("smoothSlideDown('.ada_container')");
-		}else{
-			Clients.evalJavaScript("smoothSlideUp('.ada_container')");
-		}
+	public void onCheck$cashcheck(){
+		ada.setChecked(!cashcheck.isChecked());
+		paymentMode.setValue(cashcheck.isChecked()?Labels.INS_CASH_CHECK:Labels.INS_ADA);
+		ada_div.setVisible(!cashcheck.isChecked());
+//		if(!cashcheck.isChecked()){
+//			Clients.evalJavaScript("smoothSlideDown('.ada_container')");
+//		}else{
+//			Clients.evalJavaScript("smoothSlideUp('.ada_container')");
+//		}
 	}
 	
 	public void onCheck$minAmountDue(){

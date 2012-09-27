@@ -14,6 +14,7 @@ public interface ApplicationService {
 	
 	void deleteApplication(long id);
 	
+	List<Application> queryByKey(long key);
 	
 
 }

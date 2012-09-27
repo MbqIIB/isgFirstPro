@@ -50,4 +50,10 @@ public class ApplicationServiceImpl implements ApplicationService {
 		applicationDao.deleteById(id);
 	}
 
+	@Override
+	public List<Application> queryByKey(long key) {
+		// TODO Auto-generated method stub
+		return applicationDao.queryByKey(key);
+	}
+
 }

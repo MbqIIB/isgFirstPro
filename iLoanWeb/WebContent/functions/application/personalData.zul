@@ -51,7 +51,7 @@
 							<hbox>
 								<vlayout>
 									<datebox id="birthDate"
-										lenient="true" buttonVisible="true" mold="rounded" constraint="between 19501225 and 19941203, no empty"/>
+										lenient="true" buttonVisible="true" mold="rounded" constraint="between 19501225 and 20121203, no empty"/>
 									<label value="Place of birth" />
 									<textbox id="placeOfBirth"
 										width="160" mold="rounded" constraint="no empty" />
@@ -64,17 +64,17 @@
 							<hlayout>							
 								<hbox>
 									<vlayout>
-										<checkbox id="single_chkbox"
+										<checkbox id="single"
 											label="Single" />
-										<checkbox id="married_chkbox"
+										<checkbox id="married"
 											label="Married" />
 									</vlayout>
 								</hbox>
 								<hbox>
 									<vlayout>
-										<checkbox id="widowed_chkbox"
+										<checkbox id="widowed"
 											label="Widowed" />
-										<checkbox id="separated_chkbox"
+										<checkbox id="separated"
 											label="Separated" />
 
 									</vlayout>
@@ -131,7 +131,7 @@
 							<vbox>
 								<label value="Home Phone No." />
 								<textbox id="homePhoneNumber"
-									width="140px" mold="rounded" constraint="no negative,no zero,no empty"/>
+									width="140px" mold="rounded" />
 								<label value="Mother's full name" />
 								<textbox id="motherFullName"
 									width="140px" mold="rounded"  constraint="no empty"/>
@@ -190,7 +190,7 @@
 							<checkbox id="mortgaged"
 								label="Mortgaged" />
 							<space />
-							<checkbox id="livParRel"
+							<checkbox id="lwpr"
 								label="Living with parents/relatives" />
 							<space />
 							<label value="Length of stays:" />
@@ -225,16 +225,16 @@
 						<textbox id="education" visible="false"/>
 						<hlayout>
 							<checkbox id="highschool"
-								label="High School" />
+								label="High School" name="HighSchool"/>
 							<space />
-							<checkbox id="someCollege"
-								label="Some College" />
+							<checkbox id="somecollege"
+								label="Some College" name="SomeCollege" />
 							<space />
 							<checkbox id="college"
-								label="College" />
+								label="College" name="College"/>
 							<space />
-							<checkbox id="postGraduate"
-								label="Post Graduate" />
+							<checkbox id="postgraduate"
+								label="Post Graduate" name="PostGraduate" />
 							<space />
 						</hlayout>
 					</groupbox>
@@ -264,7 +264,7 @@
 										<hbox>
 											
 											<checkbox
-												id="driverLicense_chkbox" label="Driver License No." />
+												id="driverLicenseNum_chkbox" label="Driver License No." />
 											<textbox
 												id="driverLicenseNum" width="100px" mold="rounded" />
 										</hbox>

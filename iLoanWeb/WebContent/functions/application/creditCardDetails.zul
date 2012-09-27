@@ -17,26 +17,26 @@
 						<textbox id="creditCardTypeDesc" visible="false" />
 						<hbox>
 							<vlayout>
-								<checkbox id="classicMasterCard"
-									label="Classic Master Card" />
-								<checkbox id="classicVisaCard" 
-									label="Classic Visa" />
+								<checkbox id="classicmastercard"
+									label="Classic Master Card" name="ClassicMasterCard" />
+								<checkbox id="classicvisacard" 
+									label="Classic Visa" name="ClassicVisaCard" />
 							</vlayout>
 						</hbox>
 						<hbox>
 							<vlayout>
-								<checkbox id="goldMasterCard"
-									label="Gold Master Card" />
-								<checkbox id="goldVisaCard"
-									label="Gold Visa" />
+								<checkbox id="goldmastercard"
+									label="Gold Master Card" name="GoldMasterCard"/>
+								<checkbox id="goldvisacard"
+									label="Gold Visa" name="GoldVisaCard"/>
 							</vlayout>
 						</hbox>
 						<hbox>
 							<vlayout>
-								<checkbox id="mLiteMasterCard"
-									label="M Lite Master Card" />
-								<checkbox id="femmeVisaCard"
-									label="Femme Visa" />
+								<checkbox id="mlitemastercard"
+									label="M Lite Master Card" name="MLiteMasterCard"/>
+								<checkbox id="femmevisacard"
+									label="Femme Visa" name="FemmeVisa"/>
 							</vlayout>
 						</hbox>
 					</hlayout>

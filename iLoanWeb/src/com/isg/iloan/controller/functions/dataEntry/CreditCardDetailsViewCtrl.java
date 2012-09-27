@@ -85,27 +85,27 @@ public class CreditCardDetailsViewCtrl extends GenericForwardComposer {
 	
 	public void onCheck$classicMasterCard(){
 		uncheckOtherCardType(this.classicMasterCard);
-		setCreditCard(IDs.CLASSIC_MASTERCARD,this.classicMasterCard.getLabel());
+		setCreditCard(classicMasterCard.getName(),this.classicMasterCard.getLabel());
 	}
 	public void onCheck$classicVisaCard(){
 		uncheckOtherCardType(this.classicVisaCard);
-		setCreditCard(IDs.CLASSIC_VISACARD,this.classicVisaCard.getLabel());
+		setCreditCard(classicVisaCard.getName(),this.classicVisaCard.getLabel());
 	}
 	public void onCheck$goldMasterCard(){
 		uncheckOtherCardType(this.goldMasterCard);
-		setCreditCard(IDs.GOLD_MASTERCARD,this.goldMasterCard.getLabel());
+		setCreditCard(goldMasterCard.getName(),this.goldMasterCard.getLabel());
 	}
 	public void onCheck$goldVisaCard(){
 		uncheckOtherCardType(this.goldVisaCard);
-		setCreditCard(IDs.GOLD_VISACARD,this.goldVisaCard.getLabel());
+		setCreditCard(goldVisaCard.getName(),this.goldVisaCard.getLabel());
 	}
 	public void onCheck$mLiteMasterCard(){
 		uncheckOtherCardType(this.mLiteMasterCard);
-		setCreditCard(IDs.MLITE_MASTERCARD,this.mLiteMasterCard.getLabel());
+		setCreditCard(mLiteMasterCard.getName(),this.mLiteMasterCard.getLabel());
 	}
 	public void onCheck$femmeVisaCard(){
 		uncheckOtherCardType(this.femmeVisaCard);
-		setCreditCard(IDs.FEMME_VISACARD,this.femmeVisaCard.getLabel());
+		setCreditCard(femmeVisaCard.getName(),this.femmeVisaCard.getLabel());
 	}
 
 	public List<Checkbox> getCardTypes(){

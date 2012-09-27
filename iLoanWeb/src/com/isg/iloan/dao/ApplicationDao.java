@@ -23,5 +23,7 @@ public interface ApplicationDao {
 	
 	void deleteById( final Long id) throws DataAccessException;
 	
+	List<Application> queryByKey(long key) throws DataAccessException;
+	
 
 }

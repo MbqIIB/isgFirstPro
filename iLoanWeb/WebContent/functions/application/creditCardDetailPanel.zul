@@ -14,7 +14,7 @@
 	    	<tabpanel id="ccDetailTabPanel"  >
 	        	<include src="/functions/application/creditCardDetails.zul" id="ccDetailPanelInclude" mode="instant"/>
 	        </tabpanel>
-	    	<tabpanel fulfill="saveAndSwipe.onSelect" id="saveSwipeTabPanel">
+	    	<tabpanel  id="saveSwipeTabPanel">
 	        	<include src="/functions/application/saveAndSwipe.zul" id="saveSwipePanelInclude" mode="instant"/>
 	        </tabpanel >
 	        <tabpanel id="doaSaveSwipeTabPanel">

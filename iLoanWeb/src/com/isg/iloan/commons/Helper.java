@@ -19,6 +19,7 @@ import org.zkoss.zul.Longbox;
 import org.zkoss.zul.Textbox;
 
 import com.isg.iloan.controller.functions.dataEntry.NewApplicationViewCtrl;
+import com.isg.iloan.model.dataEntry.Address;
 
 public class Helper {
 
@@ -106,6 +107,7 @@ public class Helper {
 				        try{
 				        	 comp = window.getFellow(methodName);
 				        }catch(ComponentNotFoundException e){
+				        	failedMethods.add(methodName);
 				        	continue;
 				        }
 				        
@@ -165,6 +167,7 @@ public class Helper {
 				        try{
 				        	 comp = window.getFellow(formatted);
 				        }catch(ComponentNotFoundException e){
+				        	failedMethods.add(formatted);
 				        	continue;
 				        }
 				       
@@ -201,6 +204,48 @@ public class Helper {
 		}
 	
 	
+	/*** use this with CAUTION: ids should be in proper order, 
+	 *   index 0: addressLine1 id
+	 *   index 1: zipCode id
+	 *   index 2: telNum id
+	 *   if Address does not have zip code, put an empty string "" in place of ids[1] index
+	 * 
+	 * */
+	public static void setAddress(Component window, Address addr, String[] ids)
+				throws SecurityException,WrongValueException,IllegalAccessException,InvocationTargetException{
+		
+		
+		int length = ids.length;
+		switch(length){
+		case 1: if(null!=addr.getAddressLine1() && !addr.getAddressLine1().isEmpty())
+				{
+				((Textbox)window.getFellow(ids[0])).setValue(addr.getAddressLine1());
+				}
+		case 2:	if(null!=addr.getAddressLine1() && !addr.getAddressLine1().isEmpty())
+				{
+					((Textbox)window.getFellow(ids[0])).setValue(addr.getAddressLine1());
+				}
+				if(0!=addr.getZipCode()){
+					((Intbox)window.getFellow(ids[1])).setValue(addr.getZipCode());
+				}
+				
+		        
+		case 3: 
+				if(null!=addr.getAddressLine1() && !addr.getAddressLine1().isEmpty())
+				{
+					((Textbox)window.getFellow(ids[0])).setValue(addr.getAddressLine1());
+				}				
+				if(!ids[1].isEmpty() && 0!=addr.getZipCode() ){					
+							
+					((Intbox)window.getFellow(ids[1])).setValue(addr.getZipCode());
+				} 
+				if(null!=addr.getTelNum() && !addr.getTelNum().isEmpty()){
+					((Textbox)window.getFellow(ids[2])).setValue(addr.getTelNum());		
+				}
+		}
+		
+				
+	}
 	
 	
 	

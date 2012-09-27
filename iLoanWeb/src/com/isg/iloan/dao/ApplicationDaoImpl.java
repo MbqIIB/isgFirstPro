@@ -62,6 +62,12 @@ public class ApplicationDaoImpl extends IloanGenericDao<Application> implements 
 		logger.debug("*** deleting application with id: " + id + "....deleted!"); 
 	}
 
+	@Override
+	public List<Application> queryByKey(long key) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return super.queryByKey(key);
+	}
+
 	
 	
 	
