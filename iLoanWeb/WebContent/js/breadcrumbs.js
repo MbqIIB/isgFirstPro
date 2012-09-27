@@ -41,6 +41,13 @@ function changeState(element) {
 				$(element).append('<div class="arrow-down-done"></div>');
 				return;
 			}
+			
+			if(item=="incomplete"){
+				$($(".arrow-down-done")[0]).remove();
+				$($(".arrow-down-incomplete")[0]).remove();
+				$(element).append('<div class="arrow-down-incomplete"></div>');
+				return;
+			}
 		});
 	}
 }
