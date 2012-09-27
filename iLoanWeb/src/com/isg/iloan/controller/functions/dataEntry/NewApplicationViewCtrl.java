@@ -427,8 +427,8 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 			for(Component window:comps){			
 				if(IDs.DOA_WINDOW.equals(window.getId())){
 					DeedsOfAssignment doa = new DeedsOfAssignment();
-					doa.setIssuance( ((Checkbox)window.getFellow(IDs.DOA_ISSUANCE_CHKBOX)).isChecked());
-					doa.setChangeDepInst(((Checkbox)window.getFellow(IDs.DOA_CHANGE_DEP_CHKBOX)).isChecked());
+					doa.setIssuance( ((Checkbox)window.getFellow(IDs.DOA_ISSUANCE)).isChecked());
+					doa.setChangeDepInst(((Checkbox)window.getFellow(IDs.DOA_CHANGE_DEP)).isChecked());
 					doa.setIncDecCreditLimit(((Checkbox)window.getFellow(IDs.DOA_INCDEC_LIMIT_CHKBOX)).isChecked());
 					if(doa.isIncDecCreditLimit()){
 						doa.setIncDecCreditLimitValue(((Textbox)window.getFellow(IDs.DOA_INCDEC_LIMIT)).getValue());

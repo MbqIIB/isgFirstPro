@@ -52,23 +52,23 @@ public class IDs {
 	/*** ============== DOA for SAVE AND SWIPE ====================== ***/
 	public static final String DOA_WINDOW = "doaWindow";
 	public static final String DOA_ID = "doaId";
-	public static final String DOA_ISSUANCE_CHKBOX = "issuance_chkbox";
-	public static final String DOA_CHANGE_DEP_CHKBOX = "changeDepInst_chkbox";
-	public static final String DOA_INCDEC_LIMIT_CHKBOX = "incDecCreditLimit_chkbox";
+	public static final String DOA_ISSUANCE = "issuance";
+	public static final String DOA_CHANGE_DEP = "changeDepInst";
+	public static final String DOA_INCDEC_LIMIT_CHKBOX = "incDecCreditLimit";
 	public static final String DOA_INCDEC_LIMIT = "incDecCreditLimit_txtbox";
 	public static final String DOA_PLEDGE_DIV = "pledgeDiv";
-	public static final String DOA_SAVINGS_CHKBOX = "savings_chkbox";
-	public static final String DOA_TIME_CHKBOX = "time_chkbox";
-	public static final String DOA_SPECIAL_ACCNT = "specialAccount_chkbox";
-	public static final String DOA_PLEDGE_ACCNT_NUM = "pledgedAccountNo_txtbox";
-	public static final String DOA_PLEDGE_DEPO_BRANCH = "branch_txtbox";
+	public static final String DOA_SAVINGS = "savings";
+	public static final String DOA_TIME = "time";
+	public static final String DOA_SPECIAL_ACCNT = "specialAccount";
+	public static final String DOA_PLEDGE_ACCNT_NUM = "pledgedAccountNum";
+	public static final String DOA_PLEDGE_DEPO_BRANCH = "pledgedAccntDepoBranch";
 	public static final String DOA_PLEDGE_ACCNT_CODE = "pledgedAccountTypeCode";
 	public static final String DOA_PLEDGE_ACCNT_DESC = "pledgedAccountTypeDesc";
-	public static final String DOA_PLEDGE_AMT_WORDS = "pledgedAmountWord_txtbox";
-	public static final String DOA_PLEDGE_AMT = "pledgedAmountFigure_txtbox";
-	public static final String DOA_DATE_APPLIED = "dateApplied_datebox";
-	public static final String DOA_METROBANK_BRANCH = "branchNameAndCode";
-	public static final String DOA_ACCEPTANCE = "acceptDOA_chkbox";
+	public static final String DOA_PLEDGE_AMT_WORDS = "pledgedAmountWords";
+	public static final String DOA_PLEDGE_AMT = "pledgedAmount";
+	public static final String DOA_DATE_APPLIED = "dateApplied";
+	public static final String DOA_METROBANK_BRANCH = "metrobankBranchNameCode";
+	public static final String DOA_ACCEPTANCE = "acceptDOA";
 	
 	/*** ==================== PERSONAL DATA ======================== ***/
 	public static final String PD_WINDOW = "personalDataWindow";

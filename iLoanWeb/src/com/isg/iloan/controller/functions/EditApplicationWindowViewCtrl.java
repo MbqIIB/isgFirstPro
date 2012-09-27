@@ -29,6 +29,7 @@ import com.isg.iloan.commons.IDs;
 import com.isg.iloan.dao.ApplicationDaoImpl;
 import com.isg.iloan.model.dataEntry.Address;
 import com.isg.iloan.model.dataEntry.Application;
+import com.isg.iloan.model.dataEntry.DeedsOfAssignment;
 import com.isg.iloan.model.dataEntry.Fund;
 import com.isg.iloan.model.dataEntry.Instruction;
 import com.isg.iloan.model.dataEntry.JobDetail;
@@ -124,27 +125,23 @@ public class EditApplicationWindowViewCtrl extends GenericForwardComposer {
 		
 		Collection<Component> comps =  ccDetailPanel.getPage().getDesktop().getComponents();		
 	
+		SaveAndSwipe ss = app.getSaveAndSwipe();
+		DeedsOfAssignment doa = ss.getDoa();
 		
-		
-		
+		int ctr=0;
 		for(Component window:comps){	
 			//logger.debug("comp id: " + window.getId());
 			if("ccDetailPanelWindow".equals(window.getId())){				
 				window.getFellow("saveAndSwipe").setVisible(true);
-				
-				
-				
-				
-//				SaveAndSwipe ss = app.getSaveAndSwipe();
-//				Component ssWindow = window.getFellow(IDs.SS_WINDOW);
-
-				
 				window.getFellow("ssDeeds").setVisible(true);
+				
+				ctr++;
+				
 				//break;
 			}
 			
 			if(IDs.SS_WINDOW.equals(window.getId())){
-				SaveAndSwipe ss = app.getSaveAndSwipe();
+				
 				Helper.setValues(window, ss);
 				if(ss.isMetrobankDepositor()){
 					((Checkbox)window.getFellow(IDs.SS_METROBANK_DEPOSITOR_YES)).setChecked(true);
@@ -152,11 +149,24 @@ public class EditApplicationWindowViewCtrl extends GenericForwardComposer {
 				}
 				if(ss.isAcceptPledge()){
 					((Checkbox)window.getFellow(IDs.SS_PLEDGE_YES)).setChecked(true);
-					((Checkbox)window.getFellow(IDs.SS_PLEDGE_NO)).setChecked(true);
+					((Checkbox)window.getFellow(IDs.SS_PLEDGE_NO)).setChecked(false);
 				}
 				
+				ctr++;
+			}
+			
+			if(IDs.DOA_WINDOW.equals(window.getId())){
+				Helper.setValues(window, doa);
+				//logger.debug("issuance: " + doa.isIssuance());
+				if(ss.isAcceptPledge()){
+					
+					((Div)window.getFellow(IDs.DOA_PLEDGE_DIV)).setVisible(true);
+					((Checkbox)window.getFellow(doa.getPledgedAccountTypeCode().toLowerCase())).setChecked(true);
+				}
 				
 			}
+			
+			
 			
 		}
 		

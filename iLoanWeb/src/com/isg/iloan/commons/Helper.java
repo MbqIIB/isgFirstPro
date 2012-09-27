@@ -150,12 +150,17 @@ public class Helper {
 		Method[] methods = obj.getClass().getDeclaredMethods();		
 		for(int m=0;m<methods.length;m++){
 			Method method = methods[m];
-			if(method.getName()!=null && method.getName().startsWith("get")){
+			String methodName = method.getName();
+			if(methodName!=null && (methodName.startsWith("get")|| methodName.startsWith("is"))){
 				logger.debug("*** orig method: " + method.getName());
 					if(method.getReturnType().isPrimitive() || 
 							method.getReturnType().getName().equals("java.lang.String")
 							|| method.getReturnType().getName().equals("java.util.Date") ){						
-						String methodName = method.getName().replaceFirst("get", "");
+						methodName=method.getName().replaceFirst("get", "");
+						if(method.getName().startsWith("is")){
+							methodName = method.getName().replaceFirst("is", "");
+						}
+						
 						
 						final int splitIndex = 1;				       
 				        final String first = methodName.substring(0, splitIndex).toLowerCase();
@@ -185,7 +190,7 @@ public class Helper {
 								((Intbox)comp).setValue((Integer)method.invoke(obj));
 							}else if(comp instanceof Checkbox){
 								
-								((Checkbox)comp).setChecked((Boolean)method.invoke(obj));
+								((Checkbox)comp).setChecked(Boolean.parseBoolean(String.valueOf(method.invoke(obj))));
 							}else if(comp instanceof Longbox){
 								
 								((Longbox)comp).setValue((Long)method.invoke(obj));
