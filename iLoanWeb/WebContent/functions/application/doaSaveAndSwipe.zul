@@ -1,6 +1,6 @@
 <?page title="new page title" contentType="text/html;charset=UTF-8"?>
 <zk>
-<window title="DEEDS OF ASSIGNMENT FOR SAVE&amp;SWIPE (Secured Card)" 
+<window title="Deeds of Assignment for Save &amp; Swipe (Secured Card)" 
 		border="normal" width="98%"  xmlns:html="http://www.w3.org/1999/xhtml" 
 		id="doaWindow" 
 		 apply="com.isg.iloan.controller.functions.dataEntry.DoaSaveAndSwipeViewCtrl" >
