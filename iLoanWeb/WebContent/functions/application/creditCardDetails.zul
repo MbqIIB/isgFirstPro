@@ -117,11 +117,11 @@
 							<hbox>
 								<vlayout>
 									Credit Limit
-									<textbox id="ecc1Limit" width="90"
+									<longbox id="ecc1Limit" width="90"
 										mold="rounded" />
-									<textbox id="ecc2Limit" width="90"
+									<longbox id="ecc2Limit" width="90"
 										mold="rounded" />
-									<textbox id="ecc3Limit" width="90"
+									<longbox id="ecc3Limit" width="90"
 										mold="rounded" />
 								</vlayout>
 							</hbox>
@@ -194,11 +194,11 @@
 							<hbox>
 								<vlayout>
 									Credit Limit
-									<textbox id="occ1Limit" width="90"
+									<longbox id="occ1Limit" width="90"
 										mold="rounded" />
-									<textbox id="occ2Limit" width="90"
+									<longbox id="occ2Limit" width="90"
 										mold="rounded" />
-									<textbox id="occ3Limit" width="90"
+									<longbox id="occ3Limit" width="90"
 										mold="rounded" />
 								</vlayout>
 							</hbox>

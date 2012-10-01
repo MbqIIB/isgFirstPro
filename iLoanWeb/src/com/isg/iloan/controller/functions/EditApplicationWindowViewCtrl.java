@@ -4,18 +4,30 @@
 package com.isg.iloan.controller.functions;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
+import java.util.Hashtable;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.ComponentNotFoundException;
+import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.WrongValueException;
+import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.util.GenericForwardComposer;
 import org.zkoss.zkplus.spring.SpringUtil;
 import org.zkoss.zul.Button;
 import org.zkoss.zul.Checkbox;
+import org.zkoss.zul.Datebox;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Include;
+import org.zkoss.zul.Intbox;
+import org.zkoss.zul.Longbox;
 import org.zkoss.zul.Tab;
 import org.zkoss.zul.Tabbox;
 import org.zkoss.zul.Tabpanel;
@@ -24,11 +36,15 @@ import org.zkoss.zul.Tabs;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Window;
 
+import sun.reflect.ReflectionFactory.GetReflectionFactoryAction;
+
 import com.isg.iloan.commons.Helper;
 import com.isg.iloan.commons.IDs;
+import com.isg.iloan.commons.Labels;
 import com.isg.iloan.dao.ApplicationDaoImpl;
 import com.isg.iloan.model.dataEntry.Address;
 import com.isg.iloan.model.dataEntry.Application;
+import com.isg.iloan.model.dataEntry.CreditCard;
 import com.isg.iloan.model.dataEntry.DeedsOfAssignment;
 import com.isg.iloan.model.dataEntry.Fund;
 import com.isg.iloan.model.dataEntry.Instruction;
@@ -86,39 +102,133 @@ public class EditApplicationWindowViewCtrl extends GenericForwardComposer {
 		super.doAfterCompose(comp);
 		// TODO Auto-generated method stub
 		
-		
-		
-		
-		
-		
-		Application app = getService().retrieveById(23);
+		final Application app = getService().retrieveById(23);
 		this.app = app;
+		
 		
 		Collection<Component> comps =  ccDetailPanel.getPage().getDesktop().getComponents();		
 		for(Component window:comps){			
 			if("creditCardDetails".equals(window.getId())){		
-				
-				((Checkbox)window.getFellow(app.getCardTypeCode().toLowerCase())).setChecked(true);				
+				 Helper.setValues(window, app);
+				((Checkbox)window.getFellow(app.getCreditCardTypeCode().toLowerCase())).setChecked(true);				
 				((Checkbox)window.getFellow(IDs.ACCEPT_CLASSIC_CARD)).setChecked(app.isAcceptClassicCard());
 				((Checkbox)window.getFellow(IDs.ACCEPT_SAVE_SWIPE)).setChecked(app.isAcceptSaveAndSwipe());
+				
+				
+				composeCreditCard(app, window);
+				
 				
 				if(app.isAcceptSaveAndSwipe()){
 					showSaveAndSwipeTab(app);
 				}
 				
-				
-				
-				
 				break;
 			}			
 		}
+			
 		
-		//decomposePersonalData(app);
-		//decomposeJobDetail(app);
-		//decomposeSupplementary(app);
-		//decomposeInstruction(app);
+		    if(desktop.isServerPushEnabled()) {
+		      logger.debug("Server push already enabled..");
+		    }else{
+		    	desktop.enableServerPush(true);
+		    	logger.debug("Server push enabled..");
+		    }
+		    final EventListener<Event> el = this;
+		    Thread bgViewComposer = new Thread() {
+		        public void run() {
+		          // In this part of code the ThreadLocals ARE NOT available
+		          // You must NOT touch any ZK related things (e.g. components, desktops)
+		          // If you need some information from ZK, you need to get them before this code
+		          // For example here I've read searchString from a textbox, so I can use the searchString variable without problems
+		          //String result = ... // Retrieve the result from somewhere
+		          Executions.schedule(desktop, el, new Event("onViewCompose", null, app));
+		        }
+		     };
+		     bgViewComposer.start();
 
 	}
+	
+	public void onViewCompose(Event event) {
+	    // In this part of code the ThreadLocals ARE available
+	   // String result = (String) event.getData();
+		
+		try {
+			composePersonalData(app);
+			composeJobDetail(app);
+			composeSupplementary(app);
+			composeInstruction(app);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	    // Do something with result. You can touch any ZK stuff freely, just like when a normal event is posted.
+	  }
+	
+	
+	class ApplicationViewComposer implements Runnable{
+		
+		Application application;
+		
+		ApplicationViewComposer(Application app){
+			this.application = app;
+		}
+		
+		@Override
+		public void run() {
+			
+				try {
+					composePersonalData(application);
+					composeJobDetail(application);
+					composeSupplementary(application);
+					composeInstruction(application);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		}
+	}
+	
+	
+	
+	
+	public void composeCreditCard(Application app, Component window){
+		
+		List<CreditCard> cards = app.getCreditCards();
+		
+		
+			for(CreditCard card:cards){
+				int rank = card.getCardRank();	
+				try{
+				if(card.isExistingCreditCard()){
+									
+					((Textbox)window.getFellow("existingCC"+rank)).setValue(card.getCreditCardNum());
+					((Longbox)window.getFellow("ecc"+rank+"Limit")).setValue(card.getCreditCardLimit());
+					((Datebox)window.getFellow("ecc"+rank+"DOM")).setValue(card.getDateOfMembership());
+				
+				}else if(card.isOtherCreditCard()) {
+					((Textbox)window.getFellow("occ"+rank)).setValue(card.getCardCompany());
+					((Textbox)window.getFellow("occ"+rank+"Num")).setValue(card.getCreditCardNum());
+					((Longbox)window.getFellow("occ"+rank+"Limit")).setValue(card.getCreditCardLimit());
+					((Datebox)window.getFellow("occ"+rank+"DOM")).setValue(card.getDateOfMembership());
+					
+				}
+				
+				}catch(ComponentNotFoundException e){
+					//exception handling to be designed
+					continue;
+				}
+				
+			}
+			
+		
+		
+		
+		
+		
+		
+	}
+	
 	
 	
 	public void showSaveAndSwipeTab(Application app) throws Exception{
@@ -150,8 +260,7 @@ public class EditApplicationWindowViewCtrl extends GenericForwardComposer {
 				if(ss.isAcceptPledge()){
 					((Checkbox)window.getFellow(IDs.SS_PLEDGE_YES)).setChecked(true);
 					((Checkbox)window.getFellow(IDs.SS_PLEDGE_NO)).setChecked(false);
-				}
-				
+				}				
 				ctr++;
 			}
 			
@@ -165,22 +274,13 @@ public class EditApplicationWindowViewCtrl extends GenericForwardComposer {
 				}
 				
 			}
-			
-			
-			
 		}
-		
-		
-		
-		
-		
-		
-		
+	
 	}
 	
 	
 
-	public void decomposePersonalData(Application app) throws Exception{
+	public void composePersonalData(Application app) throws Exception{
 		
 		//----Personal
 		Collection<Component> personalComps =  personalPanel.getPage().getDesktop().getComponents();
@@ -221,7 +321,7 @@ public class EditApplicationWindowViewCtrl extends GenericForwardComposer {
 		}
 	}
 	
-    public void decomposeJobDetail(Application app) throws Exception{
+    public void composeJobDetail(Application app) throws Exception{
 		
 		Collection<Component> personalComps =  jobDetailTabPanel.getPage().getDesktop().getComponents();
 		for(Component window:personalComps){			
@@ -244,7 +344,7 @@ public class EditApplicationWindowViewCtrl extends GenericForwardComposer {
 	}
 
 
-	public void decomposeSupplementary(Application app) throws Exception{		
+	public void composeSupplementary(Application app) throws Exception{		
 		
 		Collection<Component> personalComps =  supplementaryTabPanel.getPage().getDesktop().getComponents();
 		for(Component window:personalComps){			
@@ -263,7 +363,7 @@ public class EditApplicationWindowViewCtrl extends GenericForwardComposer {
 		}
 	}
 
-	public void decomposeInstruction(Application app) throws Exception{
+	public void composeInstruction(Application app) throws Exception{
 			
 			
 			Collection<Component> personalComps =  instructionTabPanel.getPage().getDesktop().getComponents();
@@ -291,39 +391,419 @@ public class EditApplicationWindowViewCtrl extends GenericForwardComposer {
 		}
 	
 	
-
-	public void onClick$appUpdateButton() throws WrongValueException, SecurityException, IllegalAccessException, InvocationTargetException{
-		
-		logger.debug("test--------");
+	
+	public void decomposePersonalData(Application app) throws WrongValueException,
+		SecurityException, IllegalAccessException, InvocationTargetException{
+	
+	
+	
 		Collection<Component> comps =  personalPanel.getPage().getDesktop().getComponents();
-		logger.debug("comps size: " + comps.size());
-		for(Component window:comps){			
-			if(IDs.PD_WINDOW.equals(window.getId())){
-				PersonalData pd = new PersonalData();
-				Helper.setProperties(pd, window);
-				break;
+			for(Component window:comps){			
+				if(IDs.PD_WINDOW.equals(window.getId())){
+					PersonalData personalData = app.getPersonalData();
+					Helper.setProperties(personalData, window);
+					
+					Address addr;
+					addr = personalData.getHomeAddress();
+					addr.setAddressLine1(((Textbox)window.getFellow(IDs.PD_HOME_ADDRESS)).getValue());
+					addr.setTelNum(((Textbox)window.getFellow(IDs.PD_HOME_TEL_NUM)).getValue());
+					addr.setZipCode(((Intbox)window.getFellow(IDs.PD_HOME_ZIP_CODE)).getValue());
+					addr.setHomeAddress(true);
+					addr.setPermanentAddress(false);
+					personalData.setHomeAddress(addr);
+					addr = personalData.getPermanentAddress();
+					addr.setAddressLine1(((Textbox)window.getFellow(IDs.PD_PERMANENT_ADDRESS)).getValue());
+					addr.setZipCode(((Intbox)window.getFellow(IDs.PD_PERM_ZIP_CODE)).getValue());
+					addr.setHomeAddress(false);
+					addr.setPermanentAddress(true);
+					personalData.setPermanentAddress(addr);
+					addr = personalData.getPersonalRefAddress();
+					addr.setAddressLine1(((Textbox)window.getFellow(IDs.PD_PERSONAL_REF_ADDRESS)).getValue());
+					addr.setTelNum(((Textbox)window.getFellow(IDs.PD_PERSONAL_REF_TEL_NUM)).getValue());
+					addr.setHomeAddress(false);
+					addr.setPermanentAddress(false);
+					personalData.setPersonalRefAddress(addr);
+					
+					app.setPersonalData(personalData);
+				}
 			}
-			
+	}
+
+	
+	public void decomposeJobDetail(Application app) throws WrongValueException, SecurityException, IllegalAccessException, InvocationTargetException{
+		
+		Collection<Component> comps =  jobDetailTabPanel.getPage().getDesktop().getComponents();
+		
+		for(Component window:comps){			
+			if(IDs.JD_WINDOW.equals(window.getId())){	
+
+				JobDetail jd = app.getJobDetail();				
+				Helper.setProperties(jd,window);
+				
+				Address addr = jd.getBusinessAddress();			
+				addr.setAddressLine1(((Textbox)window.getFellow(IDs.JD_BUSS_ADDR)).getValue());
+				addr.setTelNum(((Textbox)window.getFellow(IDs.JD_TEL)).getValue());
+				addr.setZipCode(((Intbox)window.getFellow(IDs.JD_ZIPCODE)).getValue());
+				addr.setHomeAddress(false);
+				addr.setPermanentAddress(false);
+				jd.setBusinessAddress(addr);
+				
+				decomposeFunds(jd, window);
+				
+				
+				
+				
+				
+				
+				
+				//Checkbox inv = ((Checkbox)window.getFellow(IDs.JD_INVESTMENT));
+				//if(inv.isChecked())jd.addFundSource(new Fund(inv.getName(),inv.getLabel()));
+				//Checkbox sem = ((Checkbox)window.getFellow(IDs.JD_SELF_EMP));
+				//if(sem.isChecked())jd.addFundSource(new Fund(sem.getName(),sem.getLabel()));
+				//Checkbox uem = ((Checkbox)window.getFellow(IDs.JD_UNEMP));
+				//if(uem.isChecked())jd.addFundSource(new Fund(uem.getName(),uem.getLabel()));
+				Checkbox ret = ((Checkbox)window.getFellow(IDs.JD_RETIRED));
+				if(ret.isChecked())jd.addFundSource(new Fund(ret.getName(),ret.getLabel()));
+				Checkbox oth = ((Checkbox)window.getFellow(IDs.JD_OTHERS_CHKBOX));
+				if(oth.isChecked()){
+					jd.addFundSource(new Fund(oth.getName(),((Textbox)window.getFellow(IDs.JD_OTHERS_TXTBOX)).getValue()));
+				}
+				
+				app.setJobDetail(jd);
+				
+				break;
+			}			
 		}
 		
+		
 	}
-
 
 	
-	public void onClick$personalData() throws Exception{
-		decomposePersonalData(app);		
+	
+	public void decomposeFunds(JobDetail jd, Component window){
+		
+		List<Fund> funds = jd.getSourceOfFunds();
+		Map<String,Fund> fundTable = new Hashtable();
+		for(Fund fund:funds){
+			fundTable.put(fund.getFundCode(), fund);
+		}
+		
+		Checkbox emp = ((Checkbox)window.getFellow(IDs.JD_EMPLOYMENT));
+		boolean empExist = false;
+		if(emp.isChecked()){					
+			if(fundTable.get(emp.getName())!=null){	
+				empExist = true;
+			}											
+			if(!empExist){
+				jd.addFundSource(new Fund(emp.getName(),emp.getLabel()));
+			}					
+		}else{
+			if(fundTable.get(emp.getName())!=null){
+				funds.remove(fundTable.get(emp.getName()));
+			}
+				
+		}
+		Checkbox inv = ((Checkbox)window.getFellow(IDs.JD_INVESTMENT));
+		boolean invExist = false;
+		if(inv.isChecked()){					
+			if(fundTable.get(inv.getName())!=null){	
+				invExist = true;
+			}											
+			if(!invExist){
+				jd.addFundSource(new Fund(inv.getName(),inv.getLabel()));
+			}					
+		}else{
+			if(fundTable.get(inv.getName())!=null){
+				funds.remove(fundTable.get(inv.getName()));
+			}	
+		}
+		Checkbox sem = ((Checkbox)window.getFellow(IDs.JD_SELF_EMP));
+		boolean semExist = false;
+		if(sem.isChecked()){					
+			if(fundTable.get(sem.getName())!=null){	
+				semExist = true;
+			}											
+			if(!semExist){
+				jd.addFundSource(new Fund(sem.getName(),sem.getLabel()));
+			}					
+		}else{
+			if(fundTable.get(sem.getName())!=null){
+				funds.remove(fundTable.get(sem.getName()));
+			}				
+		}
+		Checkbox uem = ((Checkbox)window.getFellow(IDs.JD_UNEMP));
+		boolean uemExist = false;
+		if(uem.isChecked()){					
+			if(fundTable.get(uem.getName())!=null){	
+				uemExist = true;
+			}											
+			if(!uemExist){
+				jd.addFundSource(new Fund(uem.getName(),uem.getLabel()));
+			}					
+		}else{
+			if(fundTable.get(uem.getName())!=null){
+				funds.remove(fundTable.get(uem.getName()));
+			}				
+		}
+		Checkbox ret = ((Checkbox)window.getFellow(IDs.JD_RETIRED));
+		boolean retExist = false;
+		if(ret.isChecked()){					
+			if(fundTable.get(ret.getName())!=null){	
+				retExist = true;
+			}											
+			if(!retExist){
+				jd.addFundSource(new Fund(ret.getName(),ret.getLabel()));
+			}					
+		}else{
+			if(fundTable.get(ret.getName())!=null){
+				funds.remove(fundTable.get(ret.getName()));
+			}				
+		}
+		Checkbox oth = ((Checkbox)window.getFellow(IDs.JD_OTHERS_CHKBOX));		
+		boolean othExist = false;
+		if(oth.isChecked()){					
+			if(fundTable.get(oth.getName())!=null){	
+				othExist = true;
+			}											
+			if(!othExist){
+				jd.addFundSource(new Fund(oth.getName(),((Textbox)window.getFellow(IDs.JD_OTHERS_TXTBOX)).getValue()));
+			}					
+		}else{
+			if(fundTable.get(oth.getName())!=null){
+				funds.remove(fundTable.get(oth.getName()));
+			}				
+		}
+		
+		
 	}
-	public void onClick$jobDetail() throws Exception{
+	
+	
+	
+	public void decomposeSupplementary(Application app) throws WrongValueException, 
+			SecurityException, IllegalAccessException, InvocationTargetException{
+				logger.debug("*** decomposing Supplementary...");		
+				Collection<Component> comps =  supplementaryTabPanel.getPage().getDesktop().getComponents();			
+				for(Component window:comps){			
+				if(IDs.SUPP_WINDOW.equals(window.getId())){							
+					Supplementary supp = app.getSupplementary();
+						
+					Helper.setProperties(supp,window);
+					Address addr = supp.getHomeAddress();
+					addr.setHomeAddress(true);
+					addr.setAddressLine1(((Textbox)window.getFellow(IDs.SUPP_ADDR)).getValue());
+					addr.setZipCode(((Intbox)window.getFellow(IDs.SUPP_ZIPCODE)).getValue());
+					supp.setHomeAddress(addr);
+					app.setSupplementary(supp);
+					break;
+				}			
+			}
+	}
+	
+	
+	
+	public void decomposeInstruction(Application app) throws WrongValueException, 
+			SecurityException, IllegalAccessException, InvocationTargetException{
+		
+			logger.debug("*** decomposing Supplementary...");		
+			Collection<Component> comps =  instructionTabPanel.getPage().getDesktop().getComponents();
+			for(Component window:comps){			
+			if(IDs.INS_WINDOW.equals(window.getId())){							
+				Instruction ins = app.getInstruction();				
+				Helper.setProperties(ins,window);
+				app.setInstruction(ins);
+				break;
+			}			
+		}
+	}
+	
+	public void decomposeCardDetails(Application app){		
+		logger.debug("*** decomposingCreditCardDetails...");		
+		Collection<Component> comps =  ccDetailPanel.getPage().getDesktop().getComponents();		
+		Map<String,Component> ccDetailsMap = new LinkedHashMap<String, Component>();		
+		for(Component comp:comps){			
+			if("creditCardDetails".equals(comp.getId())){							
+				Collection<Component> fellows = comp.getFellows();
+				for(Component fellow:fellows){
+					ccDetailsMap.put(fellow.getId(), fellow);					
+				}
+				break;
+			}			
+		}
+		
+		app.setAppStatusCode(2);
+		app.setAppStatusDesc("MODIFIED");
+		app.setCreditCardTypeDesc(((Textbox)ccDetailsMap.get(IDs.CARD_TYPE_CODE)).getValue());
+		app.setCreditCardTypeDesc(((Textbox)ccDetailsMap.get(IDs.CARD_TYPE_DESC)).getValue());
+		app.setAcceptClassicCard(((Checkbox)ccDetailsMap.get(IDs.ACCEPT_CLASSIC_CARD)).isChecked());
+		app.setAcceptSaveAndSwipe(((Checkbox)ccDetailsMap.get(IDs.ACCEPT_SAVE_SWIPE)).isChecked());
+		
+		//app.setCreditCards(new ArrayList<CreditCard>());
+		decomposedCreditCard(app,ccDetailsMap);		
+		//if(app.getCreditCards().size()==0){app.setCreditCards(null);}
+	
+		if(app.isAcceptSaveAndSwipe()){
+			decomposeSaveAndSwipe(app); 
+			
+		}
+		logger.debug("*** decomposingCreditCardDetails...finished!");	
+		
+		//for internet transaction---
+		Collection<Component> eComs =  internetTabPanel.getPage().getDesktop().getComponents();	
+		for(Component eCom:eComs){			
+			if(IDs.ETRANS_WINDOW.equals(eCom.getId())){							
+				Collection<Component> fellows = eCom.getFellows();
+				for(Component fellow:fellows){
+					if("internetTransaction_chkbox".equals(fellow.getId())){					
+						app.setEnrollSOS(((Checkbox)fellow).isChecked());
+					}
+				}
+				break;
+			}			
+		}
+		//end internet transaction---
+	}
+	
+	
+	public void decomposedCreditCard(Application app, Map<String,Component> ccDetailsMap){
+		CreditCard creditcard;
+		List<CreditCard> cards = app.getCreditCards();
+		Map<String,CreditCard> eccTable = new Hashtable();
+		Map<String,CreditCard> occTable = new Hashtable();
+		for(CreditCard card:cards){
+			if(card.isExistingCreditCard()){				
+				eccTable.put("existingCC"+card.getCardRank(), card);
+			}else{
+				occTable.put("occ"+card.getCardRank(), card);
+			}
+		}
+		
+		for(int k=1;k<4;k++){			
+			String cardNum = ((Textbox)ccDetailsMap.get("existingCC"+k)).getValue();
+			if(null!=cardNum && !"".equals(cardNum)){				
+				long cardLimit = ((Longbox)ccDetailsMap.get("ecc"+k+"Limit")).getValue();
+				Date membershipDate = ((Datebox)ccDetailsMap.get("ecc"+k+"DOM")).getValue();
+				
+				
+					if(eccTable.get("existingCC"+k)!=null) {
+						creditcard = eccTable.get("existingCC"+k);
+					}else{
+						creditcard =  new CreditCard();
+					}
+					creditcard.setExistingCreditCard(true);
+					creditcard.setOtherCreditCard(false);
+					creditcard.setCreditCardNum(cardNum);
+					creditcard.setCreditCardLimit(cardLimit);
+					creditcard.setDateOfMembership(membershipDate);
+					creditcard.setCardCompany(Labels.MCC);
+					creditcard.setCardRank(k);
+					app.addCreditCard(creditcard);
+				
+				
+				
+			}else{break;}			
+			
+		}
+		for(int k=1;k<4;k++){			
+			String cardCompany = ((Textbox)ccDetailsMap.get("occ"+k)).getValue();
+			if(null!=cardCompany && !"".equals(cardCompany)){
+				String cardNum = ((Textbox)ccDetailsMap.get("occ"+k+"Num")).getValue();
+				long cardLimit = ((Longbox)ccDetailsMap.get("occ"+k+"Limit")).getValue();
+				Date membershipDate = ((Datebox)ccDetailsMap.get("occ"+k+"DOM")).getValue();
+				
+					if(occTable.get("existingCC"+k)!=null) {
+						creditcard = eccTable.get("occ"+k);
+					}else{
+						creditcard =  new CreditCard();
+					}
+					creditcard.setExistingCreditCard(false);
+					creditcard.setOtherCreditCard(true);
+					creditcard.setCreditCardNum(cardNum);
+					creditcard.setCreditCardLimit(cardLimit);
+					creditcard.setDateOfMembership(membershipDate);
+					creditcard.setCardCompany(cardCompany);
+					creditcard.setCardRank(k);
+					app.addCreditCard(creditcard);
+							
+				
+			}else{break;}			
+			
+		}
+	}
+	
+	public void decomposeSaveAndSwipe(Application app){
+		logger.debug("*** decomposingSaveAndSwipe...");		
+		Collection<Component> comps =  ccDetailPanel.getPage().getDesktop().getComponents();
+		//Map<String,Component> ssMap = new LinkedHashMap<String, Component>();	
+		SaveAndSwipe ss = app.getSaveAndSwipe();
+		for(Component window:comps){			
+			if(IDs.SS_WINDOW.equals(window.getId())){
+				
+				ss.setMetrobankDepositor(((Checkbox)window.getFellow(IDs.SS_METROBANK_DEPOSITOR_YES)).isChecked());
+				if(ss.isMetrobankDepositor()){
+					ss.setAccountNum(((Textbox)window.getFellow(IDs.SS_DEPOSITOR_ACCT_NUM)).getValue());
+					ss.setAccountNum(((Textbox)window.getFellow(IDs.SS_DEPOSITOR_ACCT_BRANCH)).getValue());			
+				}
+				ss.setAcceptPledge(((Checkbox)window.getFellow(IDs.SS_PLEDGE_YES)).isChecked());				
+				break;
+			}
+					
+		}
+		
+		
+		if(ss.isAcceptPledge()){
+			
+			for(Component window:comps){			
+				if(IDs.DOA_WINDOW.equals(window.getId())){
+					DeedsOfAssignment doa = ss.getDoa();
+					doa.setIssuance( ((Checkbox)window.getFellow(IDs.DOA_ISSUANCE)).isChecked());
+					doa.setChangeDepInst(((Checkbox)window.getFellow(IDs.DOA_CHANGE_DEP)).isChecked());
+					doa.setIncDecCreditLimit(((Checkbox)window.getFellow(IDs.DOA_INCDEC_LIMIT_CHKBOX)).isChecked());
+					if(doa.isIncDecCreditLimit()){
+						doa.setIncDecCreditLimitValue(((Textbox)window.getFellow(IDs.DOA_INCDEC_LIMIT)).getValue());
+					}					
+					doa.setPledgedAccountTypeCode(((Textbox)window.getFellow(IDs.DOA_PLEDGE_ACCNT_CODE)).getValue());
+					doa.setPledgedAccountTypeDesc(((Textbox)window.getFellow(IDs.DOA_PLEDGE_ACCNT_DESC)).getValue());
+					doa.setPledgedAccntSpecial(((Checkbox)window.getFellow(IDs.DOA_SPECIAL_ACCNT)).isChecked());
+					doa.setPledgedAccountNum(((Textbox)window.getFellow(IDs.DOA_PLEDGE_ACCNT_NUM)).getValue());
+					doa.setPledgedAccntDepoBranch(((Textbox)window.getFellow(IDs.DOA_PLEDGE_DEPO_BRANCH)).getValue());
+					doa.setPledgedAmountWords(((Textbox)window.getFellow(IDs.DOA_PLEDGE_AMT_WORDS)).getValue());
+					doa.setPledgedAmount(((Longbox)window.getFellow(IDs.DOA_PLEDGE_AMT)).getValue());
+					doa.setDateApplied(((Datebox)window.getFellow(IDs.DOA_DATE_APPLIED)).getValue());
+					doa.setMetrobankBranchNameCode(((Textbox)window.getFellow(IDs.DOA_METROBANK_BRANCH)).getValue());
+					doa.setAcceptDOA(((Checkbox)window.getFellow(IDs.DOA_ACCEPTANCE)).isChecked());
+					
+					ss.setDoa(doa);
+					break;
+				}
+			}
+			
+		}		
+		app.setSaveAndSwipe(ss);
+		logger.debug("*** decomposingSaveAndSwipe...finished!");		
+	}
+	
+	
+	
+	
+	
+
+	public void onClick$appUpdateButton() throws 
+		WrongValueException, SecurityException, 
+		IllegalAccessException, InvocationTargetException{
+		
+		decomposeCardDetails(app);
+		decomposePersonalData(app);
 		decomposeJobDetail(app);
-	}
-	public void onClick$supplementaryDetail()throws Exception{
 		decomposeSupplementary(app);
-	}
-	public void onClick$deliveryInstruction()throws Exception{
 		decomposeInstruction(app);
+		
+		
+		
+		getService().updateApplication(app);
+		
 	}
-	
-	
-	
+
+
+
 	
 }
