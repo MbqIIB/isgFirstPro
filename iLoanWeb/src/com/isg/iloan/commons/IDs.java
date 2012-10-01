@@ -2,10 +2,11 @@ package com.isg.iloan.commons;
 
 public class IDs {
 
+	public static final String APP_ID = "applicationId";
 	public static final String CLASSIC_MASTERCARD = "classicMasterCard";
 	public static final String CLASSIC_VISACARD = "classicVisaCard";
 	public static final String GOLD_MASTERCARD = "goldMasterCard";
-	public static final String GOLD_VISACARD = "goldMasterCard";
+	public static final String GOLD_VISACARD = "goldVisaCard";
 	public static final String MLITE_MASTERCARD = "mLiteMasterCard";
 	public static final String FEMME_VISACARD = "femmeVisaCard";
 	public static final String ACCEPT_CLASSIC_CARD = "acceptClassicCard";
@@ -40,33 +41,38 @@ public class IDs {
 
 	/*** ============== SAVE AND SWIPE ====================== ***/
 	public static final String SS_WINDOW = "saveAndSwipeWindow";
-	public static final String SS_METROBANK_DEPOSITOR_CHKBOX = "metrobankDepositorYes_chkbox";
+	public static final String SS_ID = "saveAndSwipeId";
+	public static final String SS_METROBANK_DEPOSITOR_YES = "metrobankDepositorYes";
+	public static final String SS_METROBANK_DEPOSITOR_NO = "metrobankDepositorNo";
 	public static final String SS_DEPOSITOR_ACCT_NUM = "deposiorAccntNum_txtbox";
 	public static final String SS_DEPOSITOR_ACCT_BRANCH = "deposiorBranchOpened_txtbox";
-	public static final String SS_PLEDGE_CHKBOX = "pledgeYes_chkbox";
+	public static final String SS_PLEDGE_YES = "pledgeYes";
+	public static final String SS_PLEDGE_NO = "pledgeNo";
 
 	/*** ============== DOA for SAVE AND SWIPE ====================== ***/
 	public static final String DOA_WINDOW = "doaWindow";
-	public static final String DOA_ISSUANCE_CHKBOX = "issuance_chkbox";
-	public static final String DOA_CHANGE_DEP_CHKBOX = "changeDepInst_chkbox";
-	public static final String DOA_INCDEC_LIMIT_CHKBOX = "incDecCreditLimit_chkbox";
+	public static final String DOA_ID = "doaId";
+	public static final String DOA_ISSUANCE = "issuance";
+	public static final String DOA_CHANGE_DEP = "changeDepInst";
+	public static final String DOA_INCDEC_LIMIT_CHKBOX = "incDecCreditLimit";
 	public static final String DOA_INCDEC_LIMIT = "incDecCreditLimit_txtbox";
 	public static final String DOA_PLEDGE_DIV = "pledgeDiv";
-	public static final String DOA_SAVINGS_CHKBOX = "savings_chkbox";
-	public static final String DOA_TIME_CHKBOX = "time_chkbox";
-	public static final String DOA_SPECIAL_ACCNT = "specialAccount_chkbox";
-	public static final String DOA_PLEDGE_ACCNT_NUM = "pledgedAccountNo_txtbox";
-	public static final String DOA_PLEDGE_DEPO_BRANCH = "branch_txtbox";
+	public static final String DOA_SAVINGS = "savings";
+	public static final String DOA_TIME = "time";
+	public static final String DOA_SPECIAL_ACCNT = "specialAccount";
+	public static final String DOA_PLEDGE_ACCNT_NUM = "pledgedAccountNum";
+	public static final String DOA_PLEDGE_DEPO_BRANCH = "pledgedAccntDepoBranch";
 	public static final String DOA_PLEDGE_ACCNT_CODE = "pledgedAccountTypeCode";
 	public static final String DOA_PLEDGE_ACCNT_DESC = "pledgedAccountTypeDesc";
-	public static final String DOA_PLEDGE_AMT_WORDS = "pledgedAmountWord_txtbox";
-	public static final String DOA_PLEDGE_AMT = "pledgedAmountFigure_txtbox";
-	public static final String DOA_DATE_APPLIED = "dateApplied_datebox";
-	public static final String DOA_METROBANK_BRANCH = "branchNameAndCode";
-	public static final String DOA_ACCEPTANCE = "acceptDOA_chkbox";
+	public static final String DOA_PLEDGE_AMT_WORDS = "pledgedAmountWords";
+	public static final String DOA_PLEDGE_AMT = "pledgedAmount";
+	public static final String DOA_DATE_APPLIED = "dateApplied";
+	public static final String DOA_METROBANK_BRANCH = "metrobankBranchNameCode";
+	public static final String DOA_ACCEPTANCE = "acceptDOA";
 	
 	/*** ==================== PERSONAL DATA ======================== ***/
 	public static final String PD_WINDOW = "personalDataWindow";
+	public static final String PD_ID = "personalDataId";
 	public static final String PD_FAMILY_NAME = "familyName";
 	public static final String PD_GIVEN_NAME = "givenName";
 	public static final String PD_MIDDLE_NAME = "middleName";
@@ -77,11 +83,16 @@ public class IDs {
 	public static final String PD_GENDER = "gender";
 	public static final String PD_NATIONALITY = "nationality";
 	public static final String PD_OTHER_NATIONAL = "otherNational";
+	public static final String PD_FILIPINO_NAT = "filipino";
 	public static final String PD_MOBILE_NUM = "mobilePhoneNum";
 	public static final String PD_HOME_TEL_NUM = "homePhoneNumber";
 	public static final String PD_EMAIL = "emailAddress";
 	public static final String PD_MOTHER_FULL_NAME = "motherFullName";
 	public static final String PD_NUM_OF_CHILDREN = "numOfChildren";
+	public static final String PD_HOME_ADDRESS = "homeAddress";
+	public static final String PD_PERMANENT_ADDRESS = "permanentAddress";	
+	public static final String PD_HOME_ZIP_CODE = "homeAddZip";
+	public static final String PD_PERM_ZIP_CODE = "permanentAddZip";	
 	public static final String PD_HOME_OWNERSHIP = "homeOwnership";
 	public static final String PD_LENGTH_OF_STAY = "lengthOfStays";
 	public static final String PD_NUM_OF_CARS = "numOfCars";
@@ -100,20 +111,17 @@ public class IDs {
 	public static final String PD_PERSONAL_REF_ADDRESS = "personalRefAddress";
 	public static final String PD_PERSONAL_REF_TEL_NUM = "personalRefTelNum";
 	
-	public static final String PD_HOME_ADDRESS = "homeAddress";
-	public static final String PD_PERMANENT_ADDRESS = "permanentAddress";
 	
-	public static final String PD_HOME_ZIP_CODE = "homeAddZip";
-	public static final String PD_PERM_ZIP_CODE = "permanentAddZip";
 	
 	/*** ===================== Job Details ================================ ****/
 	public static final String JD_WINDOW = "jobDetailWindow";
-	public static final String JD_EMPLOYMENT = "employment_chkbox";
-	public static final String JD_INVESTMENT = "investment_chkbox";
-	public static final String JD_SELF_EMP = "selfemployed_chkbox";
-	public static final String JD_UNEMP = "unemployed_chkbox";
-	public static final String JD_RETIRED = "retired_chkbox";
-	public static final String JD_OTHERS_CHKBOX = "others_chkbox";
+	public static final String JD_ID = "jobDetailId";
+	public static final String JD_EMPLOYMENT = "employment";
+	public static final String JD_INVESTMENT = "investment";
+	public static final String JD_SELF_EMP = "selfemployed";
+	public static final String JD_UNEMP = "unemployed";
+	public static final String JD_RETIRED = "retired";
+	public static final String JD_OTHERS_CHKBOX = "others";
 	public static final String JD_OTHERS_TXTBOX = "others_txtbox";	
 	public static final String JD_CMPY_NAME = "companyName";
 	public static final String JD_OCCUPATION = "occupation";
@@ -130,7 +138,8 @@ public class IDs {
 	public static final String JD_SPOUSE_DOB = "spouseDOB";
 	
 	/*** ==================== SUPPLEMENTARY ========================== ***/
-	public static final String SUPP_WINDOW = "supplementaryWindow"; 
+	public static final String SUPP_WINDOW = "supplementaryWindow";
+	public static final String SUPP_ID = "supplementaryId";
 	public static final String SUPP_LNAME = "familyName"; 
 	public static final String SUPP_GNAME = "givenName"; 
 	public static final String SUPP_MNAME = "middleName"; 
@@ -140,6 +149,7 @@ public class IDs {
 	public static final String SUPP_REL = "relationToPrincipal";
 	public static final String SUPP_NAT = "nationality"; 
 	public static final String SUPP_OTHER_NAT = "otherNational"; 
+	public static final String SUPP_FILIPINO_NAT = "filipino"; 
 	public static final String SUPP_BIRTHDATE = "birthDate"; 
 	public static final String SUPP_BIRTHPLACE = "birthPlace"; 
 	public static final String SUPP_GENDER = "gender"; 
@@ -147,12 +157,17 @@ public class IDs {
 
 	/*** ==================== INSTRUCTION ========================= ***/
 	public static final String INS_WINDOW = "instructionWindow"; 
+	public static final String INS_ID = "instructionId"; 
 	public static final String INS_DELI_PLACE = "deliveryPlace"; 
-	public static final String INS_PAYMENT_MODE = "paymentMode";	
+	public static final String INS_PAYMENT_MODE = "paymentMode";
+	public static final String INS_CASHCHECK_PAY = "cashcheck";
+	public static final String INS_ADA_PAY = "ada";
 	public static final String INS_ADA_ACCNT_NUM = "adaAccountNum"; 
 	public static final String INS_ADA_BANK_BRANCH = "adaBankBranch"; 
 	public static final String INS_MIN_AMOUNT = "minAmountDue"; 
 	public static final String INS_TOTAL_AMOUNT = "totalAmountDue"; 
+	public static final String INS_ADA_DIV = "ada_div";
+	
 	
 	public static final String ETRANS_WINDOW = "internetTransactionWindow"; 
 	

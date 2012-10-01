@@ -103,7 +103,7 @@ public class SupplementaryViewCtrl extends GenericForwardComposer {
 		}
 		bindValidationOnClick(parent.getParent());
 	}
-	public void onCheck$othrs_chkbox(){
+	public void onCheck$otherNational(){
 		filipino.setChecked(!otherNational.isChecked());
 		nationality.setValue(otherNational.isChecked()?"Others":filipino.getLabel());
 				

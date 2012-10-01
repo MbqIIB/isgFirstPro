@@ -13,21 +13,21 @@
 			<hlayout>
 			<hbox>
 			<vlayout>
-				<checkbox id="employment_chkbox" label="Employment"/>
-				<checkbox id="investment_chkbox" label="Investments(Property, Deposits, ect.)"/>
+				<checkbox id="employment" label="Employment" name="Employment"/>
+				<checkbox id="investment" label="Investments(Property, Deposits, ect.)" name="Investment"/>
 			</vlayout>
 			</hbox>		
 			<hbox>
 			<vlayout>
-				<checkbox id="selfemployed_chkbox" label="Self-employment/Business"/>
-				<checkbox id="unemployed_chkbox" label="Unemployed"/>
+				<checkbox id="selfemployed" label="Self-employment/Business" name="SelfEmployed"/>
+				<checkbox id="unemployed" label="Unemployed" name="UnEmployed"/>
 			</vlayout>
 			</hbox>
 			<hbox >
 			<vlayout>
-				<checkbox id="retired_chkbox" label="Retired(Pensions, etc.)"/>
+				<checkbox id="retired" label="Retired(Pensions, etc.)" name="Retired"/>
 				<hlayout>					
-					<checkbox id="others_chkbox" label="Others, please specify"/>
+					<checkbox id="others" label="Others, please specify" name="Others"/>
 					<textbox id="others_txtbox" height="12px" width="150px" maxlength="150" />
 				</hlayout>								
 			</vlayout>			

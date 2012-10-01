@@ -75,7 +75,7 @@
 			</groupbox>
 			<hlayout sclass="spacer">
 				<button label="Search" mold="trendy" id="searchAppButton"></button>
-				<button label="Clear" mold="trendy" id="clearBtn"></button>
+				<button label="Clear" mold="trendy" id="clearButton"></button>
 			</hlayout>
 			<groupbox>
 			<caption>Results</caption>

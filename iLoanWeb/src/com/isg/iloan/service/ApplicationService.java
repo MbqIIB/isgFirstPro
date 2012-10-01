@@ -14,6 +14,9 @@ public interface ApplicationService {
 	
 	void deleteApplication(long id);
 	
+	List<Application> queryByKey(long key);
+	
+	List<Application> findAll() throws Exception;
 	
 
 }

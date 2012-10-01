@@ -15,20 +15,20 @@ import org.zkoss.zul.Textbox;
  */
 public class DoaSaveAndSwipeViewCtrl extends GenericForwardComposer {
 
-	private Checkbox acceptDOA_chkbox;
+	private Checkbox acceptDOA;
 	private Textbox branchNameAndCode;
 	private Datebox dateApplied_datebox;
 	private Textbox pledgedAmountFigure_txtbox;
 	private Textbox pledgedAmountWord_txtbox;
 	private Textbox branch_txtbox;
 	private Textbox pledgedAccountNo_txtbox;
-	private Checkbox specialAccount_chkbox;
-	private Checkbox time_chkbox;
-	private Checkbox savings_chkbox;
+	private Checkbox specialAccount;
+	private Checkbox time;
+	private Checkbox savings;
 	private Textbox incDecCreditLimit_txtbox;
-	private Checkbox incDecCreditLimit_chkbox;
-	private Checkbox changeDepInst_chkbox;
-	private Checkbox issuance_chkbox;
+	private Checkbox incDecCreditLimit;
+	private Checkbox changeDepInst;
+	private Checkbox issuance;
 	
 	private Textbox pledgedAccountTypeCode;
 	private Textbox pledgedAccountTypeDesc;
@@ -42,27 +42,27 @@ public class DoaSaveAndSwipeViewCtrl extends GenericForwardComposer {
 	public void doAfterCompose(Component comp) throws Exception {
 		super.doAfterCompose(comp);
 		
-		issuance_chkbox.setChecked(false);
-		changeDepInst_chkbox.setChecked(false);
-		incDecCreditLimit_chkbox.setChecked(false);
-		savings_chkbox.setChecked(false);
-		time_chkbox.setChecked(false);
-		specialAccount_chkbox.setChecked(false);
-		acceptDOA_chkbox.setChecked(false);
+		issuance.setChecked(false);
+		changeDepInst.setChecked(false);
+		incDecCreditLimit.setChecked(false);
+		savings.setChecked(false);
+		time.setChecked(false);
+		specialAccount.setChecked(false);
+		acceptDOA.setChecked(false);
 		
 	}
 	
 
-	public void onCheck$savings_chkbox(){
-		pledgedAccountTypeCode.setValue("1");
-		pledgedAccountTypeDesc.setValue(savings_chkbox.getLabel());
-		time_chkbox.setChecked(!savings_chkbox.isChecked());
+	public void onCheck$savings(){
+		pledgedAccountTypeCode.setValue(savings.getLabel());
+		pledgedAccountTypeDesc.setValue(savings.getLabel());
+		time.setChecked(!savings.isChecked());
 		//pledgedAccountNo_txtbox.setDisabled(true);
 	}
-	public void onCheck$time_chkbox(){
-		pledgedAccountTypeCode.setValue("2");
-		pledgedAccountTypeDesc.setValue(time_chkbox.getLabel());
-		savings_chkbox.setChecked(!time_chkbox.isChecked());		
+	public void onCheck$time(){
+		pledgedAccountTypeCode.setValue(time.getLabel());
+		pledgedAccountTypeDesc.setValue(time.getLabel());
+		savings.setChecked(!time.isChecked());		
 		//pledgedAccountNo_txtbox.setDisabled(true);
 	}
 //	public void onCheck$specialAccount_chkbox(){		

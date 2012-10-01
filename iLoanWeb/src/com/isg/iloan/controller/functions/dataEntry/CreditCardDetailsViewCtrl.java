@@ -59,12 +59,12 @@ public class CreditCardDetailsViewCtrl extends GenericForwardComposer {
 	private Hbox acceptClassicCardHbox;
 	private Window ccDetailPanelWindow;
 
-	private Checkbox classicMasterCard;
-	private Checkbox classicVisaCard;
-	private Checkbox goldMasterCard;
-	private Checkbox goldVisaCard;
-	private Checkbox mLiteMasterCard;
-	private Checkbox femmeVisaCard;
+	private Checkbox classicmastercard;
+	private Checkbox classicvisacard;
+	private Checkbox goldmastercard;
+	private Checkbox goldvisacard;
+	private Checkbox mlitemastercard;
+	private Checkbox femmevisacard;
 	
 	private Textbox creditCardTypeCode;
 	private Textbox creditCardTypeDesc;
@@ -83,39 +83,39 @@ public class CreditCardDetailsViewCtrl extends GenericForwardComposer {
 		}
 	}
 	
-	public void onCheck$classicMasterCard(){
-		uncheckOtherCardType(this.classicMasterCard);
-		setCreditCard(IDs.CLASSIC_MASTERCARD,this.classicMasterCard.getLabel());
+	public void onCheck$classicmastercard(){
+		uncheckOtherCardType(this.classicmastercard);
+		setCreditCard(classicmastercard.getName(),this.classicmastercard.getLabel());
 	}
-	public void onCheck$classicVisaCard(){
-		uncheckOtherCardType(this.classicVisaCard);
-		setCreditCard(IDs.CLASSIC_VISACARD,this.classicVisaCard.getLabel());
+	public void onCheck$classicvisacard(){
+		uncheckOtherCardType(this.classicvisacard);
+		setCreditCard(classicvisacard.getName(),this.classicvisacard.getLabel());
 	}
-	public void onCheck$goldMasterCard(){
-		uncheckOtherCardType(this.goldMasterCard);
-		setCreditCard(IDs.GOLD_MASTERCARD,this.goldMasterCard.getLabel());
+	public void onCheck$goldmastercard(){
+		uncheckOtherCardType(this.goldmastercard);
+		setCreditCard(goldmastercard.getName(),this.goldmastercard.getLabel());
 	}
-	public void onCheck$goldVisaCard(){
-		uncheckOtherCardType(this.goldVisaCard);
-		setCreditCard(IDs.GOLD_VISACARD,this.goldVisaCard.getLabel());
+	public void onCheck$goldvisacard(){
+		uncheckOtherCardType(this.goldvisacard);
+		setCreditCard(goldvisacard.getName(),this.goldvisacard.getLabel());
 	}
-	public void onCheck$mLiteMasterCard(){
-		uncheckOtherCardType(this.mLiteMasterCard);
-		setCreditCard(IDs.MLITE_MASTERCARD,this.mLiteMasterCard.getLabel());
+	public void onCheck$mlitemastercard(){
+		uncheckOtherCardType(this.mlitemastercard);
+		setCreditCard(mlitemastercard.getName(),this.mlitemastercard.getLabel());
 	}
-	public void onCheck$femmeVisaCard(){
-		uncheckOtherCardType(this.femmeVisaCard);
-		setCreditCard(IDs.FEMME_VISACARD,this.femmeVisaCard.getLabel());
+	public void onCheck$femmevisacard(){
+		uncheckOtherCardType(this.femmevisacard);
+		setCreditCard(femmevisacard.getName(),this.femmevisacard.getLabel());
 	}
 
 	public List<Checkbox> getCardTypes(){
 		List<Checkbox> cardTypes = new ArrayList<Checkbox>();
-		cardTypes.add(classicMasterCard);
-		cardTypes.add(classicVisaCard);
-		cardTypes.add(goldMasterCard);
-		cardTypes.add(goldVisaCard);
-		cardTypes.add(mLiteMasterCard);
-		cardTypes.add(femmeVisaCard);		
+		cardTypes.add(classicmastercard);
+		cardTypes.add(classicvisacard);
+		cardTypes.add(goldmastercard);
+		cardTypes.add(goldvisacard);
+		cardTypes.add(mlitemastercard);
+		cardTypes.add(femmevisacard);		
 		return cardTypes;
 	}
 	

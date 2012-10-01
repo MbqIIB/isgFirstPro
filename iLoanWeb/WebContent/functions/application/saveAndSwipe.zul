@@ -8,7 +8,7 @@
 
 </style>
 
-<window  border="normal"
+<window  border="normal" title="Secured Credit Card Program"
 		width="98%" 
 		id="saveAndSwipeWindow" 
 		apply="com.isg.iloan.controller.functions.dataEntry.SaveAndSwipeViewCtrl" >
@@ -44,8 +44,8 @@
 	</cell>
 	<cell colspan="2">
 		<hbox>
-			<checkbox id="metrobankDepositorYes_chkbox" label="YES"/>
-		 	<checkbox id="metrobankDepositorNo_chkbox" label="NO"/>
+			<checkbox id="metrobankDepositorYes" label="YES"/>
+		 	<checkbox id="metrobankDepositorNo" label="NO"/>
 		</hbox>		
 	</cell>	
 	</row>
@@ -77,9 +77,9 @@
 				/>
 		</cell>
 		<cell colspan="1">
-			<checkbox id="pledgeYes_chkbox" label="YES"/>
+			<checkbox id="pledgeYes" label="YES"/>
 			<space />
-	 		<checkbox id="pledgeNo_chkbox" label="NO"/>
+	 		<checkbox id="pledgeNo" label="NO"/>
 		</cell>	
 	</row>
 </rows>

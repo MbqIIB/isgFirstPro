@@ -128,10 +128,19 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 			composePersonalData(app);
 			composeJobDetail(app);			
 			composeSupplementary(app);
-			composeInstruction(app);
-			
+			composeInstruction(app);			
 			getService().createApplication(app);
 			
+//			Application ap = getService().retrieveById(23);
+//			logger.debug("card type code: " + ap.getCardTypeCode());
+//			logger.debug("card type desc: " + ap.getCardTypeDesc());
+//			
+//			List<Application> apps = getService().queryByKey(25);
+//			logger.debug("app size: " + apps.size());
+//			for(Application ap1:apps){
+//				logger.debug("card type code 1: " + ap1.getCardTypeCode());
+//				logger.debug("card type desc 1: " + ap1.getCardTypeDesc());
+//			}
 			
 			
 		} catch (WrongValueException e) {
@@ -150,14 +159,14 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 			e.printStackTrace();
 		}
 	
-		for(Component c: newApplicationWindow.getPage().getDesktop().getComponents()){
-		
-			if("errorDiv".equals(c.getId())){
-				logger.debug(c);
-				c.setVisible(true);
-			}
-		}
-		Clients.evalJavaScript("showErrorPage()");
+//		for(Component c: newApplicationWindow.getPage().getDesktop().getComponents()){
+//		
+//			if("errorDiv".equals(c.getId())){
+//				logger.debug(c);
+//				c.setVisible(true);
+//			}
+//		}
+//		Clients.evalJavaScript("showErrorPage()");
 	}
 	
 	
@@ -188,6 +197,7 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 				Address addr;
 				addr = new Address();
 				addr.setAddressLine1(((Textbox)window.getFellow(IDs.PD_HOME_ADDRESS)).getValue());
+				addr.setTelNum(((Textbox)window.getFellow(IDs.PD_HOME_TEL_NUM)).getValue());
 				addr.setZipCode(((Intbox)window.getFellow(IDs.PD_HOME_ZIP_CODE)).getValue());
 				addr.setHomeAddress(true);
 				addr.setPermanentAddress(false);
@@ -234,13 +244,19 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 					
 					List<Fund> funds = new ArrayList<Fund>();
 					jd.setSourceOfFunds(funds);
-					if(((Checkbox)window.getFellow(IDs.JD_EMPLOYMENT)).isChecked())jd.addFundSource(new Fund("EMP","Employment"));
-					if(((Checkbox)window.getFellow(IDs.JD_INVESTMENT)).isChecked())jd.addFundSource(new Fund("INV","Investment"));
-					if(((Checkbox)window.getFellow(IDs.JD_SELF_EMP)).isChecked())jd.addFundSource(new Fund("SEM","Self-Employment"));
-					if(((Checkbox)window.getFellow(IDs.JD_UNEMP)).isChecked())jd.addFundSource(new Fund("UEM","Un-Employed"));
-					if(((Checkbox)window.getFellow(IDs.JD_RETIRED)).isChecked())jd.addFundSource(new Fund("RET","Retired"));
-					if(((Checkbox)window.getFellow(IDs.JD_OTHERS_CHKBOX)).isChecked()){
-						jd.addFundSource(new Fund("OTH",((Textbox)window.getFellow(IDs.JD_OTHERS_TXTBOX)).getValue()));
+					Checkbox emp = ((Checkbox)window.getFellow(IDs.JD_EMPLOYMENT));
+					if(emp.isChecked())jd.addFundSource(new Fund(emp.getName(),emp.getLabel()));
+					Checkbox inv = ((Checkbox)window.getFellow(IDs.JD_INVESTMENT));
+					if(inv.isChecked())jd.addFundSource(new Fund(inv.getName(),inv.getLabel()));
+					Checkbox sem = ((Checkbox)window.getFellow(IDs.JD_SELF_EMP));
+					if(sem.isChecked())jd.addFundSource(new Fund(sem.getName(),sem.getLabel()));
+					Checkbox uem = ((Checkbox)window.getFellow(IDs.JD_UNEMP));
+					if(uem.isChecked())jd.addFundSource(new Fund(uem.getName(),uem.getLabel()));
+					Checkbox ret = ((Checkbox)window.getFellow(IDs.JD_RETIRED));
+					if(ret.isChecked())jd.addFundSource(new Fund(ret.getName(),ret.getLabel()));
+					Checkbox oth = ((Checkbox)window.getFellow(IDs.JD_OTHERS_CHKBOX));
+					if(oth.isChecked()){
+						jd.addFundSource(new Fund(oth.getName(),((Textbox)window.getFellow(IDs.JD_OTHERS_TXTBOX)).getValue()));
 					}
 					
 					app.setJobDetail(jd);
@@ -314,6 +330,9 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 				break;
 			}			
 		}
+		app.setDateOfApplication(new Date());
+		app.setAppStatusCode(1);
+		app.setAppStatusDesc("New");
 		app.setCardTypeCode(((Textbox)ccDetailsMap.get(IDs.CARD_TYPE_CODE)).getValue());
 		app.setCardTypeDesc(((Textbox)ccDetailsMap.get(IDs.CARD_TYPE_DESC)).getValue());
 		app.setAcceptClassicCard(((Checkbox)ccDetailsMap.get(IDs.ACCEPT_CLASSIC_CARD)).isChecked());
@@ -391,12 +410,12 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 		for(Component window:comps){			
 			if(IDs.SS_WINDOW.equals(window.getId())){
 				
-				ss.setMetrobankDepositor(((Checkbox)window.getFellow(IDs.SS_METROBANK_DEPOSITOR_CHKBOX)).isChecked());
+				ss.setMetrobankDepositor(((Checkbox)window.getFellow(IDs.SS_METROBANK_DEPOSITOR_YES)).isChecked());
 				if(ss.isMetrobankDepositor()){
 					ss.setAccountNum(((Textbox)window.getFellow(IDs.SS_DEPOSITOR_ACCT_NUM)).getValue());
 					ss.setAccountNum(((Textbox)window.getFellow(IDs.SS_DEPOSITOR_ACCT_BRANCH)).getValue());			
 				}
-				ss.setAcceptPledge(((Checkbox)window.getFellow(IDs.SS_PLEDGE_CHKBOX)).isChecked());				
+				ss.setAcceptPledge(((Checkbox)window.getFellow(IDs.SS_PLEDGE_YES)).isChecked());				
 				break;
 			}
 					
@@ -408,8 +427,8 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 			for(Component window:comps){			
 				if(IDs.DOA_WINDOW.equals(window.getId())){
 					DeedsOfAssignment doa = new DeedsOfAssignment();
-					doa.setIssuance( ((Checkbox)window.getFellow(IDs.DOA_ISSUANCE_CHKBOX)).isChecked());
-					doa.setChangeDepInst(((Checkbox)window.getFellow(IDs.DOA_CHANGE_DEP_CHKBOX)).isChecked());
+					doa.setIssuance( ((Checkbox)window.getFellow(IDs.DOA_ISSUANCE)).isChecked());
+					doa.setChangeDepInst(((Checkbox)window.getFellow(IDs.DOA_CHANGE_DEP)).isChecked());
 					doa.setIncDecCreditLimit(((Checkbox)window.getFellow(IDs.DOA_INCDEC_LIMIT_CHKBOX)).isChecked());
 					if(doa.isIncDecCreditLimit()){
 						doa.setIncDecCreditLimitValue(((Textbox)window.getFellow(IDs.DOA_INCDEC_LIMIT)).getValue());

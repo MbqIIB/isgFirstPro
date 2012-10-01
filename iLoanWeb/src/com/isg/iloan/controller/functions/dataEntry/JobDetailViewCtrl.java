@@ -42,7 +42,7 @@ public class JobDetailViewCtrl extends GenericForwardComposer {
 	private Textbox natureOfWork;
 	private Textbox occupation;
 	private Textbox others_txtbox;
-	private Checkbox emp_chkbox;
+	
 	private Checkbox others_chkbox;
 	private Groupbox sourceOfFundsGroupBox;
 	/**

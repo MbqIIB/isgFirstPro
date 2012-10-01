@@ -38,7 +38,7 @@ public class ApplicationDaoImpl extends IloanGenericDao<Application> implements 
 	@Override
 	public  List<Application> findAll() throws DataAccessException {
 		// TODO Auto-generated method stub
-		return null;
+		return super.findAll();
 	}
 
 	@Override
@@ -59,6 +59,12 @@ public class ApplicationDaoImpl extends IloanGenericDao<Application> implements 
 		logger.debug("*** started deleting application with id: " + id);
 		super.deleteById(id);
 		logger.debug("*** deleting application with id: " + id + "....deleted!"); 
+	}
+
+	@Override
+	public List<Application> queryByKey(long key) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return super.queryByKey(key);
 	}
 
 	

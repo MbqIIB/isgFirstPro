@@ -19,13 +19,13 @@ import com.isg.iloan.commons.IDs;
  */
 public class SaveAndSwipeViewCtrl extends GenericForwardComposer {
 
-	private Checkbox pledgeNo_chkbox;
-	private Checkbox pledgeYes_chkbox;
+	private Checkbox pledgeNo;
+	private Checkbox pledgeYes;
 	private Textbox deposiorBranchOpened_txtbox;
 	private Textbox deposiorAccntNum_txtbox;
 	private Groupbox depositor_grpbox;
-	private Checkbox metrobankDepositorNo_chkbox;
-	private Checkbox metrobankDepositorYes_chkbox;
+	private Checkbox metrobankDepositorNo;
+	private Checkbox metrobankDepositorYes;
 
 	/**
 	 *
@@ -36,58 +36,58 @@ public class SaveAndSwipeViewCtrl extends GenericForwardComposer {
 		super.doAfterCompose(comp);
 		// TODO Auto-generated method stub
 		//---initial values ----------
-		metrobankDepositorNo_chkbox.setChecked(true);
-		metrobankDepositorYes_chkbox.setChecked(false);
-		pledgeNo_chkbox.setChecked(true);
-		pledgeYes_chkbox.setChecked(false);
+		metrobankDepositorNo.setChecked(true);
+		metrobankDepositorYes.setChecked(false);
+		pledgeNo.setChecked(true);
+		pledgeYes.setChecked(false);
 		
 	}
 	
 	
 	
-	public void onCheck$metrobankDepositorYes_chkbox(){
+	public void onCheck$metrobankDepositorYes(){
 		
-		depositor_grpbox.setVisible(metrobankDepositorYes_chkbox.isChecked());
-		metrobankDepositorNo_chkbox.setChecked(!metrobankDepositorYes_chkbox.isChecked());
+		depositor_grpbox.setVisible(metrobankDepositorYes.isChecked());
+		metrobankDepositorNo.setChecked(!metrobankDepositorYes.isChecked());
 		
 	}
-	public void onCheck$metrobankDepositorNo_chkbox(){
+	public void onCheck$metrobankDepositorNo(){
 
-		depositor_grpbox.setVisible(!metrobankDepositorNo_chkbox.isChecked());
-		metrobankDepositorYes_chkbox.setChecked(!metrobankDepositorNo_chkbox.isChecked());
+		depositor_grpbox.setVisible(!metrobankDepositorNo.isChecked());
+		metrobankDepositorYes.setChecked(!metrobankDepositorNo.isChecked());
 		
 	}
 	
-	public void onCheck$pledgeYes_chkbox(){
-		pledgeNo_chkbox.setChecked(!pledgeYes_chkbox.isChecked());
+	public void onCheck$pledgeYes(){
+		pledgeNo.setChecked(!pledgeYes.isChecked());
 		Collection<Component> comps =  this.getPage().getDesktop().getComponents();
 		for(Component comp:comps){			
 			if(IDs.DOA_WINDOW.equals(comp.getId())){
 //				Collection<Component> fellows = comp.getFellows();
 //				for(Component fellow:fellows){
 //					if(IDs.DOA_PLEDGE_DIV.equals(fellow.getId())){
-//						fellow.setVisible(pledgeYes_chkbox.isChecked());
+//						fellow.setVisible(pledgeYes.isChecked());
 //						break;
 //					}
 //				}
-				comp.getFellow(IDs.DOA_PLEDGE_DIV).setVisible(pledgeYes_chkbox.isChecked());
+				comp.getFellow(IDs.DOA_PLEDGE_DIV).setVisible(pledgeYes.isChecked());
 				break;
 			}
 		}
 	}
-	public void onCheck$pledgeNo_chkbox(){
-		pledgeYes_chkbox.setChecked(!pledgeNo_chkbox.isChecked());
+	public void onCheck$pledgeNo(){
+		pledgeYes.setChecked(!pledgeNo.isChecked());
 		Collection<Component> comps =  this.getPage().getDesktop().getComponents();
 		for(Component comp:comps){			
 			if(IDs.DOA_WINDOW.equals(comp.getId())){
 //				Collection<Component> fellows = comp.getFellows();
 //				for(Component fellow:fellows){
 //					if(IDs.DOA_PLEDGE_DIV.equals(fellow.getId())){
-//						fellow.setVisible(!pledgeNo_chkbox.isChecked());
+//						fellow.setVisible(!pledgeNo.isChecked());
 //						break;
 //					}
 //				}
-				comp.getFellow(IDs.DOA_PLEDGE_DIV).setVisible(!pledgeNo_chkbox.isChecked());
+				comp.getFellow(IDs.DOA_PLEDGE_DIV).setVisible(!pledgeNo.isChecked());
 				break;
 			}
 		}

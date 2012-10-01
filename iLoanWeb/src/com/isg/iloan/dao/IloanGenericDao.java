@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceException;
+import javax.persistence.Query;
 import javax.persistence.Table;
 
 import org.apache.log4j.Logger;
@@ -42,10 +43,26 @@ public abstract class IloanGenericDao<M extends Serializable> {
 	
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<M> queryByKey(final long key)throws DataAccessException{
+		
+		Query query = entityManager.createQuery("Select m.cardTypeCode, m.cardTypeDesc from "
+				+ modelClass.getSimpleName() + " m where m.applicationId = "+ key );
+		query.setFirstResult(50);
+		query.setMaxResults(100);
+		
+		return query.getResultList();
+		
+		
+	}
+	
+	
+	
+	
 	public List<M> findAll() throws DataAccessException{
 		
 		//entityManager = entityManagerFactory.createEntityManager();	
-		return entityManager.createQuery("from " + modelClass.getAnnotation(Table.class).name(), modelClass).getResultList();
+		return entityManager.createQuery("from " + modelClass.getSimpleName(), modelClass).getResultList();
 		
 	}
 	

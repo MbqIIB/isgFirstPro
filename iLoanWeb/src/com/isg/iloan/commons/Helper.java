@@ -19,6 +19,7 @@ import org.zkoss.zul.Longbox;
 import org.zkoss.zul.Textbox;
 
 import com.isg.iloan.controller.functions.dataEntry.NewApplicationViewCtrl;
+import com.isg.iloan.model.dataEntry.Address;
 
 public class Helper {
 
@@ -106,6 +107,7 @@ public class Helper {
 				        try{
 				        	 comp = window.getFellow(methodName);
 				        }catch(ComponentNotFoundException e){
+				        	failedMethods.add(methodName);
 				        	continue;
 				        }
 				        
@@ -148,12 +150,17 @@ public class Helper {
 		Method[] methods = obj.getClass().getDeclaredMethods();		
 		for(int m=0;m<methods.length;m++){
 			Method method = methods[m];
-			if(method.getName()!=null && method.getName().startsWith("get")){
+			String methodName = method.getName();
+			if(methodName!=null && (methodName.startsWith("get")|| methodName.startsWith("is"))){
 				logger.debug("*** orig method: " + method.getName());
 					if(method.getReturnType().isPrimitive() || 
 							method.getReturnType().getName().equals("java.lang.String")
 							|| method.getReturnType().getName().equals("java.util.Date") ){						
-						String methodName = method.getName().replaceFirst("get", "");
+						methodName=method.getName().replaceFirst("get", "");
+						if(method.getName().startsWith("is")){
+							methodName = method.getName().replaceFirst("is", "");
+						}
+						
 						
 						final int splitIndex = 1;				       
 				        final String first = methodName.substring(0, splitIndex).toLowerCase();
@@ -165,6 +172,7 @@ public class Helper {
 				        try{
 				        	 comp = window.getFellow(formatted);
 				        }catch(ComponentNotFoundException e){
+				        	failedMethods.add(formatted);
 				        	continue;
 				        }
 				       
@@ -182,7 +190,7 @@ public class Helper {
 								((Intbox)comp).setValue((Integer)method.invoke(obj));
 							}else if(comp instanceof Checkbox){
 								
-								((Checkbox)comp).setChecked((Boolean)method.invoke(obj));
+								((Checkbox)comp).setChecked(Boolean.parseBoolean(String.valueOf(method.invoke(obj))));
 							}else if(comp instanceof Longbox){
 								
 								((Longbox)comp).setValue((Long)method.invoke(obj));
@@ -201,6 +209,48 @@ public class Helper {
 		}
 	
 	
+	/*** use this with CAUTION: ids should be in proper order, 
+	 *   index 0: addressLine1 id
+	 *   index 1: zipCode id
+	 *   index 2: telNum id
+	 *   if Address does not have zip code, put an empty string "" in place of ids[1] index
+	 * 
+	 * */
+	public static void setAddress(Component window, Address addr, String[] ids)
+				throws SecurityException,WrongValueException,IllegalAccessException,InvocationTargetException{
+		
+		
+		int length = ids.length;
+		switch(length){
+		case 1: if(null!=addr.getAddressLine1() && !addr.getAddressLine1().isEmpty())
+				{
+				((Textbox)window.getFellow(ids[0])).setValue(addr.getAddressLine1());
+				}
+		case 2:	if(null!=addr.getAddressLine1() && !addr.getAddressLine1().isEmpty())
+				{
+					((Textbox)window.getFellow(ids[0])).setValue(addr.getAddressLine1());
+				}
+				if(0!=addr.getZipCode()){
+					((Intbox)window.getFellow(ids[1])).setValue(addr.getZipCode());
+				}
+				
+		        
+		case 3: 
+				if(null!=addr.getAddressLine1() && !addr.getAddressLine1().isEmpty())
+				{
+					((Textbox)window.getFellow(ids[0])).setValue(addr.getAddressLine1());
+				}				
+				if(!ids[1].isEmpty() && 0!=addr.getZipCode() ){					
+							
+					((Intbox)window.getFellow(ids[1])).setValue(addr.getZipCode());
+				} 
+				if(null!=addr.getTelNum() && !addr.getTelNum().isEmpty()){
+					((Textbox)window.getFellow(ids[2])).setValue(addr.getTelNum());		
+				}
+		}
+		
+				
+	}
 	
 	
 	

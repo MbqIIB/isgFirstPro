@@ -3,15 +3,18 @@
  */
 package com.isg.iloan.controller.functions;
 
+import java.util.List;
+
+import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.util.GenericForwardComposer;
 import org.zkoss.zkplus.spring.SpringUtil;
 import org.zkoss.zul.Button;
 
+import com.isg.iloan.controller.functions.dataEntry.NewApplicationViewCtrl;
+import com.isg.iloan.model.dataEntry.Application;
 import com.isg.iloan.service.ApplicationService;
 import com.isg.iloan.service.ApplicationServiceImpl;
-import com.isg.iloan.service.ILOVService;
-import com.isg.iloan.service.LOVServiceImpl;
 
 /**
  * @author sheena.catacutan
@@ -19,10 +22,7 @@ import com.isg.iloan.service.LOVServiceImpl;
  */
 public class SearchApplicationViewCtrl extends GenericForwardComposer {
 
-	/**
-	 *
-	 *
-	 */
+	private static Logger logger = Logger.getLogger(SearchApplicationViewCtrl.class);
 	
 	private Button searchAppButton;
 	@Override
@@ -30,15 +30,25 @@ public class SearchApplicationViewCtrl extends GenericForwardComposer {
 		super.doAfterCompose(comp);
 	}
 	
-	public ILOVService getLOVService(){
-	   return  (ILOVService)SpringUtil.getBean("lovService", LOVServiceImpl.class);
+		// TODO Auto-generated method stub
+
 	}
 	
 	
-	//onCheck$acceptSaveAndSwipe()
+	public ApplicationService getService(){
+		   return  (ApplicationService)SpringUtil.getBean("applicationService", ApplicationServiceImpl.class);
+		}
+	
 	public void onClick$searchAppButton(){
-		alert("button is clicked.");
-		System.out.println( getLOVService().retrieveById(1).getDesc());
+		try {
+			
+			List<Application> apps = getService().findAll();
+			
+			alert("apps size: " + apps.size());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void onClick$clearBtn(){
