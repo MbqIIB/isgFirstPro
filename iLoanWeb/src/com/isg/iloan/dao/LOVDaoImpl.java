@@ -50,6 +50,4 @@ public class LOVDaoImpl extends IloanGenericDao<LOV> implements ILOVDao {
 		return entityManager.createQuery(criteriaQuery).getResultList();
 	}
 	
-	
-	
 }

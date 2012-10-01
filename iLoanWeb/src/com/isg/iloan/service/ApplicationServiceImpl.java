@@ -20,12 +20,6 @@ public class ApplicationServiceImpl implements ApplicationService {
 	}
 
 	@Override
-	public List<Application> retrieveByCriteria(SearchCriteria criteria) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public Application retrieveById(long applicationId) {
 		// TODO Auto-generated method stub
 		return applicationDao.findById(applicationId);
@@ -60,6 +54,12 @@ public class ApplicationServiceImpl implements ApplicationService {
 	public List<Application> findAll() throws Exception {
 		// TODO Auto-generated method stub
 		return applicationDao.findAll();
+	}
+
+	@Override
+	public List<Application> findApplication(SearchCriteria criteria)
+			throws Exception {
+		return applicationDao.findApplication(criteria);
 	}
 
 }

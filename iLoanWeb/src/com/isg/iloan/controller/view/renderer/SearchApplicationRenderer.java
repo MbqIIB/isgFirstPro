@@ -7,6 +7,7 @@ import org.zkoss.zul.Listitem;
 import org.zkoss.zul.ListitemRenderer;
 
 import com.isg.iloan.model.dataEntry.Application;
+import com.isg.iloan.model.dataEntry.PersonalData;
 
 public class SearchApplicationRenderer implements ListitemRenderer<Object>{
 
@@ -19,10 +20,14 @@ public class SearchApplicationRenderer implements ListitemRenderer<Object>{
 	     
 	    new Listcell(appData.getAppStatusDesc()).setParent(item);
 	    new Listcell(appData.getCardTypeDesc()).setParent(item);
-	    new Listcell(appData.getPersonalData().getNameOnCard()).setParent(item);
+	    new Listcell("").setParent(item);
 	    String pattern = "EEE, dd MMM yyyy HH:mm:ss z";
 	    SimpleDateFormat sdf = new SimpleDateFormat(pattern);
 	    new Listcell(sdf.format(appData.getDateOfApplication())).setParent(item);
+	}
+	
+	private String getFullName(PersonalData pd){
+		return pd.getFamilyName()+", "+pd.getMiddleName()+" "+pd.getMiddleName();
 	}
 
 }
