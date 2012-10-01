@@ -19,6 +19,7 @@
   		<class>com.isg.iloan.model.dataEntry.SaveAndSwipe</class>
   		<class>com.isg.iloan.model.dataEntry.DeedsOfAssignment</class>
   		<class>com.isg.iloan.model.dataEntry.Fund</class>
+  		<class>com.isg.iloan.commons.LOV</class>
   		
   		<exclude-unlisted-classes>true</exclude-unlisted-classes>		 
   		
