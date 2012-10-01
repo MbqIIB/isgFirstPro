@@ -62,7 +62,7 @@ public abstract class IloanGenericDao<M extends Serializable> {
 	public List<M> findAll() throws DataAccessException{
 		
 		//entityManager = entityManagerFactory.createEntityManager();	
-		return entityManager.createQuery("from " + modelClass.getAnnotation(Table.class).name(), modelClass).getResultList();
+		return entityManager.createQuery("from " + modelClass.getSimpleName(), modelClass).getResultList();
 		
 	}
 	

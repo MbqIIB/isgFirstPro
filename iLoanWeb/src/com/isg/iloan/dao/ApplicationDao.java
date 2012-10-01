@@ -25,5 +25,7 @@ public interface ApplicationDao {
 	
 	List<Application> queryByKey(long key) throws DataAccessException;
 	
+	
+	
 
 }

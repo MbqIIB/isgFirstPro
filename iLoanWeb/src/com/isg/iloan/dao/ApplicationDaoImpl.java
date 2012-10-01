@@ -39,7 +39,7 @@ public class ApplicationDaoImpl extends IloanGenericDao<Application> implements 
 	@Override
 	public  List<Application> findAll() throws DataAccessException {
 		// TODO Auto-generated method stub
-		return null;
+		return super.findAll();
 	}
 
 	@Override

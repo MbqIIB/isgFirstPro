@@ -16,5 +16,7 @@ public interface ApplicationService {
 	
 	List<Application> queryByKey(long key);
 	
+	List<Application> findAll() throws Exception;
+	
 
 }

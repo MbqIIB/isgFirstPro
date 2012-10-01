@@ -56,4 +56,10 @@ public class ApplicationServiceImpl implements ApplicationService {
 		return applicationDao.queryByKey(key);
 	}
 
+	@Override
+	public List<Application> findAll() throws Exception {
+		// TODO Auto-generated method stub
+		return applicationDao.findAll();
+	}
+
 }
