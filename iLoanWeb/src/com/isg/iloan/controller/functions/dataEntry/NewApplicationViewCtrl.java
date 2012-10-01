@@ -23,6 +23,7 @@ import org.zkoss.zul.Datebox;
 import org.zkoss.zul.Hbox;
 import org.zkoss.zul.Hlayout;
 import org.zkoss.zul.Intbox;
+import org.zkoss.zul.Longbox;
 import org.zkoss.zul.Tab;
 import org.zkoss.zul.Tabbox;
 import org.zkoss.zul.Tabpanel;
@@ -333,8 +334,8 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 		app.setDateOfApplication(new Date());
 		app.setAppStatusCode(1);
 		app.setAppStatusDesc("New");
-		app.setCardTypeCode(((Textbox)ccDetailsMap.get(IDs.CARD_TYPE_CODE)).getValue());
-		app.setCardTypeDesc(((Textbox)ccDetailsMap.get(IDs.CARD_TYPE_DESC)).getValue());
+		app.setCreditCardTypeCode(((Textbox)ccDetailsMap.get(IDs.CARD_TYPE_CODE)).getValue());
+		app.setCreditCardTypeDesc(((Textbox)ccDetailsMap.get(IDs.CARD_TYPE_DESC)).getValue());
 		app.setAcceptClassicCard(((Checkbox)ccDetailsMap.get(IDs.ACCEPT_CLASSIC_CARD)).isChecked());
 		app.setAcceptSaveAndSwipe(((Checkbox)ccDetailsMap.get(IDs.ACCEPT_SAVE_SWIPE)).isChecked());
 		
@@ -369,15 +370,16 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 		for(int k=1;k<4;k++){			
 			String cardNum = ((Textbox)ccDetailsMap.get("existingCC"+k)).getValue();
 			if(null!=cardNum && !"".equals(cardNum)){				
-				String cardLimit = ((Textbox)ccDetailsMap.get("ecc"+k+"Limit")).getValue();
+				long cardLimit = ((Longbox)ccDetailsMap.get("ecc"+k+"Limit")).getValue();
 				Date membershipDate = ((Datebox)ccDetailsMap.get("ecc"+k+"DOM")).getValue();
 				creditcard = new CreditCard();
 				creditcard.setExistingCreditCard(true);
 				creditcard.setOtherCreditCard(false);
 				creditcard.setCreditCardNum(cardNum);
-				creditcard.setCreditCardLimit(cardLimit==null?0:Long.parseLong(cardLimit));
+				creditcard.setCreditCardLimit(cardLimit);
 				creditcard.setDateOfMembership(membershipDate);
 				creditcard.setCardCompany(Labels.MCC);
+				creditcard.setCardRank(k);
 				app.addCreditCard(creditcard);
 			}else{break;}			
 			
@@ -386,15 +388,16 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 			String cardCompany = ((Textbox)ccDetailsMap.get("occ"+k)).getValue();
 			if(null!=cardCompany && !"".equals(cardCompany)){
 				String cardNum = ((Textbox)ccDetailsMap.get("occ"+k+"Num")).getValue();
-				String cardLimit = ((Textbox)ccDetailsMap.get("occ"+k+"Limit")).getValue();
+				long cardLimit = ((Longbox)ccDetailsMap.get("occ"+k+"Limit")).getValue();
 				Date membershipDate = ((Datebox)ccDetailsMap.get("occ"+k+"DOM")).getValue();
 				creditcard = new CreditCard();
 				creditcard.setExistingCreditCard(false);
 				creditcard.setOtherCreditCard(true);
 				creditcard.setCreditCardNum(cardNum);
-				creditcard.setCreditCardLimit(cardLimit==null?0:Long.parseLong(cardLimit));
+				creditcard.setCreditCardLimit(cardLimit);
 				creditcard.setDateOfMembership(membershipDate);
 				creditcard.setCardCompany(cardCompany);
+				creditcard.setCardRank(k);
 				app.addCreditCard(creditcard);
 			}else{break;}			
 			
@@ -439,7 +442,7 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 					doa.setPledgedAccountNum(((Textbox)window.getFellow(IDs.DOA_PLEDGE_ACCNT_NUM)).getValue());
 					doa.setPledgedAccntDepoBranch(((Textbox)window.getFellow(IDs.DOA_PLEDGE_DEPO_BRANCH)).getValue());
 					doa.setPledgedAmountWords(((Textbox)window.getFellow(IDs.DOA_PLEDGE_AMT_WORDS)).getValue());
-					doa.setPledgedAmount(Long.parseLong(((Textbox)window.getFellow(IDs.DOA_PLEDGE_AMT)).getValue()));
+					doa.setPledgedAmount(((Longbox)window.getFellow(IDs.DOA_PLEDGE_AMT)).getValue());
 					doa.setDateApplied(((Datebox)window.getFellow(IDs.DOA_DATE_APPLIED)).getValue());
 					doa.setMetrobankBranchNameCode(((Textbox)window.getFellow(IDs.DOA_METROBANK_BRANCH)).getValue());
 					doa.setAcceptDOA(((Checkbox)window.getFellow(IDs.DOA_ACCEPTANCE)).isChecked());

@@ -37,6 +37,8 @@ public class CreditCard implements Serializable{
   private boolean existingCreditCard;
   @Column(name="OTHERCARD")
   private boolean otherCreditCard;
+  @Column(name="CARD_RANK")
+  private int cardRank;
   
   @ManyToOne
   @JoinColumn(name="APP_ID")
@@ -103,6 +105,18 @@ public class CreditCard implements Serializable{
 			application.getCreditCards().add(this);
 		}
 	}
+
+
+	public int getCardRank() {
+		return cardRank;
+	}
+
+
+	public void setCardRank(int cardRank) {
+		this.cardRank = cardRank;
+	}
+
+
 
   
 } //end class CreditCard 

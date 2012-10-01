@@ -55,9 +55,9 @@ public class Application implements Serializable{
   @Column(name="APPDATE")
   private Date dateOfApplication;  
   @Column(name="CARDTYPECODE")
-  private String cardTypeCode;  
+  private String creditCardTypeCode;  
   @Column(name="CARDTYPEDESC")
-  private String cardTypeDesc;  
+  private String creditCardTypeDesc;  
   @Column(name="APPSTATUS")
   private int appStatusCode;  
   @Column(name="APPSTATUSDESC")
@@ -145,21 +145,7 @@ public class Application implements Serializable{
 		this.dateOfApplication = dateOfApplication;
 	}
 
-	public String getCardTypeCode() {
-		return cardTypeCode;
-	}
-
-	public void setCardTypeCode(String cardTypeCode) {
-		this.cardTypeCode = cardTypeCode;
-	}
-
-	public String getCardTypeDesc() {
-		return cardTypeDesc;
-	}
-
-	public void setCardTypeDesc(String cardTypeDesc) {
-		this.cardTypeDesc = cardTypeDesc;
-	}
+	
 
 	public int getAppStatusCode() {
 		return appStatusCode;
@@ -251,6 +237,26 @@ public class Application implements Serializable{
 
 	public void setSaveAndSwipe(SaveAndSwipe saveAndSwipe) {
 		this.saveAndSwipe = saveAndSwipe;
+	}
+
+
+	public String getCreditCardTypeCode() {
+		return creditCardTypeCode;
+	}
+
+
+	public void setCreditCardTypeCode(String creditCardTypeCode) {
+		this.creditCardTypeCode = creditCardTypeCode;
+	}
+
+
+	public String getCreditCardTypeDesc() {
+		return creditCardTypeDesc;
+	}
+
+
+	public void setCreditCardTypeDesc(String creditCardTypeDesc) {
+		this.creditCardTypeDesc = creditCardTypeDesc;
 	}
 
 

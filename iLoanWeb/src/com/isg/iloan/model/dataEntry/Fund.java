@@ -86,6 +86,12 @@ public Fund(String code, String desc){
 			jobDetail.getSourceOfFunds().add(this);
 		}
 	}
+	public void removeJobDetail(JobDetail jobDetail) {
+		this.jobDetail = jobDetail;
+		if(jobDetail.getSourceOfFunds().contains(this)){
+			jobDetail.removeFundSource(this);
+		}
+	}
   
   
   
