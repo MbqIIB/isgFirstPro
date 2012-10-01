@@ -9,7 +9,6 @@ import javax.persistence.PersistenceContext;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
 
-import com.isg.iloan.controller.functions.dataEntry.CreditCardDetailsViewCtrl;
 import com.isg.iloan.model.dataEntry.Application;
 
 public class ApplicationDaoImpl extends IloanGenericDao<Application> implements ApplicationDao {

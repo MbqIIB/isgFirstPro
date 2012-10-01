@@ -74,7 +74,7 @@
 				</grid>
 			</groupbox>
 			<hlayout sclass="spacer">
-				<button label="Search" mold="trendy" id="dummySearchBtn"></button>
+				<button label="Search" mold="trendy" id="searchAppButton"></button>
 				<button label="Clear" mold="trendy" id="clearBtn"></button>
 			</hlayout>
 			<groupbox>

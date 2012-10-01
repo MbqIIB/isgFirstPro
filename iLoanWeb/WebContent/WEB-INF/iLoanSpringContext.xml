@@ -62,7 +62,13 @@ http://www.springframework.org/schema/context/spring-context-3.1.xsd" >
 	 	<property name="applicationDao" ref="applicationDao" />
 	 </bean>
 	 
-	 <!-- end Element -->
+	  <bean id="lovDao" class="com.isg.iloan.dao.LOVDaoImpl">
+	 	<constructor-arg name="entityManagerFactory" ref="entityManagerFactory"/>
+	 </bean>	 
+	 <bean id="lovService" class="com.isg.iloan.service.LOVServiceImpl">
+	 	<property name="lovDao" ref="lovDao" />
+	 </bean>
+	
 	
 	
 
