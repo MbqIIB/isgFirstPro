@@ -10,6 +10,10 @@
 		.z-center-body {
 		    overflow: auto !important;
 		}
+		
+		div.z-listfooter-cnt {
+		    text-align: right;
+		}
 	</style>
 	 
 	<window title="Application Search" border="normal" width="80%" height="100%" style="overflow:auto;"
@@ -32,7 +36,7 @@
 								<combobox model="@load(vm.appStatus)"
 									readonly="true">
 									<template name="model">
-										<comboitem label="@load(each)" />
+										<comboitem label="@load(each.desc)" value="@load(each.code)" />
 									</template>
 								</combobox>
 							</hlayout>
@@ -42,7 +46,7 @@
 								<combobox
 									model="@load(vm.creditCardType)" readonly="true">
 									<template name="model">
-										<comboitem label="@load(each)" />
+										<comboitem label="@load(each.desc)" />
 									</template>
 								</combobox>
 							</hlayout>
@@ -79,23 +83,16 @@
 			</hlayout>
 			<groupbox>
 			<caption>Results</caption>
-			<grid height="350px" model="@load(vm.applicationDetails)"
-				emptyMessage="Nothing in Inbox.">
-				<columns>
-					<column label="Status" />
-					<column label="Card Type" />
-					<column label="Name" />
-					<column label="Application Date" />
-				</columns>
-				<template name="model">
-					<row>
-						<label value="@load(each.application.applicationStatus)" />
-						<label value="@load(each.application.creditCardType)" />
-						<label value="@load(each.personalData.name)" />
-						<label value="@load(each.application.dateOfApplication)" />
-					</row>
-				</template>
-			</grid>
+
+			<listbox id="resultList" mold="paging" pageSize="5" height="250px">
+				<listhead>
+					<listheader label="Status" sort="auto" />
+					<listheader label="Card Type" sort="auto" />
+					<listheader label="Name" sort="auto" />
+					<listheader label="Application Date" sort="auto" />
+				</listhead>
+			</listbox>
+
 			</groupbox>
 		</div>
 	</window>

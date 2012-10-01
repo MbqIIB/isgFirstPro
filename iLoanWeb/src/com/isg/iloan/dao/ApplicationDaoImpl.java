@@ -66,11 +66,4 @@ public class ApplicationDaoImpl extends IloanGenericDao<Application> implements 
 		// TODO Auto-generated method stub
 		return super.queryByKey(key);
 	}
-
-	
-	
-	
-	
-	
-
 }

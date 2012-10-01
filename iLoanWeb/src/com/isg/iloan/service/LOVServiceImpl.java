@@ -24,22 +24,23 @@ public class LOVServiceImpl implements ILOVService {
 
 	@Override
 	public List<LOV> retrieveByCriteria(SearchCriteria criteria) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public LOV retrieveById(long applicationId) {
-		// TODO Auto-generated method stub
 		return lovDao.findById(applicationId);
 	}
 
 
-	
 	@Override
-	public List<LOV> findAllApplication() {
+	public List<LOV> retrieveAllAppStatus() {
 		return lovDao.findAll();
-		
+	}
+
+	@Override
+	public List<LOV> retrieveAllCreditCardType() {
+		return lovDao.findAll();
 	}
 
 }
