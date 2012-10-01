@@ -11,7 +11,6 @@ public class LOVServiceImpl implements ILOVService {
 
 	private static Logger logger = Logger.getLogger(LOVServiceImpl.class);
 	
-	
 	private ILOVDao lovDao;
 	
 	public ILOVDao getLovDao() {
@@ -23,24 +22,13 @@ public class LOVServiceImpl implements ILOVService {
 	}
 
 	@Override
-	public List<LOV> retrieveByCriteria(SearchCriteria criteria) {
-		return null;
-	}
-
-	@Override
-	public LOV retrieveById(long applicationId) {
-		return lovDao.findById(applicationId);
-	}
-
-
-	@Override
 	public List<LOV> retrieveAllAppStatus() {
-		return lovDao.findAll();
+		return lovDao.findByType(1);
 	}
 
 	@Override
 	public List<LOV> retrieveAllCreditCardType() {
-		return lovDao.findAll();
+		return lovDao.findByType(2);
 	}
 
 }

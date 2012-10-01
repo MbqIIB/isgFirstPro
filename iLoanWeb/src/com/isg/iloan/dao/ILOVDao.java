@@ -17,7 +17,7 @@ public interface ILOVDao {
 	
 	public List<LOV> findAll() throws DataAccessException;
 	
-	void save(final LOV modelBean ) throws DataAccessException;
+	public List<LOV> findByType(int typeKey) throws DataAccessException;
 	
 
 }

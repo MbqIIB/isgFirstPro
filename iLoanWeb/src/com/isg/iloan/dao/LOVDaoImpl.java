@@ -5,6 +5,9 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
@@ -32,9 +35,21 @@ public class LOVDaoImpl extends IloanGenericDao<LOV> implements ILOVDao {
 		
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public  List<LOV> findAll() throws DataAccessException {
 		return super.findAll();
 	}
+
+	@Override
+	public List<LOV> findByType(int typeKey) throws DataAccessException {
+		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+		CriteriaQuery<LOV> criteriaQuery = cb.createQuery(LOV.class);
+		Root<LOV> root = criteriaQuery.from(LOV.class);
+		criteriaQuery.select(root).where(
+				cb.equal(root.get("key"), typeKey));
+		return entityManager.createQuery(criteriaQuery).getResultList();
+	}
+	
+	
+	
 }

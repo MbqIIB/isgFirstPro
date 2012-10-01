@@ -13,7 +13,7 @@ public class SearchApplicationRenderer implements ListitemRenderer<Object>{
 	@Override
 	public void render(Listitem item, Object data, int arg2)
 			throws Exception {
-		// TODO Auto-generated method stub
+		
 		final Application appData = (Application)data;
 		item.setValue(appData);
 	     
