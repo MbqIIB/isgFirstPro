@@ -72,7 +72,7 @@ public class Application implements Serializable{
   @OneToMany(cascade=CascadeType.ALL,mappedBy="application",fetch=FetchType.LAZY)
   private List<CreditCard> creditCards;
   
-  @OneToOne(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+  @OneToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
   @JoinColumn(name="PERSONALDATA_ID") 
   private PersonalData personalData;
   

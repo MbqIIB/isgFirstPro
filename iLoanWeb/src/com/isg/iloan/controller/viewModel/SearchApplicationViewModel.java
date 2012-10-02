@@ -8,7 +8,6 @@ import org.zkoss.zkplus.spring.SpringUtil;
 import com.isg.iloan.commons.LOV;
 import com.isg.iloan.service.ILOVService;
 import com.isg.iloan.service.LOVServiceImpl;
-import com.isg.iloan.service.SearchCriteria;
 
 public class SearchApplicationViewModel {
 
@@ -19,10 +18,14 @@ public class SearchApplicationViewModel {
 		 return  (ILOVService)SpringUtil.getBean("lovService", LOVServiceImpl.class);
 	}
 	
-	static {	
+	static {
+		LOV emptyAppStatus = new LOV();
+		emptyAppStatus.setCode("");
+		emptyAppStatus.setDesc("");
+		emptyAppStatus.setKey(0);
+		appStatus.add(new LOV());
 		appStatus.addAll(getLOVService().retrieveAllAppStatus());
 		creditCardType.addAll(getLOVService().retrieveAllCreditCardType());
-
 	}
 
 	public List<LOV> getAppStatus() {

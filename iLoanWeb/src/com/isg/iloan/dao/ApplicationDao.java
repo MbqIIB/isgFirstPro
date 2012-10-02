@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.dao.DataAccessException;
 
 import com.isg.iloan.model.dataEntry.Application;
-import com.isg.iloan.service.SearchCriteria;
 
 public interface ApplicationDao {
 	
@@ -26,7 +25,7 @@ public interface ApplicationDao {
 	
 	List<Application> queryByKey(long key) throws DataAccessException;
 	
-	List<Application> findApplication(SearchCriteria criteria) throws DataAccessException;
+	List<Application> findApplication(Application criteria) throws DataAccessException;
 	
 	
 	

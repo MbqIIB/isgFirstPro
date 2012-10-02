@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.apache.log4j.Logger;
-
 /**
  ** Class Application
  **/
@@ -25,6 +23,7 @@ public class LOV implements Serializable {
 	@Id
 	@SequenceGenerator(name = "LOV_SEQ", sequenceName = "LOV_SEQ", allocationSize = 1)
 	@GeneratedValue(generator = "LOV_SEQ", strategy = GenerationType.SEQUENCE)
+	
 	@Column(name = "LOV_ID")
 	private long id;
 

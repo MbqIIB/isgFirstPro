@@ -19,15 +19,15 @@ public class SearchApplicationRenderer implements ListitemRenderer<Object>{
 		item.setValue(appData);
 	     
 	    new Listcell(appData.getAppStatusDesc()).setParent(item);
-	    new Listcell(appData.getCardTypeDesc()).setParent(item);
-	    new Listcell("").setParent(item);
+	    new Listcell(appData.getCreditCardTypeDesc()).setParent(item);
+	    new Listcell(getFullName(appData.getPersonalData())).setParent(item);
 	    String pattern = "EEE, dd MMM yyyy HH:mm:ss z";
 	    SimpleDateFormat sdf = new SimpleDateFormat(pattern);
 	    new Listcell(sdf.format(appData.getDateOfApplication())).setParent(item);
 	}
 	
 	private String getFullName(PersonalData pd){
-		return pd.getFamilyName()+", "+pd.getMiddleName()+" "+pd.getMiddleName();
+		return pd.getGivenName()+" "+pd.getMiddleName()+" "+pd.getFamilyName();
 	}
 
 }

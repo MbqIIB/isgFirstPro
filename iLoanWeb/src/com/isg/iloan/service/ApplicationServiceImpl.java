@@ -57,7 +57,7 @@ public class ApplicationServiceImpl implements ApplicationService {
 	}
 
 	@Override
-	public List<Application> findApplication(SearchCriteria criteria)
+	public List<Application> findApplication(Application criteria)
 			throws Exception {
 		return applicationDao.findApplication(criteria);
 	}

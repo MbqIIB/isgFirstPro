@@ -13,7 +13,6 @@ import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
 
 import com.isg.iloan.model.dataEntry.Application;
-import com.isg.iloan.service.SearchCriteria;
 
 public class ApplicationDaoImpl extends IloanGenericDao<Application> implements
 		ApplicationDao {
@@ -42,7 +41,6 @@ public class ApplicationDaoImpl extends IloanGenericDao<Application> implements
 
 	@Override
 	public List<Application> findAll() throws DataAccessException {
-		// TODO Auto-generated method stub
 		return super.findAll();
 	}
 
@@ -75,13 +73,13 @@ public class ApplicationDaoImpl extends IloanGenericDao<Application> implements
 	}
 
 	@Override
-	public List<Application> findApplication(SearchCriteria criteria)
+	public List<Application> findApplication(Application criteria)
 			throws DataAccessException {			
 		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
 		CriteriaQuery<Application> criteriaQuery = cb.createQuery(Application.class);
 		Root<Application> root = criteriaQuery.from(Application.class);
 		criteriaQuery.select(root).where(
-				cb.equal(root.get("appStatusDesc"), criteria.getApplication().getAppStatusDesc()));
+				cb.equal(root.get("appStatusDesc"), criteria.getAppStatusDesc()));
 		return entityManager.createQuery(criteriaQuery).getResultList();
 	}
 }

@@ -1,8 +1,13 @@
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="/layout/mainLayout.zul"?>
 <zk>
 	<style>
-		.lblStyle{ position:relative; display:block; width:100px;
-		float:left; }
+		.lblStyle{ 
+			position:relative;
+			display:block;
+			width:100px;
+			float:left; 
+		}
+		
 		.spacer{
 			margin: 10px 5px;
 		}
@@ -22,7 +27,7 @@
 			viewModel="@id('vm') @init('com.isg.iloan.controller.viewModel.SearchApplicationViewModel')">
 			<groupbox>
 				<caption>Criteria</caption>
-				<grid>
+				<grid id="criteriaGrid">
 					<columns>
 						<column />
 						<column />
@@ -33,8 +38,7 @@
 							<hlayout>
 								<label value="Application Status"
 									sclass="lblStyle" />
-								<combobox model="@load(vm.appStatus)"
-									readonly="true" id="applicationStatusCode">
+								<combobox model="@load(vm.appStatus)" id="applicationStatusCode" autocomplete="true">
 									<template name="model">
 										<comboitem label="@load(each.desc)" value="@load(each.code)" />
 									</template>
@@ -43,8 +47,7 @@
 							<hlayout>
 								<label value="Credit Card Type"
 									sclass="lblStyle" />
-								<combobox
-									model="@load(vm.creditCardType)" readonly="true">
+								<combobox model="@load(vm.creditCardType)" autocomplete="true">
 									<template name="model">
 										<comboitem label="@load(each.desc)" value="@load(each.code)"/>
 									</template>
