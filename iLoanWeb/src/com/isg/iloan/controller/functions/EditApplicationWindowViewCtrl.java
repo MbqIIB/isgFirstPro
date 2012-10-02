@@ -4,7 +4,6 @@
 package com.isg.iloan.controller.functions;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Hashtable;
@@ -36,12 +35,9 @@ import org.zkoss.zul.Tabs;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Window;
 
-import sun.reflect.ReflectionFactory.GetReflectionFactoryAction;
-
 import com.isg.iloan.commons.Helper;
 import com.isg.iloan.commons.IDs;
 import com.isg.iloan.commons.Labels;
-import com.isg.iloan.dao.ApplicationDaoImpl;
 import com.isg.iloan.model.dataEntry.Address;
 import com.isg.iloan.model.dataEntry.Application;
 import com.isg.iloan.model.dataEntry.CreditCard;
@@ -105,9 +101,26 @@ public class EditApplicationWindowViewCtrl extends GenericForwardComposer {
 		super.doAfterCompose(comp);
 		// TODO Auto-generated method stub
 		
-		final Application app = getService().retrieveById(23);
-		this.app = app;
+		String id = Executions.getCurrent().getParameter("app_id");
 		
+		if(null!=id && !id.isEmpty()){
+			
+			try{
+				int applicationId = Integer.parseInt(id);
+				final Application app = getService().retrieveById(applicationId);
+				if(app!=null){
+					this.app = app;
+					composeApplication(app);
+				}
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			
+			
+		}
+	}
+	
+	public void composeApplication(final Application app) throws Exception{
 		
 		Collection<Component> comps =  ccDetailPanel.getPage().getDesktop().getComponents();		
 		for(Component window:comps){			
@@ -148,8 +161,9 @@ public class EditApplicationWindowViewCtrl extends GenericForwardComposer {
 		        }
 		     };
 		     bgViewComposer.start();
-
+		
 	}
+	
 	
 	public void onViewCompose(Event event) {
 	    // In this part of code the ThreadLocals ARE available

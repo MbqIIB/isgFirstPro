@@ -79,7 +79,7 @@ public class ApplicationDaoImpl extends IloanGenericDao<Application> implements
 		CriteriaQuery<Application> criteriaQuery = cb.createQuery(Application.class);
 		Root<Application> root = criteriaQuery.from(Application.class);
 		criteriaQuery.select(root).where(
-				cb.equal(root.get("appStatusDesc"), criteria.getAppStatusDesc()));
+				cb.equal(root.get("appStatusCode"), criteria.getAppStatusCode()));
 		return entityManager.createQuery(criteriaQuery).getResultList();
 	}
 }

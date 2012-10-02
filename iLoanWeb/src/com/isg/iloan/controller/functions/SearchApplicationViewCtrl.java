@@ -4,7 +4,6 @@
 package com.isg.iloan.controller.functions;
 
 import org.apache.log4j.Logger;
-import org.zkoss.zhtml.Messagebox;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.util.GenericForwardComposer;
 import org.zkoss.zkplus.spring.SpringUtil;
@@ -14,7 +13,6 @@ import org.zkoss.zul.ListModel;
 import org.zkoss.zul.Listbox;
 import org.zkoss.zul.SimpleListModel;
 
-import com.isg.iloan.controller.util.ClearFormElements;
 import com.isg.iloan.controller.view.renderer.SearchApplicationRenderer;
 import com.isg.iloan.model.dataEntry.Application;
 import com.isg.iloan.service.ApplicationService;
@@ -52,7 +50,10 @@ public class SearchApplicationViewCtrl extends GenericForwardComposer {
 	public void onClick$searchAppButton(){
 		try {
 			Application app = new Application();
-			app.setAppStatusDesc(applicationStatusCode.getValue());
+			
+			
+			app.setAppStatusCode(Integer.parseInt((String)applicationStatusCode.getSelectedItem().getValue()));
+			
 			ListModel<Application> listModel = new SimpleListModel<Application>(getService().findApplication(app));
 			resultList.setModel(listModel);
 			resultList.setItemRenderer(new SearchApplicationRenderer());
@@ -62,7 +63,7 @@ public class SearchApplicationViewCtrl extends GenericForwardComposer {
 	}
 	
 	public void onClick$clearButton() throws Exception{
-		ClearFormElements.clearInput(criteriaGrid);
+		//ClearFormElements.clearInput(criteriaGrid);
 	}
 	
 }
