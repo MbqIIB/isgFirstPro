@@ -73,12 +73,7 @@ public class JobDetail implements Serializable {
 		  source.setJobDetail(this);
 	  }
   }
-  public void removeFundSource(Fund source){
-	  this.sourceOfFunds.remove(source);
-	  if(source.getJobDetail()!=this){
-		  source.removeJobDetail(this);
-	  }
-  }
+  
   
   
   //Constructors

@@ -54,6 +54,8 @@ import com.isg.iloan.model.dataEntry.SaveAndSwipe;
 import com.isg.iloan.model.dataEntry.Supplementary;
 import com.isg.iloan.service.ApplicationService;
 import com.isg.iloan.service.ApplicationServiceImpl;
+import com.isg.iloan.service.DataEntryGenericService;
+import com.isg.iloan.service.ServiceLocator;
 
 /**
  * @author augusto.marte
@@ -91,6 +93,7 @@ public class EditApplicationWindowViewCtrl extends GenericForwardComposer {
 	 *
 	 */
 	
+		
 	public ApplicationService getService(){
 		   return  (ApplicationService)SpringUtil.getBean("applicationService", ApplicationServiceImpl.class);
 		}
@@ -448,7 +451,12 @@ public class EditApplicationWindowViewCtrl extends GenericForwardComposer {
 				addr.setPermanentAddress(false);
 				jd.setBusinessAddress(addr);
 				
-				decomposeFunds(jd, window);
+				try{
+					decomposeFunds(jd, window);
+				}catch(Exception e){
+					//configure the exception handling..
+				}
+				
 				
 				
 				
@@ -462,12 +470,12 @@ public class EditApplicationWindowViewCtrl extends GenericForwardComposer {
 				//if(sem.isChecked())jd.addFundSource(new Fund(sem.getName(),sem.getLabel()));
 				//Checkbox uem = ((Checkbox)window.getFellow(IDs.JD_UNEMP));
 				//if(uem.isChecked())jd.addFundSource(new Fund(uem.getName(),uem.getLabel()));
-				Checkbox ret = ((Checkbox)window.getFellow(IDs.JD_RETIRED));
-				if(ret.isChecked())jd.addFundSource(new Fund(ret.getName(),ret.getLabel()));
-				Checkbox oth = ((Checkbox)window.getFellow(IDs.JD_OTHERS_CHKBOX));
-				if(oth.isChecked()){
-					jd.addFundSource(new Fund(oth.getName(),((Textbox)window.getFellow(IDs.JD_OTHERS_TXTBOX)).getValue()));
-				}
+				//Checkbox ret = ((Checkbox)window.getFellow(IDs.JD_RETIRED));
+				//if(ret.isChecked())jd.addFundSource(new Fund(ret.getName(),ret.getLabel()));
+				//Checkbox oth = ((Checkbox)window.getFellow(IDs.JD_OTHERS_CHKBOX));
+				//if(oth.isChecked()){
+				//	jd.addFundSource(new Fund(oth.getName(),((Textbox)window.getFellow(IDs.JD_OTHERS_TXTBOX)).getValue()));
+				//}
 				
 				app.setJobDetail(jd);
 				
@@ -480,7 +488,10 @@ public class EditApplicationWindowViewCtrl extends GenericForwardComposer {
 
 	
 	
-	public void decomposeFunds(JobDetail jd, Component window){
+	public void decomposeFunds(JobDetail jd, Component window) throws Exception{
+		
+		DataEntryGenericService deGenService = ServiceLocator.getDataEntryGenericService();
+		deGenService.setModelClass(Fund.class);
 		
 		List<Fund> funds = jd.getSourceOfFunds();
 		Map<String,Fund> fundTable = new Hashtable();
@@ -498,8 +509,13 @@ public class EditApplicationWindowViewCtrl extends GenericForwardComposer {
 				jd.addFundSource(new Fund(emp.getName(),emp.getLabel()));
 			}					
 		}else{
-			if(fundTable.get(emp.getName())!=null){
-				funds.remove(fundTable.get(emp.getName()));
+			if(fundTable.get(emp.getName())!=null){	
+				
+				long id = deGenService.deleteById(((Fund)fundTable.get(emp.getName())).getFundId());
+				if(id>0){
+					funds.remove(fundTable.get(emp.getName()));
+				}
+				
 			}
 				
 		}
@@ -510,11 +526,16 @@ public class EditApplicationWindowViewCtrl extends GenericForwardComposer {
 				invExist = true;
 			}											
 			if(!invExist){
-				jd.addFundSource(new Fund(inv.getName(),inv.getLabel()));
+				jd.addFundSource(new Fund(inv.getName(),inv.getLabel()));				
 			}					
 		}else{
 			if(fundTable.get(inv.getName())!=null){
-				funds.remove(fundTable.get(inv.getName()));
+				long result = deGenService.deleteById(((Fund)fundTable.get(inv.getName())).getFundId());	
+				logger.debug("deleting Investment fund: " + result);
+				if(result>0){
+					funds.remove(fundTable.get(inv.getName()));
+				}
+				
 			}	
 		}
 		Checkbox sem = ((Checkbox)window.getFellow(IDs.JD_SELF_EMP));
@@ -528,7 +549,12 @@ public class EditApplicationWindowViewCtrl extends GenericForwardComposer {
 			}					
 		}else{
 			if(fundTable.get(sem.getName())!=null){
-				funds.remove(fundTable.get(sem.getName()));
+				long result = deGenService.deleteById(((Fund)fundTable.get(sem.getName())).getFundId());
+				logger.debug("deleting Self-Employment fund: " + result);
+				if(result>0){
+					funds.remove(fundTable.get(sem.getName()));
+				}
+				
 			}				
 		}
 		Checkbox uem = ((Checkbox)window.getFellow(IDs.JD_UNEMP));
@@ -542,7 +568,12 @@ public class EditApplicationWindowViewCtrl extends GenericForwardComposer {
 			}					
 		}else{
 			if(fundTable.get(uem.getName())!=null){
-				funds.remove(fundTable.get(uem.getName()));
+				long result = deGenService.deleteById((fundTable.get(uem.getName())).getFundId());	
+				logger.debug("deleting Un-employment fund: " + result);
+				if(result>0){
+					funds.remove(fundTable.get(uem.getName()));
+				}
+				
 			}				
 		}
 		Checkbox ret = ((Checkbox)window.getFellow(IDs.JD_RETIRED));
@@ -555,8 +586,13 @@ public class EditApplicationWindowViewCtrl extends GenericForwardComposer {
 				jd.addFundSource(new Fund(ret.getName(),ret.getLabel()));
 			}					
 		}else{
-			if(fundTable.get(ret.getName())!=null){
-				funds.remove(fundTable.get(ret.getName()));
+			if(fundTable.get(ret.getName())!=null){				
+				long result = deGenService.deleteById((fundTable.get(ret.getName())).getFundId());
+				logger.debug("deleting Retirement fund: " + result);
+				if(result>0){
+					funds.remove(fundTable.get(ret.getName()));
+				}
+				
 			}				
 		}
 		Checkbox oth = ((Checkbox)window.getFellow(IDs.JD_OTHERS_CHKBOX));		
@@ -565,14 +601,18 @@ public class EditApplicationWindowViewCtrl extends GenericForwardComposer {
 			if(fundTable.get(oth.getName())!=null){	
 				othExist = true;
 			}											
-			if(!othExist){
+			if(!othExist){				
 				jd.addFundSource(new Fund(oth.getName(),((Textbox)window.getFellow(IDs.JD_OTHERS_TXTBOX)).getValue()));
 			}					
 		}else{
 			if(fundTable.get(oth.getName())!=null){
-				funds.remove(fundTable.get(oth.getName()));
+				long result = deGenService.deleteById((fundTable.get(oth.getName())).getFundId());				
+				if(result>0){
+					funds.remove(fundTable.get(oth.getName()));
+				}
 			}				
 		}
+		
 		
 		
 	}
@@ -665,6 +705,10 @@ public class EditApplicationWindowViewCtrl extends GenericForwardComposer {
 	
 	
 	public void decomposedCreditCard(Application app, Map<String,Component> ccDetailsMap){
+		
+		DataEntryGenericService deGenService = ServiceLocator.getDataEntryGenericService();
+		deGenService.setModelClass(CreditCard.class);
+		
 		CreditCard creditcard;
 		List<CreditCard> cards = app.getCreditCards();
 		Map<String,CreditCard> eccTable = new Hashtable();
@@ -700,7 +744,23 @@ public class EditApplicationWindowViewCtrl extends GenericForwardComposer {
 				
 				
 				
-			}else{break;}			
+			}else{
+				if(eccTable.get("existingCC"+k)!=null) {
+					creditcard = eccTable.get("existingCC"+k);
+					try {
+						long id = deGenService.deleteById(creditcard.getCreditCardId());
+						if(id>0){
+							cards.remove(creditcard);
+						}
+						
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+				}
+				
+			}			
 			
 		}
 		for(int k=1;k<4;k++){			
@@ -710,8 +770,8 @@ public class EditApplicationWindowViewCtrl extends GenericForwardComposer {
 				long cardLimit = ((Longbox)ccDetailsMap.get("occ"+k+"Limit")).getValue();
 				Date membershipDate = ((Datebox)ccDetailsMap.get("occ"+k+"DOM")).getValue();
 				
-					if(occTable.get("existingCC"+k)!=null) {
-						creditcard = eccTable.get("occ"+k);
+					if(occTable.get("occ"+k)!=null) {
+						creditcard = occTable.get("occ"+k);
 					}else{
 						creditcard =  new CreditCard();
 					}
@@ -725,7 +785,23 @@ public class EditApplicationWindowViewCtrl extends GenericForwardComposer {
 					app.addCreditCard(creditcard);
 							
 				
-			}else{break;}			
+			}else{
+				
+				if(occTable.get("occ"+k)!=null) {
+					creditcard = occTable.get("occ"+k);
+					try {
+						long id = deGenService.deleteById(creditcard.getCreditCardId());
+						if(id>0){
+							cards.remove(creditcard);
+						}
+						
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				
+			}			
 			
 		}
 	}

@@ -103,9 +103,6 @@ public class Application implements Serializable{
 	  }
   }
   
-  
-  
-  
 	/**
 	 * Use this method for update.
 	 * @param appBean

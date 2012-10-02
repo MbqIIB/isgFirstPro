@@ -13,6 +13,7 @@ import javax.persistence.Table;
 import org.apache.log4j.Logger;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.dao.DataAccessException;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.isg.iloan.service.ApplicationServiceImpl;
 
@@ -34,11 +35,12 @@ public abstract class IloanGenericDao<M extends Serializable> {
 		entityManager = em;
 	}
 	
-	
+	@Transactional
 	public M findById(final long id) throws DataAccessException{
 		
-		//entityManager = entityManagerFactory.createEntityManager();	
-		return entityManager.find(modelClass, id);
+		M modelBean = entityManager.find(modelClass, id);
+		//entityManager.refresh(modelBean);
+		return  modelBean;
 		//return entityManager.createQuery("from " + modelClass.getAnnotation(Table.class).name(), modelClass).getSingleResult();
 	
 	}
@@ -46,12 +48,12 @@ public abstract class IloanGenericDao<M extends Serializable> {
 	@SuppressWarnings("unchecked")
 	public List<M> queryByKey(final long key)throws DataAccessException{
 		
-		Query query = entityManager.createQuery("Select m.cardTypeCode, m.cardTypeDesc from "
-				+ modelClass.getSimpleName() + " m where m.applicationId = "+ key );
-		query.setFirstResult(50);
-		query.setMaxResults(100);
+		return entityManager.createQuery("from " + modelClass.getSimpleName() 
+				+ " m where m.applicationId = "+ key ).setFirstResult(50).setMaxResults(100).getResultList();
+		//query.setFirstResult(50);
+		//query.setMaxResults(100);
 		
-		return query.getResultList();
+		//return query.getResultList();
 		
 		
 	}
