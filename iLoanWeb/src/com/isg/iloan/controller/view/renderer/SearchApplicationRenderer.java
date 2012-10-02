@@ -19,7 +19,7 @@ public class SearchApplicationRenderer implements ListitemRenderer<Object>{
 		item.setValue(appData);
 	     
 	    new Listcell(appData.getAppStatusDesc()).setParent(item);
-	    new Listcell(appData.getCardTypeDesc()).setParent(item);
+	    new Listcell(appData.getCreditCardTypeDesc()).setParent(item);
 	    new Listcell("").setParent(item);
 	    String pattern = "EEE, dd MMM yyyy HH:mm:ss z";
 	    SimpleDateFormat sdf = new SimpleDateFormat(pattern);
