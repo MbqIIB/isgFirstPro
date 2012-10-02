@@ -199,23 +199,9 @@ CREATE TABLE iloan.LOV(
 	LOV_KEY NUMBER(20,0) NOT NULL,
 	LOV_CODE VARCHAR(30 BYTE) NOT NULL,
 	LOV_DESC VARCHAR2(100 BYTE) NOT NULL
-)
+)	
+
 ALTER TABLE iloan.LOV add CONSTRAINT LOV_pk PRIMARY KEY (LOV_ID);	
-CREATE SEQUENCE LOV_SEQ INCREMENT BY 1 MINVALUE 1 NOCACHE;	
-
-insert into iloan.LOV(LOV_ID,LOV_KEY,LOV_CODE,LOV_DESC) values(lov_seq.nextval,1,'1','New');
-insert into iloan.LOV(LOV_ID,LOV_KEY,LOV_CODE,LOV_DESC) values(lov_seq.nextval,1,'2','Modified');
-insert into iloan.LOV(LOV_ID,LOV_KEY,LOV_CODE,LOV_DESC) values(lov_seq.nextval,1,'3','Verified');
-insert into iloan.LOV(LOV_ID,LOV_KEY,LOV_CODE,LOV_DESC) values(lov_seq.nextval,1,'4','Reviewed');
-insert into iloan.LOV(LOV_ID,LOV_KEY,LOV_CODE,LOV_DESC) values(lov_seq.nextval,1,'5','Outright Rejected');
-insert into iloan.LOV(LOV_ID,LOV_KEY,LOV_CODE,LOV_DESC) values(lov_seq.nextval,1,'6','Investigated - Bad Match');
-insert into iloan.LOV(LOV_ID,LOV_KEY,LOV_CODE,LOV_DESC) values(lov_seq.nextval,1,'7','Investigated - Duplicate');
-insert into iloan.LOV(LOV_ID,LOV_KEY,LOV_CODE,LOV_DESC) values(lov_seq.nextval,1,'8','Authenticated - Internal');
-insert into iloan.LOV(LOV_ID,LOV_KEY,LOV_CODE,LOV_DESC) values(lov_seq.nextval,1,'9','Authenticated - External');
-insert into iloan.LOV(LOV_ID,LOV_KEY,LOV_CODE,LOV_DESC) values(lov_seq.nextval,1,'10','1st Credit Reviewed');
-insert into iloan.LOV(LOV_ID,LOV_KEY,LOV_CODE,LOV_DESC) values(lov_seq.nextval,1,'11','2nd Credit Reviewed');
-
-	
 ALTER TABLE iloan.CREDITCARD add CONSTRAINT CREDITCARD_pk PRIMARY KEY (CREDITCARD_ID);		
 ALTER TABLE iloan.APPLICATION ADD CONSTRAINT APPLICATION_pk PRIMARY KEY (APP_ID)  ;
 ALTER TABLE iloan.PERSONALDATA ADD CONSTRAINT PERSONALDATA_pk PRIMARY KEY (PERSONALDATA_ID)  ;
@@ -255,8 +241,29 @@ CREATE SEQUENCE INSTRUCTION_SEQ INCREMENT BY 1 START WITH 20 MINVALUE 1 NOCACHE;
 CREATE SEQUENCE SAVEANDSWIPE_SEQ INCREMENT BY 1 START WITH 20 MINVALUE 1 NOCACHE;
 CREATE SEQUENCE FUND_SEQ INCREMENT BY 1 START WITH 20 MINVALUE 1 NOCACHE;
 CREATE SEQUENCE DOA_SEQ INCREMENT BY 1 START WITH 20 MINVALUE 1 NOCACHE;
+CREATE SEQUENCE LOV_SEQ INCREMENT BY 1 MINVALUE 1 NOCACHE;	
 
 
+
+insert into iloan.LOV(LOV_ID,LOV_KEY,LOV_CODE,LOV_DESC) values(lov_seq.nextval,1,'1','New');
+insert into iloan.LOV(LOV_ID,LOV_KEY,LOV_CODE,LOV_DESC) values(lov_seq.nextval,1,'2','Modified');
+insert into iloan.LOV(LOV_ID,LOV_KEY,LOV_CODE,LOV_DESC) values(lov_seq.nextval,1,'3','Verified');
+insert into iloan.LOV(LOV_ID,LOV_KEY,LOV_CODE,LOV_DESC) values(lov_seq.nextval,1,'4','Reviewed');
+insert into iloan.LOV(LOV_ID,LOV_KEY,LOV_CODE,LOV_DESC) values(lov_seq.nextval,1,'5','Outright Rejected');
+insert into iloan.LOV(LOV_ID,LOV_KEY,LOV_CODE,LOV_DESC) values(lov_seq.nextval,1,'6','Investigated - Bad Match');
+insert into iloan.LOV(LOV_ID,LOV_KEY,LOV_CODE,LOV_DESC) values(lov_seq.nextval,1,'7','Investigated - Duplicate');
+insert into iloan.LOV(LOV_ID,LOV_KEY,LOV_CODE,LOV_DESC) values(lov_seq.nextval,1,'8','Authenticated - Internal');
+insert into iloan.LOV(LOV_ID,LOV_KEY,LOV_CODE,LOV_DESC) values(lov_seq.nextval,1,'9','Authenticated - External');
+insert into iloan.LOV(LOV_ID,LOV_KEY,LOV_CODE,LOV_DESC) values(lov_seq.nextval,1,'10','1st Credit Reviewed');
+insert into iloan.LOV(LOV_ID,LOV_KEY,LOV_CODE,LOV_DESC) values(lov_seq.nextval,1,'11','2nd Credit Reviewed');
+
+
+insert into iloan.LOV(LOV_ID,LOV_KEY,LOV_CODE,LOV_DESC) values(lov_seq.nextval,2,'ClassicMasterCard','Classic Master Card');
+insert into iloan.LOV(LOV_ID,LOV_KEY,LOV_CODE,LOV_DESC) values(lov_seq.nextval,2,'ClassicVisaCard','Classic Visa Card');
+insert into iloan.LOV(LOV_ID,LOV_KEY,LOV_CODE,LOV_DESC) values(lov_seq.nextval,2,'GoldMasterCard','Gold Master Card');
+insert into iloan.LOV(LOV_ID,LOV_KEY,LOV_CODE,LOV_DESC) values(lov_seq.nextval,2,'GoldVisaCard','Gold Visa Card');
+insert into iloan.LOV(LOV_ID,LOV_KEY,LOV_CODE,LOV_DESC) values(lov_seq.nextval,2,'MLiteMasterCard','M Lite Master Card');
+insert into iloan.LOV(LOV_ID,LOV_KEY,LOV_CODE,LOV_DESC) values(lov_seq.nextval,2,'FemmeVisaCard','Femme Visa Card');
 
 
 
