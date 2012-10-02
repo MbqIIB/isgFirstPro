@@ -1,0 +1,28 @@
+
+================ TAB: CreditCard Details ==============
+
+Required:
+
+	- Credit card type checkbox (at least 1 should be selected)
+	- if Save&Swipe is checked, then Save&Swipe tab and DOA tab should be filled up.
+		Save&Swipe:
+			- no required fields.
+		DOA:
+			-if "willing to pledge" is checked in Save&Swipe tab, Pledge Amount/Account information portion should be filled.
+				"Pledge Amount/Account" - all fields are required.
+			- acceptDOA should be checked.
+
+
+================ TAB: Personal Data ==================
+
+Required:
+
+	-Family name, Given name, Middle name, Name to be apper on card
+	-Birth Date, Place of Birth, Civil Status, Gender, Nationality
+	-Mobile Phone No., Email address, Mother's fullname
+	-Home address
+
+
+
+
+

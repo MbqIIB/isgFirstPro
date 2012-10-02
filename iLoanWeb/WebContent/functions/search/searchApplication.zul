@@ -34,7 +34,7 @@
 								<label value="Application Status"
 									sclass="lblStyle" />
 								<combobox model="@load(vm.appStatus)"
-									readonly="true">
+									readonly="true" id="applicationStatusCode">
 									<template name="model">
 										<comboitem label="@load(each.desc)" value="@load(each.code)" />
 									</template>
@@ -46,7 +46,7 @@
 								<combobox
 									model="@load(vm.creditCardType)" readonly="true">
 									<template name="model">
-										<comboitem label="@load(each.desc)" />
+										<comboitem label="@load(each.desc)" value="@load(each.code)"/>
 									</template>
 								</combobox>
 							</hlayout>

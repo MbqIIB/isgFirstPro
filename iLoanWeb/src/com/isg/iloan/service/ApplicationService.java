@@ -6,7 +6,6 @@ import com.isg.iloan.model.dataEntry.Application;
 
 public interface ApplicationService {
 	
-	List<Application> retrieveByCriteria(SearchCriteria criteria);
 	Application retrieveById(long applicationId);
 	
 	void createApplication(Application app);
@@ -17,6 +16,8 @@ public interface ApplicationService {
 	List<Application> queryByKey(long key);
 	
 	List<Application> findAll() throws Exception;
+	
+	List<Application> findApplication(SearchCriteria criteria) throws Exception; 
 	
 
 }
