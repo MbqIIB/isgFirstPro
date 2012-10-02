@@ -863,19 +863,24 @@ public class EditApplicationWindowViewCtrl extends GenericForwardComposer {
 	
 	
 
-	public void onClick$appUpdateButton() throws 
-		WrongValueException, SecurityException, 
-		IllegalAccessException, InvocationTargetException{
+	public void onClick$appUpdateButton() throws Exception{
 		
-		decomposeCardDetails(app);
-		decomposePersonalData(app);
-		decomposeJobDetail(app);
-		decomposeSupplementary(app);
-		decomposeInstruction(app);
+		try{
+			decomposeCardDetails(app);
+			decomposePersonalData(app);
+			decomposeJobDetail(app);
+			decomposeSupplementary(app);
+			decomposeInstruction(app);
+			
+			long success = getService().updateApplication(app);
+			if(success >0){
+				Executions.sendRedirect("/index.zul");
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+			throw e;
+		}
 		
-		
-		
-		getService().updateApplication(app);
 		
 	}
 

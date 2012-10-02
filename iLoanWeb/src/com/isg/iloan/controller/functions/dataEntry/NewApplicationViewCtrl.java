@@ -13,6 +13,7 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.WrongValueException;
 import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zk.ui.util.GenericForwardComposer;
@@ -131,6 +132,9 @@ public class NewApplicationViewCtrl extends GenericForwardComposer {
 			composeSupplementary(app);
 			composeInstruction(app);			
 			getService().createApplication(app);
+			
+			Executions.sendRedirect("/index.zul");
+			
 			
 //			Application ap = getService().retrieveById(23);
 //			logger.debug("card type code: " + ap.getCardTypeCode());

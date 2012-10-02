@@ -10,7 +10,7 @@ public interface ApplicationService {
 	Application retrieveById(long applicationId);
 	
 	void createApplication(Application app);
-	void updateApplication(Application app);
+	long updateApplication(Application app) throws Exception;
 	
 	void deleteApplication(long id);
 	
