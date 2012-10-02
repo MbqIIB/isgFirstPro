@@ -317,7 +317,7 @@ public class EditApplicationWindowViewCtrl extends GenericForwardComposer {
 				Helper.setAddress(window, pd.getHomeAddress(),
 						new String[]{IDs.PD_HOME_ADDRESS,IDs.PD_HOME_ZIP_CODE,IDs.PD_HOME_TEL_NUM});
 				Helper.setAddress(window, pd.getPermanentAddress(),
-						new String[]{IDs.PD_PERMANENT_ADDRESS,IDs.PD_PERM_ZIP_CODE});
+						new String[]{IDs.PD_PERMANENT_ADDRESS,IDs.PD_PERM_ZIP_CODE,""});
 				Helper.setAddress(window, pd.getPersonalRefAddress(),
 						new String[]{IDs.PD_PERSONAL_REF_ADDRESS,"", IDs.PD_PERSONAL_REF_TEL_NUM});
 				
@@ -421,39 +421,49 @@ public class EditApplicationWindowViewCtrl extends GenericForwardComposer {
 					DataEntryGenericService deGenService = ServiceLocator.getDataEntryGenericService();
 					deGenService.setModelClass(Address.class);
 					
-					Address addr;
-					addr = personalData.getHomeAddress();
-					addr.setAddressLine1(((Textbox)window.getFellow(IDs.PD_HOME_ADDRESS)).getValue());
-					addr.setTelNum(((Textbox)window.getFellow(IDs.PD_HOME_TEL_NUM)).getValue());
-					addr.setZipCode(((Intbox)window.getFellow(IDs.PD_HOME_ZIP_CODE)).getValue());
-					addr.setHomeAddress(true);
-					addr.setPermanentAddress(false);
-					personalData.setHomeAddress(addr);
+					Address homeAddress = personalData.getHomeAddress();
+					homeAddress.setAddressLine1(((Textbox)window.getFellow(IDs.PD_HOME_ADDRESS)).getValue());
+					homeAddress.setTelNum(((Textbox)window.getFellow(IDs.PD_HOME_TEL_NUM)).getValue());
+					homeAddress.setZipCode(((Intbox)window.getFellow(IDs.PD_HOME_ZIP_CODE)).getValue());
+					homeAddress.setHomeAddress(true);
+					homeAddress.setPermanentAddress(false);
+					personalData.setHomeAddress(homeAddress);
 					
-					addr = personalData.getPermanentAddress();					
-					String homeAddr = ((Textbox)window.getFellow(IDs.PD_PERMANENT_ADDRESS)).getValue();
-					if(null == homeAddr || homeAddr.isEmpty()){
-						deGenService.deleteById(addr.getAddressId());
+					Address permanentAddr  = personalData.getPermanentAddress();					
+					String permAddr = ((Textbox)window.getFellow(IDs.PD_PERMANENT_ADDRESS)).getValue();
+					
+					logger.debug("permAddr : "+permAddr);
+					
+					if((null == permAddr || permAddr.isEmpty())
+							&& null!=permanentAddr){
+						deGenService.deleteById(permanentAddr.getAddressId());
 						personalData.setPermanentAddress(null);
 					}else{
-						addr.setAddressLine1(homeAddr);
-						addr.setZipCode(((Intbox)window.getFellow(IDs.PD_PERM_ZIP_CODE)).getValue());
-						addr.setHomeAddress(false);
-						addr.setPermanentAddress(true);
-						personalData.setPermanentAddress(addr);
+						if(null==permanentAddr){
+							permanentAddr = new Address();
+						}
+						permanentAddr.setAddressLine1(permAddr);
+						permanentAddr.setZipCode(((Intbox)window.getFellow(IDs.PD_PERM_ZIP_CODE)).getValue());
+						permanentAddr.setHomeAddress(false);
+						permanentAddr.setPermanentAddress(true);
+						personalData.setPermanentAddress(permanentAddr);
 					}					
 					
-					addr = personalData.getPersonalRefAddress();					
+					Address personalRefAddr = personalData.getPersonalRefAddress();					
 					String refAddr = ((Textbox)window.getFellow(IDs.PD_PERSONAL_REF_ADDRESS)).getValue();
-					if(null == refAddr || refAddr.isEmpty()){
-						deGenService.deleteById(addr.getAddressId());
+					if((null == refAddr || refAddr.isEmpty())
+							&& null!=personalRefAddr){
+						deGenService.deleteById(personalRefAddr.getAddressId());
 						personalData.setPersonalRefAddress(null);
 					}else{
-						addr.setAddressLine1(refAddr);
-						addr.setTelNum(((Textbox)window.getFellow(IDs.PD_PERSONAL_REF_TEL_NUM)).getValue());
-						addr.setHomeAddress(false);
-						addr.setPermanentAddress(false);
-						personalData.setPersonalRefAddress(addr);
+						if(null == personalRefAddr){
+							personalRefAddr = new Address();
+						}
+						personalRefAddr.setAddressLine1(refAddr);
+						personalRefAddr.setTelNum(((Textbox)window.getFellow(IDs.PD_PERSONAL_REF_TEL_NUM)).getValue());
+						personalRefAddr.setHomeAddress(false);
+						personalRefAddr.setPermanentAddress(false);
+						personalData.setPersonalRefAddress(personalRefAddr);
 					}
 					app.setPersonalData(personalData);
 				}
@@ -477,10 +487,14 @@ public class EditApplicationWindowViewCtrl extends GenericForwardComposer {
 				Address addr = jd.getBusinessAddress();
 				
 				String bussAddr = ((Textbox)window.getFellow(IDs.JD_BUSS_ADDR)).getValue();
-				if(null==bussAddr || bussAddr.isEmpty()){
+				if(null==bussAddr || bussAddr.isEmpty() &&
+						addr!=null){
 					deGenService.deleteById(addr.getAddressId());
 					jd.setBusinessAddress(null);
 				}else{
+					if(addr==null){
+						addr =  new Address();
+					}
 					addr.setAddressLine1(bussAddr);
 					addr.setTelNum(((Textbox)window.getFellow(IDs.JD_TEL)).getValue());
 					addr.setZipCode(((Intbox)window.getFellow(IDs.JD_ZIPCODE)).getValue());
@@ -710,7 +724,7 @@ public class EditApplicationWindowViewCtrl extends GenericForwardComposer {
 		}
 		
 		app.setAppStatusCode(2);
-		app.setAppStatusDesc("MODIFIED");
+		app.setAppStatusDesc("Modified");
 		app.setCreditCardTypeDesc(((Textbox)ccDetailsMap.get(IDs.CARD_TYPE_CODE)).getValue());
 		app.setCreditCardTypeDesc(((Textbox)ccDetailsMap.get(IDs.CARD_TYPE_DESC)).getValue());
 		app.setAcceptClassicCard(((Checkbox)ccDetailsMap.get(IDs.ACCEPT_CLASSIC_CARD)).isChecked());

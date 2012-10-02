@@ -219,6 +219,7 @@ public class Helper {
 	public static void setAddress(Component window, Address addr, String[] ids)
 				throws SecurityException,WrongValueException,IllegalAccessException,InvocationTargetException{
 		
+		if(addr == null || ids==null || window==null)return;
 		
 		int length = ids.length;
 		switch(length){
@@ -230,7 +231,7 @@ public class Helper {
 				{
 					((Textbox)window.getFellow(ids[0])).setValue(addr.getAddressLine1());
 				}
-				if(0!=addr.getZipCode()){
+				if(0!=addr.getZipCode() && !ids[1].isEmpty()){
 					((Intbox)window.getFellow(ids[1])).setValue(addr.getZipCode());
 				}
 				
@@ -240,11 +241,11 @@ public class Helper {
 				{
 					((Textbox)window.getFellow(ids[0])).setValue(addr.getAddressLine1());
 				}				
-				if(!ids[1].isEmpty() && 0!=addr.getZipCode() ){					
+				if(!ids[1].isEmpty() && 0!=addr.getZipCode() && !ids[1].isEmpty() ){					
 							
 					((Intbox)window.getFellow(ids[1])).setValue(addr.getZipCode());
 				} 
-				if(null!=addr.getTelNum() && !addr.getTelNum().isEmpty()){
+				if(null!=addr.getTelNum() && !addr.getTelNum().isEmpty() && !ids[2].isEmpty()){
 					((Textbox)window.getFellow(ids[2])).setValue(addr.getTelNum());		
 				}
 		}
