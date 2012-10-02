@@ -33,7 +33,7 @@ public class SearchApplicationRenderer implements ListitemRenderer<Object>{
 	    String pattern = "EEE, dd MMM yyyy HH:mm:ss z";
 	    SimpleDateFormat sdf = new SimpleDateFormat(pattern);
 	    new Listcell(sdf.format(appData.getDateOfApplication())).setParent(item);
-	    item.addEventListener(Events.ON_CLICK, new EventListener(){
+	    item.addEventListener(Events.ON_CLICK, new EventListener<Event>(){
 			public void onEvent(Event event){
 				Executions.sendRedirect("/functions/application/editapplication.zul?app_id="+appData.getApplicationId());			
 			}

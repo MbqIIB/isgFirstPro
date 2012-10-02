@@ -83,8 +83,7 @@ public class EditApplicationWindowViewCtrl extends GenericForwardComposer {
 	private Button appUpdateButton;
 	
 	private Application app;
-
-	/**
+	/***
 	 *
 	 *
 	 */
@@ -409,8 +408,7 @@ public class EditApplicationWindowViewCtrl extends GenericForwardComposer {
 	
 	
 	
-	public void decomposePersonalData(Application app) throws WrongValueException,
-		SecurityException, IllegalAccessException, InvocationTargetException{
+	public void decomposePersonalData(Application app) throws Exception{
 	
 	
 	
@@ -420,6 +418,9 @@ public class EditApplicationWindowViewCtrl extends GenericForwardComposer {
 					PersonalData personalData = app.getPersonalData();
 					Helper.setProperties(personalData, window);
 					
+					DataEntryGenericService deGenService = ServiceLocator.getDataEntryGenericService();
+					deGenService.setModelClass(Address.class);
+					
 					Address addr;
 					addr = personalData.getHomeAddress();
 					addr.setAddressLine1(((Textbox)window.getFellow(IDs.PD_HOME_ADDRESS)).getValue());
@@ -428,26 +429,39 @@ public class EditApplicationWindowViewCtrl extends GenericForwardComposer {
 					addr.setHomeAddress(true);
 					addr.setPermanentAddress(false);
 					personalData.setHomeAddress(addr);
-					addr = personalData.getPermanentAddress();
-					addr.setAddressLine1(((Textbox)window.getFellow(IDs.PD_PERMANENT_ADDRESS)).getValue());
-					addr.setZipCode(((Intbox)window.getFellow(IDs.PD_PERM_ZIP_CODE)).getValue());
-					addr.setHomeAddress(false);
-					addr.setPermanentAddress(true);
-					personalData.setPermanentAddress(addr);
-					addr = personalData.getPersonalRefAddress();
-					addr.setAddressLine1(((Textbox)window.getFellow(IDs.PD_PERSONAL_REF_ADDRESS)).getValue());
-					addr.setTelNum(((Textbox)window.getFellow(IDs.PD_PERSONAL_REF_TEL_NUM)).getValue());
-					addr.setHomeAddress(false);
-					addr.setPermanentAddress(false);
-					personalData.setPersonalRefAddress(addr);
 					
+					addr = personalData.getPermanentAddress();					
+					String homeAddr = ((Textbox)window.getFellow(IDs.PD_PERMANENT_ADDRESS)).getValue();
+					if(null == homeAddr || homeAddr.isEmpty()){
+						deGenService.deleteById(addr.getAddressId());
+						personalData.setPermanentAddress(null);
+					}else{
+						addr.setAddressLine1(homeAddr);
+						addr.setZipCode(((Intbox)window.getFellow(IDs.PD_PERM_ZIP_CODE)).getValue());
+						addr.setHomeAddress(false);
+						addr.setPermanentAddress(true);
+						personalData.setPermanentAddress(addr);
+					}					
+					
+					addr = personalData.getPersonalRefAddress();					
+					String refAddr = ((Textbox)window.getFellow(IDs.PD_PERSONAL_REF_ADDRESS)).getValue();
+					if(null == refAddr || refAddr.isEmpty()){
+						deGenService.deleteById(addr.getAddressId());
+						personalData.setPersonalRefAddress(null);
+					}else{
+						addr.setAddressLine1(refAddr);
+						addr.setTelNum(((Textbox)window.getFellow(IDs.PD_PERSONAL_REF_TEL_NUM)).getValue());
+						addr.setHomeAddress(false);
+						addr.setPermanentAddress(false);
+						personalData.setPersonalRefAddress(addr);
+					}
 					app.setPersonalData(personalData);
 				}
 			}
 	}
 
 	
-	public void decomposeJobDetail(Application app) throws WrongValueException, SecurityException, IllegalAccessException, InvocationTargetException{
+	public void decomposeJobDetail(Application app) throws Exception{
 		
 		Collection<Component> comps =  jobDetailTabPanel.getPage().getDesktop().getComponents();
 		
@@ -457,18 +471,29 @@ public class EditApplicationWindowViewCtrl extends GenericForwardComposer {
 				JobDetail jd = app.getJobDetail();				
 				Helper.setProperties(jd,window);
 				
-				Address addr = jd.getBusinessAddress();			
-				addr.setAddressLine1(((Textbox)window.getFellow(IDs.JD_BUSS_ADDR)).getValue());
-				addr.setTelNum(((Textbox)window.getFellow(IDs.JD_TEL)).getValue());
-				addr.setZipCode(((Intbox)window.getFellow(IDs.JD_ZIPCODE)).getValue());
-				addr.setHomeAddress(false);
-				addr.setPermanentAddress(false);
-				jd.setBusinessAddress(addr);
+				DataEntryGenericService deGenService = ServiceLocator.getDataEntryGenericService();
+				deGenService.setModelClass(Address.class);
+				
+				Address addr = jd.getBusinessAddress();
+				
+				String bussAddr = ((Textbox)window.getFellow(IDs.JD_BUSS_ADDR)).getValue();
+				if(null==bussAddr || bussAddr.isEmpty()){
+					deGenService.deleteById(addr.getAddressId());
+					jd.setBusinessAddress(null);
+				}else{
+					addr.setAddressLine1(bussAddr);
+					addr.setTelNum(((Textbox)window.getFellow(IDs.JD_TEL)).getValue());
+					addr.setZipCode(((Intbox)window.getFellow(IDs.JD_ZIPCODE)).getValue());
+					addr.setHomeAddress(false);
+					addr.setPermanentAddress(false);
+					jd.setBusinessAddress(addr);
+				}
 				
 				try{
 					decomposeFunds(jd, window);
 				}catch(Exception e){
 					//configure the exception handling..
+					throw e;
 				}
 				
 				
@@ -878,6 +903,7 @@ public class EditApplicationWindowViewCtrl extends GenericForwardComposer {
 	
 
 	public void onClick$appUpdateButton() throws Exception{
+		
 		
 		try{
 			decomposeCardDetails(app);
