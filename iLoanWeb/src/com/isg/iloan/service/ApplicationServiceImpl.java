@@ -34,9 +34,16 @@ public class ApplicationServiceImpl implements ApplicationService {
 	}
 
 	@Override
-	public void updateApplication(Application app) {
-
-		applicationDao.update(app);
+	public long updateApplication(Application app) throws Exception{
+		long success=0;
+		try{
+			applicationDao.update(app);
+			success = app.getApplicationId();
+		}catch(Exception e){
+			e.printStackTrace();
+			
+		}
+		return success;
 	}
 	
 	@Override

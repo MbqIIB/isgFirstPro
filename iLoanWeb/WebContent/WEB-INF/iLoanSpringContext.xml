@@ -61,6 +61,12 @@ http://www.springframework.org/schema/context/spring-context-3.1.xsd" >
 	 <bean id="applicationService" class="com.isg.iloan.service.ApplicationServiceImpl">
 	 	<property name="applicationDao" ref="applicationDao" />
 	 </bean>
+	 <bean id="deGenericDao" class="com.isg.iloan.dao.DataEntryGenericDaoImpl">	 	
+	 	<constructor-arg name="entityManagerFactory" ref="entityManagerFactory"/>
+	 </bean>
+	 <bean id="deGenericService" class="com.isg.iloan.service.DataEntryGenericServiceImpl">
+	 	<property name="deGenericDao" ref="deGenericDao" />
+	 </bean>
 	 
 	  <bean id="lovDao" class="com.isg.iloan.dao.LOVDaoImpl">
 	 	<constructor-arg name="entityManagerFactory" ref="entityManagerFactory"/>
