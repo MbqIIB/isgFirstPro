@@ -6,17 +6,17 @@ import org.zkoss.zul.impl.InputElement;
 
 public class ClearFormElements {
 
-	public static void clearInput(Component comp) {
-		if (null != comp) {
-			if (comp instanceof InputElement) {
-				((InputElement) comp).setText("");
+	public static void clearInput(Component component) {
+		if (null != component) {
+			if (component instanceof InputElement) {
+				((InputElement) component).setText("");
 			}
 
-			if (comp instanceof Checkbox) {
-				((Checkbox) comp).setChecked(false);
+			if (component instanceof Checkbox) {
+				((Checkbox) component).setChecked(false);
 			}
 
-			for (Component c : comp.getChildren()) {
+			for (Component c : component.getChildren()) {
 				clearInput(c);
 			}
 		}

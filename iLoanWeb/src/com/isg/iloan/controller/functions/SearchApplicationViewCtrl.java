@@ -13,6 +13,7 @@ import org.zkoss.zul.ListModel;
 import org.zkoss.zul.Listbox;
 import org.zkoss.zul.SimpleListModel;
 
+import com.isg.iloan.controller.util.ClearFormElements;
 import com.isg.iloan.controller.view.renderer.SearchApplicationRenderer;
 import com.isg.iloan.model.dataEntry.Application;
 import com.isg.iloan.service.ApplicationService;
@@ -63,7 +64,7 @@ public class SearchApplicationViewCtrl extends GenericForwardComposer {
 	}
 	
 	public void onClick$clearButton() throws Exception{
-		//ClearFormElements.clearInput(criteriaGrid);
+		ClearFormElements.clearInput(criteriaGrid);
 	}
 	
 }
