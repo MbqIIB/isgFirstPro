@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="iFrendCore" size="912,308" id="" metadata="uml2-1.0" initialized="true" scrolledY="66" tag="10" key="32303037303533312D313020696665">
+  <children xsi:type="editmodel:PackageEditModel" name="com.isg.ifrend.core.model.mli.customer" location="57,27" size="192,189" id="com.isg.ifrend.core.model.mli.customer">
+    <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.3/@sourceConnections.0" name="Customer" location="15,31" size="102,29" id="com.isg.ifrend.core.model.mli.customer/Customer" runTimeClassModel="">
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+    </children>
+    <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.3/@sourceConnections.1" name="PersonalDetail" location="16,64" size="135,29" id="com.isg.ifrend.core.model.mli.customer/PersonalDetail" runTimeClassModel="">
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+    </children>
+    <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.3/@sourceConnections.2" name="AddressDetail" location="18,99" size="129,29" id="com.isg.ifrend.core.model.mli.customer/AddressDetail" runTimeClassModel="">
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+    </children>
+    <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.3/@sourceConnections.3" name="ContactDetail" location="49,139" size="127,29" id="com.isg.ifrend.core.model.mli.customer/ContactDetail" runTimeClassModel="">
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+    </children>
+    <packagePreferences xsi:type="editmodel:UMLClassDiagramPackagePreference"/>
+  </children>
+  <children xsi:type="editmodel:PackageEditModel" name="com.isg.ifrend.core.service.mli.customer" location="52,120" size="372,185" id="com.isg.ifrend.core.service.mli.customer">
+    <children xsi:type="editmodel:ClassEditModel" name="CustomerServiceImpl" location="288,188" size="178,139" id="com.isg.ifrend.core.service.mli.customer/CustomerServiceImpl" runTimeClassModel="getContactDetail(Ljava.lang.String;),getRelationship(Ljava.lang.String;),getAddressDetail(Ljava.lang.String;),searchCustomer(Ljava.lang.String;),getPersonalDetail(Ljava.lang.String;)">
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <children xsi:type="editmodel:CompartmentEditModel" size="113,90">
+        <children xsi:type="editmodel:MethodEditModel" name="getAddressDetail" id="com.isg.ifrend.core.service.mli.customer/CustomerServiceImpl#getAddressDetail(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getContactDetail" id="com.isg.ifrend.core.service.mli.customer/CustomerServiceImpl#getContactDetail(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getPersonalDetail" id="com.isg.ifrend.core.service.mli.customer/CustomerServiceImpl#getPersonalDetail(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getRelationship" id="com.isg.ifrend.core.service.mli.customer/CustomerServiceImpl#getRelationship(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="searchCustomer" id="com.isg.ifrend.core.service.mli.customer/CustomerServiceImpl#searchCustomer(Ljava.lang.String;)"/>
+      </children>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="com.isg.ifrend.core.service.mli.customer/CustomerService&lt;-com.isg.ifrend.core.service.mli.customer/CustomerServiceImpl" source="//@children.1/@children.0" target="//@children.3" targetEnd="//@children.1/@children.0/@sourceConnections.0/@children.1" sourceEnd="//@children.1/@children.0/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+        <children xsi:type="editmodel:AssociationEndEditModel" location="106,0" attachSource="true"/>
+        <children xsi:type="editmodel:AssociationEndEditModel" location="71,167"/>
+      </sourceConnections>
+      <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+    </children>
+    <packagePreferences xsi:type="editmodel:UMLClassDiagramPackagePreference"/>
+  </children>
+  <children xsi:type="editmodel:PackageEditModel" name="com.isg.ifrend.core.model.mli.account" location="60,360" size="279,60" id="com.isg.ifrend.core.model.mli.account">
+    <packagePreferences xsi:type="editmodel:UMLClassDiagramPackagePreference"/>
+  </children>
+  <children xsi:type="editmodel:InterfaceEditModel" targetConnections="//@children.1/@children.0/@sourceConnections.0" name="CustomerService" location="375,58" size="218,167" id="com.isg.ifrend.core.service.mli.customer/CustomerService" runTimeClassModel="getContactDetail(Ljava.lang.String;),getRelationship(Ljava.lang.String;),getAddressDetail(Ljava.lang.String;),searchCustomer(Ljava.lang.String;),getPersonalDetail(Ljava.lang.String;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="113,90">
+      <children xsi:type="editmodel:MethodEditModel" name="searchCustomer" id="com.isg.ifrend.core.service.mli.customer/CustomerService#searchCustomer(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getRelationship" id="com.isg.ifrend.core.service.mli.customer/CustomerService#getRelationship(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getPersonalDetail" id="com.isg.ifrend.core.service.mli.customer/CustomerService#getPersonalDetail(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getAddressDetail" id="com.isg.ifrend.core.service.mli.customer/CustomerService#getAddressDetail(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getContactDetail" id="com.isg.ifrend.core.service.mli.customer/CustomerService#getContactDetail(Ljava.lang.String;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.isg.ifrend.core.service.mli.customer/CustomerService-Soyatec::Import->com.isg.ifrend.core.model.mli.customer/Customer" source="//@children.3" target="//@children.0/@children.0" targetEnd="//@children.3/@sourceConnections.0/@children.2" label="//@children.3/@sourceConnections.0/@children.0" sourceEnd="//@children.3/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="41,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,14" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="102,14"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.isg.ifrend.core.service.mli.customer/CustomerService-Soyatec::Import->com.isg.ifrend.core.model.mli.customer/PersonalDetail" source="//@children.3" target="//@children.0/@children.1" targetEnd="//@children.3/@sourceConnections.1/@children.2" label="//@children.3/@sourceConnections.1/@children.0" sourceEnd="//@children.3/@sourceConnections.1/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="41,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,47" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="135,14"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.isg.ifrend.core.service.mli.customer/CustomerService-Soyatec::Import->com.isg.ifrend.core.model.mli.customer/AddressDetail" source="//@children.3" target="//@children.0/@children.2" targetEnd="//@children.3/@sourceConnections.2/@children.2" label="//@children.3/@sourceConnections.2/@children.0" sourceEnd="//@children.3/@sourceConnections.2/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="41,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,82" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="129,14"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.isg.ifrend.core.service.mli.customer/CustomerService-Soyatec::Import->com.isg.ifrend.core.model.mli.customer/ContactDetail" source="//@children.3" target="//@children.0/@children.3" targetEnd="//@children.3/@sourceConnections.3/@children.2" label="//@children.3/@sourceConnections.3/@children.0" sourceEnd="//@children.3/@sourceConnections.3/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="41,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,122" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="127,14"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <diagramOptions xsi:type="options:ClassDiagramOptions" properties="wireOptions=7;Product=eUML2" autoName="false"/>
+  <boardSetting snapToGeometry="true" gridEnabled="true" gridSpacing="15,15" gridOrigin="0,0" rulerUnit="pixel" gridVisibility="false">
+    <leftRuler/>
+    <topRuler/>
+  </boardSetting>
+  <classDiagramPreferences xsi:type="editmodel:UMLClassDiagramPreference" showPopupBars="true" showConnectionHandles="true" attributeSorter="Natural" methodSorter="Natural" showClassStereotype="true" showPackageStereotype="true" showDependencyStereotype="true" showInterfaceStereotype="true" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+</editmodel:ClassDiagramEditModel>
