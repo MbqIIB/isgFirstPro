@@ -62,7 +62,7 @@ public class FunctionsMenuViewCtrl extends GenericForwardComposer {
 		
 		//Executions.getCurrent().getSession().setAttribute("menuselected", "functionTab");
 		
-		Executions.sendRedirect("/functions/application/editapplication.zul");
+		
 		
 	}
 	
