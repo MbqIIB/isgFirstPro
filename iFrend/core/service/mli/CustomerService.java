@@ -1,16 +1,24 @@
 package com.isg.ifrend.core.service.mli;
 
+import java.util.List;
+
+import com.isg.ifrend.core.model.mli.customer.Address;
+import com.isg.ifrend.core.model.mli.customer.Contact;
+import com.isg.ifrend.core.model.mli.customer.Customer;
+
 
 public interface CustomerService {
 
 			
-	public abstract Object searchCustomer(String param);
+	public abstract List<Customer> searchCustomer(Customer customer);
 
-	public abstract Object getRelationship(java.lang.String param);	
+	public abstract Customer getRelationship(String param);	
 
-    public abstract Object getAddressDetail(java.lang.String customerNum);
+    public abstract Address getAddressDetail(String customerNum);
 
-	public abstract Object getContactDetail(java.lang.String customerNum);
+	public abstract Contact getContactDetail(String customerNum);
+	
+	public abstract String updateCustomerDetail(Customer customer);
 							
 						
 					

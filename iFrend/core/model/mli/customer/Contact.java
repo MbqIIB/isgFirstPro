@@ -1,10 +1,16 @@
-package com.isg.ifrend.core.model.mli.dto;
+package com.isg.ifrend.core.model.mli.customer;
 
+import java.io.Serializable;
 
-public class ContactDetailDTO {
+/**
+ * Bean class for contact.
+ * 
+ */
+public class Contact implements Serializable {
+	private static final long serialVersionUID = -5878815090903155002L;
 
+	private String customerNumber;
 	
-	private String customerNumber;	
 	private String homeTelephone;
 	private String businessTelephone;
 	private boolean isPhonePlaceEmployee;
@@ -14,6 +20,25 @@ public class ContactDetailDTO {
 	private String emailAddress;
 	
 	
+	public Contact(){
+		
+	}
+	
+	public Contact(String customerNumber, String homeTelephone,
+			String businessTelephone, boolean isPhonePlaceEmployee,
+			String mobile, String otherTelephone, String faxNumber,
+			String emailAddress) {
+		this.customerNumber = customerNumber;
+		this.homeTelephone = homeTelephone;
+		this.businessTelephone = businessTelephone;
+		this.isPhonePlaceEmployee = isPhonePlaceEmployee;
+		this.mobile = mobile;
+		this.otherTelephone = otherTelephone;
+		this.faxNumber = faxNumber;
+		this.emailAddress = emailAddress;
+	}
+
+	/**getter and setter **/
 	public String getCustomerNumber() {
 		return customerNumber;
 	}
@@ -62,5 +87,4 @@ public class ContactDetailDTO {
 	public void setEmailAddress(String emailAddress) {
 		this.emailAddress = emailAddress;
 	}
-	
 }
