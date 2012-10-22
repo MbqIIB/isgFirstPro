@@ -1,41 +1,42 @@
-package com.isg.ifrend.core.jms;
+package com.isg.ifrend.jms;
 
-import com.isg.ifrend.core.model.mli.dto.AccountInfoDTO;
-import com.isg.ifrend.core.model.mli.dto.AddressDTO;
-import com.isg.ifrend.core.model.mli.dto.ContactDetailDTO;
-import com.isg.ifrend.core.model.mli.dto.CustomerDTO;
-import com.isg.ifrend.core.model.mli.dto.RelationshipDTO;
+import java.util.List;
+
+import javax.jms.JMSException;
+
+import com.isg.ifrend.exception.IfrendMLIException;
+import com.isg.ifrend.model.mli.account.Account;
+import com.isg.ifrend.model.mli.customer.Address;
+import com.isg.ifrend.model.mli.customer.Contact;
+import com.isg.ifrend.model.mli.customer.Customer;
+import com.isg.ifrend.wrapper.mli.request.account.GetAccount;
+import com.isg.ifrend.wrapper.mli.request.customer.GetAddress;
+import com.isg.ifrend.wrapper.mli.request.customer.GetContactDetail;
+import com.isg.ifrend.wrapper.mli.request.customer.GetCustomer;
+import com.isg.ifrend.wrapper.mli.request.customer.GetRelationship;
+import com.isg.ifrend.wrapper.mli.request.customer.SearchCustomer;
 
 
 public interface CustomerMLIService {
 
 
 	/**
+	 * @throws JMSException 
+	 * @throws IfrendMLIException 
 	 */
-	public abstract Object requestSearchCustomer(CustomerDTO dto);
+	public abstract List<Customer> requestSearchCustomer(SearchCustomer wrapper) throws IfrendMLIException, JMSException;
 
+	public abstract Customer requestGetCustomer(GetCustomer wrapper) throws IfrendMLIException, JMSException;
 
+	public abstract List<Account> requestRelationship(GetRelationship wrapper) throws IfrendMLIException;
+	
+	public abstract Address requestAddressDetail(GetAddress wrapper) throws IfrendMLIException;
+
+	public abstract Contact requestContactDetail(GetContactDetail  wrapper) throws IfrendMLIException;
 	/**
+	 * @throws IfrendMLIException 
 	 */
-	public abstract Object requestRelationship(RelationshipDTO dto);
-
-
-
-	/**
-	 */
-	public abstract Object requestAddressDetail(AddressDTO address);
-
-
-
-	/**
-	 */
-	public abstract Object requestContactDetail(ContactDetailDTO  dto);
-
-
-
-	/**
-	 */
-	public abstract Object requestAccountInfo(AccountInfoDTO accountInfoDTO);
+	public abstract Account requestAccount(GetAccount wrapper) throws IfrendMLIException;
 
 	
 }

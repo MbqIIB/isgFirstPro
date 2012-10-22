@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+xmlns:context="http://www.springframework.org/schema/context" 
+xsi:schemaLocation="
+http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+http://www.springframework.org/schema/context 
+http://www.springframework.org/schema/context/spring-context-3.0.xsd "  >
+
+	<!-- 
+	<bean id="connectionFactory" class="org.springframework.jndi.JndiObjectFactoryBean">
+      <property name="jndiName" value="jms/iFrendQCF"/>    
+      <property name="resourceRef" value="true" />
+      <property name="cache" value="true" />  
+    </bean>
+    <bean id="destination" class="org.springframework.jndi.JndiObjectFactoryBean">
+      <property name="jndiName" value="jms/iFrendQueue"/>    
+      <property name="resourceRef" value="true" />
+      <property name="cache" value="true" />  
+    </bean>
+    <bean id="messageListener" class="com.isg.iloan.jms.IloanMessageListener" />
+
+    <bean id="jmsContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="connectionFactory" ref="connectionFactory"/>
+		<property name="destination" ref="destination"/>
+		<property name="messageListener" ref="messageListener"/>
+	</bean>
+	 -->
+	<context:property-placeholder location="classpath:com/isg/ifrend/jms/jms.properties" />
+	<!-- MQ QueueConnectionFactory -->
+		<bean id="mqConnectionFactory" class="com.ibm.mq.jms.MQQueueConnectionFactory">
+			<property name="hostName">
+			<value>${queue_hostname}</value>
+			</property>
+			<property name="port">
+			<value>${queue_port}</value>
+			</property>
+			<property name="queueManager">
+			<value>${queue_manager}</value>
+			</property>
+			<property name="transportType">
+			<value>1</value>
+			</property>
+		</bean>
+	<!-- 
+	<bean id="mqConnectionFactory" class="org.springframework.jndi.JndiObjectFactoryBean">
+      <property name="jndiName" value="jms/iFrendQCF"/>    
+      <property name="resourceRef" value="true" />
+      <property name="cache" value="true" />  
+    </bean>
+     -->
+     
+	<!-- JMS Queue Connection Factory -->
+	<bean id="jmsQueueConnectionFactory" 
+		 class="org.springframework.jms.connection.SingleConnectionFactory">
+		<property name="targetConnectionFactory">
+			 <ref bean="mqConnectionFactory" />
+		</property>
+	   
+	</bean>
+	
+	<!-- JMS Destination Resolver -->
+	<bean id="jmsDestinationResolver"
+		  class="org.springframework.jms.support.destination.DynamicDestinationResolver">
+	</bean>
+	
+	<!-- JMS Queue Template -->
+	<bean id="jmsQueueTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory">
+			<ref bean="jmsQueueConnectionFactory" />
+		</property>
+		<property name="destinationResolver">
+			<ref bean="jmsDestinationResolver" />
+		</property>
+		<property name="pubSubNoLocal">
+			<value>false</value>
+		</property>
+		<property name="receiveTimeout">
+			<value>20000</value>
+		</property>
+	</bean>
+	
+	<!-- ====  MLI service beans ====== -->
+	
+	<bean id="mliService" class="com.isg.ifrend.jms.MLIService" />
+	<bean id="mliCustomerService" class="com.isg.ifrend.jms.CustomerMLIServiceImpl" />
+	<bean id="mliAccountService" class="com.isg.ifrend.jms.AccountMLIServiceImpl" />
+	<bean id="mliCardService" class="com.isg.ifrend.jms.CardMLIServiceImpl" />
+	<bean id="mliTransactionService" class="com.isg.ifrend.jms.TransactionMLIServiceImpl" />
+	<bean id="mliRewardService" class="com.isg.ifrend.jms.RewardsMLIServiceImpl" />
+	<bean id="mliApplicationService" class="com.isg.ifrend.jms.ApplicationMLIServiceImpl" />
+	
+	
+</beans>

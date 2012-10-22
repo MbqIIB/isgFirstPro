@@ -1,38 +1,46 @@
-package com.isg.ifrend.core.jms;
+package com.isg.ifrend.jms;
 
-import java.util.List;
-
-import com.isg.ifrend.core.model.mli.dto.CardMaintenanceDTO;
-import com.isg.ifrend.core.model.mli.dto.CardReportDTO;
+import com.isg.ifrend.exception.IfrendMLIException;
+import com.isg.ifrend.model.mli.card.LostStolenReport;
+import com.isg.ifrend.wrapper.mli.request.card.CardMaintenance;
+import com.isg.ifrend.wrapper.mli.request.card.ChangeCardReport;
+import com.isg.ifrend.wrapper.mli.request.card.DeleteCardReport;
+import com.isg.ifrend.wrapper.mli.request.card.InquireCardReport;
+import com.isg.ifrend.wrapper.mli.request.card.ReportLostStolenCard;
 
 
 public interface CardMLIService {
 
 	/**
+	 * @throws IfrendMLIException 
 	 */
-	public abstract String requestDeleteCardReport(CardReportDTO dto);
+	public abstract String deleteLostStolenReport(DeleteCardReport wrapper) throws IfrendMLIException;
 	
 	/**
+	 * @throws IfrendMLIException 
 	 */
-	public abstract String requestCardMaintenance(CardMaintenanceDTO dto);
+	public abstract String executeCardMaintenance(CardMaintenance wrapper) throws IfrendMLIException;
 
 
 
 	/**
+	 * @throws IfrendMLIException 
 	 */
-	public abstract String requestAddCardReport(CardReportDTO dto);
+	public abstract String addLostStolenReport(ReportLostStolenCard wrapper) throws IfrendMLIException;
 
 
 
 	/**
+	 * @throws IfrendMLIException 
 	 */
-	public abstract List requestSearchCardReport(CardReportDTO dto);
+	public abstract LostStolenReport inquireLostStolenReport(InquireCardReport wrapper) throws IfrendMLIException;
 
 
 
 	/**
+	 * @throws IfrendMLIException 
 	 */
-	public abstract String requestUpdateCardReport(CardReportDTO dto);
+	public abstract String changeLostStolenReport(ChangeCardReport wrapper) throws IfrendMLIException;
 
 
 

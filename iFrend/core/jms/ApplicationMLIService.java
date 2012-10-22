@@ -1,21 +1,24 @@
-package com.isg.ifrend.core.jms;
+package com.isg.ifrend.jms;
 
-import com.isg.ifrend.core.model.mli.dto.ApplicationCreateDTO;
-import com.isg.ifrend.core.model.mli.dto.ApplicationInquiryDTO;
-import java.util.List;
+import com.isg.ifrend.exception.IfrendMLIException;
+import com.isg.ifrend.model.mli.application.Application;
+import com.isg.ifrend.wrapper.mli.request.application.CreateApplication;
+import com.isg.ifrend.wrapper.mli.request.application.GetApplication;
 
 
 public interface ApplicationMLIService {
 
 		
 		/**
+		 * @throws IfrendMLIException 
 		 */
-		public abstract List requestApplicationInquiry(ApplicationInquiryDTO dto);
+		public abstract Application requestApplicationInquiry(GetApplication wrapper) throws IfrendMLIException;
 
 			
 			/**
+			 * @throws IfrendMLIException 
 			 */
-			public abstract String requestCreateApplication(ApplicationCreateDTO dto);
+			public abstract String requestCreateApplication(CreateApplication wrapper) throws IfrendMLIException;
 			
 		
 

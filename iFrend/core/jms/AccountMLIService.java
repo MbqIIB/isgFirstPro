@@ -1,50 +1,58 @@
-package com.isg.ifrend.core.jms;
+package com.isg.ifrend.jms;
 
-import com.isg.ifrend.core.model.mli.dto.AccountClosureDTO;
-import com.isg.ifrend.core.model.mli.dto.AccountCreditLimitDTO;
-import com.isg.ifrend.core.model.mli.dto.AccountMaintenanceDTO;
-import com.isg.ifrend.core.model.mli.dto.CustomerCreditLimitDTO;
-import com.isg.ifrend.core.model.mli.dto.DirectDebitDTO;
-import com.isg.ifrend.core.model.mli.dto.PayoutFigureDTO;
+import com.isg.ifrend.exception.IfrendMLIException;
+import com.isg.ifrend.model.mli.account.PayoutFigure;
+import com.isg.ifrend.wrapper.mli.request.account.CloseAccount;
+import com.isg.ifrend.wrapper.mli.request.account.DirectDebit;
+import com.isg.ifrend.wrapper.mli.request.account.GetPayoutFigure;
+import com.isg.ifrend.wrapper.mli.request.account.IncrAccntCreditLimit;
+import com.isg.ifrend.wrapper.mli.request.account.IncrCustCreditLimit;
+import com.isg.ifrend.wrapper.mli.request.account.AccountMaintenance;
 
 
 public interface AccountMLIService {
 
 
 	/**
+	 * @throws IfrendMLIException 
 	 */
-	public abstract String requestIncAcctCreditLimit(AccountCreditLimitDTO dto);
+	public abstract String increaseAcctCreditLimit(IncrAccntCreditLimit wrapper) throws IfrendMLIException;
 
 
 
 
 	/**
+	 * @throws IfrendMLIException 
 	 */
-	public abstract String requestIncCustCreditLimit(CustomerCreditLimitDTO dto);
+	public abstract String increaseCustCreditLimit(IncrCustCreditLimit wrapper) throws IfrendMLIException;
 
 
 
 	/**
+	 * @throws IfrendMLIException 
 	 */
-	public abstract String requestDirectDebit(DirectDebitDTO dto);
+	public abstract String requestDirectDebit(DirectDebit wrapper) throws IfrendMLIException;
 
 
 
 	/**
+	 * @throws IfrendMLIException 
 	 */
-	public abstract String requestAccountMaintenance(AccountMaintenanceDTO dto);
+	public abstract String requestAccountMaintenance(AccountMaintenance wrapper) throws IfrendMLIException;
 
 
 
 	/**
+	 * @throws IfrendMLIException 
 	 */
-	public abstract String requestPayoutFigure(PayoutFigureDTO dto);
+	public abstract PayoutFigure requestPayoutFigure(GetPayoutFigure wrapper) throws IfrendMLIException;
 
 
 
 	/**
+	 * @throws IfrendMLIException 
 	 */
-	public abstract String requestAccountClosure(AccountClosureDTO dto);
+	public abstract String requestAccountClosure(CloseAccount wrapper) throws IfrendMLIException;
 
 	
 	
