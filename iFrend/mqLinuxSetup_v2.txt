@@ -1,0 +1,187 @@
+## ============= iFREND - MLI MQ setup ======================
+## ================= version 2.0, 1-listener/1-channel
+
+#### === ACCOUNT ============
+####(iFREND-side) sender:
+crtmqm -q ACCT_QM
+strmqm ACCT_QM
+runmqsc
+define channel(SYSTEM.ADMIN.SVRCONN) CHLTYPE(SVRCONN)
+start channel(SYSTEM.ADMIN.SVRCONN)
+alter qmgr deadq(DLQ)
+define qlocal(DLQ)
+
+define qlocal(ACCT_CLI_Q) usage(xmitq)
+define qremote(ACCT_CLI_QR) rname(ACCT_CLI_D) rqmname('ACCT_QM') xmitq(ACCT_CLI_Q)
+define listener(ACCT_CLI_SEND) trptype (tcp) control (qmgr) port (1470)
+start listener(ACCT_CLI_SEND)
+define channel(acct.cli.sender) chltype(sdr) conname('192.168.11.14(1414)') xmitq(ACCT_CLI_Q) trptype(tcp)
+start channel(acct.cli.sender)
+
+define qlocal(ACCT_CCLI_Q) usage(xmitq)
+define qremote(ACCT_CCLI_QR) rname(ACCT_CCLI_D) rqmname('ACCT_QM') xmitq(ACCT_CCLI_Q)
+define listener(ACCT_CCLI_SEND) trptype (tcp) control (qmgr) port (1472)
+start listener(ACCT_CCLI_SEND)
+define channel(acct.ccli.sender) chltype(sdr) conname('192.168.11.14(1416)') xmitq(ACCT_CCLI_Q) trptype(tcp)
+start channel(acct.ccli.sender)
+
+define qlocal(ACCT_DDEBIT_Q) usage(xmitq)
+define qremote(ACCT_DDEBIT_Q) rname(ACCT_DDEBIT_D) rqmname('ACCT_QM') xmitq(ACCT_DDEBIT_Q)
+define listener(ACCT_DDEBIT_SEND) trptype (tcp) control (qmgr) port (1474)
+start listener(ACCT_DDEBIT_SEND)
+define channel(acct.ddebit.sender) chltype(sdr) conname('192.168.11.14(1418)') xmitq(ACCT_DDEBIT_Q) trptype(tcp)
+start channel(acct.ddebit.sender)
+
+define qlocal(ACCT_MAINT_Q) usage(xmitq)
+define qremote(ACCT_MAINT_Q) rname(ACCT_MAINT_D) rqmname('ACCT_QM') xmitq(ACCT_MAINT_Q)
+define listener(ACCT_MAINT_SEND) trptype (tcp) control (qmgr) port (1476)
+start listener(ACCT_MAINT_SEND)
+define channel(acct.maint.sender) chltype(sdr) conname('192.168.11.14(1420)') xmitq(ACCT_MAINT_Q) trptype(tcp)
+start channel(acct.maint.sender)
+
+define qlocal(ACCT_PAYFIG_Q) usage(xmitq)
+define qremote(ACCT_PAYFIG_Q) rname(ACCT_PAYFIG_D) rqmname('ACCT_QM') xmitq(ACCT_PAYFIG_Q)
+define listener(ACCT_PAYFIG_SEND) trptype (tcp) control (qmgr) port (1478)
+start listener(ACCT_PAYFIG_SEND)
+define channel(acct.payfig.sender) chltype(sdr) conname('192.168.11.14(1422)') xmitq(ACCT_PAYFIG_Q) trptype(tcp)
+start channel(acct.payfig.sender)
+
+define qlocal(ACCT_CLOSURE_Q) usage(xmitq)
+define qremote(ACCT_CLOSURE_Q) rname(ACCT_CLOSURE_D) rqmname('ACCT_QM') xmitq(ACCT_CLOSURE_Q)
+define listener(ACCT_CLOSURE_SEND) trptype (tcp) control (qmgr) port (1480)
+start listener(ACCT_CLOSURE_SEND)
+define channel(acct.closure.sender) chltype(sdr) conname('192.168.11.14(1424)') xmitq(ACCT_CLOSURE_Q) trptype(tcp)
+start channel(acct.closure.sender)
+
+--------------------------------reply-from-MLI handling-------------------------------------------------------
+define qlocal (ACCT_CLI_D)
+define listener (ACCT_CLI_REPLY) trptype(tcp) control(qmgr) port(1471)
+start listener (ACCT_CLI_REPLY)
+define channel (acct.cli.reply) chltype(rcvr) trptype(tcp)
+
+define qlocal(ACCT_CCLI_D)
+define listener(ACCT_CCLI_REPLY) trptype(tcp) control(qmgr) port (1473)
+start listener(ACCT_CCLI_REPLY)
+define channel(acct.ccli.reply) chltype(rcvr) trptype(tcp)
+
+define qlocal(ACCT_DDEBIT_D)
+define listener(ACCT_DDEBIT_REPLY) trptype(tcp) control(qmgr) port(1475)
+start listener(ACCT_DDEBIT_REPLY)
+define channel(acct.ddebit.reply) chltype(rcvr) trptype(tcp)
+
+define qlocal(ACCT_MAINT_D)
+define listener(ACCT_MAINT_REPLY) trptype(tcp) control(qmgr) port(1477)
+start listener(ACCT_MAINT_REPLY)
+define channel(acct.maint.reply) chltype(rcvr) trptype(tcp)
+
+define qlocal(ACCT_PAYFIG_D)
+define listener(ACCT_PAYFIG_REPLY) trptype(tcp) control(qmgr) port(1479)
+start listener(ACCT_PAYFIG_REPLY)
+define channel(acct.payfig.reply) chltype(rcvr) trptype(tcp)
+
+define qlocal(ACCT_CLOSURE_D)
+define listener(ACCT_CLOSURE_REPLY) trptype(tcp) control(qmgr) port(1481)
+start listener(ACCT_CLOSURE_REPLY)
+define channel(acct.closure.reply) chltype(rcvr) trptype(tcp)
+
+##disable the channel authentication for now, to enable intercommunication
+alter qmgr chlauth(disabled)
+end
+
+###(MLI-side)receiver:
+./crtmqm -q ACCT_QM
+./strmqm ACCT_QM
+./runmqsc ACCT_QM
+define channel(SYSTEM.ADMIN.SVRCONN) CHLTYPE(SVRCONN)
+start channel(SYSTEM.ADMIN.SVRCONN)
+alter qmgr deadq(DLQ)
+define qlocal(DLQ)
+
+define qlocal(ACCT_CLI_Q)
+define listener(ACCT_CLI_SEND) trptype(tcp) control(qmgr) port(1414) ipaddr(192.168.11.14)
+start listener(ACCT_CLI_SEND)
+define channel(acct.cli.sender) chltype(rcvr) trptype(tcp)
+
+define qlocal(ACCT_CCLI_Q)
+define listener(ACCT_CCLI_SEND) trptype(tcp) control(qmgr) port(1416) ipaddr(192.168.11.14)
+start listener(ACCT_CCLI_SEND)
+define channel(acct.ccli.sender) chltype(rcvr) trptype(tcp)
+
+define qlocal(ACCT_DDEBIT_Q)
+define listener(ACCT_DDEBIT_SEND) trptype(tcp) control(qmgr) port(1418) ipaddr(192.168.11.14)
+start listener(ACCT_DDEBIT_SEND)
+define channel(acct.ddebit.sender) chltype(rcvr) trptype(tcp)
+
+define qlocal(ACCT_MAINT_Q)
+define listener(ACCT_MAINT_SEND) trptype(tcp) control(qmgr) port(1420) ipaddr(192.168.11.14)
+start listener(ACCT_MAINT_SEND)
+define channel(acct.maint.sender) chltype(rcvr) trptype(tcp)
+
+define qlocal(ACCT_PAYFIG_Q)
+define listener(ACCT_PAYFIG_SEND) trptype(tcp) control(qmgr) port(1422) ipaddr(192.168.11.14)
+start listener(ACCT_PAYFIG_SEND)
+define channel(acct.payfig.sender) chltype(rcvr) trptype(tcp)
+
+define qlocal(ACCT_CLOSURE_Q)
+define listener(ACCT_CLOSURE_SEND) trptype(tcp) control(qmgr) port(1424) ipaddr(192.168.11.14)
+start listener(ACCT_CLOSURE_SEND)
+define channel(acct.closure.sender) chltype(rcvr) trptype(tcp)
+
+
+-------------------------------------reply-to-iFrend----------------------------------------
+define qlocal(ACCT_CLI_REPLY) usage(xmitq)
+define qremote(ACCT_CLI_QR) rname (ACCT_CLI_D) rqmname ('ACCT_QM') xmitq (ACCT_CLI_REPLY)
+define channel(acct.cli.reply) chltype (sdr) conname('192.168.11.48(1471)') xmitq(ACCT_CLI_REPLY) trptype(tcp)
+start channel(acct.cli.reply)
+
+define qlocal(ACCT_CCLI_REPLY) usage(xmitq)
+define qremote(ACCT_CCLI_QR) rname (ACCT_CCLI_D) rqmname ('ACCT_QM') xmitq (ACCT_CCLI_REPLY)
+define channel(acct.ccli.reply) chltype (sdr) conname('192.168.11.48(1473)') xmitq(ACCT_CCLI_REPLY) trptype(tcp)
+start channel(acct.ccli.reply)
+
+define qlocal(ACCT_DDEBIT_REPLY) usage(xmitq)
+define qremote(ACCT_DDEBIT_QR) rname (ACCT_DDEBIT_D) rqmname ('ACCT_QM') xmitq (ACCT_DDEBIT_REPLY)
+define channel(acct.ddebit.reply) chltype (sdr) conname('192.168.11.48(1475)') xmitq(ACCT_DDEBIT_REPLY) trptype(tcp)
+start channel(acct.ddebit.reply)
+
+define qlocal(ACCT_MAINT_REPLY) usage(xmitq)
+define qremote(ACCT_MAINT_QR) rname (ACCT_MAINT_D) rqmname ('ACCT_QM') xmitq (ACCT_MAINT_REPLY)
+define channel(acct.maint.reply) chltype (sdr) conname('192.168.11.48(1477)') xmitq(ACCT_MAINT_REPLY) trptype(tcp)
+start channel(acct.maint.reply)
+
+define qlocal(ACCT_PAYFIG_REPLY) usage(xmitq)
+define qremote(ACCT_PAYFIG_QR) rname (ACCT_PAYFIG_D) rqmname ('ACCT_QM') xmitq (ACCT_PAYFIG_REPLY)
+define channel(acct.payfig.reply) chltype (sdr) conname('192.168.11.48(1479)') xmitq(ACCT_PAYFIG_REPLY) trptype(tcp)
+start channel(acct.payfig.reply)
+
+define qlocal(ACCT_CLOSURE_REPLY) usage(xmitq)
+define qremote(ACCT_CLOSURE_QR) rname (ACCT_CLOSURE_D) rqmname ('ACCT_QM') xmitq (ACCT_CLOSURE_REPLY)
+define channel(acct.closure.reply) chltype (sdr) conname('192.168.11.48(1481)') xmitq(ACCT_CLOSURE_REPLY) trptype(tcp)
+start channel(acct.closure.reply)
+
+
+------------for java server component(to be replaced by MLI component-----------------------
+define listener(ACCT_CLI_REPLY) trptype(tcp) control(qmgr) port(1415) ipaddr(192.168.11.14)
+start listener(ACCT_CLI_REPLY)
+
+define listener(ACCT_CCLI_REPLY) trptype(tcp) control(qmgr) port(1417) ipaddr(192.168.11.14)
+start listener(ACCT_CCLI_REPLY)
+
+define listener(ACCT_DDEBIT_REPLY) trptype(tcp) control(qmgr) port(1419) ipaddr(192.168.11.14)
+start listener(ACCT_DDEBIT_REPLY)
+
+define listener(ACCT_MAINT_REPLY) trptype(tcp) control(qmgr) port(1421) ipaddr(192.168.11.14)
+start listener(ACCT_MAINT_REPLY)
+
+define listener(ACCT_PAYFIG_REPLY) trptype(tcp) control(qmgr) port(1423) ipaddr(192.168.11.14)
+start listener(ACCT_PAYFIG_REPLY)
+
+define listener(ACCT_CLOSURE_REPLY) trptype(tcp) control(qmgr) port(1425) ipaddr(192.168.11.14)
+start listener(ACCT_CLOSURE_REPLY)
+
+--------------------------------------------------------------------------------------------
+
+## disable the channel authentication for now, to enable intercommunication
+alter qmgr chlauth(disabled)
+end
+

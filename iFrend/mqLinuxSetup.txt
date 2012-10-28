@@ -1,53 +1,55 @@
-## ============= Linux MLI MQ setup ======================
+## ============= iFREND - MLI MQ setup ======================
+## ================= version 1.0,      ======================
 
 #### === ACCOUNT ============
-
-
-###receiver:
-./crtmqm -q mli.acct.rcvr.qm
-./strmqm mli.rcvr.acct.qm
-./runmqsc mli.rcvr.acct.qm
-define qlocal (ACCT_CLI_Q)
-define listener (ACCT_CLI_LISTENER) trptype (tcp) control (qmgr) port(1414) ipaddr(yourMachineIP)
-start listener (ACCT_CLI_LISTENER)
-define channel(SYSTEM.ADMIN.SVRCONN) CHLTYPE(SVRCONN)
-start channel(SYSTEM.ADMIN.SVRCONN)
-define channel (ifrend.acct.sender) chltype(rcvr) trptype(tcp)
-** disale the channel authentication for now, to enable intercommunication
-alter qmgr chlauth(disabled)
--------------------------------------reply----------------------------------------
-define qlocal (ACCT_CLI_REPLY) usage (xmitq)
-define qremote (ACCT_CLI_QR) rname (ACCT_CLI_D) rqmname ('ifrend.sender.acct.qm') xmitq (ACCT_CLI_REPLY)
-define channel (ifrend.acct.reply) chltype (sdr) conname('192.168.11.48(1471)') xmitq (ACCT_CLI_REPLY) trptype(tcp)
-end
-
-
-#### iFREND-side sender:
-crtmqm -q ifrend.sender.acct.qm
-strmqm ifrend.sender.acct.qm
+####(iFREND-side) sender:
+crtmqm -q ACCT_QM
+strmqm ACCT_QM
 runmqsc
-define qlocal (ACCT_CLI_Q) usage (xmitq)
-define qremote (ACCT_CLI_QR) rname (ACCT_CLI_D) rqmname ('mli.acct.rcvr.qm') xmitq (ACCT_CLI_Q)
-define listener (ACCT_CLI_LISTENER) trptype (tcp) control (qmgr) port (1470)
-start listener (ACCT_CLI_LISTENER)
+alter qmgr deadq(DLQ)
+define qlocal(DLQ)
+define qlocal(ACCT_CLI_Q) usage(xmitq)
+define qremote(ACCT_CLI_QR) rname(ACCT_CLI_D) rqmname('ACCT_QM') xmitq(ACCT_CLI_Q)
+
+define listener(ACCT_CLI_SEND) trptype (tcp) control (qmgr) port (1470)
+start listener(ACCT_CLI_SEND)
 define channel(SYSTEM.ADMIN.SVRCONN) CHLTYPE(SVRCONN)
 start channel(SYSTEM.ADMIN.SVRCONN)
-define channel (ifrend.acct.sender) chltype (sdr) conname('192.168.11.14(1414)') xmitq (ACCT_CLI_Q) trptype(tcp)
-
--------------------------------------
+define channel(acct.cli.sender) chltype(sdr) conname('192.168.11.14(1414)') xmitq(ACCT_CLI_Q) trptype(tcp)
+start channel(acct.cli.sender)
+--------------------------------receiver--------------------
 define qlocal (ACCT_CLI_D)
-define listener (ACCT_CLI_LISTENER_REPLY) trptype (tcp) control (qmgr) port (1471)
-start listener (ACCT_CLI_LISTENER_REPLY)
-define channel (ifrend.acct.reply) chltype(rcvr) trptype(tcp)
-
-**note: before starting the channel, define first the receiving channel at the receiver qm. 
-
-start channel(ifrend.acct.sender)
-
-** disale the channel authentication for now, to enable intercommunication
+define listener (ACCT_CLI_REPLY) trptype (tcp) control (qmgr) port (1471)
+start listener (ACCT_CLI_REPLY)
+define channel (acct.cli.reply) chltype(rcvr) trptype(tcp)
+##note: before starting the channel, define first the receiving channel at the receiver qm. 
+##disable the channel authentication for now, to enable intercommunication
 alter qmgr chlauth(disabled)
-
 end
 
+###(MLI-side)receiver:
+./crtmqm -q ACCT_QM
+./strmqm ACCT_QM
+./runmqsc ACCT_QM
+alter qmgr deadq(DLQ)
+define qlocal(DLQ)
+define qlocal(ACCT_CLI_Q)
+define listener(ACCT_CLI_SEND) trptype(tcp) control(qmgr) port(1414) ipaddr(192.168.11.14)
+start listener(ACCT_CLI_SEND)
+define channel(SYSTEM.ADMIN.SVRCONN) CHLTYPE(SVRCONN)
+start channel(SYSTEM.ADMIN.SVRCONN)
+define channel(acct.cli.sender) chltype(rcvr) trptype(tcp)
+-------------------------------------reply--------------------------------------------------
+define qlocal(ACCT_CLI_REPLY) usage(xmitq)
+define qremote(ACCT_CLI_QR) rname (ACCT_CLI_D) rqmname ('ACCT_QM') xmitq (ACCT_CLI_REPLY)
+define channel(acct.cli.reply) chltype (sdr) conname('192.168.11.48(1471)') xmitq(ACCT_CLI_REPLY) trptype(tcp)
+start channel(acct.cli.reply)
+------------for java server component(to be replaced by MLI component-----------------------
+define listener(ACCT_CLI_REPLY) trptype(tcp) control(qmgr) port(1415) ipaddr(192.168.11.14)
+start listener(ACCT_CLI_REPLY)
+--------------------------------------------------------------------------------------------
 
+## disable the channel authentication for now, to enable intercommunication
+alter qmgr chlauth(disabled)
+end
 
