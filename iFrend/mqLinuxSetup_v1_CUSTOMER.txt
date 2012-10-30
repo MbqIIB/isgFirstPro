@@ -1,0 +1,84 @@
+## ============= iFREND - MLI MQ setup ======================
+## ================= version 2.0, 1-listener/1-channel
+
+#### === CUSTOMER ============
+####(iFREND-side) sender:
+crtmqm -q CUST_QM
+strmqm CUST_QM
+runmqsc
+define channel(SYSTEM.ADMIN.SVRCONN) CHLTYPE(SVRCONN)
+start channel(SYSTEM.ADMIN.SVRCONN)
+alter qmgr deadq(DLQ)
+define qlocal(DLQ)
+
+define qlocal(CUST_Q) usage(xmitq)
+define qremote(CUST_QR) rname(CUST_CLI_D) rqmname('CUST_QM') xmitq(CUST_Q)
+define listener(CUST_SEND) trptype (tcp) control (qmgr) port (1472)
+start listener(CUST_SEND)
+define channel(CUST.SENDER) chltype(sdr) conname('192.168.11.14(1416)') xmitq(CUST_Q) trptype(tcp)
+start channel(CUST.SENDER)
+
+
+define qremote(CUST_SEARCH_QR) rname(CUST_CCLI_D) rqmname('CUST_QM') xmitq(CUST_Q)
+define qremote(CUST_REL_QR) rname(CUST_REL_D) rqmname('CUST_QM') xmitq(CUST_Q)
+define qremote(CUST_ADDR_QR) rname(CUST_ADDR_D) rqmname('CUST_QM') xmitq(CUST_Q)
+define qremote(CUST_CNTC_QR) rname(CUST_CNTC_D) rqmname('CUST_QM') xmitq(CUST_Q)
+define qremote(CUST_ACCNT_QR) rname(CUST_ACCNT_D) rqmname('CUST_QM') xmitq(CUST_Q)
+
+
+--------------------------------reply-from-MLI handling-------------------------------------------------------
+define qlocal (CUST_D)
+define listener (CUST_REPLY) trptype(tcp) control(qmgr) port(1473)
+start listener (CUST_REPLY)
+define channel (CUST.REPLY) chltype(rcvr) trptype(tcp)
+
+define qlocal(CUST_SEARCH_D)
+define qlocal(CUST_REL_D)
+define qlocal(CUST_ADDR_D)
+define qlocal(CUST_CNTC_D)
+define qlocal(CUST_ACCNT_D)
+
+##disable the channel authentication for now, to enable intercommunication
+alter qmgr chlauth(disabled)
+end
+
+###(MLI-side)receiver:
+./crtmqm -q CUST_QM
+./strmqm CUST_QM
+./runmqsc CUST_QM
+define channel(SYSTEM.ADMIN.SVRCONN) CHLTYPE(SVRCONN)
+start channel(SYSTEM.ADMIN.SVRCONN)
+alter qmgr deadq(DLQ)
+define qlocal(DLQ)
+define listener(CUST_RCVR) trptype(tcp) control(qmgr) port(1414) ipaddr(192.168.11.14)
+start listener(CUST_RCVR)
+define channel(CUST.SENDER) chltype(rcvr) trptype(tcp)
+
+define qlocal(CUST_D)
+define qlocal(CUST_SEARCH_D)
+define qlocal(CUST_REL_D)
+define qlocal(CUST_ADDR_D)
+define qlocal(CUST_CNTC_D)
+define qlocal(CUST_ACCNT_D)
+-------------------------------------reply-to-iFrend----------------------------------------
+define qlocal(CUST_REPLY) usage(xmitq)
+define qremote(CUST_QR) rname(CUST_D) rqmname('CUST_QM') xmitq (CUST_REPLY)
+define channel(CUST.REPLY) chltype (sdr) conname('192.168.11.48(1473)') xmitq(CUST_REPLY) trptype(tcp)
+start channel(CUST.REPLY)
+
+define qremote(CUST_SEARCH_QR) rname(CUST_D) rqmname('CUST_QM') xmitq (CUST_REPLY)
+define qremote(CUST_REL_QR) rname(CUST_DDEBIT_D) rqmname('CUST_QM') xmitq (CUST_REPLY)
+define qremote(CUST_ADDR_QR) rname(CUST_ADDR_D) rqmname('CUST_QM') xmitq (CUST_REPLY)
+define qremote(CUST_CNTC_QR) rname(CUST_CNTC_D) rqmname ('CUST_QM') xmitq (CUST_REPLY)
+define qremote(CUST_ACCNT_QR) rname(CUST_ACCNT_D) rqmname ('CUST_QM') xmitq (CUST_REPLY)
+
+
+------------for java server component(to be replaced by MLI component-----------------------
+define listener(CUST_REPLY) trptype(tcp) control(qmgr) port(1417) ipaddr(192.168.11.14)
+start listener(CUST_REPLY)
+--------------------------------------------------------------------------------------------
+
+------ NOTE: disable the channel authentication for now, to enable intercommunication-------
+alter qmgr chlauth(disabled)
+end
+

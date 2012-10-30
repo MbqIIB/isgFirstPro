@@ -1,0 +1,85 @@
+## ============= iFREND - MLI MQ setup ======================
+## ================= version 2.0, 1-listener/1-channel
+
+#### === ACCOUNT ============
+####(iFREND-side) sender:
+crtmqm -q ACCT_QM
+strmqm ACCT_QM
+runmqsc
+define channel(SYSTEM.ADMIN.SVRCONN) CHLTYPE(SVRCONN)
+start channel(SYSTEM.ADMIN.SVRCONN)
+alter qmgr deadq(DLQ)
+define qlocal(DLQ)
+
+define qlocal(ACCT_Q) usage(xmitq)
+define qremote(ACCT_CLI_QR) rname(ACCT_CLI_D) rqmname('ACCT_QM') xmitq(ACCT_Q)
+define listener(ACCT_SEND) trptype (tcp) control (qmgr) port (1470)
+start listener(ACCT_SEND)
+define channel(acct.sender) chltype(sdr) conname('192.168.11.14(1414)') xmitq(ACCT_Q) trptype(tcp)
+start channel(acct.sender)
+
+
+define qremote(ACCT_CCLI_QR) rname(ACCT_CCLI_D) rqmname('ACCT_QM') xmitq(ACCT_Q)
+define qremote(ACCT_DDEBIT_Q) rname(ACCT_DDEBIT_D) rqmname('ACCT_QM') xmitq(ACCT_Q)
+define qremote(ACCT_MAINT_Q) rname(ACCT_MAINT_D) rqmname('ACCT_QM') xmitq(ACCT_Q)
+define qremote(ACCT_PAYFIG_Q) rname(ACCT_PAYFIG_D) rqmname('ACCT_QM') xmitq(ACCT_Q)
+define qremote(ACCT_CLOSURE_Q) rname(ACCT_CLOSURE_D) rqmname('ACCT_QM') xmitq(ACCT_Q)
+
+
+--------------------------------reply-from-MLI handling-------------------------------------------------------
+define qlocal (ACCT_CLI_D)
+define listener (ACCT_REPLY) trptype(tcp) control(qmgr) port(1471)
+start listener (ACCT_REPLY)
+define channel (acct.reply) chltype(rcvr) trptype(tcp)
+
+define qlocal(ACCT_CCLI_D)
+define qlocal(ACCT_DDEBIT_D)
+define qlocal(ACCT_MAINT_D)
+define qlocal(ACCT_PAYFIG_D)
+define qlocal(ACCT_CLOSURE_D)
+
+
+
+##disable the channel authentication for now, to enable intercommunication
+alter qmgr chlauth(disabled)
+end
+
+###(MLI-side)receiver:
+./crtmqm -q ACCT_QM
+./strmqm ACCT_QM
+./runmqsc ACCT_QM
+define channel(SYSTEM.ADMIN.SVRCONN) CHLTYPE(SVRCONN)
+start channel(SYSTEM.ADMIN.SVRCONN)
+alter qmgr deadq(DLQ)
+define qlocal(DLQ)
+define listener(ACCT_RCVR) trptype(tcp) control(qmgr) port(1414) ipaddr(192.168.11.14)
+start listener(ACCT_RCVR)
+define channel(acct.sender) chltype(rcvr) trptype(tcp)
+define qlocal(ACCT_CLI_D)
+define qlocal(ACCT_CCLI_D)
+define qlocal(ACCT_DDEBIT_D)
+define qlocal(ACCT_MAINT_D)
+define qlocal(ACCT_PAYFIG_D)
+define qlocal(ACCT_CLOSURE_D)
+-------------------------------------reply-to-iFrend----------------------------------------
+define qlocal(ACCT_REPLY) usage(xmitq)
+define qremote(ACCT_CLI_QR) rname (ACCT_CLI_D) rqmname ('ACCT_QM') xmitq (ACCT_REPLY)
+define channel(acct.cli.reply) chltype (sdr) conname('192.168.11.48(1471)') xmitq(ACCT_REPLY) trptype(tcp)
+start channel(acct.cli.reply)
+
+define qremote(ACCT_CCLI_QR) rname (ACCT_CCLI_D) rqmname ('ACCT_QM') xmitq (ACCT_REPLY)
+define qremote(ACCT_DDEBIT_QR) rname (ACCT_DDEBIT_D) rqmname ('ACCT_QM') xmitq (ACCT_REPLY)
+define qremote(ACCT_MAINT_QR) rname (ACCT_MAINT_D) rqmname ('ACCT_QM') xmitq (ACCT_REPLY)
+define qremote(ACCT_PAYFIG_QR) rname (ACCT_PAYFIG_D) rqmname ('ACCT_QM') xmitq (ACCT_REPLY)
+define qremote(ACCT_CLOSURE_QR) rname (ACCT_CLOSURE_D) rqmname ('ACCT_QM') xmitq (ACCT_REPLY)
+
+
+------------for java server component(to be replaced by MLI component-----------------------
+define listener(ACCT_REPLY) trptype(tcp) control(qmgr) port(1415) ipaddr(192.168.11.14)
+start listener(ACCT_REPLY)
+--------------------------------------------------------------------------------------------
+
+------ NOTE: disable the channel authentication for now, to enable intercommunication-------
+alter qmgr chlauth(disabled)
+end
+
