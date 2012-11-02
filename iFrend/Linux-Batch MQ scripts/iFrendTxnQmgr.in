@@ -1,0 +1,28 @@
+define channel(SYSTEM.ADMIN.SVRCONN) CHLTYPE(SVRCONN)
+start channel(SYSTEM.ADMIN.SVRCONN)
+alter qmgr deadq(DLQ)
+define qlocal(DLQ)
+
+define qlocal(TXN_Q) usage(xmitq)
+define qremote(TXN_DISPUTE_QR) rname(TXN_DISPUTE_D) rqmname('MLI_TXN_QM') xmitq(TXN_Q)
+define listener(TXN_SEND) trptype (tcp) control (qmgr) port (1476)
+start listener(TXN_SEND)
+define channel(IFREND_TO_MLI) chltype(sdr) conname('10.10.10.15(1420)') xmitq(TXN_Q) trptype(tcp)
+start channel(IFREND_TO_MLI)
+
+define qremote(TXN_REVAUTHZ_QR) rname(TXN_REVAUTHZ_D) rqmname('MLI_TXN_QM') xmitq(TXN_Q)
+define qremote(TXN_MANADJ_QR) rname(TXN_MANADJ_D) rqmname('MLI_TXN_QM') xmitq(TXN_Q)
+define qremote(TXN_LIST_QR) rname(TXN_LIST_D) rqmname('MLI_TXN_QM') xmitq(TXN_Q)
+define qremote(TXN_STMT_QR) rname(TXN_STMT_D) rqmname('MLI_TXN_QM') xmitq(TXN_Q)
+
+define listener(TXN_REPLY) trptype(tcp) control(qmgr) port(1477)
+start listener(TXN_REPLY)
+define channel(MLI_TO_IFREND) chltype(rcvr) trptype(tcp)
+
+define qlocal(TXN_REVAUTHZ_D)
+define qlocal(TXN_MANADJ_D)
+define qlocal(TXN_LIST_D)
+define qlocal(TXN_STMT_D)
+
+alter qmgr chlauth(disabled)
+end

@@ -1,0 +1,24 @@
+define channel(SYSTEM.ADMIN.SVRCONN) CHLTYPE(SVRCONN)
+start channel(SYSTEM.ADMIN.SVRCONN)
+alter qmgr deadq(DLQ)
+define qlocal(DLQ)
+define listener(APP_RCVR) trptype(tcp) control(qmgr) port(1424)
+start listener(APP_RCVR)
+define channel(IFREND_TO_MLI) chltype(rcvr) trptype(tcp)
+
+define qlocal(APP_INQ_D)
+define qlocal(APP_CREATE_D)
+
+define qlocal(APP_REPLY) usage(xmitq)
+define channel(MLI_TO_IFREND) chltype (sdr) conname('10.10.10.132(1481)') xmitq(APP_REPLY) trptype(tcp)
+start channel(MLI_TO_IFREND)
+
+define qremote(APP_INQ_QR) rname(APP_INQ_D) rqmname('APPLICATION_QM') xmitq(APP_REPLY)
+define qremote(APP_CREATE_QR) rname(APP_CREATE_D) rqmname('APPLICATION_QM') xmitq(APP_REPLY)
+
+
+define listener(APP_REPLY) trptype(tcp) control(qmgr) port(1425)
+start listener(APP_REPLY)
+
+alter qmgr chlauth(disabled)
+end

@@ -1,0 +1,30 @@
+define channel(SYSTEM.ADMIN.SVRCONN) CHLTYPE(SVRCONN)
+start channel(SYSTEM.ADMIN.SVRCONN)
+alter qmgr deadq(DLQ)
+define qlocal(DLQ)
+define listener(CARD_RCVR) trptype(tcp) control(qmgr) port(1418)
+start listener(CARD_RCVR)
+define channel(IFREND_TO_MLI) chltype(rcvr) trptype(tcp)
+
+define qlocal(CARD_DELRPT_D)
+define qlocal(CARD_MAINT_D)
+define qlocal(CARD_ADDRPT_D)
+define qlocal(CARD_INQRPT_D)
+define qlocal(CARD_CHRPT_D)
+
+define qlocal(CARD_REPLY) usage(xmitq)
+define channel(MLI_TO_IFREND) chltype (sdr) conname('10.10.10.132(1475)') xmitq(CARD_REPLY) trptype(tcp)
+start channel(MLI_TO_IFREND)
+
+define qremote(CARD_DELRPT_QR) rname(CARD_DELRPT_D) rqmname('CARD_QM') xmitq (CARD_REPLY)
+define qremote(CARD_MAINT_QR) rname(CARD_MAINT_D) rqmname('CARD_QM') xmitq (CARD_REPLY)
+define qremote(CARD_ADDRPT_QR) rname(CARD_ADDRPT_D) rqmname('CARD_QM') xmitq (CARD_REPLY)
+define qremote(CARD_INQRPT_QR) rname(CARD_INQRPT_D) rqmname('CARD_QM') xmitq (CARD_REPLY)
+define qremote(CARD_CHRPT_QR) rname(CARD_CHRPT_D) rqmname ('CARD_QM') xmitq (CARD_REPLY)
+
+
+define listener(CARD_REPLY) trptype(tcp) control(qmgr) port(1419)
+start listener(CARD_REPLY)
+
+alter qmgr chlauth(disabled)
+end
