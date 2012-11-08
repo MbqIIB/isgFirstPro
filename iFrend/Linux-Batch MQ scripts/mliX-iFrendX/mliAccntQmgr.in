@@ -6,6 +6,7 @@ define qlocal(DLQ)
 define listener(ACCNT_RCVR) trptype(tcp) control(qmgr) port(1414)
 start listener(ACCNT_RCVR)
 define channel(IFREND_TO_MLI) chltype(rcvr) trptype(tcp)
++  SSLCIPH(RC4_MD5_US) SSLCAUTH(REQUIRED)
 
 define qlocal(ACCNT_CLI_D)
 define qlocal(ACCNT_CCLI_D)
@@ -15,8 +16,10 @@ define qlocal(ACCNT_PAYFIG_D)
 define qlocal(ACCNT_CLOSURE_D)
 
 define qlocal(ACCNT_REPLY) usage(xmitq)
++ trigger trigtype(FIRST) trigdata('MLI_TO_IFREND') initq(SYSTEM.CHANNEL.INITQ)
 define qremote(ACCNT_CLI_QR) rname (ACCNT_CLI_D) rqmname ('ACCNT_QM') xmitq (ACCNT_REPLY)
 define channel(MLI_TO_IFREND) chltype (sdr) conname('10.10.10.14(1471)') xmitq(ACCNT_REPLY) trptype(tcp)
++ SSLCIPH(RC4_MD5_US)
 start channel(MLI_TO_IFREND)
 
 define qremote(ACCNT_CCLI_QR) rname (ACCNT_CCLI_D) rqmname ('ACCNT_QM') xmitq (ACCNT_REPLY)

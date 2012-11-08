@@ -5,6 +5,7 @@ define qlocal(DLQ)
 define listener(CARD_RCVR) trptype(tcp) control(qmgr) port(1418)
 start listener(CARD_RCVR)
 define channel(IFREND_TO_MLI) chltype(rcvr) trptype(tcp)
++  SSLCIPH(RC4_MD5_US) SSLCAUTH(REQUIRED)
 
 define qlocal(CARD_DELRPT_D)
 define qlocal(CARD_MAINT_D)
@@ -13,7 +14,9 @@ define qlocal(CARD_INQRPT_D)
 define qlocal(CARD_CHRPT_D)
 
 define qlocal(CARD_REPLY) usage(xmitq)
++ trigger trigtype(FIRST) trigdata('MLI_TO_IFREND') initq(SYSTEM.CHANNEL.INITQ)
 define channel(MLI_TO_IFREND) chltype (sdr) conname('10.10.10.14(1475)') xmitq(CARD_REPLY) trptype(tcp)
++ SSLCIPH(RC4_MD5_US)
 start channel(MLI_TO_IFREND)
 
 define qremote(CARD_DELRPT_QR) rname(CARD_DELRPT_D) rqmname('CARD_QM') xmitq (CARD_REPLY)
