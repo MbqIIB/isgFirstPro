@@ -2,4 +2,4 @@
 
 /opt/mqm/bin/crtmqm -q TXN_QM
 /opt/mqm/bin/strmqm TXN_QM
-/opt/mqm/bin/runmqsc < ifrendTxnQmgr.in
+/opt/mqm/bin/runmqsc < iFrendTxnQmgr.in

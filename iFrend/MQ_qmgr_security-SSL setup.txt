@@ -1,0 +1,39 @@
+ 1.  Start the iKeyman GUI (using the gsk7ikm command on UNIX, or the strmqikm command on Windows).
+ 2.   From the Key Database File menu, click New. The New window is displayed.
+ 3.    Click Key database type and select CMS (Certificate Management System).
+ 4.   In the File Name field, type a file name. This field already contains the text key.kdb. If your stem name is key, leave this field unchanged. If you have specified a different stem name, replace key with your stem name but you must not change the .kdb.
+ 5.   In the Location field, type the path, for example:
+        For a queue manager: /var/mqm/qmgrs/QM1/ssl (on UNIX) or C:\Program Files\IBM\WebSphere MQ\qmgrs\QM1\ssl (on Windows)
+
+        The path must match the value of the SSLKeyRepository attribute of the queue manager.
+        For a WebSphere MQ client: /var/mqm/ssl (on UNIX) or C:\mqm\ssl (on Windows)
+  6.  Click Open. The Password Prompt window displays.
+  7.  Type a password in the Password field, and type it again in the Confirm Password field.
+  8.  Select the Stash the password to a file check box.
+    Note: If you do not stash the password, attempts to start SSL channels fail because they cannot obtain the password required to access the key database file.
+  9.  Click OK. A window is displayed, confirming that the password is in file key.sth (unless you specified a different stem name).
+  10. Click OK. The Signer Certificates window is displayed, containing a list of the CA certificates that are provided with iKeyman and pre-installed in the key database.
+  11.  Start of changeRemove these CA certificates by selecting them and clicking Delete.End of change
+  12. Set the access permissions, as described in Accessing and securing your key database files on Windows or Accessing and securing your key database files on UNIX systems.
+
+Using the command line
+Use the following commands to create a new CMS key database file using iKeycmd or GSKCapiCmd:
+
+    On UNIX:
+
+    gsk8capicmd -keydb -create -db ./key.kdb -pw mli123 -type cms -expire days
+        -stash -fips 
+		
+## creating self signed cert
+	gsk8capicmd -cert -create -db ./key.kdb -pw mli123 -label ibmwebspheremqwin_mli_app_qm
+        -dn "cn=linux02.isphereglobal.com" -size 1024 -x509version 3 -sig_alg SHA1WithRSA -expire 365
+
+## extracting the CA part of the cert
+
+gsk8capicmd -cert -extract -db ./key.kdb -pw password -label ibmwebspheremqwin_mli_app_qm -target winmliappqmCA
+        -format ascii		
+		
+		
+		
+		
+		

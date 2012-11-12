@@ -1,10 +1,8 @@
-define qlocal(REW_Q) usage(xmitq)
-+ trigger trigtype(FIRST) trigdata('IFREND_TO_MLI') initq(SYSTEM.CHANNEL.INITQ)
+define qlocal(REW_Q) usage(xmitq) trigger trigtype(FIRST) trigdata('IFREND_TO_MLI') initq(SYSTEM.CHANNEL.INITQ)
 
 define listener(REW_SEND) trptype (tcp) control (qmgr) port (1478)
 start listener(REW_SEND)
-define channel(IFREND_TO_MLI) chltype(sdr) conname('10.10.10.15(1422)') xmitq(REW_Q) trptype(tcp)
-+ SSLCIPH(RC4_MD5_US)
+define channel(IFREND_TO_MLI) chltype(sdr) conname('10.10.10.15(1422)') xmitq(REW_Q) trptype(tcp) SSLCIPH(RC4_MD5_US)
 start channel(IFREND_TO_MLI)
 
 define qremote(REW_GETREW_QR) rname(REW_GETREW_D) rqmname('MLI_REWARD_QM') xmitq(REW_Q)
@@ -18,8 +16,7 @@ define qremote(REW_D_RDMP_ADJ_QR) rname(REW_D_RDMP_ADJ_D) rqmname('MLI_REWARD_QM
 
 define listener(REW_REPLY) trptype(tcp) control(qmgr) port(1479)
 start listener(REW_REPLY)
-define channel(MLI_TO_IFREND) chltype(rcvr) trptype(tcp)
-+ SSLCIPH(RC4_MD5_US) SSLCAUTH(REQUIRED)
+define channel(MLI_TO_IFREND) chltype(rcvr) trptype(tcp) SSLCIPH(RC4_MD5_US) SSLCAUTH(REQUIRED)
 
 define qlocal(REW_GETREW_D)
 define qlocal(REW_GETRDP_D)

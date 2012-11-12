@@ -1,0 +1,28 @@
+setmqaut -m QMgrName -t qmgr -g GroupName +alladm
+
+##Granting full admin access to all queue manager's object
+
+setmqaut -m QMgrName -n '**' -t queue -g GroupName +alladm +browse
+setmqaut -m QMgrName -n @class -t queue -g GroupName +crt
+setmqaut -m QMgrName -n SYSTEM.ADMIN.COMMAND.QUEUE -t queue -g GroupName +dsp +inq +put
+setmqaut -m QMgrName -n SYSTEM.MQEXPLORER.REPLY.QUEUE -t queue -g GroupName +dsp +inq +get
+setmqaut -m QMgrName -n '**' -t topic -g GroupName +alladm
+setmqaut -m QMgrName -n @class -t topic -g GroupName +crt
+setmqaut -m QMgrName -n '**' -t channel -g GroupName +alladm
+setmqaut -m QMgrName -n @class -t channel -g GroupName +crt
+setmqaut -m QMgrName -n '**' -t clntconn -g GroupName +alladm
+setmqaut -m QMgrName -n @class -t clntconn -g GroupName +crt
+setmqaut -m QMgrName -n '**' -t authinfo -g GroupName +alladm
+setmqaut -m QMgrName -n @class -t authinfo -g GroupName +crt
+setmqaut -m QMgrName -n '**' -t listener -g GroupName +alladm
+setmqaut -m QMgrName -n @class -t listener -g GroupName +crt
+setmqaut -m QMgrName -n '**' -t namelist -g GroupName +alladm
+setmqaut -m QMgrName -n @class -t namelist -g GroupName +crt
+setmqaut -m QMgrName -n '**' -t process -g GroupName +alladm
+setmqaut -m QMgrName -n @class -t process -g GroupName +crt
+setmqaut -m QMgrName -n '**' -t service -g GroupName +alladm
+setmqaut -m QMgrName -n @class -t service -g GroupName +crt
+setmqaut -m QMgrName -t qmgr -g GroupName +alladm +conn
+
+#setting up connection security
+setmqaut -m QMgrName -t qmgr -g GroupName +connect

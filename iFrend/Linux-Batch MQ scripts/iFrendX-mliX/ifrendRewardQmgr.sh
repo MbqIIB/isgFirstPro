@@ -1,5 +1,5 @@
 #!/bin/bash
 
-/opt/mqm/bin/crtmqm -q Reward_QM
-/opt/mqm/bin/strmqm Reward_QM
-/opt/mqm/bin/runmqsc < ifrendRewardQmgr.in
+/opt/mqm/bin/crtmqm -q REWARD_QM
+/opt/mqm/bin/strmqm REWARD_QM
+/opt/mqm/bin/runmqsc < iFrendRewardQmgr.in

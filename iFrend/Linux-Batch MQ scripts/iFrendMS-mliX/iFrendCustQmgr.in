@@ -3,12 +3,12 @@ start channel(SYSTEM.ADMIN.SVRCONN)
 alter qmgr deadq(DLQ)
 define qlocal(DLQ)
 
-define qlocal(CUST_Q) usage(xmitq)
+define qlocal(CUST_Q) usage(xmitq) trigger trigtype(FIRST) trigdata('IFRENDMS_TO_MLI') initq(SYSTEM.CHANNEL.INITQ)
 define qremote(CUST_QR) rname(CUST_CLI_D) rqmname('MLI_CUST_QM') xmitq(CUST_Q)
-define listener(CUST_SEND) trptype (tcp) control (qmgr) port (1472)
+define listener(CUST_SEND) trptype (tcp) control (qmgr) port (1492)
 start listener(CUST_SEND)
-define channel(IFREND_TO_MLI) chltype(sdr) conname('10.10.10.15(1416)') xmitq(CUST_Q) trptype(tcp)
-start channel(IFREND_TO_MLI)
+define channel(IFRENDMS_TO_MLI) chltype(sdr) conname('10.10.10.15(1436)') xmitq(CUST_Q) trptype(tcp) SSLCIPH(RC4_MD5_US)
+start channel(IFRENDMS_TO_MLI)
 
 
 define qremote(CUST_SEARCH_QR) rname(CUST_CCLI_D) rqmname('MLI_CUST_QM') xmitq(CUST_Q)
@@ -18,9 +18,9 @@ define qremote(CUST_CNTC_QR) rname(CUST_CNTC_D) rqmname('MLI_CUST_QM') xmitq(CUS
 define qremote(CUST_ACCNT_QR) rname(CUST_ACCNT_D) rqmname('MLI_CUST_QM') xmitq(CUST_Q)
 
 define qlocal (CUST_D)
-define listener (CUST_REPLY) trptype(tcp) control(qmgr) port(1473)
+define listener (CUST_REPLY) trptype(tcp) control(qmgr) port(1493)
 start listener (CUST_REPLY)
-define channel (MLI_TO_IFREND) chltype(rcvr) trptype(tcp)
+define channel (MLI_TO_IFRENDMS) chltype(rcvr) trptype(tcp) SSLCIPH(RC4_MD5_US) SSLCAUTH(REQUIRED)
 
 define qlocal(CUST_SEARCH_D)
 define qlocal(CUST_REL_D)

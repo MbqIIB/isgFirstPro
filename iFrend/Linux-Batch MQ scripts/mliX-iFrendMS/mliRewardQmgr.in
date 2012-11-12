@@ -2,9 +2,9 @@ define channel(SYSTEM.ADMIN.SVRCONN) CHLTYPE(SVRCONN)
 start channel(SYSTEM.ADMIN.SVRCONN)
 alter qmgr deadq(DLQ)
 define qlocal(DLQ)
-define listener(REW_RCVR) trptype(tcp) control(qmgr) port(1422)
+define listener(REW_RCVR) trptype(tcp) control(qmgr) port(1442)
 start listener(REW_RCVR)
-define channel(IFREND_TO_MLI) chltype(rcvr) trptype(tcp)
+define channel(IFRENDMS_TO_MLI) chltype(rcvr) trptype(tcp) SSLCIPH(RC4_MD5_US) SSLCAUTH(REQUIRED)
 
 define qlocal(REW_GETREW_D)
 define qlocal(REW_GETRDP_D)
@@ -15,9 +15,9 @@ define qlocal(REW_C_RDMP_ADJ_D)
 define qlocal(REW_U_RDMP_ADJ_D)
 define qlocal(REW_D_RDMP_ADJ_D)
 
-define qlocal(REW_REPLY) usage(xmitq)
-define channel(MLI_TO_IFREND) chltype (sdr) conname('10.10.10.132(1479)') xmitq(REW_REPLY) trptype(tcp)
-start channel(MLI_TO_IFREND)
+define qlocal(REW_REPLY) usage(xmitq) trigger trigtype(FIRST) trigdata('MLI_TO_IFRENDMS') initq(SYSTEM.CHANNEL.INITQ)
+define channel(MLI_TO_IFRENDMS) chltype (sdr) conname('10.10.10.132(1499)') xmitq(REW_REPLY) trptype(tcp) SSLCIPH(RC4_MD5_US)
+start channel(MLI_TO_IFRENDMS)
 
 define qremote(REW_GETREW_QR) rname(REW_GETREW_D) rqmname('REWARD_QM') xmitq(REW_REPLY)
 define qremote(REW_GETRDP_QR) rname(REW_GETRDP_D) rqmname('REWARD_QM') xmitq(REW_REPLY)
@@ -29,7 +29,7 @@ define qremote(REW_U_RDMP_ADJ_QR) rname(REW_U_RDMP_ADJ_D) rqmname('REWARD_QM') x
 define qremote(REW_D_RDMP_ADJ_QR) rname(REW_D_RDMP_ADJ_D) rqmname('REWARD_QM') xmitq(REW_REPLY)
 
 
-define listener(REW_REPLY) trptype(tcp) control(qmgr) port(1423)
+define listener(REW_REPLY) trptype(tcp) control(qmgr) port(1443)
 start listener(REW_REPLY)
 
 alter qmgr chlauth(disabled)
