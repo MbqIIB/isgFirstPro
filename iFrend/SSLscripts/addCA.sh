@@ -22,4 +22,7 @@ gsk8capicmd -cert -add -db $REWARD_SSL_DIR/key.kdb -pw mli123 -label mlirewardqm
 export APP_SSL_DIR=$qmgr/APP_QM/ssl
 gsk8capicmd -cert -add -db $APP_SSL_DIR/key.kdb -pw mli123 -label mliappqmCA -file $APP_SSL_DIR/mliappqmCA -format ascii -fips
 
+export LETTER_SSL_DIR=$qmgr/LETTER_QM/ssl
+gsk8capicmd -cert -add -db $LETTER_SSL_DIR/key.kdb -pw mli123 -label mliletterqmCA -file $LETTER_SSL_DIR/mliletterqmCA -format ascii -fips
+
 

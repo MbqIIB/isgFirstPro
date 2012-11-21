@@ -40,7 +40,11 @@ gsk8capicmd -keydb -create -db $APP_SSL_DIR/key.kdb -pw mli123 -type cms -expire
 gsk8capicmd -cert -create -db $APP_SSL_DIR/key.kdb -pw mli123 -label ibmwebspheremqapp_qm -dn "cn=linux02.isphereglobal.com" -size 1024 -x509version 3 -sig_alg SHA1WithRSA -expire 365
 gsk8capicmd -cert -extract -db $APP_SSL_DIR/key.kdb -pw mli123 -label ibmwebspheremqapp_qm -target $APP_SSL_DIR/appqmCA -format ascii
 
-
+###---LETTER_QM---###
+export LETTER_SSL_DIR=$qmgr/LETTER_QM/ssl
+gsk8capicmd -keydb -create -db $LETTER_SSL_DIR/key.kdb -pw mli123 -type cms -expire 365 -stash -fips 
+gsk8capicmd -cert -create -db $LETTER_SSL_DIR/key.kdb -pw mli123 -label ibmwebspheremqletter_qm -dn "cn=linux02.isphereglobal.com" -size 1024 -x509version 3 -sig_alg SHA1WithRSA -expire 365
+gsk8capicmd -cert -extract -db $LETTER_SSL_DIR/key.kdb -pw mli123 -label ibmwebspheremqletter_qm -target $LETTER_SSL_DIR/letterqmCA -format ascii
 
 
 
