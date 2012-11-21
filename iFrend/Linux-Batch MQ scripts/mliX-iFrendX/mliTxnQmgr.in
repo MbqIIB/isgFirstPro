@@ -10,6 +10,8 @@ define qlocal(TXN_REVAUTHZ_D)
 define qlocal(TXN_MANADJ_D)
 define qlocal(TXN_LIST_D)
 define qlocal(TXN_STMT_D)
+define qlocal(TXN_REGEN_STMT_D)
+define qlocal(TXN_GETSTMT_DATE_D)
 
 define qlocal(TXN_REPLY) usage(xmitq) trigger trigtype(FIRST) trigdata('MLI_TO_IFREND') initq(SYSTEM.CHANNEL.INITQ)
 define channel(MLI_TO_IFREND) chltype (sdr) conname('10.10.10.14(1477)') xmitq(TXN_REPLY) trptype(tcp) SSLCIPH(RC4_MD5_US)
@@ -19,6 +21,8 @@ define qremote(TXN_REVAUTHZ_QR) rname(TXN_REVAUTHZ_D) rqmname('TXN_QM') xmitq (T
 define qremote(TXN_MANADJ_QR) rname(TXN_MANADJ_D) rqmname('TXN_QM') xmitq (TXN_REPLY)
 define qremote(TXN_LIST_QR) rname(TXN_LIST_D) rqmname('TXN_QM') xmitq (TXN_REPLY)
 define qremote(TXN_STMT_QR) rname(TXN_STMT_D) rqmname('TXN_QM') xmitq (TXN_REPLY)
+define qremote(TXN_REGEN_STMT_QR) rname(TXN_REGEN_STMT_D) rqmname('TXN_QM') xmitq(TXN_REPLY)
+define qremote(TXN_GETSTMT_DATE_QR) rname(TXN_GETSTMT_DATE_D) rqmname('TXN_QM') xmitq(TXN_REPLY)
 
 
 define listener(TXN_REPLY) trptype(tcp) control(qmgr) port(1421)
