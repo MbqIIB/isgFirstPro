@@ -1,3 +1,8 @@
+define channel(SYSTEM.ADMIN.SVRCONN) CHLTYPE(SVRCONN)
+start channel(SYSTEM.ADMIN.SVRCONN)
+alter qmgr deadq(DLQ)
+define qlocal(DLQ)
+
 define qlocal(REW_Q) usage(xmitq) trigger trigtype(FIRST) trigdata('IFREND_TO_MLI') initq(SYSTEM.CHANNEL.INITQ)
 
 define listener(REW_SEND) trptype (tcp) control (qmgr) port (1478)

@@ -1,0 +1,22 @@
+define channel(SYSTEM.ADMIN.SVRCONN) CHLTYPE(SVRCONN)
+start channel(SYSTEM.ADMIN.SVRCONN)
+alter qmgr deadq(DLQ)
+define qlocal(DLQ)
+
+define qlocal(LETTER_Q) usage(xmitq) trigger trigtype(FIRST) trigdata('IFREND_TO_MLI') initq(SYSTEM.CHANNEL.INITQ)
+
+define listener(LETTER_SEND) trptype (tcp) control (qmgr) port (1460)
+start listener(LETTER_SEND)
+define channel(IFREND_TO_MLI) chltype(sdr) conname('10.10.10.15(1404)') xmitq(LETTER_Q) trptype(tcp) SSLCIPH(RC4_MD5_US)
+start channel(IFREND_TO_MLI)
+
+define qremote(LETTER_QR) rname(LETTER_D) rqmname('MLI_LETTER_QM') xmitq(LETTER_Q)
+
+define listener(LETTER_RCVR) trptype(tcp) control(qmgr) port(1461)
+start listener(LETTER_RCVR)
+define channel(MLI_TO_IFREND) chltype(rcvr) trptype(tcp) SSLCIPH(RC4_MD5_US) SSLCAUTH(REQUIRED)
+
+define qlocal(LETTER_D)
+
+alter qmgr chlauth(disabled)
+end

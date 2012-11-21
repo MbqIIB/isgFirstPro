@@ -15,6 +15,8 @@ define qremote(TXN_REVAUTHZ_QR) rname(TXN_REVAUTHZ_D) rqmname('MLI_TXN_QM') xmit
 define qremote(TXN_MANADJ_QR) rname(TXN_MANADJ_D) rqmname('MLI_TXN_QM') xmitq(TXN_Q)
 define qremote(TXN_LIST_QR) rname(TXN_LIST_D) rqmname('MLI_TXN_QM') xmitq(TXN_Q)
 define qremote(TXN_STMT_QR) rname(TXN_STMT_D) rqmname('MLI_TXN_QM') xmitq(TXN_Q)
+define qremote(TXN_REGEN_STMT_QR) rname(TXN_REGEN_STMT_D) rqmname('MLI_TXN_QM') xmitq(TXN_Q)
+define qremote(TXN_GETSTMT_DATE_QR) rname(TXN_GETSTMT_DATE_D) rqmname('MLI_TXN_QM') xmitq(TXN_Q)
 
 define listener(TXN_REPLY) trptype(tcp) control(qmgr) port(1477)
 start listener(TXN_REPLY)
@@ -24,6 +26,8 @@ define qlocal(TXN_REVAUTHZ_D)
 define qlocal(TXN_MANADJ_D)
 define qlocal(TXN_LIST_D)
 define qlocal(TXN_STMT_D)
+define qlocal(TXN_REGEN_STMT_D)
+define qlocal(TXN_GETSTMT_DATE_D)
 
 alter qmgr chlauth(disabled)
 end
