@@ -1,0 +1,5 @@
+<sch:ProcessCallRequest xmlns:sch="http://isg.com/ifrend/schemas">
+   <sch:cardNumber>4321-4321-4321-4321</sch:cardNumber>
+   <sch:csrId>admin</sch:csrId>
+   <sch:pid>1010</sch:pid>
+</sch:ProcessCallRequest>

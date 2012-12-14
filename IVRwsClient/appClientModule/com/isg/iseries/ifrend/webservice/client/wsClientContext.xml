@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-3.1.xsd 
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-3.1.xsd "  >
+
+	
+	<context:component-scan base-package="com.isg.iseries.ifrend.webservice.client" />
+	<context:annotation-config/>
+
+	<bean id="wsClientGateway" class="com.isg.iseries.ifrend.webservice.client.WebserviceClientGateway">
+	<property name="defaultUri"
+	      value="http://localhost:9090/iseries/ws/processCallService/processCall"/>
+	<property name="messageFactory" ref="soap11MessageFactory"/>
+	<property name="defaultRequest" 
+		value="classpath:com/isg/iseries/ifrend/webservice/client/ivrCall.xml"/>
+	<property name="messageSigner" ref="messageSigner"/>  
+	  
+	</bean>
+
+	<bean id="soap11MessageFactory"
+	      class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory">
+		<property name="messageFactory">
+	    	<bean class="com.sun.xml.messaging.saaj.soap.ver1_1.SOAPMessageFactory1_1Impl" />
+	  	</property>
+	</bean>
+
+	<bean id="messageSigner" class="com.isg.iseries.ifrend.webservice.client.IfrendMessageSigner">
+	  <constructor-arg value="classpath:com/isg/iseries/ifrend/webservice/client/securityPolicy.xml"/>
+	  <constructor-arg>
+	  		<bean class="org.springframework.ws.soap.security.xwss.callback.KeyStoreCallbackHandler">
+	  			<property name="keyStore" ref="clientKeyStore" />
+	  			<property name="defaultAlias" value="wsclient"/>
+	  			<property name="privateKeyPassword" value="gil123"/>
+	    	</bean>
+	  </constructor-arg>        
+	</bean>
+	 
+	<bean id="clientKeyStore" class="org.springframework.ws.soap.security.support.KeyStoreFactoryBean">
+	<property name="location" value="classpath:com/isg/iseries/ifrend/webservice/client/clientKeystore.jks"/>
+	<property name="password" value="gil123"/>
+	</bean>
+
+	
+
+
+
+</beans>
