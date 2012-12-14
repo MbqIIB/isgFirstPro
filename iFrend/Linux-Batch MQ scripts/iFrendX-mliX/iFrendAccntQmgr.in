@@ -12,6 +12,9 @@ define qlocal(ACCNT_MAINT_D)
 define qlocal(ACCNT_PAYFIG_D)
 define qlocal(ACCNT_CLOSURE_D)
 
+define qlocal(BOQ)
+alter qlocal(BOQ) BOTHRESH(3) BOQUEUE(BOQ)
+
 define qremote(ACCNT_CLI_QR) rname(ACCNT_CLI_D) rqmname('MLI_ACCNT_QM') xmitq(ACCNT_Q)
 define qremote(ACCNT_CCLI_QR) rname(ACCNT_CCLI_D) rqmname('MLI_ACCNT_QM') xmitq(ACCNT_Q)
 define qremote(ACCNT_DDEBIT_QR) rname(ACCNT_DDEBIT_D) rqmname('MLI_ACCNT_QM') xmitq(ACCNT_Q)
